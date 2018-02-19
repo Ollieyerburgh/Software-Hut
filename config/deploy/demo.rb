@@ -14,3 +14,4 @@ namespace :deploy do
       execute :rake, 'db:seed'
     end end end
   end
+end
