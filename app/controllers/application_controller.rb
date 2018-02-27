@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
+  before_action :authenticate_user!, except: [:home]
   protect_from_forgery with: :exception
   before_action :update_headers_to_disable_caching
   before_action :ie_warning
@@ -11,6 +12,7 @@ class ApplicationController < ActionController::Base
     controller_name.demodulize.singularize
   end
 
+
   def current_resource
     instance_variable_get(:"@#{resource_name}")
   end
@@ -19,7 +21,7 @@ class ApplicationController < ActionController::Base
     instance_variable_set(:"@#{resource_name}", val)
   end
 
-  # Catch NotFound exceptions and handle them neatly, when URLs are mistyped or mislinked
+  # Catch NotFound exceptions and handle them create_eventneatly, when URLs are mistyped or mislinked
   rescue_from ActiveRecord::RecordNotFound do
     render template: 'errors/error_404', status: 404
   end
@@ -41,6 +43,12 @@ class ApplicationController < ActionController::Base
       response.headers['Pragma'] = 'no-cache'
       response.headers['Expires'] = '-1'
     end
+
+    def authenticate_admin!
+      authenticate_user
+      redirect_to :you_are_not_an_admin, status: :forbidden unless current_user.admin?
+    end
+
 
     def ie_warning
       return redirect_to(ie_warning_path) if request.user_agent.to_s =~ /MSIE [6-7]/ && request.user_agent.to_s !~ /Trident\/7.0/
