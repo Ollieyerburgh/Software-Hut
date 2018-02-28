@@ -40,16 +40,16 @@
               %span.icon-bar
               %span.icon-bar
             = link_to :root, class: 'navbar-brand hidden-sm' do
-              Team-18
+              %imgsrc="/images/Heppsy.png"
 
           .collapse.navbar-collapse
             %ul.nav.navbar-nav
               = navbar_link_to :root, title: "Go to the home page", identifier: :home do
                 = fa_icon 'home'
                 Home
-              = navbar_link_to :events, title: "Create Event page", identifier: :index do
-                = fa_icon 'question-circle'
-                Another Page
+              = navbar_link_to :events, title: "Event page", identifier: :index do
+                = fa_icon 'edit'
+                Events
             -# - if user_signed_in?
             -#   %ul.nav.navbar-nav.navbar-right
             -#     %li.dropdown

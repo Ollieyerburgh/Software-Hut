@@ -1,4 +1,5 @@
 /*
+  *= require variables
   *= require bootstrap_setup
   *= require font-awesome
   *= require select2
@@ -9,4 +10,5 @@
   *= require warning_page
   *= require custom_flash
   *= require environment_notice
+  *= require nav
 */
