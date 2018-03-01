@@ -70,4 +70,15 @@
       .container
         %p
           &copy;#{Date.today.year}
-          = link_to 'epiGenesys', 'https://www.epigenesys.org.uk', target: '_blank', title: 'Goto the epiGenesys website'
+          = link_to 'https://www.facebook.com' do
+            = fa_icon 'facebook'
+            Facebook
+
+
+          = link_to 'https://www.twitter.com' do
+            = fa_icon 'twitter'
+            Twitter
+
+          = link_to 'https://www.instagram.com' do
+            = fa_icon 'instagram'
+            Instagram
