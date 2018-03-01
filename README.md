@@ -19,4 +19,4 @@ None.
 ### Customer Contact
 Some Customer <some.customer@epigenesys.co.uk>
 
-TEST
+TEST THE SLACK NOTIFICATIONS
