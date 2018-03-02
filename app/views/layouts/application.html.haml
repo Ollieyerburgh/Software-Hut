@@ -51,16 +51,16 @@
               = navbar_link_to :events, title: "Event page", identifier: :index do
                 = fa_icon 'edit'
                 Events
-            -# - if user_signed_in?
-            -#   %ul.nav.navbar-nav.navbar-right
-            -#     %li.dropdown
-            -#       = link_to '#', data: { toggle: :dropdown }, class: 'dropdown-toggle', role: 'button', 'aria-haspopup' => true, 'aria-expanded' => false do
-            -#         = fa_icon 'user', text: current_user.email
-            -#         %b.caret
-            -#       %ul.dropdown-menu
-            -#         %li
-            -#           = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
-            -#             = fa_icon 'sign-out', text: 'Log out'
+          - if user_signed_in?
+            %ul.nav.navbar-nav.navbar-right
+              %li.dropdown
+                = link_to 'edit', data: { toggle: :dropdown }, class: 'dropdown-toggle', role: 'button', 'aria-haspopup' => true, 'aria-expanded' => false do
+                  = fa_icon 'user', text: current_user.email
+                %b.caret
+                %ul.dropdown-menu
+                  %li
+                    = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
+                      = fa_icon 'sign-out', text: 'Log out'
 
       #main-container.container
 
