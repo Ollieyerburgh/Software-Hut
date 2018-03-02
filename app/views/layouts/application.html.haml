@@ -51,6 +51,9 @@
               = navbar_link_to :events, title: "Event page", identifier: :index do
                 = fa_icon 'edit'
                 Events
+              = navbar_link_to :edit_user_registration, title: "Account page", identifier: :account do
+                = fa_icon 'accountn'
+                Account
           - if user_signed_in?
             %ul.nav.navbar-nav.navbar-right
               %li.dropdown
