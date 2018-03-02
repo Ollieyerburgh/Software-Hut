@@ -1,10 +1,16 @@
 nav
   padding: 1em
-  
-
+  position: relative
 
 div.collapse.navbar-collapse
   float: right
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus
   border-bottom: 2px solid
+
+.navbar-fixed-top, .navbar-fixed-bottom
+  position: relative
+  margin: 0px
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand
+  border: 1px solid white
