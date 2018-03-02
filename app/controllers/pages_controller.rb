@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
 
   def home
+    @events = Event.all
     @current_nav_identifier = :home
   end
 
