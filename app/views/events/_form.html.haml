@@ -2,11 +2,16 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name
-    = f.input :description
-    = f.input :startdate
-    = f.input :enddate
-    = f.input :url
+    = f.input :name, label: 'Title'
+    = f.input :description, label: 'Event description'
+    = f.input :startdate, label: 'Start Date'
+    = f.input :enddate, label: 'End Date'
+    = f.input :deadlinedate, label: 'Deadline for application'
+    = f.input :location, label: 'Postcode of event'
+    = f.input :tags, label: 'Add some tags so people can find your event!'
+    = f.input :add_documents, label: 'Add images etc here'
+    = f.input :url, label: 'Web address of event'
+    = f.input :email, label: 'Email', placeholder: 'YourEmail@here.com'
 
   .form-actions
     = f.button :submit

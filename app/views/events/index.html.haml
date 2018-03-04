@@ -1,29 +1,22 @@
 %h1 Listing events
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Description
-      %th Startdate
-      %th Enddate
-      %th Url
-      %th
-      %th
-      %th
+= link_to 'New Event', new_event_path
+= link_to 'New Resource', new_event_path
 
-  %tbody
-    - @events.each do |event|
-      %tr
-        %td= event.name
-        %td= event.description
-        %td= event.startdate
-        %td= event.enddate
-        %td= event.url
-        %td= link_to 'Show', event
-        %td= link_to 'Edit', edit_event_path(event)
-        %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+%tbody
+  - @events.each do |event|
+    .homebox
+      %h4= event.name
+      %p.eventsdisplay
+        = event.description
+      = 'Deadline for application:'
+      = event.deadlinedate
+      = link_to 'Show', event
+      = link_to 'Edit', edit_event_path(event)
+      = link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+
+
+
+
 
 %br
-
-= link_to 'New Event', new_event_path
