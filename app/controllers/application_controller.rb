@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  
+  before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
   before_action :update_headers_to_disable_caching
   before_action :ie_warning
@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
     controller_name.demodulize.singularize
   end
 
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :email, :postcode, :forename, :surname])
+  end
 
   def current_resource
     instance_variable_get(:"@#{resource_name}")
