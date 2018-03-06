@@ -15,6 +15,8 @@
 #  add_documents :string
 #  email         :string
 #  deadlinedate  :date
+#  eligability   :string
+#  capacity      :integer
 #
 
 FactoryGirl.define do
