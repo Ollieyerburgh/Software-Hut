@@ -19,45 +19,41 @@
     .filter-box#more-filters
       %p + Filters
 
+.popular-events-container
+  .popular-events-inner-container
+    .populartext
+      %h1 Popular events
+      %table
+        %tbody
+          %tr
+            %td.event-date 11-04-2018
+            %td.event-title TUOS Open Day
+            %td.event-description Our biggest open day yet at The University of Sheffield.
+            %td.event-likes
+              71
+              <i class="fa fa-thumbs-up"></i>
+            %tr
+              %td.event-date 07-11-2018
+              %td.event-title Manchester University
+              %td.event-description Look at the world-class resources in Manchester University.
+              %td.event-likes
+                51
+                <i class="fa fa-thumbs-up"></i>
+            %tr
+              %td.event-date 13-05-2019
+              %td.event-title Oxford College
+              %td.event-description Visit our ancient buildings and take a stroll through history.
+              %td.event-likes
+                31
+                <i class="fa fa-thumbs-up"></i>
 
-.page-header
-  %h1 Educational Events
+  -#
 
-
-.homecontainer
-  .homebox
-    %h2 Search Events
-
-
-    = simple_form_for :form_examples do |f|
-      = f.input :string, as: :string
-      = f.input :addons, wrapper: :vertical_input_group do
-        %span.input-group-addon Addon
-        = f.input_field :toilet, class: "form-control"
-
-  .homebox
-    %h1 Popular events
-
-    %table
-      %thead
-        %tr
-          %th Name
-          %th Description
-          %th Startdate
-          %th Enddate
-          %th Url
-          %th
-          %th
-          %th
-
-      %tbody
         - @events.each do |event|
           %tr
-            %td= event.name
-            %td= event.description
-            %td= event.startdate
-            %td= event.enddate
-            %td= event.url
-            %td= link_to 'Show', event
-            %td= link_to 'Edit', edit_event_path(event)
-            %td= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+            %td.event-date= event.startdate
+            %td.event-title= event.name
+            %td.event-description= event.description
+            %td
+              71
+              <i class="fa fa-thumbs-up"></i>
