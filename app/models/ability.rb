@@ -5,7 +5,7 @@ class Ability
     # Define abilities for the passed in user here. For example:
 
    unless user
-     can :create, Event
+     can [:create], Event
    else
      can :manage, Event
      if user.is_admin?

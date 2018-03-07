@@ -1,13 +1,21 @@
-.control-label
-  &.radio_buttons, &.check_boxes
-    margin-bottom: 0
-  &.inline_radio_buttons, &.inline_check_boxes
-    display: block
-    margin-bottom: 8px
+$teal: #1cb495
+
+.form.container
+  text-align: center
 
 .form-control
   width: 40%
-  margin: 8px 0
+  margin-left: auto
+  margin-right: auto
 
+.form.container input:focus
+  color: white
+  background: $teal
+  padding-left: 20px
+  font-size: 20px
+  border: none
+  outline: none
 
-.form-group
+.form.container btn btn-default
+  color: white
+  background: $teal
