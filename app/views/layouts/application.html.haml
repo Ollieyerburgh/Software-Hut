@@ -48,9 +48,10 @@
               = navbar_link_to :root, title: "Go to the home page", identifier: :home do
                 = fa_icon 'home'
                 Home
-              = navbar_link_to :events, title: "Saved Events", identifier: :index do
-                = fa_icon 'calendar'
-                Saved Events
+              - if can?(:read, Event) 
+                = navbar_link_to :events, title: "Saved Events", identifier: :index do
+                  = fa_icon 'calendar'
+                  Saved Events
               = navbar_link_to :new_event, title: "Create Event", identifier: :new_event do
                 = fa_icon 'edit'
                 Create Event
