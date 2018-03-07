@@ -13,5 +13,6 @@
   *= require nav
   *= require footer
   *= require home
-  /re
+  *= require events
+
 */

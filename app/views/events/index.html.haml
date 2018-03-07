@@ -1,19 +1,33 @@
-%h1 Saved Events
 
-= link_to 'New Event', new_event_path
-= link_to 'New Resource', new_event_path
+.event-options-container
+  .event-options-innner-container
+    .event-action-option
+      = button_to 'New Event', new_event_path, :method => "get"
+    .event-action-option
+      = button_to 'New Resource', new_event_path, :method => "get"
 
-%tbody
-  - @events.each do |event|
-    .homebox
-      %h4= event.name
-      %p.eventsdisplay
-        = event.description
-      = 'Deadline for application:'
-      = event.deadlinedate
-      = link_to 'Show', event
-      = link_to 'Edit', edit_event_path(event)
-      = link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+
+.popular-events-container
+  .popular-events-inner-container
+    .populartext
+      %h1  Saved Events
+      %table
+        %tbody
+          - @events.each do |event|
+            %tr
+              %td.event-date= event.deadlinedate
+              %td.event-title= event.name
+              %td.event-description= event.description
+              %td.event-likes
+                71
+                <i class="fa fa-thumbs-up"></i>
+              %td.event-option
+                = link_to 'Show', event
+              %td.event-option
+                = link_to 'Edit', edit_event_path(event)
+              %td.event-option
+                = link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
+
 
 
 
