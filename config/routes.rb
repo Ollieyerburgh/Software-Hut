@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :resources
   devise_for :users
   resources :events
   match "/403", to: "errors#error_403", via: :all

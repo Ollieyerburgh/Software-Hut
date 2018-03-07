@@ -67,12 +67,13 @@
 
                     %ul.dropdown-menu
                       %li
-                        = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
-                          = fa_icon 'sign-out', text: 'Log out'
-                      %li
                         = navbar_link_to :edit_user_registration, title: "Account page", identifier: :account do
                           = fa_icon 'user'
                           Account
+                      %li
+                        = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
+                          = fa_icon 'sign-out', text: 'Log out'
+
               - else
                 = navbar_link_to :new_user_registration, title: "Register", identifier: :sign_up do
                   = fa_icon 'child'
