@@ -1,7 +1,7 @@
 = simple_form_for(@event) do |f|
   = f.error_notification
 
-  .form-inputs
+  .form-inputs.events
     = f.input :name, label: 'Title'
     = f.input :description, label: 'Event description'
     = f.input :startdate, label: 'Start Date'
