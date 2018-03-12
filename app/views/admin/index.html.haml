@@ -1,0 +1,17 @@
+
+.popular-events-container
+  .popular-events-inner-container
+    .populartext
+      %h1  Saved Events
+      %table
+        %tbody
+          - @events.each do |event|
+            %tr
+              %td.event-date= event.deadlinedate
+              %td.event-title= event.name
+              %td.event-description= event.description
+              %td.event-likes
+                = button_to 'approve', {:controller => 'admin', :action => 'approve', :id => event.id}
+
+
+%br

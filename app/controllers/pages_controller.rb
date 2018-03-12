@@ -9,4 +9,9 @@ class PagesController < ApplicationController
     @current_nav_identifier = :create_event
   end
 
+  def admin_dashboard
+    @events = Event.pending
+  end
+
+
 end

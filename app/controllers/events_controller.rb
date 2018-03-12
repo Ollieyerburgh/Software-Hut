@@ -8,9 +8,12 @@ class EventsController < ApplicationController
   # GET /events
   def index
     @current_nav_identifier = :index
-    @events = Event.all
+    @events = Event.approved
   end
 
+  def pending
+    @events = Event.pending
+  end
   # GET /events/1
   def show
   end

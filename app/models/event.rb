@@ -2,21 +2,22 @@
 #
 # Table name: events
 #
-#  id            :integer          not null, primary key
-#  name          :string
-#  description   :string
-#  startdate     :date
-#  enddate       :date
-#  url           :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  location      :string
-#  tags          :string
-#  add_documents :string
-#  email         :string
-#  deadlinedate  :date
-#  eligability   :string
-#  capacity      :integer
+#  id             :integer          not null, primary key
+#  name           :string
+#  description    :string
+#  startdate      :date
+#  enddate        :date
+#  url            :string
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  location       :string
+#  tags           :string
+#  add_documents  :string
+#  email          :string
+#  deadlinedate   :date
+#  eligability    :string
+#  capacity       :integer
+#  request_status :string           default("Pending")
 #
 
 class Event < ApplicationRecord
@@ -29,4 +30,7 @@ class Event < ApplicationRecord
   validates :location, presence: true
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   validates :url, presence: true
+
+  scope :pending, -> { where(request_status: 'Pending')}
+  scope :approved, -> { where(request_status: 'Approved')}
 end
