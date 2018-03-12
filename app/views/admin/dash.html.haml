@@ -1,0 +1,20 @@
+.container
+  .row
+    .col-sm-4
+      .dash_utilities
+        =image_tag "Activity.png", class: "img-responsive"
+        %h2 Activity requests
+        %p Accept and reject requests for events or resources here
+        = button_to 'Manage', {:controller => 'admin', :action => 'requests'}
+    .col-sm-4
+      .dash_utilities
+        =image_tag "Users.png", class: "img-responsive"
+        %h2 User manage
+        %p Manage user accounts here
+        = button_to 'Manage'
+    .col-sm-4
+      .dash_utilities
+        =image_tag "Admin.png", class: "img-responsive"
+        %h2 Admin invite
+        %p Invite people to become admins here
+        = button_to 'Manage'

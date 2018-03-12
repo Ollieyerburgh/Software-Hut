@@ -1,4 +1,4 @@
-- content_for :title, "Admin Dashboard"
+
 .popular-events-container
   .popular-events-inner-container
     .populartext
@@ -10,13 +10,9 @@
               %td.event-date= event.deadlinedate
               %td.event-title= event.name
               %td.event-description= event.description
-              %td.event-option
-                = link_to 'Show', event
-              %td.event-option
-                = link_to 'Edit', edit_event_path(event)
-              %td.event-option
-                = link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }
-
+              %td.event-likes
+                = button_to 'Approve', {:controller => 'admin', :action => 'approve', :id => event.id}
+                = button_to 'Reject', {:controller => 'admin', :action => 'reject', :id => event.id}
 
 
 %br
