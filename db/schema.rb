@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180317130739) do
+=======
+ActiveRecord::Schema.define(version: 20180307144704) do
+>>>>>>> 3f552f50bccf369ebb01bca192da81d2d6e4b36b
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +34,7 @@ ActiveRecord::Schema.define(version: 20180317130739) do
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
+<<<<<<< HEAD
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -46,6 +51,16 @@ ActiveRecord::Schema.define(version: 20180317130739) do
     t.string "eligability"
     t.integer "capacity"
     t.string "request_status", default: "Pending"
+=======
+  create_table "resources", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "email"
+    t.string "tags"
+    t.string "add_documents"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> 3f552f50bccf369ebb01bca192da81d2d6e4b36b
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -57,4 +72,28 @@ ActiveRecord::Schema.define(version: 20180317130739) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
+<<<<<<< HEAD
+=======
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_admin"
+    t.string "forename"
+    t.string "surname"
+    t.string "postcode"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+>>>>>>> 3f552f50bccf369ebb01bca192da81d2d6e4b36b
 end
