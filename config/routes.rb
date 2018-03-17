@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
 
-  resources :resources
-  devise_for :users
-  resources :events do
-    member do
-      put :approve
-    end
-  end
+  #resources :resources
+  #devise_for :users
+  #resources :events do
+   # member do
+    #  put :approve
+    #end
+  #end
 
   match "/403", to: "errors#error_403", via: :all
   match "/404", to: "errors#error_404", via: :all
