@@ -3,6 +3,8 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
+#  forename               :string
+#  surname                :string
 #  email                  :string           default(""), not null
 #  encrypted_password     :string           default(""), not null
 #  reset_password_token   :string
@@ -15,15 +17,17 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  is_admin               :boolean
-#  forename               :string
-#  surname                :string
-#  postcode               :string
+#  address_id             :integer
 #
 # Indexes
 #
+#  index_users_on_address_id            (address_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (address_id => addresses.id)
 #
 
 require 'rails_helper'

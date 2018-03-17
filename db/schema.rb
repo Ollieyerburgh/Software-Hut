@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20180317154500) do
+=======
+ActiveRecord::Schema.define(version: 20180317170034) do
+>>>>>>> e6d3fcd391fe3727bdefc8d11a571e54ae33cea7
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +62,18 @@ ActiveRecord::Schema.define(version: 20180317154500) do
     t.index ["activity_id", "theme_id"], name: "index_activities_themes_on_activity_id_and_theme_id"
   end
 
+  create_table "addresses", force: :cascade do |t|
+    t.string "postcode"
+    t.string "city"
+  end
+
+  create_table "advisers", force: :cascade do |t|
+    t.string "college"
+    t.string "role"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_advisers_on_user_id"
+  end
+
   create_table "ages", force: :cascade do |t|
     t.string "age"
   end
@@ -81,11 +97,39 @@ ActiveRecord::Schema.define(version: 20180317154500) do
     t.string "delivery_method"
   end
 
+<<<<<<< HEAD
   create_table "resources", force: :cascade do |t|
     t.string "title"
     t.string "link"
     t.string "description"
     t.string "status"
+=======
+  create_table "deliveries_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "delivery_id", null: false
+    t.index ["user_id", "delivery_id"], name: "index_deliveries_users_on_user_id_and_delivery_id"
+  end
+
+  create_table "guardians", force: :cascade do |t|
+    t.string "college"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_guardians_on_user_id"
+  end
+
+  create_table "learners", force: :cascade do |t|
+    t.string "college"
+    t.string "dob"
+    t.integer "yos"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_learners_on_user_id"
+  end
+
+  create_table "partners", force: :cascade do |t|
+    t.string "organisation"
+    t.string "role"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_partners_on_user_id"
+>>>>>>> e6d3fcd391fe3727bdefc8d11a571e54ae33cea7
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -101,6 +145,12 @@ ActiveRecord::Schema.define(version: 20180317154500) do
     t.string "subject_name"
   end
 
+  create_table "subjects_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "subject_id", null: false
+    t.index ["user_id", "subject_id"], name: "index_subjects_users_on_user_id_and_subject_id"
+  end
+
   create_table "tags", force: :cascade do |t|
   end
 
@@ -108,5 +158,37 @@ ActiveRecord::Schema.define(version: 20180317154500) do
     t.string "theme_name"
   end
 
+  create_table "themes_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "theme_id", null: false
+    t.index ["user_id", "theme_id"], name: "index_themes_users_on_user_id_and_theme_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "forename"
+    t.string "surname"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "address_id"
+    t.index ["address_id"], name: "index_users_on_address_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
   add_foreign_key "activities", "tags"
+  add_foreign_key "advisers", "users"
+  add_foreign_key "guardians", "users"
+  add_foreign_key "learners", "users"
+  add_foreign_key "partners", "users"
+  add_foreign_key "users", "addresses"
 end
