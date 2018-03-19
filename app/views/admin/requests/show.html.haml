@@ -1,18 +1,18 @@
 
-.popular-events-container
-  .popular-events-inner-container
+.popular-activities-container
+  .popular-activities-inner-container
     .populartext
       %h1  Pending Requests
       %table
         %tbody
-          - @events.each do |event|
+          - @activities.each do |activity|
             %tr
-              %td.event-date= event.deadlinedate
-              %td.event-title= event.name
-              %td.event-description= event.description
-              %td.event-likes
-                = button_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => event.id}
-                = button_to 'Reject', {:controller => 'admin/requests', :action => 'update', :id => event.id}
+              %td.activity-date= activity.deadline
+              %td.activity-title= activity.title
+              %td.activity-description= activity.description
+              %td.activity-likes
+                = button_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => activity.id}
+                = button_to 'Reject', {:controller => 'admin/requests', :action => 'update', :id => activity.id}
 
 
 %br

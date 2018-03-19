@@ -1,16 +1,16 @@
 class PagesController < ApplicationController
 
   def home
-    @events = Event.all
+    @activities = Activity.all
     @current_nav_identifier = :home
   end
 
-  def create_event
-    @current_nav_identifier = :create_event
+  def create_activity
+    @current_nav_identifier = :create_activity
   end
 
   def admin_dashboard
-    @events = Event.pending
+    @activities = Activity.pending
   end
 
 

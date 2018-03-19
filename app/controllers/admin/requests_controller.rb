@@ -1,25 +1,25 @@
 class Admin::RequestsController < ApplicationController
 
   def index
-    @events = Event.pending
+    @activities = Activity.pending
 
   end
 
   def show
-    @events = Event.pending
+    @activities = Activity.pending
   end
 
   def new
   end
 
   def create
-    @event = Event.find(params[:id])
-    @event.update_column(:request_status, 'Approved')
+    @activity = Activity.find(params[:id])
+    @activity.update_column(:request_status, 'Approved')
     redirect_back(fallback_location: :index)
   end
 
   def update
-    @event = Event.find(params[:id])
+    @activity = Activity.find(params[:id])
     puts params[:id]
   end
 

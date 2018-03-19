@@ -48,13 +48,13 @@
               = navbar_link_to :root, title: "Go to the home page", identifier: :home do
                 = fa_icon 'home'
                 Home
-              - if can?(:read, Event)
-                = navbar_link_to :events, title: "Saved Events", identifier: :index do
+              - if can?(:read, Activity)
+                = navbar_link_to :activities, title: "Saved Activities", identifier: :index do
                   = fa_icon 'calendar'
-                  Saved Events
-              = navbar_link_to :new_event, title: "Create Event", identifier: :new_event do
+                  Saved Activities
+              = navbar_link_to :new_activity, title: "Create Activity", identifier: :new_activity do
                 = fa_icon 'edit'
-                Create Event
+                Create Activity
               - if user_signed_in? == false
                 = navbar_link_to :new_user_session, title: "Sign in", identifier: :sign_in do
                   = fa_icon 'user-circle'

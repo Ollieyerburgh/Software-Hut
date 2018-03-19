@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: events
+# Table name: events NEED TO CHANGE
 #
 #  id             :integer          not null, primary key
 #  name           :string
@@ -21,11 +21,11 @@
 #
 
 FactoryGirl.define do
-  factory :event do
-    name "MyString"
+  factory :activity do
+    title "MyString"
     description "MyString"
-    startdate "2018-02-27"
-    enddate "2018-02-27"
-    url "MyString"
+    start_date "2018-02-27"
+    end_date "2018-02-27"
+    link "MyString"
   end
 end
