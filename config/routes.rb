@@ -7,30 +7,22 @@ Rails.application.routes.draw do
   resources :admin
   namespace :admin do
     resources :requests
+    resources :users
   end
 
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-  resources :activity
+
+  resources :activity do
+    member do
+      put :approve
+    end
+  end
 
   #resources :activities do
   #  member do
   #    put :approve
   #  end
   #end
-=======
-=======
-  namespace :admin do
-    resources :users
-  end
 
->>>>>>> Stashed changes
-  resources :events do
-    member do
-      put :approve
-    end
-  end
->>>>>>> 091d1a98e2723fb01ad323e32c116d968cc89b28
 
   match "/403", to: "errors#error_403", via: :all
   match "/404", to: "errors#error_404", via: :all

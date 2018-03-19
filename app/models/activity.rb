@@ -21,7 +21,7 @@
 #  status         :string           default("Pending")
 
 
-class Activty < ApplicationRecord
+class Activity < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :title, presence: true, format: {with: /\A[a-zA-Z]+\z/,message: "Title cannot contain numbers" }
   validates :description, presence: true

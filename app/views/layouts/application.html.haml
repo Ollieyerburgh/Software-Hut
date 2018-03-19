@@ -49,7 +49,7 @@
                 = fa_icon 'home'
                 Home
               - if can?(:read, Activity)
-                = navbar_link_to :activities, title: "Saved Activities", identifier: :index do
+                = navbar_link_to :activitiy_index, title: "Saved Activities", identifier: :index do
                   = fa_icon 'calendar'
                   Saved Activities
               = navbar_link_to :new_activity, title: "Create Activity", identifier: :new_activity do
