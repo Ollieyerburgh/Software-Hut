@@ -15,7 +15,6 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  is_admin               :boolean
 #  forename               :string
 #  surname                :string
 #  postcode               :string

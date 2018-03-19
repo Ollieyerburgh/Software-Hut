@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 20180312103018) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_admin"
     t.string "forename"
     t.string "surname"
     t.string "postcode"
