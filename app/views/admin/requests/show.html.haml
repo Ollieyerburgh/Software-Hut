@@ -11,8 +11,8 @@
               %td.event-title= event.name
               %td.event-description= event.description
               %td.event-likes
-                = button_to 'Approve', {:controller => 'admin', :action => 'approve', :id => event.id}
-                = button_to 'Reject', {:controller => 'admin', :action => 'reject', :id => event.id}
+                = button_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => event.id}
+                = button_to 'Reject', {:controller => 'admin/requests', :action => 'update', :id => event.id}
 
 
 %br
