@@ -4,17 +4,22 @@
       .dash_utilities
         =image_tag "Activity.png", class: "img-responsive"
         %h2 Activity requests
+<<<<<<< Updated upstream
         %p Accept and reject requests for activities or resources here
         = button_to 'Manage', admin_requests_path
+=======
+        %p Accept and reject requests for events or resources here
+        = link_to 'Manage', 'admin/requests/show', class:'btn btn-default'
+>>>>>>> Stashed changes
     .col-sm-4
       .dash_utilities
         =image_tag "Users.png", class: "img-responsive"
         %h2 User manage
         %p Manage user accounts here
-        = button_to 'Manage'
+        = link_to 'Manage', 'admin/users/index', class:'btn btn-default'
     .col-sm-4
       .dash_utilities
         =image_tag "Admin.png", class: "img-responsive"
         %h2 Admin invite
         %p Invite people to become admins here
-        = button_to 'Manage'
+        = link_to 'Manage', class:'btn btn-default'
