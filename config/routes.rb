@@ -3,27 +3,19 @@ Rails.application.routes.draw do
 
   devise_for :admins
   devise_for :users
-<<<<<<< HEAD
-  #devise_for :users
-  #resources :resources
-  #devise_for :users
-  #resources :events do
-   # member do
-    #  put :approve
-    #end
-  #end
-=======
+
   resources :admin
   namespace :admin do
     resources :requests
   end
 
-  resources :events do
-    member do
-      put :approve
-    end
-  end
->>>>>>> 826886f1acb845a69fad7189a1a89d6514c54cca
+  resources :activity
+
+  #resources :activities do
+  #  member do
+  #    put :approve
+  #  end
+  #end
 
   match "/403", to: "errors#error_403", via: :all
   match "/404", to: "errors#error_404", via: :all

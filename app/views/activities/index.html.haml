@@ -1,0 +1,36 @@
+
+.activity-options-container
+  .activity-options-innner-container
+    .activity-action-option
+      = button_to 'New Activity', new_activity_path, :method => "get"
+    .activity-action-option
+      = button_to 'New Resource', new_resource_path, :method => "get"
+
+
+.popular-activities-container
+  .popular-activities-inner-container
+    .populartext
+      %h1  Saved Activities
+      %table
+        %tbody
+          - @activities.each do |activity|
+            %tr
+              %td.activity-date= activity.deadline
+              %td.activity-title= activity.title
+              %td.activity-description= activity.description
+              %td.activity-likes
+                71
+                <i class="fa fa-thumbs-up"></i>
+              %td.activity-option
+                = link_to 'Show', activity
+              %td.activity-option
+                = link_to 'Edit', edit_activity_path(activity)
+              %td.activity-option
+                = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
+
+
+
+
+
+
+%br

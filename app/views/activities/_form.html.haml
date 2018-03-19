@@ -1,16 +1,16 @@
-= simple_form_for(@event) do |f|
+= simple_form_for(@activity) do |f|
   = f.error_notification
 
-  .form-inputs.events
-    = f.input :name, label: 'Title'
-    = f.input :description, label: 'Event description'
+  .form-inputs.activities
+    = f.input :title, label: 'Title'
+    = f.input :description, label: 'Activity description'
     = f.input :startdate, label: 'Start Date'
     = f.input :enddate, label: 'End Date'
     = f.input :deadlinedate, label: 'Deadline for application'
-    = f.input :location, label: 'Postcode of event'
-    = f.input :tags, label: 'Add some tags so people can find your event!'
+    = f.input :location, label: 'Postcode of activity'
+    = f.input :tags, label: 'Add some tags so people can find your activity!'
     = f.input :add_documents, label: 'Add images etc here'
-    = f.input :url, label: 'Web address of event'
+    = f.input :url, label: 'Web address of activity'
     = f.input :email, label: 'Email', placeholder: 'YourEmail@here.com'
     = f.input :capacity, label: 'Participant capacity'
     = f.input :eligability, label: 'Eligability Criteria'

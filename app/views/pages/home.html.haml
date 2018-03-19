@@ -4,12 +4,12 @@
 .search-container
   .searchtext
     %h1 Search Heppsy
-    %p Find educational resources, events + more. Use filters for a more advanced match
+    %p Find educational resources, activities + more. Use filters for a more advanced match
   .searchbox
     %input{:type=>"text", :required => true}
   .filter-container
     .filter-box
-      %p Event
+      %p Acvitity
     .filter-box
       %p Resource
     .filter-box
@@ -19,41 +19,41 @@
     .filter-box#more-filters
       %p + Filters
 
-.popular-events-container
-  .popular-events-inner-container
+.popular-activities-container
+  .popular-activities-inner-container
     .populartext
-      %h1 Popular events
+      %h1 Popular activities
       %table
         %tbody
           %tr
-            %td.event-date 11-04-2018
-            %td.event-title TUOS Open Day
-            %td.event-description Our biggest open day yet at The University of Sheffield.
-            %td.event-likes
+            %td.activity-date 11-04-2018
+            %td.activity-title TUOS Open Day
+            %td.activity-description Our biggest open day yet at The University of Sheffield.
+            %td.activity-likes
               71
               <i class="fa fa-thumbs-up"></i>
             %tr
-              %td.event-date 07-11-2018
-              %td.event-title Manchester University
-              %td.event-description Look at the world-class resources in Manchester University.
-              %td.event-likes
+              %td.activity-date 07-11-2018
+              %td.activity-title Manchester University
+              %td.activity-description Look at the world-class resources in Manchester University.
+              %td.activity-likes
                 51
                 <i class="fa fa-thumbs-up"></i>
             %tr
-              %td.event-date 13-05-2019
-              %td.event-title Oxford College
-              %td.event-description Visit our ancient buildings and take a stroll through history.
-              %td.event-likes
+              %td.activity-date 13-05-2019
+              %td.activity-title Oxford College
+              %td.activity-description Visit our ancient buildings and take a stroll through history.
+              %td.activity-likes
                 31
                 <i class="fa fa-thumbs-up"></i>
 
   -#
 
-        - @events.each do |event|
+        - @activities.each do |activity|
           %tr
-            %td.event-date= event.startdate
-            %td.event-title= event.name
-            %td.event-description= event.description
+            %td.activity-date= activity.start_date
+            %td.activity-title= activity.name
+            %td.activity-description= activity.description
             %td
               71
               <i class="fa fa-thumbs-up"></i>
