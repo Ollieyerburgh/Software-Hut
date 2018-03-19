@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :requests
   end
 
+<<<<<<< Updated upstream
 <<<<<<< HEAD
   resources :activity
 
@@ -18,6 +19,12 @@ Rails.application.routes.draw do
   #  end
   #end
 =======
+=======
+  namespace :admin do
+    resources :users
+  end
+
+>>>>>>> Stashed changes
   resources :events do
     member do
       put :approve
@@ -29,8 +36,7 @@ Rails.application.routes.draw do
   match "/404", to: "errors#error_404", via: :all
   match "/422", to: "errors#error_422", via: :all
   match "/500", to: "errors#error_500", via: :all
-  post "/admin-approve", to: "admin#approve", via: :all
-  post "/admin-reject", to: "admin#reject", via: :all
+
 
   get :ie_warning, to: 'errors#ie_warning'
   get :javascript_warning, to: 'errors#javascript_warning'
