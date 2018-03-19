@@ -1,7 +1,16 @@
-class AdminController < ApplicationController
+class RequestsController < ApplicationController
+
 
   def index
     @events = Event.pending
+
+  end
+
+  def show
+    
+  end
+
+  def new
   end
 
   def create
@@ -10,19 +19,11 @@ class AdminController < ApplicationController
     redirect_back(fallback_location: :index)
   end
 
-  def edit
+  def update
     @event = Event.find(params[:id])
     puts params[:id]
-    # Event must be linked to user, so that can email them specifically
-
   end
 
-
-  def dash
-    @events_pending = Event.pending
-    @events_approved = Event.approved
-    @users = User.all
-
+  def destroy
   end
-
 end
