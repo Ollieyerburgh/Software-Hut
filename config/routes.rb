@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :requests
   end
 
+<<<<<<< HEAD
   resources :activity
 
   #resources :activities do
@@ -16,6 +17,13 @@ Rails.application.routes.draw do
   #    put :approve
   #  end
   #end
+=======
+  resources :events do
+    member do
+      put :approve
+    end
+  end
+>>>>>>> 091d1a98e2723fb01ad323e32c116d968cc89b28
 
   match "/403", to: "errors#error_403", via: :all
   match "/404", to: "errors#error_404", via: :all
