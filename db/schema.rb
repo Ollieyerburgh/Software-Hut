@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20180317154500) do
-=======
 ActiveRecord::Schema.define(version: 20180317170034) do
->>>>>>> e6d3fcd391fe3727bdefc8d11a571e54ae33cea7
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,13 +93,6 @@ ActiveRecord::Schema.define(version: 20180317170034) do
     t.string "delivery_method"
   end
 
-<<<<<<< HEAD
-  create_table "resources", force: :cascade do |t|
-    t.string "title"
-    t.string "link"
-    t.string "description"
-    t.string "status"
-=======
   create_table "deliveries_users", id: false, force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "delivery_id", null: false
@@ -129,7 +118,13 @@ ActiveRecord::Schema.define(version: 20180317170034) do
     t.string "role"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_partners_on_user_id"
->>>>>>> e6d3fcd391fe3727bdefc8d11a571e54ae33cea7
+  end
+
+  create_table "resources", force: :cascade do |t|
+    t.string "title"
+    t.string "link"
+    t.string "description"
+    t.string "status"
   end
 
   create_table "sessions", force: :cascade do |t|
