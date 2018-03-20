@@ -18,12 +18,6 @@ Rails.application.routes.draw do
     end
   end
 
-  #resources :activities do
-  #  member do
-  #    put :approve
-  #  end
-  #end
-
 
   match "/403", to: "errors#error_403", via: :all
   match "/404", to: "errors#error_404", via: :all
