@@ -2,8 +2,8 @@ class ActivitiesController < ApplicationController
 
 
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:new]
-  authorize_resource
+  #before_action :authenticate_user!, except: [:new]
+  #authorize_resource
 
   # GET /activities
   def index
