@@ -4,16 +4,11 @@
   .form-inputs.activities
     = f.input :title, label: 'Title'
     = f.input :description, label: 'Activity description'
-    = f.input :startdate, label: 'Start Date'
-    = f.input :enddate, label: 'End Date'
-    = f.input :deadlinedate, label: 'Deadline for application'
-    = f.input :location, label: 'Postcode of activity'
-    = f.input :tags, label: 'Add some tags so people can find your activity!'
-    = f.input :add_documents, label: 'Add images etc here'
-    = f.input :url, label: 'Web address of activity'
+    = f.input :start_date, label: 'Start Date'
+    = f.input :end_date, label: 'End Date'
+    = f.input :deadline, label: 'Deadline for application'
+    = f.input :link, label: 'Web address of activity'
     = f.input :email, label: 'Email', placeholder: 'YourEmail@here.com'
-    = f.input :capacity, label: 'Participant capacity'
-    = f.input :eligability, label: 'Eligability Criteria'
 
   .form-actions
     = f.button :submit

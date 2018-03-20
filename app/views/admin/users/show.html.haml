@@ -1,0 +1,22 @@
+
+.popular-activities-container
+  .popular-activities-inner-container
+    .populartext
+      %h1  Saved Activities
+      %table
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td.activity-date= user.forename
+              %td.activity-title= user.surname
+              %td.activity-description= user.postcode
+              %td= user.email
+              %td
+                = link_to
+
+
+
+
+
+
+%br

@@ -6,7 +6,8 @@
 #  title       :string
 #  link        :string
 #  description :string
-#  status      :string
+#  status      :string           default("pending")
+#  email       :string
 #
 
 require 'rails_helper'

@@ -6,7 +6,7 @@ class AdminController < ApplicationController
 
   def create
     @activity = Activity.find(params[:id])
-    @activity.update_column(:request_status, 'Approved')
+    @activity.update_column(:status, 'approved')
     redirect_back(fallback_location: :index)
   end
 

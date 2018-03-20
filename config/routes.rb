@@ -10,8 +10,9 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  resources :resources
 
-  resources :activity do
+  resources :activities do
     member do
       put :approve
     end

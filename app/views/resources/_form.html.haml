@@ -2,11 +2,10 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name, label: 'Title'
+    = f.input :title, label: 'Title'
     = f.input :description, label: 'Activity description'
     = f.input :email, label: 'Email', placeholder: 'YourEmail@here.com'
-    = f.input :tags, label: 'Add some tags'
-    = f.input :add_documents, label: 'Upload document here'
+    = f.input :link, label: 'Add relevant links here'
 
   .form-actions
     = f.button :submit

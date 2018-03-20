@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180319145006) do
+ActiveRecord::Schema.define(version: 20180320110709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20180319145006) do
     t.integer "capacity"
     t.string "link"
     t.string "email"
-    t.string "status"
+    t.string "status", default: "pending"
     t.bigint "tag_id"
     t.index ["tag_id"], name: "index_activities_on_tag_id"
   end
@@ -126,7 +126,8 @@ ActiveRecord::Schema.define(version: 20180319145006) do
     t.string "title"
     t.string "link"
     t.string "description"
-    t.string "status"
+    t.string "status", default: "pending"
+    t.string "email"
   end
 
   create_table "sessions", force: :cascade do |t|

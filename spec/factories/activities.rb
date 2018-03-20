@@ -1,23 +1,31 @@
 # == Schema Information
 #
-# Table name: events NEED TO CHANGE
+# Table name: activities
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  description    :string
-#  startdate      :date
-#  enddate        :date
-#  url            :string
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  location       :string
-#  tags           :string
-#  add_documents  :string
-#  email          :string
-#  deadlinedate   :date
-#  eligability    :string
-#  capacity       :integer
-#  request_status :string           default("Pending")
+#  id                   :integer          not null, primary key
+#  title                :string
+#  description          :string
+#  start_date           :string
+#  end_date             :string
+#  start_time           :string
+#  end_time             :string
+#  deadline             :string
+#  postcode             :string
+#  address              :string
+#  eligibility_criteria :string
+#  capacity             :integer
+#  link                 :string
+#  email                :string
+#  status               :string           default("pending")
+#  tag_id               :integer
+#
+# Indexes
+#
+#  index_activities_on_tag_id  (tag_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (tag_id => tags.id)
 #
 
 FactoryGirl.define do
