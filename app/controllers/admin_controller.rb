@@ -10,6 +10,10 @@ class AdminController < ApplicationController
     redirect_back(fallback_location: :index)
   end
 
+  def show
+    @users = User.all
+  end
+
   def edit
     @activity = Activity.find(params[:id])
     puts params[:id]

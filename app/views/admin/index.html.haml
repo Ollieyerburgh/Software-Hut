@@ -12,7 +12,7 @@
         =image_tag "Users.png", class: "img-responsive"
         %h2 User manage
         %p Manage user accounts here
-        = link_to 'Manage', admin_users_path, class:'btn btn-default'
+        = link_to 'Manage', 'admin/users/show', :method => :get, class:'btn btn-default'
     .col-sm-4
       .dash_utilities
         =image_tag "Admin.png", class: "img-responsive"

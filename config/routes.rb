@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   resources :admin
   namespace :admin do
     resources :requests
-    resources :users
   end
 
+  namespace :admin do
+    resources :users
+  end
   resources :resources
 
   resources :activities do

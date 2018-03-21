@@ -1,0 +1,21 @@
+
+.popular-activities-container
+  .popular-activities-inner-container
+    .populartext
+      %h1 Editing User
+
+      .form.container
+        = simple_form_for(@user, url: admin_user_path(@user)) do |f|
+          = f.error_notification
+
+          .form-inputs
+            = f.input :forename, label: 'First name'
+            = f.input :surname, label: 'Last name'
+            = f.input :email, label: 'Email', :disabled=> true
+            = f.input :id, label: 'ID', :disabled=> true
+
+          .form-actions
+            = f.button :submit
+
+\|
+= link_to 'Back', admin_users_path

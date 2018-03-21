@@ -6,4 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.where(email: 'fake@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password')
+User.where(email: 'fake@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '1')
+User.where(email: 'fake1@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '2')
+User.where(email: 'fake2@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '3')
+User.where(email: 'fake3@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '4')
+User.where(email: 'fake4@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '5', forename: 'ollie', surname: 'yerburgh')
