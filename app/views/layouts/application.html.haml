@@ -45,17 +45,23 @@
 
           .collapse.navbar-collapse
             %ul.nav.navbar-nav
-              = navbar_link_to :root, title: "Go to the home page", identifier: :home do
-                = fa_icon 'home'
-                Home
-                -#  - if can?(:read, Activity)
-              = navbar_link_to :activities, title: "Saved Activities", identifier: :index do
-                = fa_icon 'calendar'
-                Saved Activities
+              - if (admin_signed_in? == false)
+                = navbar_link_to :root, title: "Go to the home page", identifier: :home do
+                  = fa_icon 'home'
+                  Home
+              - if can?(:read, Activity)
+                = navbar_link_to :activities, title: "Saved Activities", identifier: :index do
+                  = fa_icon 'calendar'
+                  Saved Activities
+              - if admin_signed_in?
+                = navbar_link_to :admin_index, title: "Admin", identifier: :index do
+                  Dashboard
+                = navbar_link_to :root, title: "Go to the home page", identifier: :home do
+                  Search
               = navbar_link_to :new_activity, title: "Create Activity", identifier: :new_activity do
                 = fa_icon 'edit'
                 Create Activity
-              - if user_signed_in? == false
+              - if (admin_signed_in? == false) && (user_signed_in? == false)
                 = navbar_link_to :new_user_session, title: "Sign in", identifier: :sign_in do
                   = fa_icon 'user-circle'
                   Sign in
@@ -73,7 +79,16 @@
                       %li
                         = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
                           = fa_icon 'sign-out', text: 'Log out'
+              - if admin_signed_in?
+                %ul.nav.navbar-nav.navbar-right
+                  %li.dropdown
+                    = link_to 'edit', data: { toggle: :dropdown }, class: 'dropdown-toggle', role: 'button', 'aria-haspopup' => true, 'aria-expanded' => false do
+                      = fa_icon 'user', text: 'Hello, ' + current_admin.email.to_s() + '!'
 
+                    %ul.dropdown-menu
+                      %li
+                        = link_to destroy_admin_session_path, method: :delete, title: "Log out of the system" do
+                          = fa_icon 'sign-out', text: 'Log out'
               - else
                 = navbar_link_to :new_user_registration, title: "Register", identifier: :sign_up do
                   = fa_icon 'child'

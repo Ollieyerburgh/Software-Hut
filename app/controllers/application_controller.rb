@@ -48,8 +48,8 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_admin!
-      authenticate_user
-      redirect_to :you_are_not_an_admin, status: :forbidden unless current_user.admin?
+      #authenticate_user!
+      #redirect_to :you_are_not_an_admin, status: :forbidden unless current_user.admin?
     end
 
 
