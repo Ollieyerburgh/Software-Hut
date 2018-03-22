@@ -1,18 +1,30 @@
 
-.popular-activities-container
-  .popular-activities-inner-container
-    .populartext
-      %h1  Pending Requests
-      %table
-        %tbody
-          - @activities.each do |activity|
-            %tr
-              %td.activity-date= activity.deadline
-              %td.activity-title= activity.title
-              %td.activity-description= activity.description
-              %td.activity-likes
-                = button_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => activity.id}
-                = button_to 'Reject', {:controller => 'admin/requests', :action => 'update', :id => activity.id}
+%br
+.container
+  %h1  Pending requests
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.col Title
+        %th.col Description
+        %th.col Deadline
+        %th.col URL
+        %th.col Actions
+    %tbody
+      - @activities.each do |activity|
+        %tr
+          %td= activity.title
+          %td= activity.description
+          %td= activity.deadline
+          %td= activity.link
+          %td
+            = link_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => activity.id}, class:'btn btn-default'
+            = link_to 'Reject', {:controller => 'admin/requests', :action => 'update', :id => activity.id}, class:'btn btn-danger'
+
+
+
+
+
 
 
 %br
