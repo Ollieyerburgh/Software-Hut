@@ -12,6 +12,14 @@ class Admin::RequestsController < ApplicationController
   def new
   end
 
+  def edit
+    @activity = Activity.find(params[:id])
+    puts params[:id]
+    @activity.update_column(:status, 'rejected')
+    redirect_back(fallback_location: :index)
+
+  end
+
   def create
     @activity = Activity.find(params[:id])
     @activity.update_column(:status, 'approved')
@@ -19,8 +27,7 @@ class Admin::RequestsController < ApplicationController
   end
 
   def update
-    @activity = Activity.find(params[:id])
-    puts params[:id]
+
   end
 
   def destroy
