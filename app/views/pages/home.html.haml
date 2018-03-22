@@ -6,7 +6,9 @@
     %h1 Search Heppsy
     %p Find educational resources, activities + more. Use filters for a more advanced match
   .searchbox
-    %input{:type=>"text", :required => true}
+  = form_tag("/search", method: "post") do
+    = text_field_tag(:search)
+    = hidden_field_tag 'page', '1'
   .filter-container
     .filter-box
       %p Acvitity

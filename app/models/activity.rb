@@ -42,4 +42,8 @@ class Activity < ApplicationRecord
 
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
+  scope :description, -> (description) { where("description like ? ",  "#{description}")}
+
+
+
 end

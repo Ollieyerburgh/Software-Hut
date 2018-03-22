@@ -41,6 +41,7 @@ gem 'delayed_job_active_record'
 gem 'delayed-plugins-airbrake'
 gem 'daemons'
 
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'

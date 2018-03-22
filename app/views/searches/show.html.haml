@@ -1,6 +1,26 @@
-%p#notice= notice
+.generic-container
+  .generic-header
+    - if @activities.size < 2
+      %h1 Found #{@activities.size} result for "#{@search.capitalize}"
+    - else
+      %h1 Found #{@activities.size} results for "#{@search.capitalize}"
+
+.results-container
+  .results-inner
+    %table
+      %tbody
+      - @activities.each do |act|
+        %tr
+          %td.result-title #{act.title}
+          %td.result-description #{act.description}
+
+          %td.result-date Event date: #{act.start_date} #{act.end_date}
+          %td.result-link Link to website: #{act.link}
+          %td.result-address Address: #{act.link}
+          %td.result-contact Contact: #{act.email}
 
 
-= link_to 'Edit', edit_search_path(@search)
-\|
-= link_to 'Back', searches_path
+
+.paginate-container
+  .paginate
+    = will_paginate @activities, :params => { :search => @search }

@@ -9,6 +9,8 @@
         %th.col Description
         %th.col Deadline
         %th.col URL
+        %th.col Email
+        %th.col Postcode
         %th.col Actions
     %tbody
       - @activities.each do |activity|
@@ -17,9 +19,12 @@
           %td= activity.description
           %td= activity.deadline
           %td= activity.link
+          %td= activity.email
+          %td= activity.postcode
           %td
-            = link_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => activity.id}, class:'btn btn-default'
-            = link_to 'Reject', {:controller => 'admin/requests', :action => 'update', :id => activity.id}, class:'btn btn-danger'
+            = link_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => activity.id}, method: :post, class:'btn btn-default'
+            = link_to 'Reject', edit_admin_request_path(activity.id), class:'btn btn-danger'
+
 
 
 

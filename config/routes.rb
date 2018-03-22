@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  #resources :addresses
 
   devise_for :admins
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions" }
+
+  #resources :user, :has_one => :address
 
   resources :admin
   namespace :admin do
@@ -26,6 +29,8 @@ Rails.application.routes.draw do
   match "/422", to: "errors#error_422", via: :all
   match "/500", to: "errors#error_500", via: :all
 
+  get '/search', to: 'searches#show'
+  post '/search', to: 'searches#show'
 
   get :ie_warning, to: 'errors#ie_warning'
   get :javascript_warning, to: 'errors#javascript_warning'
