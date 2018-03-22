@@ -12,4 +12,6 @@ User.where(email: 'fake2@sheffield.ac.uk').first_or_create(password:'password', 
 User.where(email: 'fake3@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '4')
 User.where(email: 'fake4@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '5', forename: 'ollie', surname: 'yerburgh')
 
-Activity.create(title: 'Test', description: 'Test description', start_date: '01/02/01', end_date: '01/02/02', deadline: '01/02/03', postcode: "S102SQ", link: 'www.facebook.com', email: 'Fake@sheffield.ac.uk', address: '19, Kingscote, Glos')
+1000.times do
+  Activity.create(title: 'Test', description: 'Test description', start_date: '01/02/01', end_date: '01/02/02', deadline: '01/02/03', postcode: "S102SQ", link: 'www.facebook.com', email: 'Fake@sheffield.ac.uk', address: '19, Kingscote, Glos')
+end

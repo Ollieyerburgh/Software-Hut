@@ -14,5 +14,7 @@
   *= require footer
   *= require home
   *= require activities
+  *= require search
+  *= require paginate
 
 */
