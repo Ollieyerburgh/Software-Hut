@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
 
+  #resources :addresses
 
   devise_for :admins
-  devise_for :users
+  devise_for :users, controllers: { sessions: "users/sessions" }
+
+  #resources :user, :has_one => :address
 
   resources :admin
   namespace :admin do
