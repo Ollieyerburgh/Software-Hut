@@ -26,9 +26,26 @@
             = link_to 'Reject', edit_admin_request_path(activity.id), class:'btn btn-danger'
 
 
-
-
-
+.container
+  %h1  Rejected requests
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.col Title
+        %th.col Description
+        %th.col Deadline
+        %th.col URL
+        %th.col Email
+        %th.col Postcode
+    %tbody
+      - @activitiesrejected.each do |activity|
+        %tr
+          %td= activity.title
+          %td= activity.description
+          %td= activity.deadline
+          %td= activity.link
+          %td= activity.email
+          %td= activity.postcode
 
 
 

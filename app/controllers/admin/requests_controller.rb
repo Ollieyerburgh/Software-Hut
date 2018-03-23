@@ -7,6 +7,7 @@ class Admin::RequestsController < ApplicationController
 
   def show
     @activities = Activity.pending
+    @activitiesrejected = Activity.rejected
   end
 
   def new
