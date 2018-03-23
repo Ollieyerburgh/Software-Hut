@@ -17,4 +17,5 @@ Admin.where(email: 'admin1@sheffield.ac.uk').first_or_create(password:'password'
 
 1000.times do
   Activity.create(title: 'Test', description: 'Test description', start_date: '01/02/01', end_date: '01/02/02', deadline: '01/02/03', postcode: "S102SQ", link: 'www.facebook.com', email: 'Fake@sheffield.ac.uk', address: '19, Kingscote, Glos')
+  Resource.create(title: "Hello test", link: "www.learnsomethingamazing.com", description: "Use this learning resource to help with your A Levels", status: "active", email: "oliveryerburdd@sheffield.ac.uk")
 end
