@@ -9,15 +9,19 @@
   .results-inner
     %table
       %tbody
-      - @activities.each do |act|
+      - 10.times do |count|
         %tr
-          %td.result-title #{act.title}
-          %td.result-description #{act.description}
-
-          %td.result-date Event date: #{act.start_date} #{act.end_date}
-          %td.result-link Link to website: #{act.link}
-          %td.result-address Address: #{act.link}
-          %td.result-contact Contact: #{act.email}
+          %td.result-title Title: #{@activities[count].title}
+          %td.result-date Event date: #{@activities[count].start_date} #{@activities[count].end_date}
+          %td.result-description Description: #{@activities[count].description}
+          %td.result-link Link to website: #{@activities[count].link}
+          %td.result-address Address: #{@activities[count].link}
+          %td.result-contact #{@activities[count].email}
+        %tr
+          %td.result-title Title: #{@resources[count].title}
+          %td.result-description Description: #{@resources[count].description}
+          %td.result-link Link to website: #{@resources[count].link}
+          %td.result-contact #{@resources[count].email}
 
 
 
