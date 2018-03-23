@@ -17,6 +17,7 @@ User.where(email: 'fake4@sheffield.ac.uk').first_or_create(password:'password', 
 Admin.where(email: 'admin1@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '1')
 
 1000.times do
-  Activity.create(title: Faker::Name.unique.name, description: Faker::Company.bs, start_date: Faker::Date.birthday(18, 65), end_date: Faker::Date.birthday(18, 65), deadline: Faker::Date.birthday(18, 65), postcode: Faker::Address.postcode, link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address )
+  Activity.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: Faker::Date.birthday(18, 65), end_date: Faker::Date.birthday(18, 65), deadline: Faker::Date.birthday(18, 65), postcode: Faker::Address.postcode, link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address)
+
   Resource.create(title: Faker::Name.unique.name, link: Faker::Internet.url, description: Faker::Company.bs, status: "active", email: Faker::Internet.email)
 end

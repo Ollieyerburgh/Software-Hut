@@ -1,6 +1,6 @@
 .generic-container
   .generic-header
-    - if @activities.size < 2
+    - if @results_length.size < 2
       %h1 Found #{@activities.size} result for "#{@search.capitalize}"
     - else
       %h1 Found #{@activities.size} results for "#{@search.capitalize}"
@@ -12,7 +12,7 @@
       - 10.times do |count|
         - if @activities[count]
           %tr
-            %td.result-title Title: #{@activities[count].title}
+            %td.result-title Event Title: #{@activities[count].title}
             %td.result-date Event date: #{@activities[count].start_date} #{@activities[count].end_date}
             %td.result-description Description: #{@activities[count].description}
             %td.result-link Link to website: #{@activities[count].link}
@@ -20,7 +20,7 @@
             %td.result-contact #{@activities[count].email}
         - if @resources[count]
           %tr
-            %td.result-title Title: #{@resources[count].title}
+            %td.result-title Resource Title: #{@resources[count].title}
             %td.result-description Description: #{@resources[count].description}
             %td.result-link Link to website: #{@resources[count].link}
             %td.result-contact #{@resources[count].email}
@@ -29,4 +29,7 @@
 
 .paginate-container
   .paginate
-    = will_paginate @activities, :params => { :search => @search }
+    - if @activities.size > @resources.size
+      = will_paginate @activities, :params => { :search => @search }
+    - else
+      = will_paginate @resources, :params => { :search => @search }
