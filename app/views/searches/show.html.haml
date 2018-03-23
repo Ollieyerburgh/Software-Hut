@@ -10,18 +10,20 @@
     %table
       %tbody
       - 10.times do |count|
-        %tr
-          %td.result-title Title: #{@activities[count].title}
-          %td.result-date Event date: #{@activities[count].start_date} #{@activities[count].end_date}
-          %td.result-description Description: #{@activities[count].description}
-          %td.result-link Link to website: #{@activities[count].link}
-          %td.result-address Address: #{@activities[count].link}
-          %td.result-contact #{@activities[count].email}
-        %tr
-          %td.result-title Title: #{@resources[count].title}
-          %td.result-description Description: #{@resources[count].description}
-          %td.result-link Link to website: #{@resources[count].link}
-          %td.result-contact #{@resources[count].email}
+        - if @activities[count]
+          %tr
+            %td.result-title Title: #{@activities[count].title}
+            %td.result-date Event date: #{@activities[count].start_date} #{@activities[count].end_date}
+            %td.result-description Description: #{@activities[count].description}
+            %td.result-link Link to website: #{@activities[count].link}
+            %td.result-address Address: #{@activities[count].link}
+            %td.result-contact #{@activities[count].email}
+        - if @resources[count]
+          %tr
+            %td.result-title Title: #{@resources[count].title}
+            %td.result-description Description: #{@resources[count].description}
+            %td.result-link Link to website: #{@resources[count].link}
+            %td.result-contact #{@resources[count].email}
 
 
 
