@@ -89,7 +89,7 @@
                       %li
                         = link_to destroy_admin_session_path, method: :delete, title: "Log out of the system" do
                           = fa_icon 'sign-out', text: 'Log out'
-              - else
+              - if user_signed_in? == false
                 = navbar_link_to :new_user_registration, title: "Register", identifier: :sign_up do
                   = fa_icon 'child'
                   Register

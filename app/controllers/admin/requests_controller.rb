@@ -6,8 +6,8 @@ class Admin::RequestsController < ApplicationController
   end
 
   def show
-    @activities = Activity.pending
-    @activitiesrejected = Activity.rejected
+    @activities = Activity.pending.paginate(page: params[:page], per_page: 10)
+    @activitiesrejected = Activity.rejected.paginate(page: params[:page], per_page: 10)
   end
 
   def new
