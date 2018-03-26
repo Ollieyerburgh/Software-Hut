@@ -6,6 +6,8 @@ config/setup_load_paths.rb
 log/*.log
 tmp/
 
+.env
+
 .DS_Store
 coverage
 coverage/assets

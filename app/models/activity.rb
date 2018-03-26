@@ -31,7 +31,7 @@
 class Activity < ApplicationRecord
   self.table_name = "activities"
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
-  validates :title, presence: true, format: {with: /\A[a-zA-Z]+\z/,message: "Title cannot contain numbers" }
+  validates :title, presence: true
   validates :description, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true

@@ -6,6 +6,9 @@ gem 'activerecord-session_store', git: 'https://github.com/epigenesys/activereco
 gem 'thin'
 
 gem 'sqlite3', group: [:development, :test]
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'mail_form'
+
 gem 'pg'
 
 gem 'airbrake', git: 'https://github.com/epigenesys/airbrake.git', branch: 'airbrake-v4'
@@ -14,7 +17,7 @@ gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
-
+gem 'turbolinks'
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
