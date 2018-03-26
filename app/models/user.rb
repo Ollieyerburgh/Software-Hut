@@ -34,6 +34,14 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
+  VALID_POSTCODE_REGEX =  /\A[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}\z/
+  validates :forename, presence: true
+  validates :surname, presence: true
+  validates :postcode, presence: true, format: { with: VALID_POSTCODE_REGEX}
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+
 end

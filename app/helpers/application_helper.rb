@@ -1,15 +1,12 @@
 module ApplicationHelper
   def nav_link_to(current_identifier, *args, &block)
     identifier = block_given? ? args[1].delete(:identifier) : args[2].delete(:identifier)
-    puts identifier
-    puts current_identifier
     content_tag :li, class: (:active if identifier == current_identifier) do
       link_to(*args, &block)
     end
   end
 
   def navbar_link_to(*args, &block)
-    puts "Current: #{@current_nav_identifier}"
     nav_link_to(@current_nav_identifier, *args, &block)
   end
 

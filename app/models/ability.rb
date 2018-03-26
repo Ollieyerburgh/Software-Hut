@@ -5,7 +5,7 @@ class Ability
     # Define abilities for the passed in user here. For example:
 
    unless user
-     can [:manage], Activity
+     can [:new], Activity
    else
      can :manage, Activity
 
