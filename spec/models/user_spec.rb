@@ -17,11 +17,18 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  address_id             :integer
+#  postcode               :string
 #
 # Indexes
 #
+#  index_users_on_address_id            (address_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
+#
+# Foreign Keys
+#
+#  fk_rails_...  (address_id => addresses.id)
 #
 
 require 'rails_helper'
