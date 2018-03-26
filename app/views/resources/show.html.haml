@@ -1,20 +1,15 @@
 %p#notice= notice
 
 %p
-  %b Name:
-  = @resource.name
+  %b Title:
+  = @resource.title
 %p
   %b Description:
   = @resource.description
 %p
   %b Email:
   = @resource.email
-%p
-  %b Tags:
-  = @resource.tags
-%p
-  %b Add documents:
-  = @resource.add_documents
+
 
 = link_to 'Edit', edit_resource_path(@resource)
 \|

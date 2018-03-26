@@ -31,12 +31,14 @@
 class Activity < ApplicationRecord
   self.table_name = "activities"
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
+  VALID_POSTCODE_REGEX =  /\A[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}\z/
+  VALID_DATE_REGEX = /\A(?:0?[1-9]|1[0-2])\/(?:0?[1-9]|[1-2]\d|3[01])\/\d{4}\Z/
   validates :title, presence: true
   validates :description, presence: true
-  validates :start_date, presence: true
-  validates :end_date, presence: true
-  validates :deadline, presence: true
-  validates :address, presence: true
+  validates :start_date, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format, please try dd/mm/yyyy"}
+  validates :end_date, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format, please try dd/mm/yyyy"}
+  validates :deadline, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format, please try dd/mm/yyyy"}
+  validates :postcode, presence: true, format: {with: VALID_POSTCODE_REGEX, message: "Invalid postcode format"}
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   validates :link, presence: true
 

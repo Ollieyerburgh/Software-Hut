@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
 
 
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:new]
+
   authorize_resource
 
   # GET /activities
@@ -62,7 +62,7 @@ class ActivitiesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def activity_params
-      params.require(:activity).permit(:title, :description, :start_date, :end_date, :deadline, :location, :tags, :add_documents, :link, :email,
+      params.require(:activity).permit(:title, :description, :start_date, :end_date, :deadline, :postcode, :tags, :add_documents, :link, :email,
       :eligability, :capacity)
     end
 end
