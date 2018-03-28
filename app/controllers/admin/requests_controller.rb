@@ -2,6 +2,7 @@ class Admin::RequestsController < ApplicationController
 
   def index
     @activities = Activity.pending
+    @contact = Request.new(params[:request])
 
   end
 
@@ -16,15 +17,19 @@ class Admin::RequestsController < ApplicationController
   def edit
     @activity = Activity.find(params[:id])
     puts params[:id]
-    @contact = Request.new(params[:requests])
+    @contact = Request.new(params[:request])
     @contact.request = request
     respond_to do |format|
+      puts "Made it here"
       if @contact.deliver
+        puts "Delivered"
         # re-initialize Home object for cleared form
-        @contact = Home.new
+        @contact = Request.new
         format.html { render 'edit'}
         format.js   { flash.now[:success] = @message = "Thank you for your message. I'll get back to you soon!" }
+        puts "JS should've worked"
       else
+        puts "Not Delivered"
         format.html { render 'edit' }
         format.js   { flash.now[:error] = @message = "Message did not send." }
       end

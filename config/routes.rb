@@ -29,6 +29,8 @@ Rails.application.routes.draw do
 
   get '/search', to: 'searches#show'
   post '/search', to: 'searches#show'
+  post '/admin/requests/:id/edit', to: "admin/requests#edit"
+
 
   get :ie_warning, to: 'errors#ie_warning'
   get :javascript_warning, to: 'errors#javascript_warning'

@@ -9,9 +9,9 @@ class Request < MailForm::Base
 
   def headers
       {
-        :subject => "Contact You",
-        :to => "your_email@your_domain.com",
-        :from => %("#{name}" <#{email}>)
+        :subject => "Rejected request",
+        :to => %<#{email}>,
+        :from => %("HeppSY" )
       }
     end
   end
