@@ -9,6 +9,8 @@ class ActivitiesController < ApplicationController
   def index
     @current_nav_identifier = :index
     @activities = Activity.approved
+    #@likedactivties = @user.find_liked
+    @user = current_user
   end
 
   def pending
