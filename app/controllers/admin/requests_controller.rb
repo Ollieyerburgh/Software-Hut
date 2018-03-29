@@ -20,20 +20,18 @@ class Admin::RequestsController < ApplicationController
     @contact = Request.new(params[:request])
     @contact.request = request
     respond_to do |format|
-      puts "Made it here"
       if @contact.deliver
-        puts "Delivered"
+
         # re-initialize Home object for cleared form
         @contact = Request.new
         format.html { render 'edit'}
         format.js   { flash.now[:success] = @message = "Thank you for your message. I'll get back to you soon!" }
-        puts "JS should've worked"
       else
-        puts "Not Delivered"
         format.html { render 'edit' }
         format.js   { flash.now[:error] = @message = "Message did not send." }
       end
     end
+    @activity.update_column(:status, 'rejected')
 
   end
 

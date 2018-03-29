@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :activities do
     member do
       put :approve
+      put 'like' => 'activities#vote'
     end
   end
 

@@ -23,7 +23,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'select2-rails'
 gem 'epi_js'
-
+gem 'acts_as_votable'
 gem 'simple_form'
 gem 'draper'
 gem 'ransack', '~> 1.8.0'

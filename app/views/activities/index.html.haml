@@ -18,9 +18,12 @@
               %td.activity-date= activity.deadline
               %td.activity-title= activity.title
               %td.activity-description= activity.description
-              %td.activity-likes
-                71
-                <i class="fa fa-thumbs-up"></i>
+              %td.activity-option
+                = link_to like_activity_path(activity), class:"like-btn", method: :put, remote: :true do
+                  = fa_icon('thumbs-up')
+              %td.likes-count
+                = activity.get_upvotes.size
+                //activity.get_upvotes.size
               %td.activity-option
                 = link_to 'Show', activity
               %td.activity-option

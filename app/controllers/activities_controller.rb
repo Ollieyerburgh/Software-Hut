@@ -1,8 +1,8 @@
 class ActivitiesController < ApplicationController
 
 
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_activity, only: [:show, :edit, :update, :destroy, :vote]
+  respond_to :js, :json, :html
   authorize_resource
 
   # GET /activities
@@ -45,6 +45,15 @@ class ActivitiesController < ApplicationController
       redirect_to @activity, notice: 'Activity was successfully updated.'
     else
       render :edit
+    end
+  end
+
+
+  def vote
+    if !current_user.liked? @activity
+      @activity.liked_by current_user
+    elsif current_user.liked? @activity
+      @activity.unliked_by current_user
     end
   end
 

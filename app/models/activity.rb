@@ -2,22 +2,29 @@
 #
 # Table name: activities
 #
-#  id                   :integer          not null, primary key
-#  title                :string
-#  description          :string
-#  start_date           :string
-#  end_date             :string
-#  start_time           :string
-#  end_time             :string
-#  deadline             :string
-#  postcode             :string
-#  address              :string
-#  eligibility_criteria :string
-#  capacity             :integer
-#  link                 :string
-#  email                :string
-#  status               :string           default("pending")
-#  tag_id               :integer
+#  id                      :integer          not null, primary key
+#  title                   :string
+#  description             :string
+#  start_date              :string
+#  end_date                :string
+#  start_time              :string
+#  end_time                :string
+#  deadline                :string
+#  postcode                :string
+#  address                 :string
+#  eligibility_criteria    :string
+#  capacity                :integer
+#  link                    :string
+#  email                   :string
+#  status                  :string           default("pending")
+#  tag_id                  :integer
+#  cached_votes_total      :integer          default(0)
+#  cached_votes_score      :integer          default(0)
+#  cached_votes_up         :integer          default(0)
+#  cached_votes_down       :integer          default(0)
+#  cached_weighted_score   :integer          default(0)
+#  cached_weighted_total   :integer          default(0)
+#  cached_weighted_average :float            default(0.0)
 #
 # Indexes
 #
@@ -29,7 +36,9 @@
 #
 
 class Activity < ApplicationRecord
+  belongs_to :user
   self.table_name = "activities"
+  acts_as_votable
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   VALID_POSTCODE_REGEX =  /\A[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}\z/
   VALID_DATE_REGEX = /\A(?:0?[1-9]|1[0-2])\/(?:0?[1-9]|[1-2]\d|3[01])\/\d{4}\Z/
