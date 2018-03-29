@@ -18,6 +18,12 @@
             %td.result-link Link to website: #{@activities[count].link}
             %td.result-address Address: #{@activities[count].link}
             %td.result-contact #{@activities[count].email}
+            %td
+              = @activities[count].id
+              = link_to like_activity_path(@activities[count]), class:"like-btn", method: :put, remote: :true do
+                = fa_icon('thumbs-up')
+            %td.likes-count
+              = @activities[count].get_upvotes.size
         - if @resources[count]
           %tr
             %td.result-title Resource Title: #{@resources[count].title}
