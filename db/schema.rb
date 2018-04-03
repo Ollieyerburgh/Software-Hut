@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180329083245) do
+ActiveRecord::Schema.define(version: 20180331175854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,9 @@ ActiveRecord::Schema.define(version: 20180329083245) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
+    t.bigint "user_id"
     t.index ["tag_id"], name: "index_activities_on_tag_id"
+    t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
   create_table "activities_ages", id: false, force: :cascade do |t|
@@ -207,6 +209,7 @@ ActiveRecord::Schema.define(version: 20180329083245) do
   end
 
   add_foreign_key "activities", "tags"
+  add_foreign_key "activities", "users"
   add_foreign_key "advisers", "users"
   add_foreign_key "guardians", "users"
   add_foreign_key "learners", "users"

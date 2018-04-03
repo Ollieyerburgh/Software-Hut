@@ -32,6 +32,7 @@ class ActivitiesController < ApplicationController
   # POST /activities
   def create
     @activity = Activity.new(activity_params)
+    @activity.user_id = current_user.id
 
     if @activity.save
       redirect_to @activity, notice: 'Activity was successfully created.'
@@ -73,6 +74,6 @@ class ActivitiesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def activity_params
       params.require(:activity).permit(:title, :description, :start_date, :end_date, :deadline, :postcode, :tags, :add_documents, :link, :email,
-      :eligability, :capacity)
+      :eligability, :capacity, :user_id)
     end
 end

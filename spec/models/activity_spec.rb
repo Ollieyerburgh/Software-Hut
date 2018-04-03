@@ -25,14 +25,17 @@
 #  cached_weighted_score   :integer          default(0)
 #  cached_weighted_total   :integer          default(0)
 #  cached_weighted_average :float            default(0.0)
+#  user_id                 :integer
 #
 # Indexes
 #
-#  index_activities_on_tag_id  (tag_id)
+#  index_activities_on_tag_id   (tag_id)
+#  index_activities_on_user_id  (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (tag_id => tags.id)
+#  fk_rails_...  (user_id => users.id)
 #
 
 require 'rails_helper'

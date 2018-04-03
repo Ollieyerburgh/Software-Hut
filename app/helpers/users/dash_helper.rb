@@ -1,0 +1,2 @@
+module Users::DashHelper
+end

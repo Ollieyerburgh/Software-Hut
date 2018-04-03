@@ -1,0 +1,64 @@
+.container
+  %div.nav
+    %ul.nav.nav-pills
+      %li.nav-item
+        = link_to "user dash", users_dash_path
+      %li.nav-item
+        = link_to "Edit account", edit_user_registration_path
+
+
+
+
+  %h1  Pending activities
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.col Title
+        %th.col Description
+        %th.col Deadline
+        %th.col URL
+        %th.col Postcode
+    %tbody
+      - @pendingactivities.each do |activity|
+        %tr
+          %td= activity.title
+          %td= activity.description
+          %td= activity.deadline
+          %td= activity.link
+          %td= activity.postcode
+
+  %h1  Rejected activities
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.col Title
+        %th.col Description
+        %th.col Deadline
+        %th.col URL
+        %th.col Postcode
+    %tbody
+      - @rejectedactivities.each do |activity|
+        %tr
+          %td= activity.title
+          %td= activity.description
+          %td= activity.deadline
+          %td= activity.link
+          %td= activity.postcode
+
+  %h1  Approved activities
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.col Title
+        %th.col Description
+        %th.col Deadline
+        %th.col URL
+        %th.col Postcode
+    %tbody
+      - @rejectedactivities.each do |activity|
+        %tr
+          %td= activity.title
+          %td= activity.description
+          %td= activity.deadline
+          %td= activity.link
+          %td= activity.postcode

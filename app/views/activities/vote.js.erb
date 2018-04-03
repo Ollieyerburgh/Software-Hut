@@ -1,7 +1,11 @@
 <% if current_user.liked? @activity %>
-    $('.like-btn').addClass('liked');
+    $('.like-btn').click(function(){
+      $( this ).liked
+    });
 <% else %>
-    $('.like-btn').removeClass('liked');
+    $('.like-btn').click(function(){
+      this.removeClass('liked')
+    });
 
 <%end%>
   $('.likes-count').html("<%=@activity.get_upvotes.size %>")

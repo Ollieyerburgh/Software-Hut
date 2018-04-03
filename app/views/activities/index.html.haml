@@ -13,7 +13,7 @@
     %tbody
       - @activities.each do |activity|
         %tr
-        - if @user.voted_for? activity
+
           %td.activity-date= activity.deadline
           %td.activity-title= activity.title
           %td.activity-description= activity.description
