@@ -5,7 +5,11 @@
     = f.input :title, label: 'Title'
     = f.input :description, label: 'Activity description'
     = f.input :email, label: 'Email', placeholder: 'YourEmail@here.com'
-    = f.input :link, label: 'Add relevant links here'
+
+
+  .form-file_field
+    = f.label 'Upload files here. Select mutliple by pressing CMD/Control whilst selecting files'
+    = f.file_field :resources, multiple: true
 
   .form-actions
     = f.button :submit

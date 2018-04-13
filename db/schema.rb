@@ -145,6 +145,9 @@ ActiveRecord::Schema.define(version: 20180413125136) do
     t.string "description"
     t.string "status", default: "pending"
     t.string "email"
+    t.json "resources"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_resources_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -224,4 +227,9 @@ ActiveRecord::Schema.define(version: 20180413125136) do
   add_foreign_key "guardians", "users"
   add_foreign_key "learners", "users"
   add_foreign_key "partners", "users"
+
+  add_foreign_key "resources", "users"
+  add_foreign_key "users", "addresses"
+  add_foreign_key "preferences", "subjects"
+
 end

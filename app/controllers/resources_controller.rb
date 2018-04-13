@@ -22,6 +22,8 @@ class ResourcesController < ApplicationController
   # POST /resources
   def create
     @resource = Resource.new(resource_params)
+    @resource.user_id = current_user.id
+
 
     if @resource.save
       redirect_to @resource, notice: 'Resource was successfully created.'
@@ -53,6 +55,6 @@ class ResourcesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def resource_params
-      params.require(:resource).permit(:title, :description, :email, :link, :add_documents,)
+      params.require(:resource).permit(:title, :description, :email, :link, :add_documents, {resources: []})
     end
 end
