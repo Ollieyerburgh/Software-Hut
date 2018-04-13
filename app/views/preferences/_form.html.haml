@@ -1,0 +1,8 @@
+= simple_form_for(@preference) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :subjects
+
+  .form-actions
+    = f.button :submit
