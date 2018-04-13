@@ -1,5 +1,5 @@
 class AddSubjectIdToPreference < ActiveRecord::Migration[5.1]
   def change
-    add_reference :preferences, :subject, foreign_key: true
+    add_column :preferences, :subject_id, :integer
   end
 end
