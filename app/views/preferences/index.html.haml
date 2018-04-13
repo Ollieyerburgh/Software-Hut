@@ -3,7 +3,7 @@
 %table
   %thead
     %tr
-      %th Preferences
+      %th Preference
       %th
       %th
       %th
@@ -11,9 +11,14 @@
   %tbody
     - @preferences.each do |preference|
       %tr
+        %td= preference.preference_id
+      @preference.subjects.each do |subject|
+      %tr
+        %td= subject.name
         %td= link_to 'Show', preference
         %td= link_to 'Edit', edit_preference_path(preference)
         %td= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' }
+
 %br
 
 = link_to 'New Preference', new_preference_path

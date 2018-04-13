@@ -2,7 +2,8 @@
   = f.error_notification
 
   .form-inputs
-    = f.association :subjects
-
+    = f.input :preference_id
+    = f.input :subject_id
+    %h3 Subjects
   .form-actions
     = f.button :submit

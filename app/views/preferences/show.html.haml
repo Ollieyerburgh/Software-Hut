@@ -1,7 +1,8 @@
 %p#notice= notice
 
 %p
-  = @preference.subject.name
+  %b Preference:
+  = @preference.preference_id
 
 = link_to 'Edit', edit_preference_path(@preference)
 \|

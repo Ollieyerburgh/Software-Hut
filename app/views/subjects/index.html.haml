@@ -12,7 +12,6 @@
     - @subjects.each do |subject|
       %tr
         %td= subject.name
-        %td= subject.preference_number
         %td= link_to 'Show', subject
         %td= link_to 'Edit', edit_subject_path(subject)
         %td= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' }
