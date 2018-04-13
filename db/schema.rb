@@ -101,9 +101,7 @@ ActiveRecord::Schema.define(version: 20180413110329) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.string "method"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "delivery_method"
   end
 
   create_table "deliveries_users", id: false, force: :cascade do |t|
@@ -167,20 +165,12 @@ ActiveRecord::Schema.define(version: 20180413110329) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "subjects_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "subject_id", null: false
-    t.index ["user_id", "subject_id"], name: "index_subjects_users_on_user_id_and_subject_id"
-  end
-
   create_table "tags", force: :cascade do |t|
     t.string "name"
   end
 
   create_table "themes", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "theme_name"
   end
 
   create_table "themes_users", id: false, force: :cascade do |t|
@@ -204,7 +194,9 @@ ActiveRecord::Schema.define(version: 20180413110329) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "address_id"
     t.string "postcode"
+    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -229,8 +221,7 @@ ActiveRecord::Schema.define(version: 20180413110329) do
   add_foreign_key "guardians", "users"
   add_foreign_key "learners", "users"
   add_foreign_key "partners", "users"
-
+  add_foreign_key "preferences", "subjects"
   add_foreign_key "resources", "users"
   add_foreign_key "users", "addresses"
-  add_foreign_key "preferences", "subjects"
 end
