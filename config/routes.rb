@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :subjects
+  resources :preferences
   #resources :addresses
 
   devise_for :admins

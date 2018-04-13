@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413100317) do
+ActiveRecord::Schema.define(version: 20180413110329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -101,7 +101,9 @@ ActiveRecord::Schema.define(version: 20180413100317) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.string "delivery_method"
+    t.string "method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "deliveries_users", id: false, force: :cascade do |t|
@@ -131,6 +133,14 @@ ActiveRecord::Schema.define(version: 20180413100317) do
     t.index ["user_id"], name: "index_partners_on_user_id"
   end
 
+  create_table "preferences", force: :cascade do |t|
+    t.integer "preference_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "subject_id"
+    t.index ["subject_id"], name: "index_preferences_on_subject_id"
+  end
+
   create_table "resources", force: :cascade do |t|
     t.string "title"
     t.string "link"
@@ -152,7 +162,9 @@ ActiveRecord::Schema.define(version: 20180413100317) do
   end
 
   create_table "subjects", force: :cascade do |t|
-    t.string "subject_name"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "subjects_users", id: false, force: :cascade do |t|
@@ -166,7 +178,9 @@ ActiveRecord::Schema.define(version: 20180413100317) do
   end
 
   create_table "themes", force: :cascade do |t|
-    t.string "theme_name"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "themes_users", id: false, force: :cascade do |t|
@@ -190,9 +204,7 @@ ActiveRecord::Schema.define(version: 20180413100317) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "address_id"
     t.string "postcode"
-    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -217,6 +229,8 @@ ActiveRecord::Schema.define(version: 20180413100317) do
   add_foreign_key "guardians", "users"
   add_foreign_key "learners", "users"
   add_foreign_key "partners", "users"
+
   add_foreign_key "resources", "users"
   add_foreign_key "users", "addresses"
+  add_foreign_key "preferences", "subjects"
 end

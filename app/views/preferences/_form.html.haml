@@ -1,0 +1,9 @@
+= simple_form_for(@preference) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :preference_id
+    = f.input :subject_id
+    %h3 Subjects
+  .form-actions
+    = f.button :submit
