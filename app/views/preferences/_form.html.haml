@@ -3,7 +3,8 @@
 
   .form-inputs
     = f.input :preference_id
-    = f.input :subject_id
+    = f.association :subjects, as: :check_boxes
+
     %h3 Subjects
   .form-actions
     = f.button :submit
