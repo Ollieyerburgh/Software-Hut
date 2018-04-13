@@ -62,3 +62,20 @@
           %td= activity.deadline
           %td= activity.link
           %td= activity.postcode
+
+
+  %h1  Resources
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.col Title
+        %th.col Description
+        %th.col Resource
+
+    %tbody
+      - @resources.each do |resource|
+        %tr
+          %td= resource.title
+          %td= resource.description
+          %td= resource.resources[0].path
+          -# This should work  %a{:href => "resource.resources[0].path"} Link  

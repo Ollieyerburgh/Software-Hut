@@ -33,6 +33,7 @@
 
 class User < ApplicationRecord
   has_many :activities
+  has_many :resources
   acts_as_voter
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

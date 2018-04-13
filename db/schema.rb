@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180331175854) do
+ActiveRecord::Schema.define(version: 20180413100317) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,9 @@ ActiveRecord::Schema.define(version: 20180331175854) do
     t.string "description"
     t.string "status", default: "pending"
     t.string "email"
+    t.json "resources"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_resources_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -214,5 +217,6 @@ ActiveRecord::Schema.define(version: 20180331175854) do
   add_foreign_key "guardians", "users"
   add_foreign_key "learners", "users"
   add_foreign_key "partners", "users"
+  add_foreign_key "resources", "users"
   add_foreign_key "users", "addresses"
 end
