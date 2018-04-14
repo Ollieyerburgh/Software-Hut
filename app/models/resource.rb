@@ -27,7 +27,6 @@ class Resource < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   validates :description, presence: true
   validates :title, presence: true
-  validates :resources, :presence => {:message => "Invalid file type or no file submitted" }
 
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
