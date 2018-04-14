@@ -23,3 +23,6 @@ user = User.find_by_email("fake@sheffield.ac.uk")
   user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: 'S11 8TD', link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address)
   user.resources.create(title: Faker::Name.unique.name, link: Faker::Internet.url, description: Faker::Company.bs, status: "active", email: Faker::Internet.email)
 end
+
+subjects =  ['maths', 'english', 'physics', 'geography', 'computer science']
+subjects.each { |subject| Subject.create(name: subject)}

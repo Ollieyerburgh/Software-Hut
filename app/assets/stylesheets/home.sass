@@ -74,34 +74,49 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
 
 .flex
   display: flex
-  justify-content: center
   align-self: center
   padding: 0
 
 .event-date
+  display: flex
+  justify-self: center
+  padding-left: 10px
   width: 10%
 
 .event-title
+  display: flex
+  justify-self: start
   font-weight: bold
   font-size: 20px
   width: 35%
 
 .event-description
+  display: flex
+  justify-self: start
+  text-align: left
   width: 50%
 
-.event-likes
+.event-likes  
+  display: flex
+  justify-self: center
   width: 5%
 
-.vcenter 
+.vcenter
     display: flex
     justify-content: center
     align-items: center
 
+.vcenter i
+  margin: 5px
+  
 @media screen and (max-width: 767px)
   .event-description, .event-likes
     display: none
   .event-date
     font-size: 15px
+    display: flex
+    justify-self: center
+    text-align: center
     width: 40%
   .event-title
     font-size: 15px
@@ -110,3 +125,8 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
 @media screen and (max-width: 1200px)
   .event-title
     font-size: 15px
+
+.truncate 
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis

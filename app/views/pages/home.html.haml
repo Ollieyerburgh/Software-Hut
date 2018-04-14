@@ -13,7 +13,12 @@
     .filter-box
       %p Distance 
     .filter-box
-      %p Subject
+      %select
+        - @subjects.each do |subject|
+          %option 
+            subject
+
+        
     .filter-box#more-filters
       %p + Filters
 
@@ -28,9 +33,9 @@
               .col-md-8.col-centered.flex
                 .event-date.vcenter
                   = activity.start_date
-                .event-title.vcenter
+                .event-title.vcenter.truncate
                   = activity.title
-                .event-description.vcenter
+                .event-description.vcenter.truncate
                   = activity.description
                 .event-likes.vcenter
                   = activity.get_upvotes.size
