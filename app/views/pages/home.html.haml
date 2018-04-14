@@ -17,34 +17,46 @@
     .filter-box#more-filters
       %p + Filters
 
-.popular-activities-container
-  .popular-activities-inner-container
-    .populartext
-      %h1 Popular activities
-      %table
-        %tbody
+        
+.container-fluid.margin-top-50
+  .row
+    %table
+      %tbody
+        .popular-events
           %tr
-            %td.activity-date 11-04-2018
-            %td.activity-title TUOS Open Day
-            %td.activity-description Our biggest open day yet at The University of Sheffield.
-            %td.activity-likes
-              71
-              <i class="fa fa-thumbs-up"></i>
-            %tr
-              %td.activity-date 07-11-2018
-              %td.activity-title Manchester University
-              %td.activity-description Look at the world-class resources in Manchester University.
-              %td.activity-likes
+            .col-md-8.col-centered.flex
+              .event-date.vcenter
+                11-04-2018
+              .event-title.vcenter
+                TUOS Open Day
+              .event-description.vcenter
+                Our biggest open day yet at The University of Sheffield.
+              .event-likes.vcenter
+                71
+                <i class="fa fa-thumbs-up"></i>
+          %tr
+            .col-md-8.col-centered.flex
+              .event-date.vcenter
+                07-11-2018
+              .event-title.vcenter
+                Manchester University
+              .event-description.vcenter
+                Look at the world-class resources in Manchester University.
+              .event-likes.vcenter
                 51
                 <i class="fa fa-thumbs-up"></i>
-            %tr
-              %td.activity-date 13-05-2019
-              %td.activity-title Oxford College
-              %td.activity-description Visit our ancient buildings and take a stroll through history.
-              %td.activity-likes
+          %tr
+            .col-md-8.col-centered.flex
+              .event-date.vcenter
+                13-05-2019
+              .event-title.vcenter
+                Oxford College
+              .event-description.vcenter
+                Visit our ancient buildings and take a stroll through history.
+              .event-likes.vcenter
                 31
                 <i class="fa fa-thumbs-up"></i>
-
+  
   -#
 
         - @activities.each do |activity|
