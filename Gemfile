@@ -45,6 +45,8 @@ gem 'delayed-plugins-airbrake'
 gem 'daemons'
 gem 'carrierwave'
 
+gem 'faker'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'byebug'
