@@ -1,3 +1,4 @@
+
 = simple_form_for(@activity) do |f|
   = f.error_notification
 
@@ -10,6 +11,9 @@
     = f.input :link, label: 'Web address of activity'
     = f.input :postcode, label: 'Activity postcode'
     = f.input :email, label: 'Email', placeholder: 'YourEmail@here.com'
+    = f.label "I agree that I have been given permission to post this activity on this website"
+    = check_box_tag "Hello"
 
   .form-actions
+
     = f.button :submit
