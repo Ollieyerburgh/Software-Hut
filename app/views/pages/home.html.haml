@@ -12,11 +12,15 @@
   .filter-container
     .filter-box
       %p Distance 
-    .filter-box
+    .filter-box1
       %select
+        .subject-choice
+          %option{:disabled => "disabled", :selected => "selected"}
+            Subject 
         - @subjects.each do |subject|
-          %option 
-            subject
+          .subject-choice
+            %option
+              = subject.name
 
         
     .filter-box#more-filters
