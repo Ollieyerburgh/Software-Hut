@@ -39,7 +39,8 @@
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            =image_tag "Heppsy.png", class: "img-responsive"
+            = link_to :root, class: 'brand-image' do
+              =image_tag "Heppsy.png", class: "img-responsive"
 
 
           .collapse.navbar-collapse
@@ -100,7 +101,8 @@
           .row
             .col-sm-3
               %h2.logo
-                =image_tag "Heppsy.png", class: "img-responsive"
+                = link_to :root, class: 'brand-image' do
+                  =image_tag "Heppsy.png", class: "img-responsive"
             .col-sm-2
               %h5 Resources
               %ul
