@@ -30,17 +30,17 @@
         .alert.alert-info
           %h2 Sorry, it appears that you are using a web browser without JavaScript which prevents us offering you a rich online experience.
           %p Please enable JavaScript or use a different web browser, or alternatively contact the CiCS Helpdesk for assistance.
-
+            
     #wrap
-      %nav#main-nav.navbar.navbar-default.navbar-fixed-top
+      %nav#main-nav.navbar.navbar-default.navbar-fixed-top 
         .container
           .navbar-header
             %button.navbar-toggle{ data: { target: ".navbar-collapse", toggle: :collapse, type: :button } }
               %span.icon-bar
               %span.icon-bar
               %span.icon-bar
-            = link_to :root, class: 'navbar-brand hidden-sm' do
-              =image_tag "Heppsy.png"
+            .brand-image
+              =image_tag "Heppsy.png", class: "img-responsive"
 
 
           .collapse.navbar-collapse
