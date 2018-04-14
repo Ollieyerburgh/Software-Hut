@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
 
   def home
-    @activities = Activity.all
+    @activities = Activity.all.order(cached_weighted_total: :desc).limit(3)
     @current_nav_identifier = :home
   end
 

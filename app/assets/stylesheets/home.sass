@@ -58,7 +58,6 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
   color: white
 
 
-
 .col-md-8.col-centered
   border: 1px solid $teal
   border-radius: 5px
@@ -85,15 +84,29 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
 .event-title
   font-weight: bold
   font-size: 20px
-  width: 30%
+  width: 35%
 
 .event-description
   width: 50%
 
 .event-likes
-  width: 10%
+  width: 5%
 
 .vcenter 
     display: flex
     justify-content: center
     align-items: center
+
+@media screen and (max-width: 767px)
+  .event-description, .event-likes
+    display: none
+  .event-date
+    font-size: 15px
+    width: 40%
+  .event-title
+    font-size: 15px
+    width: 60%  
+
+@media screen and (max-width: 1200px)
+  .event-title
+    font-size: 15px

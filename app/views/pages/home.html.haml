@@ -23,47 +23,17 @@
     %table
       %tbody
         .popular-events
-          %tr
-            .col-md-8.col-centered.flex
-              .event-date.vcenter
-                11-04-2018
-              .event-title.vcenter
-                TUOS Open Day
-              .event-description.vcenter
-                Our biggest open day yet at The University of Sheffield.
-              .event-likes.vcenter
-                71
-                <i class="fa fa-thumbs-up"></i>
-          %tr
-            .col-md-8.col-centered.flex
-              .event-date.vcenter
-                07-11-2018
-              .event-title.vcenter
-                Manchester University
-              .event-description.vcenter
-                Look at the world-class resources in Manchester University.
-              .event-likes.vcenter
-                51
-                <i class="fa fa-thumbs-up"></i>
-          %tr
-            .col-md-8.col-centered.flex
-              .event-date.vcenter
-                13-05-2019
-              .event-title.vcenter
-                Oxford College
-              .event-description.vcenter
-                Visit our ancient buildings and take a stroll through history.
-              .event-likes.vcenter
-                31
-                <i class="fa fa-thumbs-up"></i>
-  
-  -#
+          - @activities.each do |activity|
+            %tr
+              .col-md-8.col-centered.flex
+                .event-date.vcenter
+                  = activity.start_date
+                .event-title.vcenter
+                  = activity.title
+                .event-description.vcenter
+                  = activity.description
+                .event-likes.vcenter
+                  = activity.get_upvotes.size
+                  <i class="fa fa-thumbs-up"></i>
 
-        - @activities.each do |activity|
-          %tr
-            %td.activity-date= activity.start_date
-            %td.activity-title= activity.name
-            %td.activity-description= activity.description
-            %td
-              71
-              <i class="fa fa-thumbs-up"></i>
+  
