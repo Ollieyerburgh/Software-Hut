@@ -21,5 +21,5 @@ Activity.create(title: 'Activity 1', description:'lala', start_date: '01/01/2018
 user = User.find_by_email("fake@sheffield.ac.uk")
 1000.times do
   user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: 'S11 8TD', link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address)
-  user.resources.create(title: Faker::Name.unique.name, link: Faker::Internet.url, description: Faker::Company.bs, status: "active", email: Faker::Internet.email)end
+  user.resources.create(title: Faker::Name.unique.name, link: Faker::Internet.url, description: Faker::Company.bs, status: "active", email: Faker::Internet.email)
 end
