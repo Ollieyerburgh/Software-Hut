@@ -224,10 +224,6 @@ ActiveRecord::Schema.define(version: 20180413170503) do
   add_foreign_key "partners", "users"
   add_foreign_key "preferences", "subjects"
   add_foreign_key "resources", "users"
-<<<<<<< HEAD
   add_foreign_key "subjects", "preferences"
-=======
-  add_foreign_key "users", "addresses"  add_foreign_key "preferences", "subjects"
-
->>>>>>> 0b2664f864ff5102c5bd9ce6467687a116900775
+  add_foreign_key "users", "addresses"
 end

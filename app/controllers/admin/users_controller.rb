@@ -9,6 +9,7 @@ class Admin::UsersController < ApplicationController
   # GET /resources/1
   def show
     @users = User.all
+    @admins = Admin.all
   end
 
   # GET /resources/new
