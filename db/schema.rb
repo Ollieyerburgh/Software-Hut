@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415132130) do
+ActiveRecord::Schema.define(version: 20180415152739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -167,6 +167,8 @@ ActiveRecord::Schema.define(version: 20180415132130) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "preference_id"
+    t.bigint "activity_id"
+    t.index ["activity_id"], name: "index_subjects_on_activity_id"
     t.index ["preference_id"], name: "index_subjects_on_preference_id"
   end
 
@@ -232,5 +234,6 @@ ActiveRecord::Schema.define(version: 20180415132130) do
   add_foreign_key "partners", "users"
   add_foreign_key "preferences", "subjects"
   add_foreign_key "resources", "users"
+  add_foreign_key "subjects", "activities"
   add_foreign_key "subjects", "preferences"
 end
