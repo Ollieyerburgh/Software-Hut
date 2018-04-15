@@ -5,10 +5,13 @@ class Ability
       case model
       when Admin
         can :manage, :all, id: model.id
+
       when User
-        can [:edit, :update, :destroy], Activity, id: model.id
+        can [:edit, :update, :destroy], Activity, user_id: model.id
+        puts model.id
+        puts "HAHHAHHHAHAHHHAHHAHAHHHAHHHHAHAHHAHAHAKJLAJKAJLAKJA"
         can [:new, :read, :create], Activity
-        can [:edit, :update, :destroy], Resource, id: model.id
+        can [:edit, :update, :destroy], Resource, user_id: model.id
         can [:new, :read, :create], Resource
       else
         can [:new, :read, :create], Activity, id: '100000'

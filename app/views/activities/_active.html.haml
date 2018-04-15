@@ -23,11 +23,13 @@
             %td.likes-count
               = activity.get_upvotes.size
             %td.activity-option
-              = link_to 'Show', activity
+              = link_to 'See more', activity
             %td.activity-option
-              = link_to 'Edit', edit_activity_path(activity)
+              - if can? :edit, activity
+                = link_to 'Edit', edit_activity_path(activity)
             %td.activity-option
-              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
+              - if can? :destroy, activity
+                = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
 
 
   %h1  Other activities
@@ -46,9 +48,11 @@
           %td.activity-option
             = link_to 'Show', activity
           %td.activity-option
-            = link_to 'Edit', edit_activity_path(activity)
+            - if can? :update, activity
+              = link_to 'Edit', edit_activity_path(activity)
           %td.activity-option
-            = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
+            - if can? :destroy, activity
+              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
 
 
 
