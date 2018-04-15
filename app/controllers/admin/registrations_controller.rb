@@ -1,6 +1,6 @@
 class Admin::RegistrationsController < ApplicationController
 
-  
+
 
   def new
 
@@ -12,9 +12,9 @@ class Admin::RegistrationsController < ApplicationController
     @admin = Admin.new(user_params)
 
     if @admin.save
-      redirect_to :admin_index, :flash => { :notice => "notice" }
+      redirect_to :admin_index, :flash => { :notice => "Admin added" }
     else
-      render :new, :flash => { :notice => "notice" }
+      render :new, :flash => { :notice => "Admin not saved" }
 
     end
   end

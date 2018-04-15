@@ -4,6 +4,7 @@ class AdminController < ApplicationController
 
   def index
     @activities = Activity.pending
+    
   end
 
   def create

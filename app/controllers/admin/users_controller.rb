@@ -13,34 +13,19 @@ class Admin::UsersController < ApplicationController
     @admins = Admin.all
   end
 
-  # GET /resources/new
-  def new
-    @users = User.new
-  end
-
   # GET /resources/1/edit
   def edit
     @user = User.find(params[:id])
 
   end
 
-  # POST /resources
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      redirect_to @user, notice: 'Resource was successfully created.'
-    else
-      render :new
-    end
-  end
 
   # PATCH/PUT /resources/1
   def update
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      redirect_to edit_admin_user_path, notice: 'Resource was successfully updated.'
+      redirect_to '/admin/users/show/', notice: 'User was successfully updated.'
     else
       render :edit
     end
@@ -51,7 +36,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
 
     @user.destroy
-    redirect_to admin_index_path, notice: 'Resource was successfully destroyed.'
+    redirect_to '/admin/users/show/', notice: 'User was successfully destroyed.'
   end
 
   private
@@ -62,6 +47,6 @@ class Admin::UsersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def user_params
-      params.require(:user).permit(:forename, :surname, :email, :id)
+      params.require(:user).permit(:forename, :surname, :email, :id, :password, :password_confirmation, :current_password, :postcode)
     end
 end

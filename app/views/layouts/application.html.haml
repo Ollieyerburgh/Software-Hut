@@ -51,8 +51,10 @@
                   Saved Activities
               - if admin_signed_in?
                 = navbar_link_to :admin_index, title: "Admin", identifier: :index do
+                  = fa_icon 'address-book'
                   Dashboard
                 = navbar_link_to :root, title: "Go to the home page", identifier: :home do
+                  = fa_icon 'search'
                   Search
               = navbar_link_to :new_activity, title: "Create Activity", identifier: :new_activity do
                 = fa_icon 'edit'
