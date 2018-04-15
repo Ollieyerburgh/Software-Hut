@@ -3,7 +3,9 @@ class ActivitiesController < ApplicationController
 
   before_action :set_activity, only: [:show, :edit, :update, :destroy, :vote]
   respond_to :js, :json, :html
+  skip_before_action :verify_authenticity_token
   authorize_resource :except => [:vote]
+
 
   # GET /activities
   def index
@@ -38,7 +40,7 @@ class ActivitiesController < ApplicationController
       @activity.user_id = current_user.id
     end
     if @activity.save
-      redirect_to @activity, notice: 'Activity was successfully created.'
+      redirect_to :root, notice: 'Activity was successfully created.'
     else
       render :new
     end

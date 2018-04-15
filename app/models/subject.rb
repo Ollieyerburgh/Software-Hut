@@ -18,6 +18,6 @@
 #
 
 class Subject < ApplicationRecord
-  #belongs_to :preference
+  belongs_to :preference
   #attr_accessible :name
 end

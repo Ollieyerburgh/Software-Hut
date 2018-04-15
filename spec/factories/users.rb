@@ -27,6 +27,11 @@
 
 FactoryGirl.define do
   factory :user do
-    
+    email {'test@test.com'}
+    forename {'test'}
+    surname {'test'}
+    postcode {'S102SQ'}
+    password {'password'}
+
   end
 end

@@ -45,7 +45,7 @@
 
           .collapse.navbar-collapse
             %ul.nav.navbar-nav
-              - if can?(:read, Activity)
+              - if (admin_signed_in? == true) || (user_signed_in? == true)
                 = navbar_link_to :activities, title: "Saved Activities", identifier: :index do
                   = fa_icon 'calendar'
                   Saved Activities
@@ -91,7 +91,7 @@
                       %li
                         = link_to destroy_admin_session_path, method: :delete, title: "Log out of the system" do
                           = fa_icon 'sign-out', text: 'Log out'
-            
+
       #main-container.container
 
         = yield

@@ -1,6 +1,6 @@
 class Admin::RegistrationsController < ApplicationController
 
-  authorize_resource
+  
 
   def new
 
