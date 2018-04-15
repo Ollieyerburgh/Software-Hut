@@ -1,5 +1,7 @@
 .generic-container
   .generic-header
+    %h1 Looks #{@subject}
+
     - if @results_length.size < 2
       %h1 Found #{@activities.size} result for "#{@search.capitalize}"
     - else
