@@ -39,7 +39,7 @@
 #
 
 class Activity < ApplicationRecord
-  include Filterable
+  #include Filterable
   belongs_to :user
   has_one :subject
   self.table_name = "activities"
