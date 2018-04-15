@@ -12,28 +12,28 @@
     = hidden_field_tag 'page', '1'
   .filter-container
     .filter-box
-      %p Distance 
+      %p Distance
     .filter-box1
       %select{:id => "selectsubject"}
         .subject-choice
           %option{:disabled => "disabled", :selected => "selected"}
-            Subject 
+            Subject
         - @subjects.each do |subject|
           .subject-choice
             %option
               = subject.name.capitalize
 
-        
+
     .filter-box#more-filters
       %p + Filters
 
-        
+
 .container-fluid.margin-top-50
   .row
     %table
       %tbody
         .popular-events
-          - @activities.each do |activity|
+          - @activities.take(3).each do |activity|
             %tr
               .col-md-8.col-centered.flex
                 .event-date.vcenter
@@ -45,5 +45,3 @@
                 .event-likes.vcenter
                   = activity.get_upvotes.size
                   <i class="fa fa-thumbs-up"></i>
-
-  

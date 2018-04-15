@@ -51,6 +51,24 @@ ActiveRecord::Schema.define(version: 20180415152739) do
     t.index ["activity_id", "age_id"], name: "index_activities_ages_on_activity_id_and_age_id"
   end
 
+  create_table "activities_deliveries", id: false, force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "delivery_id", null: false
+    t.index ["activity_id", "delivery_id"], name: "index_activities_deliveries_on_activity_id_and_delivery_id"
+  end
+
+  create_table "activities_subjects", id: false, force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "subject_id", null: false
+    t.index ["activity_id", "subject_id"], name: "index_activities_subjects_on_activity_id_and_subject_id"
+  end
+
+  create_table "activities_themes", id: false, force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "theme_id", null: false
+    t.index ["activity_id", "theme_id"], name: "index_activities_themes_on_activity_id_and_theme_id"
+  end
+
   create_table "addresses", force: :cascade do |t|
     t.string "postcode"
     t.string "city"
@@ -224,4 +242,5 @@ ActiveRecord::Schema.define(version: 20180415152739) do
   add_foreign_key "subjects", "activities"
   add_foreign_key "subjects", "preferences"
   add_foreign_key "themes", "preferences"
+  add_foreign_key "users", "addresses"
 end

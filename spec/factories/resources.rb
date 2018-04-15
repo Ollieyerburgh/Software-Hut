@@ -24,11 +24,10 @@
 
 FactoryGirl.define do
   factory :resource do
-    name "MyString"
+    title "test"
     description "MyString"
-    email "MyString"
-    tags "MyString"
-    add_documents "MyString"
-     "MyString"
+    email "resourcetest2@test.com"
+    status "pending"
+    user_id "1"
   end
 end
