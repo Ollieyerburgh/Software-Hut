@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180415132130) do
+ActiveRecord::Schema.define(version: 20180415141945) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,24 +51,6 @@ ActiveRecord::Schema.define(version: 20180415132130) do
     t.index ["activity_id", "age_id"], name: "index_activities_ages_on_activity_id_and_age_id"
   end
 
-  create_table "activities_deliveries", id: false, force: :cascade do |t|
-    t.bigint "activity_id", null: false
-    t.bigint "delivery_id", null: false
-    t.index ["activity_id", "delivery_id"], name: "index_activities_deliveries_on_activity_id_and_delivery_id"
-  end
-
-  create_table "activities_subjects", id: false, force: :cascade do |t|
-    t.bigint "activity_id", null: false
-    t.bigint "subject_id", null: false
-    t.index ["activity_id", "subject_id"], name: "index_activities_subjects_on_activity_id_and_subject_id"
-  end
-
-  create_table "activities_themes", id: false, force: :cascade do |t|
-    t.bigint "activity_id", null: false
-    t.bigint "theme_id", null: false
-    t.index ["activity_id", "theme_id"], name: "index_activities_themes_on_activity_id_and_theme_id"
-  end
-
   create_table "addresses", force: :cascade do |t|
     t.string "postcode"
     t.string "city"
@@ -104,6 +86,10 @@ ActiveRecord::Schema.define(version: 20180415132130) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string "delivery_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "preference_id"
+    t.index ["preference_id"], name: "index_deliveries_on_preference_id"
   end
 
   create_table "deliveries_users", id: false, force: :cascade do |t|
@@ -182,6 +168,10 @@ ActiveRecord::Schema.define(version: 20180415132130) do
 
   create_table "themes", force: :cascade do |t|
     t.string "theme_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "preference_id"
+    t.index ["preference_id"], name: "index_themes_on_preference_id"
   end
 
   create_table "themes_users", id: false, force: :cascade do |t|
@@ -227,10 +217,12 @@ ActiveRecord::Schema.define(version: 20180415132130) do
   add_foreign_key "activities", "tags"
   add_foreign_key "activities", "users"
   add_foreign_key "advisers", "users"
+  add_foreign_key "deliveries", "preferences"
   add_foreign_key "guardians", "users"
   add_foreign_key "learners", "users"
   add_foreign_key "partners", "users"
   add_foreign_key "preferences", "subjects"
   add_foreign_key "resources", "users"
   add_foreign_key "subjects", "preferences"
+  add_foreign_key "themes", "preferences"
 end
