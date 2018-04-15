@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
 
+  authorize_resource
+
   def home
     @activities = Activity.all.order(cached_weighted_total: :desc).limit(3)
     @subjects = Subject.all.limit(20)
