@@ -41,6 +41,7 @@
 class Activity < ApplicationRecord
   include Filterable
   belongs_to :user
+  has_one :subject
   self.table_name = "activities"
   acts_as_votable
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -59,8 +60,9 @@ class Activity < ApplicationRecord
   scope :approved, -> { where(status: 'approved')}
   scope :description, -> (description) { where("description like ? ",  "#{description}")}
   scope :rejected, -> { where(status: 'rejected')}
-  scope :search, -> (@search) {
-    .where("lower(description) LIKE ? OR lower(title) LIKE ? OR lower(address) LIKE ?", "%#{@search.downcase}%","%#{@search.downcase}%" ,"%#{@search.downcase}%")
+  scope :query, -> (search) {
+    where("lower(description) LIKE ? OR lower(title) LIKE ? OR lower(address) LIKE ?", "%#{search.downcase}%","%#{search.downcase}%" ,"%#{search.downcase}%")
   }
-  .where("lower(description) LIKE ? OR lower(title) LIKE ? OR lower(address) LIKE ?", "%#{@search.downcase}%","%#{@search.downcase}%" ,"%#{@search.downcase}%").paginate(page: params[:page], per_page: 10)
+  scope :subject, -> (subject) { where(subject: subject)}
+
 end
