@@ -40,12 +40,20 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
+
+
 FactoryGirl.define do
   factory :activity do
-    title "MyString"
-    description "MyString"
-    start_date "2018-02-27"
-    end_date "2018-02-27"
-    link "MyString"
+
+    title "test-title"
+    description "test"
+    start_date "01/01/2010"
+    end_date "01/01/2010"
+    deadline "01/01/2010"
+    postcode "S102SQ"
+    link "www.facebook.com"
+    email "test@test.com"
+    status "pending"
+    user_id "1"
   end
 end

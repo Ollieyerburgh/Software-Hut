@@ -25,8 +25,8 @@ class Admin::RequestsController < ApplicationController
 
         # re-initialize Home object for cleared form
         @contact = Request.new
-        format.html { render 'edit'}
-        format.js   { flash.now[:success] = @message = "Thank you for your message. I'll get back to you soon!" }
+        format.html { render '/admin/requests/show'}
+        format.js   { flash.now[:success] = @message = "Rejected email sent" }
       else
         format.html { render 'edit' }
         format.js   { flash.now[:error] = @message = "Message did not send." }

@@ -1,0 +1,27 @@
+<div class="generic-container">
+  <div class="generic-header">
+    <h2>Edit user: <%= @user.forename %></h2>
+  </div>
+</div>
+
+
+<div class="form container">
+  <%= simple_form_for(@user, url: admin_user_path ) do |f| %>
+    <%= f.error_notification %>
+
+
+    <div class="form-inpus">
+      <%= f.input :forename %>
+      <%= f.input :surname %>
+      <%= f.input :postcode %>
+      <%= f.input :email, required: true, autofocus: true %>
+
+
+
+    </div>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Update" %>
+    </div>
+  <% end %>
+</div>

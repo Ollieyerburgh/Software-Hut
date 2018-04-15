@@ -24,7 +24,7 @@
 
 FactoryGirl.define do
   factory :admin do
-    email {'admintest@test.com'}
+    email {'admin@admin.com'}
     password {'test12'}
 
   end
