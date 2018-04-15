@@ -41,7 +41,7 @@
 #
 
 class Activity < ApplicationRecord
-  #include Filterable
+  include ActiveModel::AttributeMethods
   belongs_to :user
   has_one :subject
   self.table_name = "activities"
@@ -65,6 +65,16 @@ class Activity < ApplicationRecord
   scope :query, -> (search) {
     where("lower(description) LIKE ? OR lower(title) LIKE ? OR lower(address) LIKE ?", "%#{search.downcase}%","%#{search.downcase}%" ,"%#{search.downcase}%")
   }
-  scope :subject, -> (subject) { where(subject: subject)}
+  scope :subject, -> (subject) { where(subject_id: Subject.where(name: subject))}
+
+  private 
+    def self.filter(filtering_params)
+      results = self.where(nil)
+      filtering_params.each do |key, value|
+        results = results.public_send(key, value) if value.present?
+      end
+      results
+    end
+
 
 end

@@ -31,6 +31,11 @@ class Resource < ApplicationRecord
   validates :description, presence: true
   validates :title, presence: true
 
+  scope :query, -> (search) {
+    where("lower(description) LIKE ? OR lower(title) LIKE ? OR lower(address) LIKE ?", "%#{search.downcase}%","%#{search.downcase}%" ,"%#{search.downcase}%")
+  }
+  scope :subject, -> (subject) { where(subject_id: Subject.where(name: subject))}
+
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
 end
