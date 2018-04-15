@@ -1,6 +1,7 @@
 .generic-container
   .generic-header
-    %h1 Looks #{@subject}
+    %h1 Subject is #{@subject}
+    %h1 Distance is #{@distance}
 
     - if @results_length.size < 2
       %h1 Found #{@activities.size} result for "#{@search.capitalize}"
