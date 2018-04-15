@@ -45,6 +45,7 @@ gem 'delayed-plugins-airbrake'
 gem 'daemons'
 gem 'carrierwave'
 
+gem 'google-maps'
 gem 'faker'
 
 group :development, :test do

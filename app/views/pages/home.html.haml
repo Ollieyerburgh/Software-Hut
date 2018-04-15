@@ -6,14 +6,15 @@
     %h1 Search Heppsy
     %p Find educational resources, activities + more. Use filters for a more advanced match
   .searchbox
-  = form_tag("/search", method: "post") do
+  = form_tag("/search", method: "post", id: 'helloworld', ) do
     = text_field_tag(:search)
+    = hidden_field_tag 'subject', '', :id => "subject"
     = hidden_field_tag 'page', '1'
   .filter-container
     .filter-box
       %p Distance 
     .filter-box1
-      %select
+      %select{:id => "selectsubject"}
         .subject-choice
           %option{:disabled => "disabled", :selected => "selected"}
             Subject 
