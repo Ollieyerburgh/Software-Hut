@@ -26,11 +26,13 @@
 #  cached_weighted_total   :integer          default(0)
 #  cached_weighted_average :float            default(0.0)
 #  user_id                 :integer
+#  subject_id              :integer
 #
 # Indexes
 #
-#  index_activities_on_tag_id   (tag_id)
-#  index_activities_on_user_id  (user_id)
+#  index_activities_on_subject_id  (subject_id)
+#  index_activities_on_tag_id      (tag_id)
+#  index_activities_on_user_id     (user_id)
 #
 # Foreign Keys
 #

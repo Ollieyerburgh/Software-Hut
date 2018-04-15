@@ -7,7 +7,7 @@
     %p Find educational resources, activities + more. Use filters for a more advanced match
   .searchbox
   = form_tag("/search", method: "post", id: 'helloworld', ) do
-    = text_field_tag(:search)
+    = text_field_tag(:query)
     = hidden_field_tag 'subject', '', :id => "subject"
     = hidden_field_tag 'page', '1'
   .filter-container
