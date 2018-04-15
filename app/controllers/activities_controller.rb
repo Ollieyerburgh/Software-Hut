@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
 
   before_action :set_activity, only: [:show, :edit, :update, :destroy, :vote]
   respond_to :js, :json, :html
-  authorize_resource
+  authorize_resource :except => [:vote]
 
   # GET /activities
   def index
