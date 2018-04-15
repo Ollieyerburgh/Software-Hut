@@ -1,20 +1,30 @@
 %p#notice= notice
+%div.generic-container
+  %div.row
+    %div.display_header.container
+      %h1
+        = @activity.title
+    %div.display_content.container
+      %p
+        %b Description:
+        = @activity.description
+      %p
+        %b Start date:
+        = @activity.start_date
+      %p
+        %b End date:
+        = @activity.end_date
+      %p
+        %b Deadline:
+        = @activity.deadline
+      %p
+        %b Postcode:
+        = @activity.postcode.upcase
+      %p
+        %b Url:
+        = @activity.link
 
-%p
-  %b Title:
-  = @activity.title
-%p
-  %b Description:
-  = @activity.description
-%p
-  %b Startdate:
-  = @activity.start_date
-%p
-  %b Enddate:
-  = @activity.end_date
-%p
-  %b Url:
-  = @activity.link
+
 
 = link_to 'Edit', edit_activity_path(@activity)
 \|
