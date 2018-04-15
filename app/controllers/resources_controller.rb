@@ -1,6 +1,6 @@
 class ResourcesController < ApplicationController
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
-
+  authorize_resource
   # GET /resources
   def index
     @resources = Resource.all

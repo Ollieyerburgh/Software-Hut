@@ -1,5 +1,7 @@
 class AdminController < ApplicationController
 
+  authorize_resource
+
   def index
     @activities = Activity.pending
   end

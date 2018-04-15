@@ -30,9 +30,9 @@
         .alert.alert-info
           %h2 Sorry, it appears that you are using a web browser without JavaScript which prevents us offering you a rich online experience.
           %p Please enable JavaScript or use a different web browser, or alternatively contact the CiCS Helpdesk for assistance.
-            
+
     #wrap
-      %nav#main-nav.navbar.navbar-default.navbar-fixed-top 
+      %nav#main-nav.navbar.navbar-default.navbar-fixed-top
         .container
           .navbar-header
             %button.navbar-toggle{ data: { target: ".navbar-collapse", toggle: :collapse, type: :button } }
@@ -60,6 +60,9 @@
               - if (admin_signed_in? == false) && (user_signed_in? == false)
                 = navbar_link_to :new_user_session, class: "sign-in-button", title: "Sign in", identifier: :sign_in do
                   Log in
+                = navbar_link_to :new_user_registration, class: "sign-up-button", title: "Register", identifier: :sign_up do
+                  Sign up
+
               - if user_signed_in?
                 %ul.nav.navbar-nav.navbar-right
                   %li.dropdown
@@ -88,10 +91,7 @@
                       %li
                         = link_to destroy_admin_session_path, method: :delete, title: "Log out of the system" do
                           = fa_icon 'sign-out', text: 'Log out'
-              - if (user_signed_in?) || (admin_signed_in?) == false
-                = navbar_link_to :new_user_registration, class: "sign-up-button", title: "Register", identifier: :sign_up do
-                  Sign up
-
+            
       #main-container.container
 
         = yield

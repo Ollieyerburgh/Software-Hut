@@ -6,8 +6,12 @@ class Ability
 
    unless user
      can [:new], Activity
+     can [:new], Resource
    else
-     can :manage, Activity
+     can [:edit, :update, :destroy], Activity, id: user.id
+     can [:new, :read, :create], Activity
+     can [:edit, :update, :destroy], Resource, id: user.id
+     can [:new, :read, :create], Resource
 
    end
 

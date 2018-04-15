@@ -1,9 +1,10 @@
 class Admin::RequestsController < ApplicationController
 
+  authorize_resource
+
   def index
     @activities = Activity.pending
     @contact = Request.new(params[:request])
-
   end
 
   def show
