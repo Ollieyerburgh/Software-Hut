@@ -18,5 +18,7 @@
 
 class Preference < ApplicationRecord
   has_many :subjects
+  has_many :themes
+  has_many :deliveries
   #accepts_nested_attributes_for :subjects
 end
