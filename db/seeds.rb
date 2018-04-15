@@ -9,13 +9,7 @@ require 'faker'
 
 Faker::Config.locale = 'en-GB'
 
-User.where(email: 'fake@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '1')
-User.where(email: 'fake1@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '2')
-User.where(email: 'fake2@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '3')
-User.where(email: 'fake3@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '4')
-User.where(email: 'fake4@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '5', forename: 'ollie', surname: 'yerburgh')
-User.where(email: 'Anonymous@fake.com').first_or_create(password:'AFDD43dsnj5', password_confirmation: 'AFDD43dsnj5', id: '100000', forename: 'Anonymous', surname: 'Anonymous', postcode: 'S102SQ')
-
+User.create(email:'fake@sheffield.ac.uk', password:'password', password_confirmation: 'password', id: '1', forename: 'isaac', surname: 'yerdburgh',  postcode: Faker::Address.postcode, )
 Admin.where(email: 'admin1@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '1')
 
 
