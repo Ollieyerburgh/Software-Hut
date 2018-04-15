@@ -18,4 +18,5 @@
 #
 
 class Delivery < ApplicationRecord
+  belongs_to :preference
 end

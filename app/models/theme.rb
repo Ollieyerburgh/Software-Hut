@@ -18,4 +18,5 @@
 #
 
 class Theme < ApplicationRecord
+  belongs_to :preference
 end
