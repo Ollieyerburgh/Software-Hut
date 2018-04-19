@@ -2,8 +2,7 @@
 
 %p
   %b Preference:
-  = @preference.preference_id
-
+  = @preference.subjects.name
 = link_to 'Edit', edit_preference_path(@preference)
 \|
 = link_to 'Back', preferences_path

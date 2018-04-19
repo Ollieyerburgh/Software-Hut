@@ -6,7 +6,6 @@
       %th Name
       %th Description
       %th Email
-      %th Tags
       %th Add documents
       %th
       %th
@@ -15,11 +14,10 @@
   %tbody
     - @resources.each do |resource|
       %tr
-        %td= resource.name
+        %td= resource.title
         %td= resource.description
         %td= resource.email
-        %td= resource.tags
-        %td= resource.add_documents
+        %td= resource.resources
         %td= link_to 'Show', resource
         %td= link_to 'Edit', edit_resource_path(resource)
         %td= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' }

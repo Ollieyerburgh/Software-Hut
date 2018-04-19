@@ -43,8 +43,10 @@ gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'delayed-plugins-airbrake'
 gem 'daemons'
+gem 'carrierwave'
 
-gem 'faker', :git => 'https://github.com/stympy/faker.git', :branch => 'master'
+gem 'google-maps'
+gem 'faker'
 
 group :development, :test do
   gem 'rspec-rails'

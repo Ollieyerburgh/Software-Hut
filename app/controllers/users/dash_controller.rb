@@ -16,6 +16,7 @@ class Users::DashController < ApplicationController
     @pendingactivities = @user.activities.pending
     @rejectedactivities = @user.activities.rejected
     @approvedactivities = @user.activities.approved
+    @resources = @user.resources
   end
 
 

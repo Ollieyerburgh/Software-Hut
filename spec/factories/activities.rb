@@ -26,11 +26,13 @@
 #  cached_weighted_total   :integer          default(0)
 #  cached_weighted_average :float            default(0.0)
 #  user_id                 :integer
+#  subject_id              :integer
 #
 # Indexes
 #
-#  index_activities_on_tag_id   (tag_id)
-#  index_activities_on_user_id  (user_id)
+#  index_activities_on_subject_id  (subject_id)
+#  index_activities_on_tag_id      (tag_id)
+#  index_activities_on_user_id     (user_id)
 #
 # Foreign Keys
 #
@@ -38,12 +40,20 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
+
+
 FactoryGirl.define do
   factory :activity do
-    title "MyString"
-    description "MyString"
-    start_date "2018-02-27"
-    end_date "2018-02-27"
-    link "MyString"
+
+    title "test-title"
+    description "test"
+    start_date "01/01/2010"
+    end_date "01/01/2010"
+    deadline "01/01/2010"
+    postcode "S102SQ"
+    link "www.facebook.com"
+    email "test@test.com"
+    status "pending"
+    user_id "1"
   end
 end

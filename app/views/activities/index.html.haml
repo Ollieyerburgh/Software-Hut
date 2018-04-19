@@ -1,37 +1,4 @@
-
-.activity-options-container
-  .activity-options-innner-container
-    .activity-action-option
-      = button_to 'New Activity', new_activity_path, :method => "get"
-    .activity-action-option
-      = button_to 'New Resource', new_resource_path, :method => "get"
-
-
-.container
-  %h1  Saved Activities
-  %table
-    %tbody
-      - @activities.each do |activity|
-        %tr
-
-          %td.activity-date= activity.deadline
-          %td.activity-title= activity.title
-          %td.activity-description= activity.description
-          %td.activity-option
-            = link_to like_activity_path(activity), class:"like-btn", method: :put, remote: :true do
-              = fa_icon('thumbs-up')
-          %td.likes-count
-            = activity.get_upvotes.size
-          %td.activity-option
-            = link_to 'Show', activity
-          %td.activity-option
-            = link_to 'Edit', edit_activity_path(activity)
-          %td.activity-option
-            = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
-
-
-
-
-
-
-%br
+- if user_signed_in? 
+  = render 'active'
+- else
+  = render 'inactive'

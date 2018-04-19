@@ -5,10 +5,58 @@ div.collapse.navbar-collapse
   float: right
 
 .container
-  margin-bottom: 17px
+  
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus
   border-bottom: 2px solid
 
 .navbar-fixed-top, .navbar-fixed-bottom
   position: relative
   margin: 0px
+
+
+.brand-image
+  display: flex
+  align-self: center
+  justify-content: center
+  align-items: center
+
+.navbar-default .navbar-nav > li > a.sign-in-button 
+  margin-right: 20px
+  display: flex
+  align-self: center
+  justify-content: center
+  align-items: center
+  background: #1cb495
+  border: 2px solid white
+  border-radius: 5px
+  color: black
+  width: 120px
+  height: 45px
+  text-align: center
+  &:hover
+    background-color: white
+    color: black
+    border: 2px solid white
+    
+.navbar-default .navbar-nav > li > a.sign-up-button 
+  display: flex
+  align-self: center
+  justify-content: center
+  align-items: center
+  background: black
+  border: 2px solid black
+  height: 45px
+  border-radius: 5px
+  color: white
+  width: 120px
+  text-align: center
+  &:hover
+    background-color: #1cb495
+    color: black
+    border: 2px solid black
+    
+.navbar-nav
+  display: flex
+  justify-content: center
+  align-items: center
+  align-self: center

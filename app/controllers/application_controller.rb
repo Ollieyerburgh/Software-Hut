@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :update_headers_to_disable_caching
   before_action :ie_warning
 
+
   ## The following are used by our Responder service classes so we can access
   ## the instance variable for the current resource easily via a standard method
   def resource_name
@@ -24,6 +25,13 @@ class ApplicationController < ActionController::Base
     instance_variable_set(:"@#{resource_name}", val)
   end
 
+  def current_ability
+    if admin_signed_in?
+      @current_ability ||= Ability.new(current_admin)
+    else
+      @current_ability ||= Ability.new(current_user)
+    end
+  end
   # Catch NotFound exceptions and handle them create_eventneatly, when URLs are mistyped or mislinked
   rescue_from ActiveRecord::RecordNotFound do
     render template: 'errors/error_404', status: 404
@@ -47,10 +55,6 @@ class ApplicationController < ActionController::Base
       response.headers['Expires'] = '-1'
     end
 
-    def authenticate_admin!
-      #authenticate_user!
-      #redirect_to :you_are_not_an_admin, status: :forbidden unless current_user.admin?
-    end
 
 
     def ie_warning

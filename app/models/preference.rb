@@ -2,11 +2,10 @@
 #
 # Table name: preferences
 #
-#  id            :integer          not null, primary key
-#  preference_id :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  subject_id    :integer
+#  id         :integer          not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  subject_id :integer
 #
 # Indexes
 #
@@ -19,4 +18,7 @@
 
 class Preference < ApplicationRecord
   has_many :subjects
+  has_many :themes
+  has_many :deliveries
+  #accepts_nested_attributes_for :subjects
 end

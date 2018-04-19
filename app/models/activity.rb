@@ -26,11 +26,13 @@
 #  cached_weighted_total   :integer          default(0)
 #  cached_weighted_average :float            default(0.0)
 #  user_id                 :integer
+#  subject_id              :integer
 #
 # Indexes
 #
-#  index_activities_on_tag_id   (tag_id)
-#  index_activities_on_user_id  (user_id)
+#  index_activities_on_subject_id  (subject_id)
+#  index_activities_on_tag_id      (tag_id)
+#  index_activities_on_user_id     (user_id)
 #
 # Foreign Keys
 #
@@ -39,9 +41,14 @@
 #
 
 class Activity < ApplicationRecord
+<<<<<<< HEAD
   has_many :subjects
 
+=======
+  include ActiveModel::AttributeMethods
+>>>>>>> 20ef384044300dc013420ab6ad07230d9835751e
   belongs_to :user
+  has_one :subject
   self.table_name = "activities"
   acts_as_votable
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -60,5 +67,19 @@ class Activity < ApplicationRecord
   scope :approved, -> { where(status: 'approved')}
   scope :description, -> (description) { where("description like ? ",  "#{description}")}
   scope :rejected, -> { where(status: 'rejected')}
+  scope :query, -> (search) {
+    where("lower(description) LIKE ? OR lower(title) LIKE ? OR lower(address) LIKE ?", "%#{search.downcase}%","%#{search.downcase}%" ,"%#{search.downcase}%")
+  }
+  scope :subject, -> (subject) { where(subject_id: Subject.where(name: subject))}
+
+  private 
+    def self.filter(filtering_params)
+      results = self.where(nil)
+      filtering_params.each do |key, value|
+        results = results.public_send(key, value) if value.present?
+      end
+      results
+    end
+
 
 end
