@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Managing activites' do
-  
+describe 'Managing activites', js: true do
+
 
   specify do 'I cannot create an activity without filling in Title'
     visit '/'
@@ -155,7 +155,7 @@ describe 'Managing activites' do
     expect(page).to have_content "Invalid postcode format"
   end
 
-  specify do 'I cannot create an activity without filling in dare in correct format'
+  specify do 'I cannot create an activity without filling in date in correct format'
     visit '/'
     click_link 'Create Activity'
     fill_in 'Title', with: 'Test-title'
@@ -168,6 +168,6 @@ describe 'Managing activites' do
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
-    expect(page).to have_content "can't be blank"
+    expect(page).to have_content "Invalid date format, please try dd/mm/yyyy"
   end
 end

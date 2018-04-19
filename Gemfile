@@ -63,7 +63,6 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rvm', require: false
   gem 'capistrano-passenger', require: false
-  gem 'capistrano-yarn'
   gem 'epi_deploy', git: 'https://github.com/epigenesys/epi_deploy.git'
 
   gem 'eventmachine'

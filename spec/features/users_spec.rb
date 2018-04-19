@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 describe 'User registration', js: true do
-  specify 'I can register as a user' do
+  specify 'I can Sign up as a user' do
     visit '/'
-    expect(page).to have_content 'Register'
-    click_link 'Register'
+    expect(page).to have_content 'Sign up'
+    click_link 'Sign up'
     fill_in 'Forename', with: 'Test'
     fill_in 'Surname', with: 'Test-Surname'
     fill_in 'Email', with: 'Test-Email@hotmail.com'
@@ -19,8 +19,9 @@ describe 'User registration', js: true do
   end
 
   specify 'Required works for registration' do
+
     visit '/'
-    click_link 'Register'
+    click_link 'Sign up'
     fill_in 'Surname', with: 'Test-Surname'
     fill_in 'Email', with: 'Test-Email@hotmail.com'
     fill_in 'Password', with: 'test12'
@@ -32,10 +33,10 @@ describe 'User registration', js: true do
    end
 
 
-  specify 'I cannot register with already taken email' do
+  specify 'I cannot Sign up with already taken email' do
     visit '/'
-    expect(page).to have_content 'Register'
-    click_link 'Register'
+    expect(page).to have_content 'Sign up'
+    click_link 'Sign up'
     fill_in 'Forename', with: 'Test'
     fill_in 'Surname', with: 'Test-Surname'
     fill_in 'Email', with: 'Test-Email@hotmail.com'
@@ -46,7 +47,7 @@ describe 'User registration', js: true do
     expect(page).to have_content 'Hello, Test!'
     click_link 'Hello, Test!'
     click_link 'Log out'
-    click_link 'Register'
+    click_link 'Sign up'
     fill_in 'Forename', with: 'Test'
     fill_in 'Surname', with: 'Test-Surname'
     fill_in 'Email', with: 'Test-Email@hotmail.com'
