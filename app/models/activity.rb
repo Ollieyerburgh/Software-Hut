@@ -41,7 +41,12 @@
 #
 
 class Activity < ApplicationRecord
+<<<<<<< HEAD
+  has_many :subjects
+
+=======
   include ActiveModel::AttributeMethods
+>>>>>>> 20ef384044300dc013420ab6ad07230d9835751e
   belongs_to :user
   has_one :subject
   self.table_name = "activities"

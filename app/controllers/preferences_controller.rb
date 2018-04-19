@@ -8,6 +8,7 @@ class PreferencesController < ApplicationController
 
   # GET /preferences/1
   def show
+    @preference = subject.class_name
   end
 
   # GET /preferences/new
