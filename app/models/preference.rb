@@ -7,18 +7,12 @@
 #  updated_at :datetime         not null
 #  subject_id :integer
 #
-# Indexes
-#
-#  index_preferences_on_subject_id  (subject_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (subject_id => subjects.id)
-#
 
 class Preference < ApplicationRecord
-  has_many :subjects
+  #has_many :subjects
+  belongs_to :subject
   has_many :themes
   has_many :deliveries
   #accepts_nested_attributes_for :subjects
+  validates :subject_id, presence: true
 end

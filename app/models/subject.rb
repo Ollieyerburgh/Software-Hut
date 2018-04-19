@@ -21,9 +21,10 @@
 #
 
 class Subject < ApplicationRecord
-  belongs_to :preference
+  #belongs_to :preference
   #attr_accessible :name
   has_many :activities
   has_many :resources
+  validates :name, presence: true
 
 end
