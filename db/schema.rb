@@ -101,9 +101,7 @@ ActiveRecord::Schema.define(version: 20180413110329) do
   end
 
   create_table "deliveries", force: :cascade do |t|
-    t.string "method"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "delivery_method"
   end
 
   create_table "deliveries_users", id: false, force: :cascade do |t|
@@ -164,20 +162,12 @@ ActiveRecord::Schema.define(version: 20180413110329) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "subjects_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "subject_id", null: false
-    t.index ["user_id", "subject_id"], name: "index_subjects_users_on_user_id_and_subject_id"
-  end
-
   create_table "tags", force: :cascade do |t|
     t.string "name"
   end
 
   create_table "themes", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "theme_name"
   end
 
   create_table "themes_users", id: false, force: :cascade do |t|

@@ -3,6 +3,7 @@
 
   .form-inputs.activities
     = f.input :title, label: 'Title'
+    = f.select(:subject_ids, [['Maths', 1], ['History', 2]])
     = f.input :description, label: 'Activity description'
     = f.input :start_date, label: 'Start Date'
     = f.input :end_date, label: 'End Date'

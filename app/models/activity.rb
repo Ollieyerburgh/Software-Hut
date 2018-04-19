@@ -39,6 +39,8 @@
 #
 
 class Activity < ApplicationRecord
+  has_many :subjects
+
   belongs_to :user
   self.table_name = "activities"
   acts_as_votable

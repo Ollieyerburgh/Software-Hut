@@ -10,5 +10,5 @@
 
 class Subject < ApplicationRecord
   belongs_to :preference
-  attr_accessible :name
+  belongs_to :activity
 end
