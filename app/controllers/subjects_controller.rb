@@ -23,22 +23,14 @@ class SubjectsController < ApplicationController
 
     if @subject.save
       redirect_to new_subject_path, notice: 'Subject was created.'
-  # GET /subjects/1/edit
-  def edit
-  end
-
-  # POST /subjects
-  def create
-    @subject = Subject.new(subject_params)
-
-    if @subject.save
-      redirect_to @subject, notice: 'Subject was successfully created.'
     else
       render :new
     end
   end
-<<<<<<< HEAD
-=======
+
+  # GET /subjects/1/edit
+  def edit
+  end
 
   # PATCH/PUT /subjects/1
   def update

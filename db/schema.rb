@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180419140257) do
+ActiveRecord::Schema.define(version: 20180419135105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 20180419140257) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string "delivery_method"
-
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "preference_id"
@@ -121,6 +120,7 @@ ActiveRecord::Schema.define(version: 20180419140257) do
   end
 
   create_table "preferences", force: :cascade do |t|
+    t.integer "preference_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "subject_id"
@@ -152,7 +152,6 @@ ActiveRecord::Schema.define(version: 20180419140257) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
     t.bigint "preference_id"
     t.bigint "activity_id"
     t.index ["activity_id"], name: "index_subjects_on_activity_id"
@@ -171,7 +170,6 @@ ActiveRecord::Schema.define(version: 20180419140257) do
 
   create_table "themes", force: :cascade do |t|
     t.string "theme_name"
-
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "preference_id"
