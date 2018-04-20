@@ -86,13 +86,11 @@ ActiveRecord::Schema.define(version: 20180419140257) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string "delivery_method"
-<<<<<<< HEAD
-=======
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "preference_id"
     t.index ["preference_id"], name: "index_deliveries_on_preference_id"
->>>>>>> 20ef384044300dc013420ab6ad07230d9835751e
   end
 
   create_table "deliveries_users", id: false, force: :cascade do |t|
@@ -154,13 +152,11 @@ ActiveRecord::Schema.define(version: 20180419140257) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-<<<<<<< HEAD
-=======
+
     t.bigint "preference_id"
     t.bigint "activity_id"
     t.index ["activity_id"], name: "index_subjects_on_activity_id"
     t.index ["preference_id"], name: "index_subjects_on_preference_id"
->>>>>>> 20ef384044300dc013420ab6ad07230d9835751e
   end
 
   create_table "subjects_users", id: false, force: :cascade do |t|
@@ -175,13 +171,11 @@ ActiveRecord::Schema.define(version: 20180419140257) do
 
   create_table "themes", force: :cascade do |t|
     t.string "theme_name"
-<<<<<<< HEAD
-=======
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "preference_id"
     t.index ["preference_id"], name: "index_themes_on_preference_id"
->>>>>>> 20ef384044300dc013420ab6ad07230d9835751e
   end
 
   create_table "themes_users", id: false, force: :cascade do |t|

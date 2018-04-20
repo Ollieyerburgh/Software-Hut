@@ -1,6 +1,5 @@
 class SubjectsController < ApplicationController
-<<<<<<< HEAD
-=======
+
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
   # GET /subjects
@@ -10,23 +9,20 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1
   def show
-    
+
   end
 
   # GET /subjects/new
->>>>>>> 7efec930590b078560381c1dc02a45ebdcd152f3
   def new
     @subject = Subject.new
   end
 
-<<<<<<< HEAD
   def create
     subject_params = params.require(:subject).permit(:name)
     @subject = Subject.new(subject_params)
 
     if @subject.save
       redirect_to new_subject_path, notice: 'Subject was created.'
-=======
   # GET /subjects/1/edit
   def edit
   end
@@ -37,7 +33,6 @@ class SubjectsController < ApplicationController
 
     if @subject.save
       redirect_to @subject, notice: 'Subject was successfully created.'
->>>>>>> 7efec930590b078560381c1dc02a45ebdcd152f3
     else
       render :new
     end
@@ -70,5 +65,4 @@ class SubjectsController < ApplicationController
     def subject_params
       params.require(:subject).permit(:name)
     end
->>>>>>> 7efec930590b078560381c1dc02a45ebdcd152f3
 end
