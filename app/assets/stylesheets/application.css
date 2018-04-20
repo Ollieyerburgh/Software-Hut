@@ -16,5 +16,7 @@
   *= require activities
   *= require search
   *= require paginate
+  *= require slider
+  *= require flatslider
 
 */
