@@ -37,8 +37,12 @@ class Admin::RequestsController < ApplicationController
   end
 
   def create
+
     @activity = Activity.find(params[:id])
+    @user = User.find_by(id: @activity.user_id)
+    UserMailer.acception_email(@user).deliver
     @activity.update_column(:status, 'approved')
+
     redirect_back(fallback_location: :index)
   end
 

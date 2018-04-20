@@ -11,7 +11,7 @@ Faker::Config.locale = 'en-GB'
 
 User.create(email:'fake@sheffield.ac.uk', password:'password', password_confirmation: 'password', id: '1', forename: 'isaac', surname: 'yerdburgh',  postcode: Faker::Address.postcode, )
 Admin.where(email: 'admin1@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '1')
-
+User.where(email: 'Anon@anon.com').first_or_create(password: 'password', password_confirmation: 'password', id: '100000', forename: 'anon', surname: 'anon', postcode: Faker::Address.postcode)
 
 
 user = User.find_by_email("fake@sheffield.ac.uk")
