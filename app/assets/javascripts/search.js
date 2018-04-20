@@ -5,8 +5,10 @@ $( document ).ready(function() {
         accessibility: false,
         autoplay: true,
         arrows: false,
-        autoplaySpeed: 4000,
-        fade: true
+        autoplaySpeed: 3000,
+        vertical: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
 
     });
     $('#helloworld').submit(function(ev) {

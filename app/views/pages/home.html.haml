@@ -36,7 +36,7 @@
     .popular-events
       .col-centered.col-md-9
         .slickaroo
-          - @activities.take(3).each do |activity|
+          - @activities.take(10).each do |activity|
             .col-md-8.col-centered.flex
               .event-date.vcenter
                 = activity.start_date
