@@ -33,18 +33,17 @@
 
 .container-fluid.margin-top-50
   .row
-    %table
-      %tbody
-        .popular-events
+    .popular-events
+      .col-centered.col-md-9
+        .slickaroo
           - @activities.take(3).each do |activity|
-            %tr
-              .col-md-8.col-centered.flex
-                .event-date.vcenter
-                  = activity.start_date
-                .event-title.vcenter.truncate
-                  = activity.title
-                .event-description.vcenter.truncate
-                  = activity.description
-                .event-likes.vcenter
-                  = activity.get_upvotes.size
-                  <i class="fa fa-thumbs-up"></i>
+            .col-md-8.col-centered.flex
+              .event-date.vcenter
+                = activity.start_date
+              .event-title.vcenter.truncate
+                = activity.title
+              .event-description.vcenter.truncate
+                = activity.description
+              .event-likes.vcenter
+                = activity.get_upvotes.size
+                <i class="fa fa-thumbs-up"></i>

@@ -47,6 +47,8 @@ gem 'carrierwave'
 
 gem 'google-maps'
 gem 'faker'
+gem "jquery-slick-rails"
+
 
 group :development, :test do
   gem 'rspec-rails'
