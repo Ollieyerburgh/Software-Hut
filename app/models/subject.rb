@@ -21,10 +21,8 @@
 #
 
 class Subject < ApplicationRecord
-  #belongs_to :preference
-  belongs_to :preference
+  #has_and_belongs_to_many :preferences
   belongs_to :activity
-  #attr_accessible :name
   has_many :activities
   has_many :resources
   validates :name, presence: true

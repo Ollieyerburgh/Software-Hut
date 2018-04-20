@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
   resources :subjects
+  resources :themes
+  resources :deliveries
   resources :preferences
-  #resources :addresses
+
 
   devise_for :admins
   devise_for :users
