@@ -43,5 +43,74 @@
 require 'rails_helper'
 
 RSpec.describe Activity, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  activity = FactoryGirl.create(:activity)
+
+  it "is valid with valid attributes" do
+    expect(activity).to be_valid
+  end
+
+  it "is not valid without title" do
+    activity.title = nil
+    expect(activity).to_not be_valid
+
+  end
+
+  it "is not valid without description" do
+    activity.description = nil
+    expect(activity).to_not be_valid
+  end
+
+  it "is not valid without start date" do
+    activity.start_date = nil
+    expect(activity).to_not be_valid
+  end
+  it "is not valid without end date" do
+    activity.end_date = nil
+    expect(activity).to_not be_valid
+  end
+  it "is not valid without deadline date" do
+    activity.deadline = nil
+    expect(activity).to_not be_valid
+  end
+
+  it "is not valid without correct date format of start_date" do
+    activity.start_date = "01/02/01"
+    expect(activity).to_not be_valid
+  end
+
+  it "is not valid without correct date format of end_date" do
+    activity.end_date = "01/02/03"
+    expect(activity).to_not be_valid
+  end
+
+  it "is not valid without correct date format of deadline" do
+    activity.end_date = "01/02/03"
+    expect(activity).to_not be_valid
+  end
+
+
+  it "is not valid without email" do
+    activity.email = nil
+    expect(activity).to_not be_valid
+  end
+
+  it "is not valid without postcode" do
+    activity.postcode = nil
+    expect(activity).to_not be_valid
+  end
+
+  it "does not return approved activities " do
+    expect(Activity.pending).to_not include(Activity.where("status = approved"))
+  end
+
+  it "doesn't include pending activities" do
+   expect(Activity.approved).to_not include(Activity.where("status = pending"))
+  end
+
+  describe "Associations" do
+    it { should have_and_belong_to_many(:subjects) }
+    it { should have_and_belong_to_many(:themes) }
+    it { should belong_to(:user) }
+  end
+
 end

@@ -1,22 +1,19 @@
 class Users::DashController < ApplicationController
+
+
+
   def index
-    @users = User.all
-    @user = User.find(params[:id])|| current_user
+    @user = User.find(params[:id])
   end
-
-  def create
-
-  end
-
-
 
   def show
     @user = User.find(params[:id])
     @activities = @user.activities
-    @pendingactivities = @user.activities.pending
-    @rejectedactivities = @user.activities.rejected
-    @approvedactivities = @user.activities.approved
-    @resources = @user.resources
+    @pendingactivities = @user.activities.pending.paginate(page: params[:page], per_page: 10)
+    @rejectedactivities = @user.activities.rejected.paginate(page: params[:page], per_page: 10)
+    @approvedactivities = @user.activities.approved.paginate(page: params[:page], per_page: 10)
+    @resources = @user.resources.paginate(page: params[:page], per_page: 10)
+
   end
 
 

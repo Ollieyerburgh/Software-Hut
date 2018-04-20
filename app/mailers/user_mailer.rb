@@ -7,14 +7,19 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Welcome haha')
   end
 
-  def rejection_email(user)
-    @user = user
-    mail(to: @user.email,
-       subject: 'Your HeppSY request has been rejected'),
-       template_path: 'admin/requests',
-       template_name: 'reject'
-     end
-   end
+
+
+  def acception_email(email)
+    @email = email
+    mail(to: email, subject: 'Your HeppSY request has been accepted')
+  end
+
+  def rejection_email(email, message, activity)
+    @email = email
+    @message = message
+    @activity = activity
+    mail(to: email, subject: 'Your HeppSY request has been rejected', message: @message)
+  end
 
 
 end

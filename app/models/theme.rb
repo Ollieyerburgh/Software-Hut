@@ -2,21 +2,14 @@
 #
 # Table name: themes
 #
-#  id            :integer          not null, primary key
-#  theme_name    :string
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  preference_id :integer
-#
-# Indexes
-#
-#  index_themes_on_preference_id  (preference_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (preference_id => preferences.id)
+#  id         :integer          not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Theme < ApplicationRecord
-  belongs_to :preference
+  has_and_belongs_to_many :preferences
+  has_and_belongs_to_many :activities
+  validates :theme_id, presence: true
 end

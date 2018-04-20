@@ -34,11 +34,6 @@ class ActivitiesController < ApplicationController
   # POST /activities
   def create
     @activity = Activity.new(activity_params)
-    if (admin_signed_in? == false) && (user_signed_in? == false)
-      @activity.user_id = '100000'
-    else
-      @activity.user_id = current_user.id
-    end
     if @activity.save
       redirect_to :root, notice: 'Activity was successfully created.'
     else
@@ -49,6 +44,7 @@ class ActivitiesController < ApplicationController
   # PATCH/PUT /activities/1
   def update
     if @activity.update(activity_params)
+      @activity.update_column(:status, 'pending')
       redirect_to @activity, notice: 'Activity was successfully updated.'
     else
       render :edit

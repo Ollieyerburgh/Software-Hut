@@ -77,9 +77,9 @@
                           = fa_icon 'user'
                           Account
                       %li
-                        = navbar_link_to :preferences, title: "Preferences page", identifier: :preference do
+                        = navbar_link_to users_dash_index_path(current_user), method: :get,  title: "User dashboard", identifier: :preference do
                           = fa_icon 'edit'
-                          Preferences
+                          User dashboard
                       %li
                         = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
                           = fa_icon 'sign-out', text: 'Log out'

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Managing activites', js:true do
   specify 'I can create an Resource when not signed in' do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user_anon)
 
     visit '/'
     expect(page).to have_content 'Log in'
@@ -23,7 +23,7 @@ describe 'Managing activites', js:true do
 
 
   specify 'I cannot create an Resource without filling in title' do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user_anon)
 
     visit '/'
     click_link 'Create Activity'
@@ -36,7 +36,7 @@ describe 'Managing activites', js:true do
   end
 
   specify 'I cannot create an Resource without filling in description' do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user_anon)
 
     visit '/'
     click_link 'Create Activity'
@@ -50,7 +50,7 @@ describe 'Managing activites', js:true do
 
 
   specify 'I cannot create an Resource without filling in Email' do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user_anon)
 
     visit '/'
     click_link 'Create Activity'

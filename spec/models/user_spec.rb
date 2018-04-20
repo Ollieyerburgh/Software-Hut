@@ -17,10 +17,12 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  address_id             :integer
 #  postcode               :string
 #
 # Indexes
 #
+#  index_users_on_address_id            (address_id)
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
@@ -28,5 +30,47 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  user = FactoryGirl.create(:user_anon)
+
+  it "is valid with valid attributes" do
+    expect(user).to be_valid
+  end
+
+  it "is valid with valid attributes" do
+    expect(user).to be_valid
+  end
+
+  it "is not valid without a forename" do
+    user.forename = nil
+    expect(user).not_to be_valid
+  end
+
+  it "is not valid without a surname" do
+    user.surname = nil
+    expect(user).not_to be_valid
+  end
+
+  it "is not valid without a postcode" do
+    user.postcode = nil
+    expect(user).not_to be_valid
+  end
+
+  it "is not vaild without a email" do
+    user.email = nil
+    expect(user).not_to be_valid
+  end
+
+  it "is not valid without proper format of postcode" do
+    user.postcode = "abcdefg"
+    expect(user).to_not be_valid
+  end
+
+  describe "Associations" do
+    it { should have_one(:preference) }
+    it { should have_many(:resources) }
+    it { should have_many(:activities) }
+  end
+
+
+
 end

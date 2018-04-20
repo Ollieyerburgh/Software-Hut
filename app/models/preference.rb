@@ -2,18 +2,28 @@
 #
 # Table name: preferences
 #
-#  id            :integer          not null, primary key
-#  preference_id :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  subject_id    :integer
+#  id          :integer          not null, primary key
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  subject_id  :integer
+#  theme_id    :integer
+#  delivery_id :integer
+#  proximity   :integer
+#  user_id     :integer
+#
+# Indexes
+#
+#  index_preferences_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (user_id => users.id)
 #
 
 class Preference < ApplicationRecord
-  #has_many :subjects
-  belongs_to :subject
-  has_many :themes
-  has_many :deliveries
-  #accepts_nested_attributes_for :subjects
-  validates :subject_id, presence: true
+  belongs_to :user
+  has_and_belongs_to_many :subjects
+  has_and_belongs_to_many :themes
+  has_and_belongs_to_many :deliveries
+  validates :theme_id, :delivery_id, presence: false
 end

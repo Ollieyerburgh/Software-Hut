@@ -1,7 +1,8 @@
 class CreateDeliveries < ActiveRecord::Migration[5.1]
   def change
     create_table :deliveries do |t|
-      t.string :delivery_method
+      t.string :method
+
       t.timestamps
     end
   end

@@ -8,7 +8,6 @@ class PreferencesController < ApplicationController
 
   # GET /preferences/1
   def show
-    @preference = subject.class_name
   end
 
   # GET /preferences/new
@@ -54,6 +53,6 @@ class PreferencesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def preference_params
-      params.require(:preference).permit(:subject_id)
+      params.require(:preference).permit(:subject_id, :theme_id, :delivery_id)
     end
 end

@@ -23,8 +23,8 @@
 #
 
 class Resource < ApplicationRecord
-  belongs_to :user
-  has_one :subject
+  belongs_to :user,  optional: true
+  has_and_belongs_to_many :subjects
   mount_uploaders :resources, ResourceUploader
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}

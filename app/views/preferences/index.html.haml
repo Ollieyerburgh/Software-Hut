@@ -4,8 +4,8 @@
   %thead
     %tr
       %th Subject Name
-      %th
-      %th
+      %th Theme Name
+      %th Delivery Method
       %th
       %select{:id => "selectsubject"}
         .subject-choice
@@ -19,6 +19,9 @@
   %tbody
     - @preferences.each do |preference|
       %tr
+        %td= preference.subject.name
+        %td= preference.theme_id
+        %td= preference.delivery_id
         %td= link_to 'Show',preference
         %td= link_to 'Edit', edit_preference_path(preference)
         %td= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' }

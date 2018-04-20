@@ -1,10 +1,9 @@
 .container
-  %div.nav
-    %ul.nav.nav-pills
-      %li.nav-item
-        = link_to "user dash", users_dash_path
-      %li.nav-item
-        = link_to "Edit account", edit_user_registration_path
+  .generic-container
+    %div.nav
+      %ul.nav.nav-pills
+        %li.nav-item
+          = link_to "Dashboard", users_dash_index_path(@user), class: "dashboard-btn"
 
 
 
@@ -27,6 +26,10 @@
           %td= activity.link
           %td= activity.postcode
 
+  .paginate-container
+    .paginate
+      = will_paginate @pendingactivities
+
   %h1  Rejected activities
   %table.table.table-bordered.table-striped
     %thead
@@ -36,6 +39,7 @@
         %th.col Deadline
         %th.col URL
         %th.col Postcode
+        %th.col Actions
     %tbody
       - @rejectedactivities.each do |activity|
         %tr
@@ -44,6 +48,10 @@
           %td= activity.deadline
           %td= activity.link
           %td= activity.postcode
+          %td
+            - if can? :update, activity
+              = link_to 'Edit', edit_activity_path(activity), class:"btn btn-default"
+              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"
 
   %h1  Approved activities
   %table.table.table-bordered.table-striped
@@ -62,7 +70,9 @@
           %td= activity.deadline
           %td= activity.link
           %td= activity.postcode
-
+  .paginate-container
+    .paginate
+      = will_paginate @rejectedactivities
 
   %h1  Resources
   %table.table.table-bordered.table-striped
@@ -77,5 +87,9 @@
         %tr
           %td= resource.title
           %td= resource.description
-          %td= resource.resources[0].path
+          -#%td= resource.resources[0].path
           -# This should work  %a{:href => "resource.resources[0].path"} Link  
+
+  .paginate-container
+    .paginate
+      = will_paginate @resources

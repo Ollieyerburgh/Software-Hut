@@ -5,17 +5,17 @@
         =image_tag "Activity.png", class: "img-responsive center-block"
         %h2 Activity requests
         %p Accept and reject requests for events or resources here
-        = link_to 'Manage', '/admin/requests/show', class:'btn btn-default', id: 'requests'
+        = link_to 'Manage requests', '/admin/requests/show', class:'btn btn-default'
 
     .col-sm-4
       .dash_utilities
         =image_tag "Users.png", class: "img-responsive center-block"
         %h2 User manage
         %p Manage user accounts here
-        = link_to 'Manage', '/admin/users/show', :method => :get, class:'btn btn-default'
+        = link_to 'Manage users', '/admin/users/show', :method => :get, class:'btn btn-default'
     .col-sm-4
       .dash_utilities
         =image_tag "Admin.png", class: "img-responsive center-block"
         %h2 Admin invite
         %p Invite people to become admins here
-        = link_to 'Manage', '/admin/registrations/new', class:'btn btn-default', id: 'register'
+        = link_to 'Manage admins', '/admin/registrations/new', class:'btn btn-default', id: 'register'
