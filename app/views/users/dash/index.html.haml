@@ -12,10 +12,10 @@
         =image_tag "Users.png", class: "img-responsive center-block"
         %h2 Edit profile
         %p Manage your name etc here
-        = link_to 'Manage', '/admin/users/show', :method => :get, class:'btn btn-default'
+        = link_to 'Manage', :edit_user_registration, :method => :get, class:'btn btn-default'
     .col-sm-4
       .dash_utilities
         =image_tag "Admin.png", class: "img-responsive center-block"
         %h2 Edit preferences
         %p Change preferences to receive emails about them
-        = link_to 'Manage', '/admin/registrations/new', class:'btn btn-default', id: 'register'
+        = link_to 'Manage', edit_preference_path(@user), class:'btn btn-default', id: 'register'

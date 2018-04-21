@@ -26,10 +26,6 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-# Foreign Keys
-#
-#  fk_rails_...  (address_id => addresses.id)
-#
 
 FactoryGirl.define do
   factory :user do

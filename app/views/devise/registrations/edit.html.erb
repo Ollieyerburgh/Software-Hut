@@ -4,15 +4,11 @@
   <div class="nav">
     <ul class="nav nav-pills">
       <li class="nav-item">
-        link_to "User dash", users_dash_path
-      </li>
-      </li class="nav-item">
-        link_to "Edit account", edit_user_registration_path
+        <%=link_to "Dashboard", users_dash_index_path(@user), class: "dashboard-btn"%>
       </li>
     </ul>
   </div>
 </div>
-
 
 
 <div class="generic-container">

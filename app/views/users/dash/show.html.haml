@@ -1,10 +1,9 @@
 .container
-  %div.nav
-    %ul.nav.nav-pills
-      %li.nav-item
-        = link_to "user dash", users_dash_path
-      %li.nav-item
-        = link_to "Edit account", edit_user_registration_path
+  .generic-container
+    %div.nav
+      %ul.nav.nav-pills
+        %li.nav-item
+          = link_to "Dashboard", users_dash_index_path(@user), class: "dashboard-btn"
 
 
 

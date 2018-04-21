@@ -182,16 +182,6 @@ ActiveRecord::Schema.define(version: 20180420140008) do
     t.index ["preference_id"], name: "index_subjects_on_preference_id"
   end
 
-<<<<<<< HEAD
-  create_table "subjects_users", id: false, force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "subject_id", null: false
-    t.index ["subject_id", "user_id"], name: "index_subjects_users_on_subject_id_and_user_id"
-    t.index ["user_id", "subject_id"], name: "index_subjects_users_on_user_id_and_subject_id"
-  end
-
-=======
->>>>>>> 9734de3ff436d1a42e58f13325a97c0de48e35a1
   create_table "tags", force: :cascade do |t|
     t.string "name"
   end
@@ -253,9 +243,4 @@ ActiveRecord::Schema.define(version: 20180420140008) do
   add_foreign_key "resources", "users"
   add_foreign_key "subjects", "activities"
   add_foreign_key "subjects", "preferences"
-<<<<<<< HEAD
-=======
-  add_foreign_key "themes", "preferences"
-  add_foreign_key "users", "addresses"
->>>>>>> 9734de3ff436d1a42e58f13325a97c0de48e35a1
 end
