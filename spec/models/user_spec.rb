@@ -30,5 +30,37 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject = FactoryGirl.create(:user)
+
+  it "is valid with valid attributes" do
+    expect(subject).to be_valid
+  end
+
+  it "is not valid without a forename" do
+    subject.forename = nil
+    expect(subject).not_to be_valid
+  end
+
+  it "is not valid without a surname" do
+    subject.surname = nil
+    expect(subject).not_to be_valid
+  end
+
+  it "is not valid without a postcode" do
+    subject.postcode = nil
+    expect(subject).not_to be_valid
+  end
+
+  it "is not vaild without a email" do
+    subject.email = nil
+    expect(subject).not_to be_valid
+  end
+
+  it "is not valid without proper format of postcode" do
+    subject.postcode = "abcdefg"
+    expect(subject).to_not be_valid
+  end
+
+
+
 end

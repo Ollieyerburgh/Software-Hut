@@ -8,8 +8,8 @@
 #  updated_at :datetime         not null
 #
 
-FactoryGirl.define do
-  factory :delivery do
-    method "MyString"
-  end
-end
+#FactoryGirl.define do
+#  factory :delivery do
+#    method "MyString"
+#  end
+#end

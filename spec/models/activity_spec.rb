@@ -43,5 +43,44 @@
 require 'rails_helper'
 
 RSpec.describe Activity, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  FactoryGirl.create(:user)
+  activity = FactoryGirl.create(:activity)
+
+  it "is valid with valid attributes" do
+    expect(activity).to be_valid
+  end
+
+  it "is not valid without title" do
+    activity.title = nil
+    expect(activity).to_not be_valid
+
+  end
+
+  it "is not valid without description" do
+    activity.description = nil
+    expect(activity).to_not be_valid
+  end
+
+  it "is not valid without start date" do
+    activity.start_date = nil
+    expect(activity).to_not be_valid
+  end
+  it "is not valid without end date" do
+    activity.end_date = nil
+    expect(activity).to_not be_valid
+  end
+  it "is not valid without deadline date" do
+    activity.deadline = nil
+    expect(activity).to_not be_valid
+  end
+
+  it "is not valid without email" do
+    activity.email = nil
+    expect(activity).to_not be_valid
+  end
+
+  it "is not valid without postcode" do
+    activity.postcode = nil
+    expect(activity).to_not be_valid
+  end
 end

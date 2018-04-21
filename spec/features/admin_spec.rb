@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe 'Admin features', js: true do
+  let(:user) { FactoryGirl.create(:user) }
   specify 'As an admin I can edit a user' do
     user = FactoryGirl.create(:user)
     admin = FactoryGirl.create(:admin)
@@ -49,7 +50,6 @@ describe 'Admin features', js: true do
   end
 
   specify 'As an admin I can approve an activity request' do
-    user = FactoryGirl.create(:user)
     admin = FactoryGirl.create(:admin)
 
     activity = FactoryGirl.create(:activity)
@@ -67,20 +67,21 @@ describe 'Admin features', js: true do
 
   end
 
-  specify 'As an admin I can approve a resource request' do
-    user = FactoryGirl.create(:user)
+  specify 'As an admin I can approve a resource request, which sends an email' do
     admin = FactoryGirl.create(:admin)
-    resource = FactoryGirl.create(:resource)
+    login_as(user)
+    logout(user)
     login_as(admin)
-    visit '/admin/users/show'
-
-    visit '/admin'
-    click_link 'requests'
-    save_and_open_page
+    visit "/admin/users/show"
+    FactoryGirl.create(:resource)
+    click_link 'Dashboard'
+    click_link 'Manage requests'
+    expect(current_path).to eq("/admin/requests/show")
     expect(page).to have_content 'Approve'
     expect(page).to have_content 'Reject'
     expect(page).to have_content 'test-title'
     click_link 'Approve'
+    ActionMailer::Base.deliveries.last.to.should include(user.email)
     save_and_open_page
     expect(page).to_not have_content 'Approve'
 
