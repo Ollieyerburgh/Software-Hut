@@ -73,6 +73,22 @@ RSpec.describe Activity, type: :model do
     expect(activity).to_not be_valid
   end
 
+  it "is not valid without correct date format of start_date" do
+    activity.start_date = "01/02/01"
+    expect(activity).to_not be_valid
+  end
+
+  it "is not valid without correct date format of end_date" do
+    activity.end_date = "01/02/03"
+    expect(activity).to_not be_valid
+  end
+
+  it "is not valid without correct date format of deadline" do
+    activity.end_date = "01/02/03"
+    expect(activity).to_not be_valid
+  end
+
+
   it "is not valid without email" do
     activity.email = nil
     expect(activity).to_not be_valid

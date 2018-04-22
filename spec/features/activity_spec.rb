@@ -170,4 +170,58 @@ describe 'Managing activites', js: true do
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "Invalid date format, please try dd/mm/yyyy"
   end
+
+  specify do 'I can edit an event that I have made'
+    activity = FactoryGirl.create(:activity_approved)
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test.com"
+    fill_in "Password", with: "foobar"
+    click_button "Log in"
+    click_link "Saved Activities"
+    click_link "Edit"
+    expect(page).to have_content "test"
+    fill_in "Activity description", with: 'HelloTestViewer'
+    click_button "Update Activity"
+    expect(page).to have_content "Activity was successfully updated"
+    expect(page).to have_content "HelloTestViewer"
+  end
+
+  specify do 'I can delete an event that I have made'
+    activity = FactoryGirl.create(:activity_approved)
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test.com"
+    fill_in "Password", with: "foobar"
+    click_button "Log in"
+    click_link "Saved Activities"
+    page.accept_confirm { click_link "Destroy" }
+    expect(page).to have_content "Activity was successfully destroyed."
+  end
+
+  specify do 'I cannot edit an event that I havnt made'
+    activity = FactoryGirl.create(:activity_approved)
+    user = FactoryGirl.create(:user1)
+    login_as(user)
+    visit '/'
+    click_link "Saved Actvities"
+    expect(page).to have_content "test"
+    expect(page).to_not have_content "Edit"
+  end
+
+  specify do 'I cannot delete an event that I havnt made'
+    activity = FactoryGirl.create(:activity_approved)
+    user = FactoryGirl.create(:user1)
+    login_as(user)
+    visit '/'
+    click_link "Saved Actvities"
+    expect(page).to have_content "test"
+    expect(page).to_not have_content "Destroy"
+  end
+
+  specify do 'I can search for an event, and like it so that it appears in my saved activities'
+  end
+
+  specify do 'I can '
+  end
 end
