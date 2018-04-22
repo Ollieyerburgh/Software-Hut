@@ -29,11 +29,10 @@
 
 FactoryGirl.define do
   factory :user do
-    email {'test@test.com'}
+    email Faker::Internet.unique.email
     forename {'test'}
     surname {'test'}
     postcode {'S102SQ'}
     password {'password'}
-    id {'1'}
   end
 end

@@ -25,7 +25,6 @@
 require 'rails_helper'
 
 RSpec.describe Resource, type: :model do
-  FactoryGirl.create(:user)
   resource = FactoryGirl.create(:resource)
 
   it "is valid with valid attributes" do

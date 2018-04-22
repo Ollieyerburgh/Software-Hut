@@ -43,7 +43,6 @@
 require 'rails_helper'
 
 RSpec.describe Activity, type: :model do
-  FactoryGirl.create(:user)
   activity = FactoryGirl.create(:activity)
 
   it "is valid with valid attributes" do
