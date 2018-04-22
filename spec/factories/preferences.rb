@@ -21,8 +21,11 @@
 #
 
 FactoryGirl.define do
+    user = User.create(email:'jkshdjak@gmail.com', password: 'password', password_confirmation: 'password', id: '100000', forename: 'anon', surname: 'anon', postcode: "rg45 8nd")
+
     factory :preference do
         proximity 1000
+        user user
     end
   end
   
