@@ -36,30 +36,27 @@
       password "foobar"
       password_confirmation "foobar"
       postcode "S102SQ"
-    end
 
 
-    factory :user1 do
-      email "ollieyerburgh@test1.com"
-      forename "test"
-      surname "test"
-      password "foobar"
-      password_confirmation "foobar"
-      postcode "S102SQ"
-    end
+
+      factory :user1 do
+        email "ollieyerburgh@test1.com"
+        forename "test"
+        surname "test"
+        password "foobar"
+        password_confirmation "foobar"
+        postcode "S102SQ"
+      end
 
 
-    factory :user_anon do
-      email "test@test.com"
-      forename "test"
-      surname "test"
-      password "password"
-      password_confirmation "password"
-      postcode "s102sq"
-      id "100000"
+      factory :user_anon do
+        email "test@test.com"
+        forename "test"
+        surname "test"
+        password "password"
+        password_confirmation "password"
+        postcode "s102sq"
+      end
     end
 
   end
-
-
-
