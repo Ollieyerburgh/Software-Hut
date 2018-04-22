@@ -83,4 +83,12 @@ RSpec.describe Activity, type: :model do
     activity.postcode = nil
     expect(activity).to_not be_valid
   end
+
+  describe "Associations" do
+    it { should have_and_belong_to_many(:subjects) }
+    it { should have_and_belong_to_many(:themes) }
+    it { should belong_to(:user) }
+
+  end
+
 end
