@@ -23,5 +23,22 @@
 require 'rails_helper'
 
 RSpec.describe Subject, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject = FactoryGirl.create(:subject)
+
+  it "is valid with valid attributes" do
+    expect(subject).to be_valid
+  end
+
+  it "is nnot valid without a name" do
+    subject.name = nil
+    expect(subject).to_not be_valid
+  end
+
+  describe "Associations" do
+    it { should have_and_belong_to_many(:preferences) }
+    it { should have_and_belong_to_many(:activities) }
+    it { should have_many(:resources) }
+
+  end
+  
 end
