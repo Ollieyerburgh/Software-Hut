@@ -49,6 +49,8 @@ gem 'google-maps'
 gem 'faker'
 gem "jquery-slick-rails"
 gem "shoulda"
+gem 'test-unit'
+
 
 group :development, :test do
   gem 'rspec-rails'
