@@ -47,3 +47,6 @@
               .event-likes.vcenter
                 = activity.get_upvotes.size
                 <i class="fa fa-thumbs-up"></i>
+
+- content_for :head do
+  %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
