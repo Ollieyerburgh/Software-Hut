@@ -8,6 +8,7 @@
 #  subject_id  :integer
 #  theme_id    :integer
 #  delivery_id :integer
+#  proximity   :integer
 #
 
 class Preference < ApplicationRecord
