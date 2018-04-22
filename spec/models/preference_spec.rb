@@ -18,8 +18,8 @@ RSpec.describe Preference, type: :model do
 
   describe "Associations" do
     it { should have_and_belong_to_many(:subjects) }
-    it { should have_many(:themes) }
-    it { should have_many(:deliveries)}
+    it { should have_and_belong_to_many(:themes) }
+    it { should have_and_belong_to_many(:deliveries)}
   end
 
 end
