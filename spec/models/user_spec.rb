@@ -65,4 +65,9 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
+  describe "Associations" do
+    it { should have_many(:resources) }
+    it { should have_many(:activities) }
+  end
+
 end
