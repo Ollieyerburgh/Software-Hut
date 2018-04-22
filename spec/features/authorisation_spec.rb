@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Authorisation', js: true do
   specify 'I can create an activity when not signed in' do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user_anon)
     visit '/'
     click_link 'Create Activity'
     fill_in 'Title', with: 'Test-title'

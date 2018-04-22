@@ -15,9 +15,9 @@ User.where(email: 'Anon@anon.com').first_or_create(password: 'password', passwor
 
 
 user = User.find_by_email("fake@sheffield.ac.uk")
-100.times do
-  user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: Faker::Address.postcode, link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address)
-  user.resources.create(title: Faker::Name.unique.name, link: Faker::Internet.url, description: Faker::Company.bs, status: "active", email: Faker::Internet.email)
+10.times do
+  user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: Faker::Address.postcode, link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'rejected')
+  user.resources.create(title: Faker::Name.unique.name, link: Faker::Internet.url, description: Faker::Company.bs, email: Faker::Internet.email, status: 'rejected')
 end
 
 subjects =  ['maths', 'english', 'physics', 'geography', 'computer science']

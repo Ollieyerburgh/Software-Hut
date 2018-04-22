@@ -27,14 +27,38 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-FactoryGirl.define do
-  factory :user do
-    email {'test@test.com'}
-    forename {'test'}
-    surname {'test'}
-    postcode {'S102SQ'}
-    password {'password'}
-    id {'1'}
+  FactoryGirl.define do
 
+
+  factory :user do
+    email "ollieyerburgh@test.com"
+    forename "test"
+    surname "test"
+    password "foobar"
+    password_confirmation "foobar"
+    postcode "S102SQ"
+    id "1"
+
+
+    factory :user1 do
+      email "ollieyerburgh@test1.com"
+      forename "test"
+      surname "test"
+      password "foobar"
+      password_confirmation "foobar"
+      postcode "S102SQ"
+      id "2"
+    end
+    factory :user_anon do
+      email "test@test.com"
+      forename "test"
+      surname "test"
+      password "password"
+      password_confirmation "password"
+      postcode "s102sq"
+      id "100000"
+    end
   end
+
+
 end

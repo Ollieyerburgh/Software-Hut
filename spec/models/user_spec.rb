@@ -30,7 +30,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject = FactoryGirl.create(:user)
+  subject = FactoryGirl.create(:user_anon)
 
   it "is valid with valid attributes" do
     expect(subject).to be_valid
@@ -60,6 +60,8 @@ RSpec.describe User, type: :model do
     subject.postcode = "abcdefg"
     expect(subject).to_not be_valid
   end
+
+
 
 
 

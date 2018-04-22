@@ -1,14 +1,31 @@
 require 'rails_helper'
 
 describe 'Admin features', js: true do
-  let(:user) { FactoryGirl.create(:user) }
+
+  specify 'As an admin I can approve an activity request' do
+    admin = FactoryGirl.create(:admin)
+    activity = FactoryGirl.create(:activity)
+    login_as(admin)
+    visit '/admin/users/show'
+    user = User.find(activity.user_id)
+    visit '/admin'
+    click_link 'requests'
+    expect(page).to have_content 'Approve'
+    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'test-title'
+    click_link 'Approve'
+    ActionMailer::Base.deliveries.last.to.should include(user.email)
+    expect(page).to_not have_content 'Approve'
+  end
+
+
   specify 'As an admin I can edit a user' do
     user = FactoryGirl.create(:user)
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit '/admin/users/show'
-    expect(page).to have_content "test@test.com"
-    expect(page).to have_content "test"
+    expect(page).to have_content user.email
+    expect(page).to have_content user.forename
 
     click_link 'Edit'
     fill_in 'Forename', with: "updatedName"
@@ -21,11 +38,12 @@ describe 'Admin features', js: true do
 
   specify 'As an admin I can delete a user ' do
     user = FactoryGirl.create(:user)
+
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit '/admin/users/show'
-    expect(page).to have_content "test@test.com"
-    expect(page).to have_content "test"
+    expect(page).to have_content user.email
+    expect(page).to have_content user.forename
     click_link 'Delete'
     expect(page).to have_content "User was successfully destroyed"
     expect(page).to_not have_content "test@test.com"
@@ -49,44 +67,26 @@ describe 'Admin features', js: true do
 
   end
 
-  specify 'As an admin I can approve an activity request' do
-    admin = FactoryGirl.create(:admin)
 
-    activity = FactoryGirl.create(:activity)
-    login_as(admin)
-    visit '/admin/users/show'
-
-    visit '/admin'
-    click_link 'requests'
-    expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
-    expect(page).to have_content 'test-title'
-    click_link 'Approve'
-    expect(page).to_not have_content 'Approve'
-
-
-  end
-
+=begin
   specify 'As an admin I can approve a resource request, which sends an email' do
     admin = FactoryGirl.create(:admin)
-    login_as(user)
-    logout(user)
     login_as(admin)
     visit "/admin/users/show"
-    FactoryGirl.create(:resource)
-    click_link 'Dashboard'
-    click_link 'Manage requests'
+    resource = FactoryGirl.create(:resource)
+    visit "/admin/requests/show"
     expect(current_path).to eq("/admin/requests/show")
+    save_and_open_page
     expect(page).to have_content 'Approve'
     expect(page).to have_content 'Reject'
     expect(page).to have_content 'test-title'
     click_link 'Approve'
-    ActionMailer::Base.deliveries.last.to.should include(user.email)
+
     save_and_open_page
     expect(page).to_not have_content 'Approve'
 
   end
-
+=end
 =begin
   specify 'As an admin I can reject an activity request' do
     user = FactoryGirl.create(:user)

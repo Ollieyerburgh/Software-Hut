@@ -43,7 +43,6 @@
 require 'rails_helper'
 
 RSpec.describe Activity, type: :model do
-  FactoryGirl.create(:user)
   activity = FactoryGirl.create(:activity)
 
   it "is valid with valid attributes" do
@@ -83,4 +82,14 @@ RSpec.describe Activity, type: :model do
     activity.postcode = nil
     expect(activity).to_not be_valid
   end
+
+  it "does not return approved activities " do
+    expect(Activity.pending).to_not include(Activity.where("status = approved"))
+  end
+
+  it "doesn't include pending activities" do
+   expect(Activity.approved).to_not include(Activity.where("status = pending"))
+  end
+
+
 end
