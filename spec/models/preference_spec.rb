@@ -20,6 +20,7 @@ RSpec.describe Preference, type: :model do
     it { should have_and_belong_to_many(:subjects) }
     it { should have_and_belong_to_many(:themes) }
     it { should have_and_belong_to_many(:deliveries)}
+
   end
 
 end

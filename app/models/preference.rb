@@ -14,6 +14,6 @@
 class Preference < ApplicationRecord
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :themes
-  has_many :deliveries
+  has_and_belongs_to_many :deliveries
   validates :theme_id, :delivery_id, presence: false
 end
