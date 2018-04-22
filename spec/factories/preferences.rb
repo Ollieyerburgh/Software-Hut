@@ -13,6 +13,7 @@
 
 FactoryGirl.define do
     factory :preference do
+        proximity 1000
     end
   end
   

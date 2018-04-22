@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422143602) do
+ActiveRecord::Schema.define(version: 20180422151632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,6 +149,13 @@ ActiveRecord::Schema.define(version: 20180422143602) do
     t.bigint "subject_id", null: false
     t.index ["preference_id", "subject_id"], name: "index_preferences_subjects_on_preference_id_and_subject_id"
     t.index ["subject_id", "preference_id"], name: "index_preferences_subjects_on_subject_id_and_preference_id"
+  end
+
+  create_table "preferences_themes", id: false, force: :cascade do |t|
+    t.bigint "theme_id", null: false
+    t.bigint "preference_id", null: false
+    t.index ["preference_id", "theme_id"], name: "index_preferences_themes_on_preference_id_and_theme_id"
+    t.index ["theme_id", "preference_id"], name: "index_preferences_themes_on_theme_id_and_preference_id"
   end
 
   create_table "resources", force: :cascade do |t|
