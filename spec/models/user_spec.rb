@@ -66,6 +66,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "Associations" do
+    it { should have_one(:preference) }
     it { should have_many(:resources) }
     it { should have_many(:activities) }
   end

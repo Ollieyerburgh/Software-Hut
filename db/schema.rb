@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422153800) do
+ActiveRecord::Schema.define(version: 20180422154157) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -147,6 +147,8 @@ ActiveRecord::Schema.define(version: 20180422153800) do
     t.integer "theme_id"
     t.integer "delivery_id"
     t.integer "proximity"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_preferences_on_user_id"
   end
 
   create_table "preferences_subjects", id: false, force: :cascade do |t|
@@ -258,6 +260,7 @@ ActiveRecord::Schema.define(version: 20180422153800) do
   add_foreign_key "guardians", "users"
   add_foreign_key "learners", "users"
   add_foreign_key "partners", "users"
+  add_foreign_key "preferences", "users"
   add_foreign_key "resources", "users"
   add_foreign_key "subjects", "activities"
   add_foreign_key "subjects", "preferences"
