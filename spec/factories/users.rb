@@ -31,6 +31,7 @@
 
 
   factory :user do
+<<<<<<< HEAD
     email "ollieyerburgh@test.com"
     forename "test"
     surname "test"
@@ -58,6 +59,14 @@
       postcode "s102sq"
       id "100000"
     end
+=======
+    email {'test@test.com'}
+    forename {'test'}
+    surname {'test'}
+    postcode {'S102SQ'}
+    password {'password'}
+    id {'1'}
+>>>>>>> 90d225963914bbe973e2aa63daf567fa11b6fa11
   end
 
 

@@ -41,11 +41,9 @@
 #
 
 class Activity < ApplicationRecord
-  has_many :subjects
-
-  include ActiveModel::AttributeMethods
+  has_and_belongs_to_many :subjects
   belongs_to :user
-  has_one :subject
+  
   self.table_name = "activities"
   acts_as_votable
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -59,6 +57,7 @@ class Activity < ApplicationRecord
   validates :postcode, presence: true, format: {with: VALID_POSTCODE_REGEX, message: "Invalid postcode format"}
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   validates :link, presence: true
+  include ActiveModel::AttributeMethods
 
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}

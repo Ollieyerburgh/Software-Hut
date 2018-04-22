@@ -8,10 +8,11 @@
 #  subject_id  :integer
 #  theme_id    :integer
 #  delivery_id :integer
+#  proximity   :integer
 #
 
 FactoryGirl.define do
-  factory :preference do
-    preference_id 1
+    factory :preference do
+    end
   end
-end
+  
