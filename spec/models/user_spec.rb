@@ -36,31 +36,33 @@ RSpec.describe User, type: :model do
     expect(user).to be_valid
   end
 
+  it "is valid with valid attributes" do
+    expect(user).to be_valid
+  end
+
   it "is not valid without a forename" do
-    subject.forename = nil
+    user.forename = nil
     expect(user).not_to be_valid
   end
 
   it "is not valid without a surname" do
-    subject.surname = nil
+    user.surname = nil
     expect(user).not_to be_valid
   end
 
   it "is not valid without a postcode" do
-    subject.postcode = nil
+    user.postcode = nil
     expect(user).not_to be_valid
   end
 
   it "is not vaild without a email" do
-    subject.email = nil
+    user.email = nil
     expect(user).not_to be_valid
   end
 
   it "is not valid without proper format of postcode" do
-    subject.postcode = "abcdefg"
+    user.postcode = "abcdefg"
     expect(user).to_not be_valid
   end
-
-
 
 end

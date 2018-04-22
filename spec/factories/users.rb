@@ -34,5 +34,6 @@ FactoryGirl.define do
     surname {'test'}
     postcode {'S102SQ'}
     password {'password'}
+    id {'1'}
   end
 end
