@@ -47,4 +47,10 @@ RSpec.describe Resource, type: :model do
     resource.link = nil
     expect(resource).to_not be_valid
   end
+
+  describe "Associations" do
+    it { should have_and_belong_to_many(:subjects) }
+    it { should belong_to(:user) }
+  end
+
 end
