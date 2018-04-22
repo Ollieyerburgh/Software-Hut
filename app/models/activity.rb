@@ -43,7 +43,7 @@
 class Activity < ApplicationRecord
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :themes
-  belongs_to :user
+  belongs_to :user, optional: true
   
   self.table_name = "activities"
   acts_as_votable

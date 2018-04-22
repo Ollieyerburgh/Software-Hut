@@ -23,7 +23,7 @@
 #
 
 class Resource < ApplicationRecord
-  belongs_to :user
+  belongs_to :user,  optional: true
   has_and_belongs_to_many :subjects
   mount_uploaders :resources, ResourceUploader
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i

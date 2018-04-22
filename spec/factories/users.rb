@@ -27,12 +27,36 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-FactoryGirl.define do
+  FactoryGirl.define do
+
+
   factory :user do
-    email Faker::Internet.unique.email
-    forename {'test'}
-    surname {'test'}
-    postcode {'S102SQ'}
-    password {'password'}
+    email "ollieyerburgh@test.com"
+    forename "test"
+    surname "test"
+    password "foobar"
+    password_confirmation "foobar"
+    postcode "S102SQ"
   end
+
+
+  factory :user1 do
+    email "ollieyerburgh@test1.com"
+    forename "test"
+    surname "test"
+    password "foobar"
+    password_confirmation "foobar"
+    postcode "S102SQ"
+  end
+
+  factory :user_anon do
+    email "test@test.com"
+    forename "test"
+    surname "test"
+    password "password"
+    password_confirmation "password"
+    postcode "s102sq"
+  end
+
+
 end

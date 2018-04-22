@@ -44,7 +44,9 @@
 
 FactoryGirl.define do
   factory :activity do
-
+    before(:create) do |activity|
+      create(:user)
+    end
     title "test-title"
     description "test"
     start_date "01/01/2010"
@@ -56,4 +58,12 @@ FactoryGirl.define do
     status "pending"
     user_id "1"
   end
+
+
+trait :skip_validate do
+  to_create {|instance| instance.save(validate: false)}
+end
+
+
+
 end

@@ -1,6 +1,6 @@
 class Admin::RegistrationsController < ApplicationController
 
-
+  
 
   def new
 
