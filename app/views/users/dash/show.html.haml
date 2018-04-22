@@ -26,6 +26,10 @@
           %td= activity.link
           %td= activity.postcode
 
+  .paginate-container
+    .paginate
+      = will_paginate @pendingactivities
+
   %h1  Rejected activities
   %table.table.table-bordered.table-striped
     %thead
@@ -35,6 +39,7 @@
         %th.col Deadline
         %th.col URL
         %th.col Postcode
+        %th.col Actions
     %tbody
       - @rejectedactivities.each do |activity|
         %tr
@@ -43,6 +48,11 @@
           %td= activity.deadline
           %td= activity.link
           %td= activity.postcode
+          %td
+            - if can? :update, activity
+              = link_to 'Edit', edit_activity_path(activity)
+            - if can? :destroy, activity
+              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
 
   %h1  Approved activities
   %table.table.table-bordered.table-striped
@@ -61,7 +71,9 @@
           %td= activity.deadline
           %td= activity.link
           %td= activity.postcode
-
+  .paginate-container
+    .paginate
+      = will_paginate @rejectedactivities
 
   %h1  Resources
   %table.table.table-bordered.table-striped
@@ -78,3 +90,7 @@
           %td= resource.description
           -#%td= resource.resources[0].path
           -# This should work  %a{:href => "resource.resources[0].path"} Link  
+
+  .paginate-container
+    .paginate
+      = will_paginate @resources

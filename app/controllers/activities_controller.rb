@@ -49,6 +49,7 @@ class ActivitiesController < ApplicationController
   # PATCH/PUT /activities/1
   def update
     if @activity.update(activity_params)
+      @activity.update_column(:status, 'pending')
       redirect_to @activity, notice: 'Activity was successfully updated.'
     else
       render :edit
