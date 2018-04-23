@@ -34,7 +34,6 @@ class ActivitiesController < ApplicationController
   # POST /activities
   def create
     @activity = Activity.new(activity_params)
-
     if @activity.save
       redirect_to :root, notice: 'Activity was successfully created.'
     else

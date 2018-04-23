@@ -22,13 +22,6 @@ class ResourcesController < ApplicationController
   # POST /resources
   def create
     @resource = Resource.new(resource_params)
-
-    if (admin_signed_in? == false) && (user_signed_in? == false)
-      @resource.user_id = '100000'
-    else
-      @resource.user_id = current_user.id
-    end
-
     if @resource.save
       redirect_to @resource, notice: 'Resource was successfully created.'
     else

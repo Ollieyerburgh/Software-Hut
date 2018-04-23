@@ -204,7 +204,7 @@ describe 'Managing activites', js: true do
     user = FactoryGirl.create(:user1)
     login_as(user)
     visit '/'
-    click_link "Saved Actvities"
+    click_link "Saved Activities"
     expect(page).to have_content "test"
     expect(page).to_not have_content "Edit"
   end
@@ -214,7 +214,7 @@ describe 'Managing activites', js: true do
     user = FactoryGirl.create(:user1)
     login_as(user)
     visit '/'
-    click_link "Saved Actvities"
+    click_link "Saved Activities"
     expect(page).to have_content "test"
     expect(page).to_not have_content "Destroy"
   end
