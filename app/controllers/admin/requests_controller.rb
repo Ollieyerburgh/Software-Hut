@@ -18,7 +18,6 @@ class Admin::RequestsController < ApplicationController
   def edit
 
     @activity = Activity.find(params[:id])
-    puts params[:id]
     @contact = Request.new(params[:request])
     if request.post?
       UserMailer.rejection_email(@contact.email, @contact.message, @activity).deliver
