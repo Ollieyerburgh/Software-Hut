@@ -9,9 +9,16 @@ class UserMailer < ApplicationMailer
 
 
 
-  def acception_email(user)
-    @user = user
-    mail(to: @user.email, subject: 'Your HeppSY request has been accepted')
+  def acception_email(email)
+    @email = email
+    mail(to: email, subject: 'Your HeppSY request has been accepted')
+  end
+
+  def rejection_email(email, message, activity)
+    @email = email
+    @message = message
+    @activity = activity
+    mail(to: email, subject: 'Your HeppSY request has been rejected', message: @message)
   end
 
 
