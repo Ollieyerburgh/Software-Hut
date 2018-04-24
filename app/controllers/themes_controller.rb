@@ -1,7 +1,10 @@
 class ThemesController < ApplicationController
+
+
   def new
     @theme = Theme.new
   end
+
 
   def create
     theme_params = params.require(:theme).permit(:name)
@@ -12,5 +15,12 @@ class ThemesController < ApplicationController
     else
       render :new
     end
-  end 
+  end
+
+
+  def theme_params
+    params.require(:theme).permit(:name)
+  end
+
+  
 end

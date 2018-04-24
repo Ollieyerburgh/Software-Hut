@@ -12,6 +12,8 @@ describe 'Authorisation', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
+
     click_button 'Create Activity'
     save_and_open_page
     expect(page).to have_content 'Activity was successfully created'
@@ -66,8 +68,6 @@ describe 'Authorisation', js: true do
     visit '/admin/registrations'
     expect(page).to have_content 'Access Denied 403'
   end
-
-
 
   specify 'I can visit Admin dashboard when a admin' do
     admin = FactoryGirl.create(:admin)

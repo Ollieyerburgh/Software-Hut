@@ -51,24 +51,6 @@ ActiveRecord::Schema.define(version: 20180422204140) do
     t.index ["activity_id", "age_id"], name: "index_activities_ages_on_activity_id_and_age_id"
   end
 
-  create_table "activities_deliveries", id: false, force: :cascade do |t|
-    t.bigint "activity_id", null: false
-    t.bigint "delivery_id", null: false
-    t.index ["activity_id", "delivery_id"], name: "index_activities_deliveries_on_activity_id_and_delivery_id"
-  end
-
-  create_table "activities_subjects", id: false, force: :cascade do |t|
-    t.bigint "activity_id", null: false
-    t.bigint "subject_id", null: false
-    t.index ["activity_id", "subject_id"], name: "index_activities_subjects_on_activity_id_and_subject_id"
-  end
-
-  create_table "activities_themes", id: false, force: :cascade do |t|
-    t.bigint "activity_id", null: false
-    t.bigint "theme_id", null: false
-    t.index ["activity_id", "theme_id"], name: "index_activities_themes_on_activity_id_and_theme_id"
-  end
-
   create_table "addresses", force: :cascade do |t|
     t.string "postcode"
     t.string "city"
@@ -151,7 +133,6 @@ ActiveRecord::Schema.define(version: 20180422204140) do
     t.integer "subject_id"
     t.integer "theme_id"
     t.integer "delivery_id"
-    t.integer "proximity"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_preferences_on_user_id"
   end
@@ -207,6 +188,13 @@ ActiveRecord::Schema.define(version: 20180422204140) do
     t.index ["preference_id"], name: "index_subjects_on_preference_id"
   end
 
+  create_table "subjects_users", id: false, force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "subject_id", null: false
+    t.index ["subject_id", "user_id"], name: "index_subjects_users_on_subject_id_and_user_id"
+    t.index ["user_id", "subject_id"], name: "index_subjects_users_on_user_id_and_subject_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
   end
@@ -238,9 +226,7 @@ ActiveRecord::Schema.define(version: 20180422204140) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "address_id"
     t.string "postcode"
-    t.index ["address_id"], name: "index_users_on_address_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

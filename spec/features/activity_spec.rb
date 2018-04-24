@@ -13,6 +13,7 @@ describe 'Managing activites', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -28,10 +29,12 @@ describe 'Managing activites', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
   end
+  
   specify do 'I cannot create an activity without filling in Start Date'
     visit '/'
     click_link 'Create Activity'
@@ -42,6 +45,7 @@ describe 'Managing activites', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -57,6 +61,7 @@ describe 'Managing activites', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -72,6 +77,7 @@ describe 'Managing activites', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -87,6 +93,7 @@ describe 'Managing activites', js: true do
     fill_in 'Deadline for application', with: '01/02/2004'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -102,6 +109,7 @@ describe 'Managing activites', js: true do
     fill_in 'Deadline for application', with: '01/02/2004'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -117,6 +125,7 @@ describe 'Managing activites', js: true do
     fill_in 'Deadline for application', with: '01/02/2004'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -134,6 +143,7 @@ describe 'Managing activites', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "Invalid email address"
@@ -150,6 +160,7 @@ describe 'Managing activites', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: '1GL103QX$'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "Invalid postcode format"
@@ -166,6 +177,7 @@ describe 'Managing activites', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "Invalid date format, please try dd/mm/yyyy"
@@ -182,6 +194,7 @@ describe 'Managing activites', js: true do
     click_link "Edit"
     expect(page).to have_content "test"
     fill_in "Activity description", with: 'HelloTestViewer'
+    check 'activity_terms_of_service'
     click_button "Update Activity"
     expect(page).to have_content "Activity was successfully updated"
     expect(page).to have_content "HelloTestViewer"
@@ -230,17 +243,18 @@ describe 'Managing activites', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit '/admin/requests/show'
     click_link 'Approve'
+    find('.dropdown-toggle').click
     click_link 'Log out'
     user = FactoryGirl.create(:user)
     login_as(user)
-    save_and_open_page
+    visit '/'
     click_link 'Saved Activities'
-    save_and_open_page
     expect(page).to have_content 'Test-Description'
 
   end

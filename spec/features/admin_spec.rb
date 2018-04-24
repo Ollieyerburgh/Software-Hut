@@ -14,6 +14,7 @@ describe 'Admin features', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     login_as(admin)
     visit '/admin/requests/show'
@@ -41,6 +42,8 @@ describe 'Admin features', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'UserTest@user.com'
+    check 'activity_terms_of_service'
+
     click_button 'Create Activity'
     login_as(admin)
     visit '/admin/requests/show'
@@ -66,6 +69,7 @@ describe 'Admin features', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'GuestReject@test.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     login_as(admin)
     visit '/admin/requests/show'
@@ -97,6 +101,7 @@ describe 'Admin features', js: true do
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'UserReject@test.com'
+    check 'activity_terms_of_service'
     click_button 'Create Activity'
     login_as(admin)
     visit '/admin/requests/show'
