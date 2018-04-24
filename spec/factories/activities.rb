@@ -57,7 +57,7 @@ FactoryGirl.define do
     email "test@test.com"
     status "pending"
     user_id "1"
-    
+
     factory :activity_approved do
       title "test-title"
       description "test"

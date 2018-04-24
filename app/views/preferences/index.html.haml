@@ -7,6 +7,14 @@
       %th Theme Name
       %th Delivery Method
       %th
+      %select{:id => "selectsubject"}
+        .subject-choice
+          %option{:disabled => "disabled", :selected => "selected"}
+            Subject
+        - @subjects.each do |subject|
+          .subject-choice
+            %option
+              = subject.name.capitalize
 
   %tbody
     - @preferences.each do |preference|

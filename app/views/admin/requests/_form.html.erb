@@ -1,6 +1,6 @@
 <%= form_for @contact, url: edit_admin_request_path, remote: true do |f| %>
     <div class="col-md-6">
-        
+
         <%= f.label :email %></br>
         <%= f.text_field :email, readonly: true, value: @activity.email %></br>
 
@@ -13,7 +13,7 @@
         <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
       </div>
 
-      <%= f.submit 'Send Message', class: 'btn btn-primary' %>
+      <%= f.submit 'Send Message', class: 'btn btn-primary', value: 'Submit' %>
     </div>
   <% end %>
   <div class="col-md-6" id="flash-message">

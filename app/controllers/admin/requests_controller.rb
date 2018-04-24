@@ -16,31 +16,19 @@ class Admin::RequestsController < ApplicationController
   end
 
   def edit
+
     @activity = Activity.find(params[:id])
-    puts params[:id]
     @contact = Request.new(params[:request])
-    @contact.request = request
-    respond_to do |format|
-      if @contact.deliver
-
-        # re-initialize Home object for cleared form
-        @contact = Request.new
-        format.html { render '/admin/requests/show'}
-        format.js   { flash.now[:success] = @message = "Rejected email sent" }
-      else
-        format.html { render 'edit' }
-        format.js   { flash.now[:error] = @message = "Message did not send." }
-      end
+    if request.post?
+      UserMailer.rejection_email(@contact.email, @contact.message, @activity).deliver
+      redirect_to "/admin/requests/show", notice: 'Rejection email was sent.'
     end
-    @activity.update_column(:status, 'rejected')
-
   end
 
   def create
 
     @activity = Activity.find(params[:id])
-    @user = User.find_by(id: @activity.user_id)
-    UserMailer.acception_email(@user).deliver
+    UserMailer.acception_email(@activity.email).deliver
     @activity.update_column(:status, 'approved')
 
     redirect_back(fallback_location: :index)
