@@ -97,6 +97,10 @@
                       %li
                         = link_to destroy_admin_session_path, method: :delete, title: "Log out of the system" do
                           = fa_icon 'sign-out', text: 'Log out'
+                      %li
+                        = navbar_link_to :edit_admin_registration, title: "Account page", identifier: :account do
+                          = fa_icon 'user'
+                          Account
 
       #main-container.container
 
