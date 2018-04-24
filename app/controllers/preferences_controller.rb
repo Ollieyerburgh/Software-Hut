@@ -55,6 +55,10 @@ class PreferencesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def preference_params
+<<<<<<< HEAD
       params.require(:preference).permit(theme_ids: [], delivery_ids: [], subject_ids: [])
+=======
+      params.require(:preference).permit(:subject_ids, :theme_ids, :delivery_ids)
+>>>>>>> e837aec1345a73afbc528b5e62ce4274116ba76a
     end
 end

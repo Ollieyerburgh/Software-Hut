@@ -38,7 +38,6 @@ RSpec.describe Subject, type: :model do
     it { should have_and_belong_to_many(:preferences) }
     it { should have_and_belong_to_many(:activities) }
     it { should have_and_belong_to_many(:resources) }
-
   end
   
 end
