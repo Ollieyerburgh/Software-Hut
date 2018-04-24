@@ -81,6 +81,10 @@
                           = fa_icon 'edit'
                           User dashboard
                       %li
+                        = navbar_link_to preferences_path(current_user), method: :get,  title: "User dashboard", identifier: :preference do
+                          = fa_icon 'edit'
+                          Preferences
+                      %li
                         = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
                           = fa_icon 'sign-out', text: 'Log out'
               - if admin_signed_in?

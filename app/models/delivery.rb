@@ -10,5 +10,5 @@
 
 class Delivery < ApplicationRecord
   has_and_belongs_to_many :preferences
-  validates :delivery_id, presence: false
+  validates :method, presence: false
 end

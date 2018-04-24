@@ -21,10 +21,12 @@ class PreferencesController < ApplicationController
 
   # POST /preferences
   def create
+    @user = current_user
     @preference = Preference.new(preference_params)
+    @preference.user_id = @user.id
 
     if @preference.save
-      redirect_to preferences_path, notice: 'Preference was successfully created.'
+      redirect_to new_preference_path, notice: 'Preference was successfully created.'
     else
       render :new
     end
@@ -53,6 +55,6 @@ class PreferencesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def preference_params
-      params.require(:preference).permit(:subject_id, :theme_id, :delivery_id)
+      params.require(:preference).permit(theme_ids: [], delivery_ids: [], subject_ids: [])
     end
 end
