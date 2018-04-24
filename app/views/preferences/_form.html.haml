@@ -2,9 +2,11 @@
   = f.error_notification
 
   .form-inputs
-    = f.association :subject
-    = f.association :theme
-    = f.association :delivery
+    = f.association :subjects, input_html: { class: 'select2' }
+    = f.association :themes, input_html: { class: 'select2' }
+    = f.association :deliveries, input_html: { class: 'select2' }
+
+
 
   .form-actions
     = f.button :submit

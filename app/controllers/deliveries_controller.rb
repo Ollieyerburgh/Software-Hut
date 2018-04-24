@@ -1,7 +1,10 @@
 class DeliveriesController < ApplicationController
+
+
   def new
     @delivery = Delivery.new
   end
+
 
   def create
     delivery_params = params.require(:delivery).permit(:method)
@@ -12,5 +15,10 @@ class DeliveriesController < ApplicationController
     else
       render :new
     end
+  end
+
+
+  def delivery_params
+    params.require(:delivery).permit(:method)
   end
 end
