@@ -22,8 +22,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-require 'will_paginate/array' 
-
 
 class Resource < ApplicationRecord
   belongs_to :user,  optional: true

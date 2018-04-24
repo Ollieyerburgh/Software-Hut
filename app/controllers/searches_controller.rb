@@ -1,5 +1,6 @@
 require 'will_paginate/array' 
 
+GOOGLE_MAPS_API_KEY='AIzaSyDBMRmPZIprE8Ythh4OtZr6isPJKcrgtAE'
 
 class SearchesController < ApplicationController
 
@@ -9,15 +10,26 @@ class SearchesController < ApplicationController
   def show
     @search=params[:query]
     @postcode = params[:postcode]
+    @distance = params[:distance]
+
+    puts @postcode
+    puts "above"
     @subject=params[:subject]
     if @subject=="Subject"
       puts "Subject not supplied"
     end
 
     @activities = Activity.filter(params.slice(:query, :subject)).paginate(page: params[:page], per_page: 10)
-    @resources = Resource.filter(params.slice(:query, :subject, :distance)).paginate(page: params[:page], per_page: 10)
-    @distance = Google::Maps.distance("GL88XY", "S102SQ")
-    @results_length = 0 #@activities.size + @resources.size
+    @resources = Resource.filter(params.slice(:query, :subject)).paginate(page: params[:page], per_page: 10)
+    
+    @distances = []
+
+    @activities.each { |activity| 
+      postcode = activity.postcode
+      distance = Google::Maps.distance(@postcode.to_s, "RG45 7ND")
+      @distances.push(distance)
+    }
+    @results_length = 0 #@activities.size + @resources.size 
 
   end
 

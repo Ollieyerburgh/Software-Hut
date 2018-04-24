@@ -167,6 +167,17 @@ describe 'Admin features', js: true do
 
   end
 
+  specify 'As an admin, I should be able to edit my password and email' do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    find('.dropdown-toggle').click
+    click_link 'Account'
+    fill_in 'Password', with: 'password1'
+    fill_in 'Password confirmation', with: 'password1'
+    fill_in 'Current password', with: 'test12'
+    click_button 'Update'
+    expect(page).to have_content 'Your account was successfully updated'
+  end
 
 =begin
   specify 'As an admin I can approve a resource request, which sends an email' do

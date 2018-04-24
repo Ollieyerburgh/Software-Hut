@@ -34,6 +34,7 @@ describe 'Managing activites', js: true do
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
   end
+  
   specify do 'I cannot create an activity without filling in Start Date'
     visit '/'
     click_link 'Create Activity'
