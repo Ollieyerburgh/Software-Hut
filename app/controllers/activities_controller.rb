@@ -33,7 +33,13 @@ class ActivitiesController < ApplicationController
 
   # POST /activities
   def create
-    @activity = Activity.new(activity_params)
+    if user_signed_in?
+      @activity = Activity.new(activity_params)
+      @activity.user_id = current_user.id
+    else
+      @activity = Activity.new(activity_params)
+    end
+
     if @activity.save
       redirect_to :root, notice: 'Activity was successfully created.'
     else
