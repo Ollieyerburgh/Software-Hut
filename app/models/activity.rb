@@ -43,8 +43,10 @@
 class Activity < ApplicationRecord
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :themes
+  has_and_belongs_to_many :deliveries
+
   belongs_to :user, optional: true
-  
+
   self.table_name = "activities"
   acts_as_votable
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -59,6 +61,9 @@ class Activity < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   validates :link, presence: true
   include ActiveModel::AttributeMethods
+
+  attr_accessor :terms_of_service
+  validates :terms_of_service, acceptance: { accept: '1' }
 
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}

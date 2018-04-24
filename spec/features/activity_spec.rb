@@ -219,6 +219,32 @@ describe 'Managing activites', js: true do
     expect(page).to_not have_content "Destroy"
   end
 
+  specify do 'As a user, I can see approved guest activities'
+    visit '/'
+    click_link 'Create Activity'
+    fill_in 'Title', with: 'Test-title'
+    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Start Date', with: '01/02/2003'
+    fill_in 'End Date', with: '01/02/2004'
+    fill_in 'Deadline for application', with: '01/02/2004'
+    fill_in 'Web address of activity', with: 'www.facebook.com'
+    fill_in 'Activity postcode', with: 'GL88XY'
+    fill_in 'Email', with: 'test@hotmail.com'
+    click_button 'Create Activity'
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    visit '/admin/requests/show'
+    click_link 'Approve'
+    click_link 'Log out'
+    user = FactoryGirl.create(:user)
+    login_as(user)
+    save_and_open_page
+    click_link 'Saved Activities'
+    save_and_open_page
+    expect(page).to have_content 'Test-Description'
+
+  end
+
   specify do 'I can search for an event, and like it so that it appears in my saved activities'
   end
 
