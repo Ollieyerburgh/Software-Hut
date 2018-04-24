@@ -9,26 +9,31 @@
   = form_tag("/search", method: "post", id: 'helloworld', ) do
     = text_field_tag(:query)
     = hidden_field_tag 'subject', '', :id => "subject"
+    = hidden_field_tag 'distance', '', :id => "distance"
+    = hidden_field_tag 'postcode', '', :id => "postcode" 
     = hidden_field_tag 'page', '1'
   .filter-container
-    .filter-box
-      %p Distance
-    .filter-box1
-      %select{:id => "selectsubject"}
-        .subject-choice
-          %option{:disabled => "disabled", :selected => "selected"}
-            Subject
-        - @subjects.each do |subject|
-          .subject-choice
-            %option
-              = subject.name.capitalize
+    .filter
+      .filter-box
+        %p Distance
+      .filter-box1
+        %input{:placeholder => "Postcode", :id => "postcode_value"}
+      .slider-center
+        %input#example_id{:name => "example_name", :type => "text", :value => ""}/
+    -#
+      .filter
+        .filter-box1
+          %select{:id => "selectsubject"}
+            .subject-choice
+              %option{:disabled => "disabled", :selected => "selected"}
+                Subject
+            - @subjects.each do |subject|
+              .subject-choice
+                %option
+                  = subject.name.capitalize
 
-
-    .filter-box#more-filters
-      %p + Filters
-  .slider-center
-    .col-md-8.text-center
-      %input#example_id{:name => "example_name", :type => "text", :value => ""}/
+      .filter-box#more-filters
+        %p + Filters
 
 
 .container-fluid.margin-top-50
