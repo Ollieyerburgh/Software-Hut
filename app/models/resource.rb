@@ -22,6 +22,9 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
+require 'will_paginate/array' 
+
+
 class Resource < ApplicationRecord
   belongs_to :user,  optional: true
   has_and_belongs_to_many :subjects
@@ -32,10 +35,24 @@ class Resource < ApplicationRecord
   validates :title, presence: true
 
   scope :query, -> (search) {
-    where("lower(description) LIKE ? OR lower(title) LIKE ? OR lower(address) LIKE ?", "%#{search.downcase}%","%#{search.downcase}%" ,"%#{search.downcase}%")
+    where("lower(description) LIKE ? OR lower(title) LIKE ?", "%#{search.downcase}%","%#{search.downcase}%")
   }
   scope :subject, -> (subject) { where(subject_id: Subject.where(name: subject))}
 
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
+
+  include ActiveModel::AttributeMethods
+
+  scope :subject, -> (subject) { where(subject_id: Subject.where(name: subject))}
+
+  private
+    def self.filter(filtering_params)
+      results = self.where(nil)
+      filtering_params.each do |key, value|
+        results = results.public_send(key, value) if value.present?
+      end
+      results
+    end
+
 end
