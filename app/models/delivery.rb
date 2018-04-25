@@ -10,8 +10,7 @@
 
 class Delivery < ApplicationRecord
   has_and_belongs_to_many :preferences
-  validates :method, presence: false
-
+  validates :name, presence: false
   has_and_belongs_to_many :activities
 
 end

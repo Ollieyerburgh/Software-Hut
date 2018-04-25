@@ -16,11 +16,4 @@ class ThemesController < ApplicationController
       render :new
     end
   end
-
-
-  def theme_params
-    params.require(:theme).permit(:name)
-  end
-
-  
 end

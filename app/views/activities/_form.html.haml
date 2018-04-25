@@ -4,7 +4,9 @@
 
   .form-inputs.activities
     = f.input :title, label: 'Title'
-    -#= f.select(:subject_ids, [['Maths', 1], ['History', 2]])
+    = f.association :subjects, input_html: { class: 'select2' }
+    = f.association :themes, input_html: { class: 'select2' }
+    = f.association :deliveries, input_html: { class: 'select2' }
     = f.input :description, label: 'Activity description'
     = f.input :start_date, label: 'Start Date'
     = f.input :end_date, label: 'End Date'
@@ -17,5 +19,4 @@
     -#= check_box_tag "Hello"
 
   .form-actions
-
     = f.button :submit

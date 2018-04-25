@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180422204140) do
+ActiveRecord::Schema.define(version: 20180424160538) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,27 @@ ActiveRecord::Schema.define(version: 20180422204140) do
     t.bigint "activity_id", null: false
     t.bigint "age_id", null: false
     t.index ["activity_id", "age_id"], name: "index_activities_ages_on_activity_id_and_age_id"
+  end
+
+  create_table "activities_deliveries", id: false, force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "delivery_id", null: false
+    t.index ["activity_id", "delivery_id"], name: "index_activities_deliveries_on_activity_id_and_delivery_id"
+    t.index ["delivery_id", "activity_id"], name: "index_activities_deliveries_on_delivery_id_and_activity_id"
+  end
+
+  create_table "activities_subjects", id: false, force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "subject_id", null: false
+    t.index ["activity_id", "subject_id"], name: "index_activities_subjects_on_activity_id_and_subject_id"
+    t.index ["subject_id", "activity_id"], name: "index_activities_subjects_on_subject_id_and_activity_id"
+  end
+
+  create_table "activities_themes", id: false, force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.bigint "theme_id", null: false
+    t.index ["activity_id", "theme_id"], name: "index_activities_themes_on_activity_id_and_theme_id"
+    t.index ["theme_id", "activity_id"], name: "index_activities_themes_on_theme_id_and_activity_id"
   end
 
   create_table "addresses", force: :cascade do |t|
@@ -95,11 +116,6 @@ ActiveRecord::Schema.define(version: 20180422204140) do
     t.bigint "preference_id", null: false
   end
 
-  create_table "deliveries_resources", id: false, force: :cascade do |t|
-    t.bigint "resource_id", null: false
-    t.bigint "delivery_id", null: false
-  end
-
   create_table "deliveries_users", id: false, force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "delivery_id", null: false
@@ -128,9 +144,9 @@ ActiveRecord::Schema.define(version: 20180422204140) do
   end
 
   create_table "preferences", force: :cascade do |t|
+    t.integer "preference_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "subject_id"
     t.integer "theme_id"
     t.integer "delivery_id"
     t.bigint "user_id"
