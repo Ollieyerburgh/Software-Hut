@@ -116,11 +116,6 @@ ActiveRecord::Schema.define(version: 20180426103909) do
     t.bigint "preference_id", null: false
   end
 
-  create_table "deliveries_resources", id: false, force: :cascade do |t|
-    t.bigint "resource_id", null: false
-    t.bigint "delivery_id", null: false
-  end
-
   create_table "deliveries_users", id: false, force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "delivery_id", null: false
