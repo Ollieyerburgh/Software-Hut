@@ -72,6 +72,18 @@ describe 'Managing activites', js:true do
   end
 
   specify 'I can create a resource with a file as a user' do
-  
+    user = FactoryGirl.create(:user)
+    admin = FactoryGirl.create(:admin)
+    login_as(:user)
+    visit '/'
+    click_link 'Create Activity'
+    click_button 'New Resource'
+    fill_in 'Title', with: 'Test-title'
+    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Email', with: 'Test@hotmail.co.uk'
+    attach_file("files", Rails.root + "spec/features/file.pdf")
+    click_button 'Create Resource'
+    expect(page).to have_content 'Resource was successfully created'
+
   end
 end

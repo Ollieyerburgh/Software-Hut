@@ -11,12 +11,11 @@ Faker::Config.locale = 'en-GB'
 
 User.create(email:'fake@sheffield.ac.uk', password:'password', password_confirmation: 'password', id: '1', forename: 'isaac', surname: 'yerdburgh',  postcode: Faker::Address.postcode, )
 Admin.where(email: 'admin1@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '1')
-User.where(email: 'Anon@anon.com').first_or_create(password: 'password', password_confirmation: 'password', id: '100000', forename: 'anon', surname: 'anon', postcode: Faker::Address.postcode)
 
 
 user = User.find_by_email("fake@sheffield.ac.uk")
 10.times do
-  user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: Faker::Address.postcode, link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'rejected')
+  user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: Faker::Address.postcode, link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'pending')
 end
 
 subjects =  ['maths', 'english', 'physics', 'geography', 'computer science']
