@@ -88,4 +88,8 @@ describe 'User registration', js: true do
     expect(page).to have_content 'Email has already been taken'
 
   end
+
+  specify 'As a user I can go to my dashboard' do
+  
+  end
 end
