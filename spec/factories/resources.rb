@@ -8,9 +8,9 @@
 #  description :string
 #  status      :string           default("pending")
 #  email       :string
-#  resources   :json
 #  user_id     :integer
 #  subject_id  :integer
+#  files       :json
 #
 # Indexes
 #

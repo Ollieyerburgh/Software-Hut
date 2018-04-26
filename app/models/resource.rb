@@ -8,9 +8,9 @@
 #  description :string
 #  status      :string           default("pending")
 #  email       :string
-#  resources   :json
 #  user_id     :integer
 #  subject_id  :integer
+#  files       :json
 #
 # Indexes
 #
@@ -22,11 +22,10 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-
 class Resource < ApplicationRecord
+  mount_uploaders :files, FileUploader
   belongs_to :user,  optional: true
   has_and_belongs_to_many :subjects
-  mount_uploaders :resources, ResourceUploader
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   validates :description, presence: true
