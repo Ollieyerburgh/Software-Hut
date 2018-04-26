@@ -7,6 +7,7 @@ class Users::DashController < ApplicationController
   end
 
   def show
+    params[:id] == current_user.id unless params[:id]
     @user = User.find(params[:id])
     @activities = @user.activities
     @pendingactivities = @user.activities.pending.paginate(page: params[:page], per_page: 10)

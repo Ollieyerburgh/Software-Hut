@@ -8,8 +8,8 @@
 
 
   .form-file_field
-    = f.label :resources
-    = f.file_field :files, multiple: true
+    = f.label :files
+    = f.file_field :files, multiple: true, id: 'files'
 
   .form-actions
     = f.button :submit
