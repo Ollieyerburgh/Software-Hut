@@ -19,5 +19,11 @@ user = User.find_by_email("fake@sheffield.ac.uk")
   user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: Faker::Address.postcode, link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'rejected')
 end
 
-subjects =  ['maths', 'english', 'physics', 'geography', 'computer science']
-subjects.each { |subject| Subject.create(name: subject)}
+subjects =  ['Maths', 'English', 'Physics', 'Geography', 'Computer Science']
+subjects.each { |subject| Subject.first_or_create(name: subject)}
+
+themes =  ['Careers', 'Employability', 'Higher Education', 'University', 'Study Skills']
+themes.each { |theme| Theme.first_or_create(name: theme)}
+
+deliveries =  ['In school/college', 'Out of school/college', 'Online']
+deliveries.each { |delivery| Delivery.first_or_create(method: delivery)}
