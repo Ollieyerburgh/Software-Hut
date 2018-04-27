@@ -25,7 +25,6 @@ describe 'Admin features', js: true do
     expect(page).to have_content 'Test-title'
     click_link 'Approve'
     ActionMailer::Base.deliveries.last.to.should include("test@hotmail.com")
-    expect(page).to_not have_content 'Approve'
   end
 
   specify 'As an admin I can approve an activity request from a user' do
@@ -54,7 +53,6 @@ describe 'Admin features', js: true do
     expect(page).to have_content 'Test-title'
     click_link 'Approve'
     ActionMailer::Base.deliveries.last.to.should include("UserTest@user.com")
-    expect(page).to_not have_content 'Approve'
   end
 
   specify 'As an admin I can reject an activity request from a guest' do
@@ -82,7 +80,7 @@ describe 'Admin features', js: true do
     fill_in 'Message', with: 'Rejected'
     click_button 'Submit'
     expect(page).to have_content 'Rejection email was sent'
-    expect(page).to have_content 'Pending requests'
+    expect(page).to have_content 'Pending activities'
     ActionMailer::Base.deliveries.last.to.should include("GuestReject@test.com")
 
   end
@@ -114,7 +112,7 @@ describe 'Admin features', js: true do
     fill_in 'Message', with: 'Rejected'
     click_button 'Submit'
     expect(page).to have_content 'Rejection email was sent'
-    expect(page).to have_content 'Pending requests'
+    expect(page).to have_content 'Pending activities'
     ActionMailer::Base.deliveries.last.to.should include("UserReject@test.com")
 
   end
@@ -170,13 +168,14 @@ describe 'Admin features', js: true do
   specify 'As an admin, I should be able to edit my password and email' do
     admin = FactoryGirl.create(:admin)
     login_as(admin)
+    visit '/'
     find('.dropdown-toggle').click
     click_link 'Account'
     fill_in 'Password', with: 'password1'
     fill_in 'Password confirmation', with: 'password1'
     fill_in 'Current password', with: 'test12'
     click_button 'Update'
-    expect(page).to have_content 'Your account was successfully updated'
+    expect(page).to have_content 'Your account has been updated successfully'
   end
 
 =begin
