@@ -75,6 +75,7 @@ describe 'Managing activites', js:true do
     user = FactoryGirl.create(:user)
     admin = FactoryGirl.create(:admin)
     login_as(:user)
+    save_and_open_page
     visit '/'
     click_link 'Create Activity'
     click_button 'New Resource'

@@ -76,15 +76,15 @@
                       %li
                         = navbar_link_to :edit_user_registration, title: "Account page", identifier: :account do
                           = fa_icon 'user'
-                          Account
+                          My Account
                       %li
                         = navbar_link_to users_dash_path(current_user), method: :get,  title: "User dashboard", identifier: :preference do
-                          = fa_icon 'edit'
-                          User dashboard
+                          = fa_icon 'folder'
+                          My Activities
                       %li
                         = navbar_link_to preferences_path, method: :get,  title: "Preferences", identifier: :preference do
                           = fa_icon 'edit'
-                          Preferences
+                          My Preferences
                       %li
                         = link_to destroy_user_session_path, method: :delete, title: "Log out of the system" do
                           = fa_icon 'sign-out', text: 'Log out'

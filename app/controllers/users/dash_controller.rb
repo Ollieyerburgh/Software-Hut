@@ -1,11 +1,5 @@
 class Users::DashController < ApplicationController
 
-
-
-  def index
-    @user = User.find(params[:id])
-  end
-
   def show
     params[:id] == current_user.id unless params[:id]
     @user = User.find(params[:id])
@@ -17,11 +11,4 @@ class Users::DashController < ApplicationController
 
   end
 
-
-  def dash
-    @activities_pending = Activity.pending
-    @activities_approved = Activity.approved
-    @users = User.all
-
-  end
 end

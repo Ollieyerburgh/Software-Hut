@@ -87,7 +87,7 @@ describe 'Authorisation', js: true do
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit '/admin/requests/show'
-    expect(page).to have_content 'Pending requests'
+    expect(page).to have_content 'Pending activities'
 
   end
   specify 'I can visit Admin invite when a admin' do
