@@ -24,8 +24,10 @@ class ResourcesController < ApplicationController
     if user_signed_in?
       @resource = Resource.new(resource_params)
       @resource.user_id = current_user.id
+      @resource.status = 'pending'
     else
       @resource = Resource.new(resource_params)
+      @resource.status = 'pending'
     end
     if @resource.save
       redirect_to @resource, notice: 'Resource was successfully created.'
@@ -57,6 +59,6 @@ class ResourcesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def resource_params
-      params.require(:resource).permit(:title, :description, :email, :link, :add_documents, {resources: []})
+      params.require(:resource).permit(:title, :description, :email, :link, {files: []})
     end
 end

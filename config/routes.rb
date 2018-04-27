@@ -11,7 +11,13 @@ Rails.application.routes.draw do
 
   resources :admin
   namespace :admin do
-    resources :requests
+    resources :requests do
+      member do
+        post :approve
+        get :reject
+        post :reject
+      end
+    end
     resources :registrations
   end
 

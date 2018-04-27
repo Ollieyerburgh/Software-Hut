@@ -1,12 +1,4 @@
 .container
-  .generic-container
-    %div.nav
-      %ul.nav.nav-pills
-        %li.nav-item
-          = link_to "Dashboard", users_dash_index_path(@user), class: "dashboard-btn"
-
-
-
 
   %h1  Pending activities
   %table.table.table-bordered.table-striped
@@ -87,7 +79,7 @@
         %tr
           %td= resource.title
           %td= resource.description
-          -#%td= resource.resources[0].path
+          %td= link_to "Download", resource.files[0].url, download: ''
           -# This should work  %a{:href => "resource.resources[0].path"} Link  
 
   .paginate-container

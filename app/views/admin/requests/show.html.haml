@@ -1,7 +1,7 @@
 
 %br
 .container
-  %h1  Pending requests
+  %h1  Pending activities
   %table.table.table-bordered.table-striped
     %thead
       %tr
@@ -24,10 +24,39 @@
           %td
             = link_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => activity.id}, method: :post, class:'btn btn-default'
             = link_to 'Reject', edit_admin_request_path(activity.id), class:'btn btn-danger'
+  %br
+  %h1  Pending resources
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.col Title
+        %th.col Description
+        %th.col Email
+        %th.col Actions
+    %tbody
+      - @resources.each do |resource|
+        %tr
+          %td= resource.title
+          %td= resource.description
+          %td= resource.email
+          %td
+            = link_to 'Approve', {:controller => 'admin/requests', :action => 'approve', :id => resource.id}, method: :post, class:'btn btn-default'
+            = link_to 'Reject', reject_admin_request_path(resource.id), class:'btn btn-danger'
 
+  %h1  Approved resources
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.col Title
+        %th.col Description
+        %th.col Email
+    %tbody
+      - @resourcesaccepted.each do |resource|
+        %tr
+          %td= resource.title
+          %td= resource.description
+          %td= resource.email
 
-
-.container
   %h1  Rejected requests
   %table.table.table-bordered.table-striped
     %thead
@@ -49,6 +78,6 @@
           %td= activity.postcode
 
 
-.paginate-container
-  .paginate
-    = will_paginate @activities
+  .paginate-container
+    .paginate
+      = will_paginate @activities

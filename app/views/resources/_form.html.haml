@@ -8,8 +8,8 @@
 
 
   .form-file_field
-    = f.label 'Upload files here. Select mutliple by pressing CMD/Control whilst selecting files'
-    = f.file_field :resources, multiple: true
+    = f.label :files
+    = f.file_field :files, multiple: true, id: 'files'
 
   .form-actions
     = f.button :submit

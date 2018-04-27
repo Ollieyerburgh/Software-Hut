@@ -22,7 +22,7 @@ end
 subjects =  ['maths', 'english', 'physics', 'geography', 'computer science']
 subjects.each { |subject| Subject.create(name: subject)}
 
-themes =  ['maths', 'english', 'physics', 'geography', 'computer science']
+themes =  ['Careers', 'Employability', 'physics', 'geography', 'computer science']
 themes.each { |theme| Theme.create(name: theme)}
 
 deliveries =  ['In school/college', 'Out of school/College', 'Online']

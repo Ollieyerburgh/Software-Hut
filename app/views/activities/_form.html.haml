@@ -6,7 +6,7 @@
     = f.input :title, label: 'Title'
     = f.association :subjects, input_html: { class: 'select2' }
     = f.association :themes, input_html: { class: 'select2' }
-    = f.association :deliveries, input_html: { class: 'select2' }
+    = f.association :deliveries, label_method: :method, input_html: { class: 'select2' }
     = f.input :description, label: 'Activity description'
     = f.input :start_date, label: 'Start Date'
     = f.input :end_date, label: 'End Date'

@@ -27,7 +27,7 @@ gem 'acts_as_votable'
 gem 'simple_form'
 gem 'draper'
 gem 'ransack', '~> 1.8.0'
-
+gem "twitter-bootstrap-rails"
 gem 'polyamorous', '~> 1.3.1'
 
 gem 'will_paginate', '~> 3.1.5'
@@ -37,13 +37,13 @@ gem 'devise'
 gem 'devise_ldap_authenticatable'
 gem 'devise_cas_authenticatable'
 gem 'cancancan'
+gem 'carrierwave'
 
 gem 'whenever'
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'delayed-plugins-airbrake'
 gem 'daemons'
-gem 'carrierwave'
 
 gem 'google-maps'
 gem 'faker'

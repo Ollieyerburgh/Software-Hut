@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180424160538) do
+ActiveRecord::Schema.define(version: 20180426103909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,9 +144,9 @@ ActiveRecord::Schema.define(version: 20180424160538) do
   end
 
   create_table "preferences", force: :cascade do |t|
-    t.integer "preference_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "subject_id"
     t.integer "theme_id"
     t.integer "delivery_id"
     t.bigint "user_id"
@@ -173,9 +173,9 @@ ActiveRecord::Schema.define(version: 20180424160538) do
     t.string "description"
     t.string "status", default: "pending"
     t.string "email"
-    t.json "resources"
     t.bigint "user_id"
     t.bigint "subject_id"
+    t.json "files"
     t.index ["subject_id"], name: "index_resources_on_subject_id"
     t.index ["user_id"], name: "index_resources_on_user_id"
   end

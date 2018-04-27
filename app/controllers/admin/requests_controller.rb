@@ -9,7 +9,9 @@ class Admin::RequestsController < ApplicationController
 
   def show
     @activities = Activity.pending.paginate(page: params[:page], per_page: 10)
+    @resources = Resource.pending
     @activitiesrejected = Activity.rejected.paginate(page: params[:page], per_page: 10)
+    @resourcesaccepted = Resource.approved
   end
 
   def new
@@ -23,6 +25,24 @@ class Admin::RequestsController < ApplicationController
       UserMailer.rejection_email(@contact.email, @contact.message, @activity).deliver
       redirect_to "/admin/requests/show", notice: 'Rejection email was sent.'
     end
+  end
+
+  def reject
+
+    @resource = Resource.find(params[:id])
+    @contact = Request.new(params[:request])
+    if request.post?
+      UserMailer.rejection_email(@contact.email, @contact.message, @resource).deliver
+      redirect_to "/admin/requests/show", notice: 'Rejection email was sent.'
+    end
+  end
+
+
+  def approve
+    @resource = Resource.find(params[:id])
+    UserMailer.acception_email(@resource.email).deliver
+    @resource.update_column(:status, 'approved')
+    redirect_back(fallback_location: :index)
   end
 
   def create

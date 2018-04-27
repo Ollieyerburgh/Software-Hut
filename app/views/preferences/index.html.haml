@@ -12,9 +12,15 @@
   %tbody
     - @preferences.each do |preference|
       %tr
-        %td= preference.subject_ids
-        %td= preference.theme_ids
-        %td= preference.delivery_ids
+        %td
+          - preference.subject_ids.each do |subject|
+            = Subject.find(subject).name
+        %td
+          - preference.theme_ids.each do |theme|
+            = Theme.find(theme).name
+        %td
+          - preference.delivery_ids.each do |delivery|
+            = Delivery.find(delivery).method
         %td= link_to 'Show',preference
         %td= link_to 'Edit', edit_preference_path(preference)
         %td= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' }

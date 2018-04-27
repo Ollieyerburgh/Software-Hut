@@ -26,7 +26,7 @@
 #
 
 class User < ApplicationRecord
-  has_many :activities
+  has_many :activities, dependent: :delete_all
   has_many :resources
   has_one :preference
   acts_as_voter
