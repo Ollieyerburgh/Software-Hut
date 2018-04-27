@@ -7,7 +7,7 @@ class DeliveriesController < ApplicationController
 
 
   def create
-    delivery_params = params.require(:delivery).permit(:name)
+    delivery_params = params.require(:delivery).permit(:method)
     @delivery = Delivery.new(delivery_params)
 
     if @delivery.save
