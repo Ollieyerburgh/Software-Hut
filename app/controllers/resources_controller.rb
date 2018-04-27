@@ -24,8 +24,10 @@ class ResourcesController < ApplicationController
     if user_signed_in?
       @resource = Resource.new(resource_params)
       @resource.user_id = current_user.id
+      @resource.status = 'pending'
     else
       @resource = Resource.new(resource_params)
+      @resource.status = 'pending'
     end
     if @resource.save
       redirect_to @resource, notice: 'Resource was successfully created.'
