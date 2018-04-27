@@ -5,6 +5,7 @@ class PreferencesController < ApplicationController
   def index
     @preferences = Preference.all
     @user = current_user
+
     #@subject= Subject.all
     #@subject_list=[]
     #@subject.each do |s|
@@ -31,6 +32,7 @@ class PreferencesController < ApplicationController
     if user_signed_in?
       @preference = Preference.new(preference_params)
       @preference.user_id = current_user.id
+
     else
       @preference = Activity.new(preference_params)
     end

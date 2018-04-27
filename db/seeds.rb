@@ -19,10 +19,10 @@ user = User.find_by_email("fake@sheffield.ac.uk")
 end
 
 subjects =  ['Maths', 'English', 'Physics', 'Geography', 'Computer Science']
-subjects.each { |subject| Subject.first_or_create(name: subject)}
+subjects.each { |subject| Subject.create(name: subject)}
 
 themes =  ['Careers', 'Employability', 'Higher Education', 'University', 'Study Skills']
-themes.each { |theme| Theme.first_or_create(name: theme)}
+themes.each { |theme| Theme.create(name: theme)}
 
 deliveries =  ['In school/college', 'Out of school/college', 'Online']
-deliveries.each { |delivery| Delivery.first_or_create(method: delivery)}
+deliveries.each { |delivery| Delivery.create(method: delivery)}
