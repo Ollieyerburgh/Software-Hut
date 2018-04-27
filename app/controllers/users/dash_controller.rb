@@ -1,7 +1,5 @@
 class Users::DashController < ApplicationController
 
-
-
   def index
     @user = User.find(params[:id])
   end
@@ -15,7 +13,6 @@ class Users::DashController < ApplicationController
     @resources = @user.resources.paginate(page: params[:page], per_page: 10)
 
   end
-
 
   def dash
     @activities_pending = Activity.pending

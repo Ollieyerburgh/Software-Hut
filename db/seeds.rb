@@ -9,10 +9,9 @@ require 'faker'
 
 Faker::Config.locale = 'en-GB'
 
-User.create(email:'fake@sheffield.ac.uk', password:'password', password_confirmation: 'password', id: '1', forename: 'isaac', surname: 'yerdburgh',  postcode: Faker::Address.postcode, )
+User.create(email:'fake@sheffield.ac.uk', password:'password', password_confirmation: 'password', id: '5', forename: 'isaac', surname: 'yerdburgh',  postcode: Faker::Address.postcode, )
 Admin.where(email: 'admin1@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '1')
 User.where(email: 'Anon@anon.com').first_or_create(password: 'password', password_confirmation: 'password', id: '100000', forename: 'anon', surname: 'anon', postcode: Faker::Address.postcode)
-
 
 user = User.find_by_email("fake@sheffield.ac.uk")
 10.times do
@@ -22,3 +21,11 @@ end
 
 subjects =  ['maths', 'english', 'physics', 'geography', 'computer science']
 subjects.each { |subject| Subject.create(name: subject)}
+
+themes =  ['maths', 'english', 'physics', 'geography', 'computer science']
+themes.each { |theme| Theme.create(name: theme)}
+
+deliveries =  ['In school/college', 'Out of school/College', 'Online']
+deliveries.each { |delivery| Delivery.create(method: delivery)}
+
+Preferences.where(preference_id: '1', theme_ids: '[1,2]', subject_ids: '[1,2]')
