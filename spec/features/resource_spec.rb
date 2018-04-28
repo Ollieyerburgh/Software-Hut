@@ -86,7 +86,18 @@ describe 'Managing activites', js:true do
     find('.dropdown-toggle').click
     click_link 'My Activities'
     expect(page).to have_content 'Test-Description'
+  end
 
-
+  specify 'When I like an activity, it appears in saved activities' do
+    activity = FactoryGirl.create(:activity_approved)
+    user = FactoryGirl.create(:user1)
+    click_link 'Log in'
+    fill_in 'Email', with: "ollieyerburgh@test1.com"
+    fill_in 'Password', with: 'foobar'
+    click_button 'Log in'
+    visit '/'
+    click_link 'Saved Activities'
+    expect(page).to have_content 'test-title'
+  end
   end
 end

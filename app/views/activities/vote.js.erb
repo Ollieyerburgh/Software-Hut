@@ -3,9 +3,9 @@
       $(this).liked
     });
 <% else %>
-    $('.like-btn').click(function(){
+    $('#like-btn').click(function(){
       this.removeClass('liked')
     });
 
 <%end%>
-  $('.likes-count').html("<%=@activity.get_upvotes.size %>")
+  $("#likes_<%= @activity.id %>").html("<%=@activity.get_upvotes.size %>")

@@ -80,7 +80,6 @@
           %td= resource.title
           %td= resource.description
           %td= link_to "Download", resource.files[0].url, download: '' unless resource.files[0].nil?
-          -# This should work  %a{:href => "resource.resources[0].path"} Link  
 
   .paginate-container
     .paginate

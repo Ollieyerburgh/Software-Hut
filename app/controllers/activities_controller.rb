@@ -61,6 +61,7 @@ class ActivitiesController < ApplicationController
   def vote
     if !current_user.liked? @activity
       @activity.liked_by current_user
+
     elsif current_user.liked? @activity
       @activity.unliked_by current_user
     end
