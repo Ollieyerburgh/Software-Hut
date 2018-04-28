@@ -41,5 +41,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  after_create :send_welcome_email
+  after_create :send_weekly_email
+  private
+
+  def send_welcome_email
+    UserMailer.welcome_email(self).deliver
+  end
+
+  def send_weekly_email
+    UserMailer.weekly_email(self).deliver
+  end
+
 
 end

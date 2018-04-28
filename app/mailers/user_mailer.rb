@@ -4,10 +4,8 @@ class UserMailer < ApplicationMailer
   def welcome_email(user)
     @user = user
     @url = 'http://localhost:3000/users/sign_in'
-    mail(to: @user.email, subject: 'Welcome haha')
+    mail(to: @user.email, subject: 'Welcome to HeppSY')
   end
-
-
 
   def acception_email(email)
     @email = email
@@ -20,6 +18,13 @@ class UserMailer < ApplicationMailer
     @activity = activity
     mail(to: email, subject: 'Your HeppSY request has been rejected', message: @message)
   end
+
+  def weekly_email(user)
+    @user = user  
+    mail(to: @user.email, subject: 'Your weekly HeppSY email')
+  end
+
+
 
 
 end

@@ -9,20 +9,23 @@ require 'faker'
 
 Faker::Config.locale = 'en-GB'
 
-User.create(email:'fake@sheffield.ac.uk', password:'password', password_confirmation: 'password', id: '1', forename: 'isaac', surname: 'yerdburgh',  postcode: Faker::Address.postcode, )
+User.create(email:'fake@sheffield.ac.uk', password:'password', password_confirmation: 'password', id: '5', forename: 'isaac', surname: 'yerdburgh',  postcode: Faker::Address.postcode, )
 Admin.where(email: 'admin1@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '1')
-
+User.where(email: 'Anon@anon.com').first_or_create(password: 'password', password_confirmation: 'password', id: '100000', forename: 'anon', surname: 'anon', postcode: Faker::Address.postcode)
 
 user = User.find_by_email("fake@sheffield.ac.uk")
 10.times do
-  user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: Faker::Address.postcode, link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'pending')
+  user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: Faker::Address.postcode, link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'rejected')
+  user.resources.create(title: Faker::Name.unique.name, link: Faker::Internet.url, description: Faker::Company.bs, email: Faker::Internet.email, status: 'pending')
 end
 
-subjects =  ['Maths', 'English', 'Physics', 'Geography', 'Computer Science']
-subjects.each { |subject| Subject.first_or_create(name: subject)}
+subjects =  ['maths', 'english', 'physics', 'geography', 'computer science']
+subjects.each { |subject| Subject.create(name: subject)}
 
-themes =  ['Careers', 'Employability', 'Higher Education', 'University', 'Study Skills']
-themes.each { |theme| Theme.first_or_create(name: theme)}
+themes =  ['Careers', 'Employability', 'physics', 'geography', 'computer science']
+themes.each { |theme| Theme.create(name: theme)}
 
-deliveries =  ['In school/college', 'Out of school/college', 'Online']
-deliveries.each { |delivery| Delivery.first_or_create(method: delivery)}
+deliveries =  ['In school/college', 'Out of school/College', 'Online']
+deliveries.each { |delivery| Delivery.create(method: delivery)}
+
+Preferences.where(preference_id: '1', theme_ids: '[1,2]', subject_ids: '[1,2]')
