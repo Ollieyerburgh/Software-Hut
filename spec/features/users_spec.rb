@@ -24,7 +24,7 @@ describe 'User registration', js: true do
     click_link 'Forgot your password?'
     fill_in 'user_email', with: 'ollieyerburgh@test.com'
     fill_in 'Email', with: 'ollieyerburgh@test.com'
-    save_and_open_page
+    
     click_button 'Send me reset password instructions'
     expect(page).to have_content 'You will receive an email with instructions on how to reset your password in a few minutes.'
     ActionMailer::Base.deliveries.last.to.should include("ollieyerburgh@test.com")
@@ -90,6 +90,6 @@ describe 'User registration', js: true do
   end
 
   specify 'As a user I can go to my dashboard' do
-  
+
   end
 end

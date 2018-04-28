@@ -9,7 +9,7 @@ class ActivitiesController < ApplicationController
 
   # GET /activities
   def index
-    @current_nav_identifier = :index
+    @current_nav_identifier = :activities
     @activities = Activity.approved
     @user = current_user
   end

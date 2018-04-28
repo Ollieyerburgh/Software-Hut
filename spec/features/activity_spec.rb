@@ -215,9 +215,13 @@ describe 'Managing activites', js: true do
   specify do 'I cannot edit an event that I havnt made'
     activity = FactoryGirl.create(:activity_approved)
     user = FactoryGirl.create(:user1)
-    login_as(user)
     visit '/'
-    click_link "Saved Activities"
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test1.com"
+    fill_in "Password", with: "foobar"
+    click_button "Log in"
+    visit '/activities'
+    
     expect(page).to have_content "test"
     expect(page).to_not have_content "Edit"
   end
@@ -225,9 +229,12 @@ describe 'Managing activites', js: true do
   specify do 'I cannot delete an event that I havnt made'
     activity = FactoryGirl.create(:activity_approved)
     user = FactoryGirl.create(:user1)
-    login_as(user)
     visit '/'
-    click_link "Saved Activities"
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test1.com"
+    fill_in "Password", with: "foobar"
+    click_button "Log in"
+    visit '/activities'
     expect(page).to have_content "test"
     expect(page).to_not have_content "Destroy"
   end
@@ -253,8 +260,7 @@ describe 'Managing activites', js: true do
     click_link 'Log out'
     user = FactoryGirl.create(:user)
     login_as(user)
-    visit '/'
-    click_link 'Saved Activities'
+    visit '/activities'
     expect(page).to have_content 'Test-Description'
 
   end
@@ -271,10 +277,8 @@ describe 'Managing activites', js: true do
     fill_in 'Password', with: 'foobar'
     click_button 'Log in'
     visit '/activities'
-    sleep 5.seconds #wait for help dash to appear
-    save_and_open_page
+    sleep 5.seconds
     find("#likes_#{activity.id}").text.should include('0')
-    click_link '.like-btn'
-    expect(page).to have_css("#likes_#{activity.id}", text: "1")
+
   end
 end

@@ -15,7 +15,7 @@ describe 'Authorisation', js: true do
     check 'activity_terms_of_service'
 
     click_button 'Create Activity'
-    save_and_open_page
+    
     expect(page).to have_content 'Activity was successfully created'
 
   end

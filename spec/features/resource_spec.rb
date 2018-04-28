@@ -91,6 +91,7 @@ describe 'Managing activites', js:true do
   specify 'When I like an activity, it appears in saved activities' do
     activity = FactoryGirl.create(:activity_approved)
     user = FactoryGirl.create(:user1)
+    visit '/'
     click_link 'Log in'
     fill_in 'Email', with: "ollieyerburgh@test1.com"
     fill_in 'Password', with: 'foobar'
@@ -98,6 +99,7 @@ describe 'Managing activites', js:true do
     visit '/'
     click_link 'Saved Activities'
     expect(page).to have_content 'test-title'
+    find("#likes_#{activity.id}").text.should include('0')
   end
-  end
+
 end
