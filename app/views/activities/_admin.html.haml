@@ -24,11 +24,9 @@
           %td.activity-option
             = link_to 'Show', activity
           %td.activity-option
-            - if can? :update, activity
-              = link_to 'Edit', edit_activity_path(activity)
+            = link_to 'Edit', edit_activity_path(activity)
           %td.activity-option
-            - if can? :destroy, activity
-              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
 
 
 

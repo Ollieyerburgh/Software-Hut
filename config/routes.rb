@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   match "/422", to: "errors#error_422", via: :all
   match "/500", to: "errors#error_500", via: :all
 
+  get '/help', to: 'pages#help'
   get '/search', to: 'searches#show'
   post '/search', to: 'searches#show'
   post '/admin/requests/:id/edit', to: "admin/requests#edit"

@@ -4,8 +4,9 @@ class Ability
   def initialize(model)
       case model
       when Admin
-        can :manage, :all, id: model.id
-
+        can :manage, :all
+        can [:edit, :update, :destroy], Activity
+        can [:edit, :update, :destroy], Resource
       when User
         can [:edit, :update, :destroy], Activity, user_id: model.id
         can [:new, :read, :create], Activity
