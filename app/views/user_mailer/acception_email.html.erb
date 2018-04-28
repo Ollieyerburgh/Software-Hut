@@ -4,12 +4,12 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hello <%= @user.forename %> </h1>
+    <h1>Hello <%= @user.forename unless @user.nil? %> </h1>
     <p>
       Your submission request has been approved by HeppSY admins and has now been posted in our website.
 
       Thank you,
-      
+
       HeppSY team
     </p>
   </body>

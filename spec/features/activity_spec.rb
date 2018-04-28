@@ -34,7 +34,7 @@ describe 'Managing activites', js: true do
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
   end
-  
+
   specify do 'I cannot create an activity without filling in Start Date'
     visit '/'
     click_link 'Create Activity'
@@ -262,6 +262,19 @@ describe 'Managing activites', js: true do
   specify do 'I can search for an event, and like it so that it appears in my saved activities'
   end
 
-  specify do 'I can '
+  specify do 'I can like an event, which will increase like count by one'
+    activity = FactoryGirl.create(:activity_approved)
+    user = FactoryGirl.create(:user1)
+    visit '/'
+    click_link 'Log in'
+    fill_in 'Email', with: "ollieyerburgh@test1.com"
+    fill_in 'Password', with: 'foobar'
+    click_button 'Log in'
+    visit '/activities'
+    sleep 5.seconds #wait for help dash to appear
+    save_and_open_page
+    find("#likes_#{activity.id}").text.should include('0')
+    click_link '.like-btn'
+    expect(page).to have_css("#likes_#{activity.id}", text: "1")
   end
 end
