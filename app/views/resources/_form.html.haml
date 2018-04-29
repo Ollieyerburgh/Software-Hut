@@ -10,6 +10,7 @@
   .form-file_field
     = f.label :files
     = f.file_field :files, multiple: true, name: 'files'
+    = f.input :terms_of_service, as: :boolean, label: "I agree that I have permission to post this resource on this website"
 
   .form-actions
     = f.button :submit

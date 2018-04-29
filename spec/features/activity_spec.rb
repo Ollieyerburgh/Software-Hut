@@ -194,7 +194,6 @@ describe 'Managing activites', js: true do
     fill_in "Password", with: "foobar"
     click_button "Log in"
     visit '/activities'
-
     expect(page).to have_content "test"
     expect(page).to_not have_content "Edit"
   end
