@@ -24,7 +24,7 @@ describe 'User registration', js: true do
     click_link 'Forgot your password?'
     fill_in 'user_email', with: 'ollieyerburgh@test.com'
     fill_in 'Email', with: 'ollieyerburgh@test.com'
-    
+
     click_button 'Send me reset password instructions'
     expect(page).to have_content 'You will receive an email with instructions on how to reset your password in a few minutes.'
     ActionMailer::Base.deliveries.last.to.should include("ollieyerburgh@test.com")
@@ -88,8 +88,42 @@ describe 'User registration', js: true do
     expect(page).to have_content 'Email has already been taken'
 
   end
+  specify 'I can like an activity, which changes like count' do
+    activity = FactoryGirl.create(:activity_approved)
+    puts activity.id
+    user = FactoryGirl.create(:user1)
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test1.com"
+    fill_in "Password", with: "foobar"
+    click_button "Log in"
+    visit '/activities'
+    expect(page).to have_css("#likes_1", text: "0")
+    Capybara.page.find('.like-btn').click
+    visit '/activities'
+    expect(page).to have_css("#likes_1", text: "1")
+  end
 
-  specify 'As a user I can go to my dashboard' do
-
+  specify 'Users who liked an event receive cancellation email' do
+    activity = FactoryGirl.create(:activity_approved)
+    puts activity.id
+    user = FactoryGirl.create(:user1)
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test1.com"
+    fill_in "Password", with: "foobar"
+    click_button "Log in"
+    visit '/activities'
+    Capybara.page.find('.like-btn').click
+    find('.dropdown-toggle').click
+    click_link "Log out"
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test.com"
+    fill_in "Password", with: "foobar"
+    click_button "Log in"
+    visit '/activities'
+    page.accept_confirm { click_link "Destroy" }
+    ActionMailer::Base.deliveries.last.to.should include("ollieyerburgh@test1.com")
   end
 end
