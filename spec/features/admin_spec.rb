@@ -178,6 +178,36 @@ describe 'Admin features', js: true do
     expect(page).to have_content 'Your account has been updated successfully'
   end
 
+  specify 'As an admin, I should be able to create an activity' do
+    admin = FactoryGirl.create(:admin)
+    login_as
+    visit '/'
+    click_link 'Create Activity'
+    fill_in 'Title', with: 'Test-admin'
+    fill_in 'Activity description', with: 'Test-Admin'
+    fill_in 'Start Date', with: '01/02/2003'
+    fill_in 'End Date', with: '01/02/2004'
+    fill_in 'Deadline for application', with: '01/02/2004'
+    fill_in 'Web address of activity', with: 'www.facebook.com'
+    fill_in 'Activity postcode', with: 'GL88XY'
+    fill_in 'Email', with: 'test@hotmail.com'
+    check 'activity_terms_of_service'
+    click_button 'Create Activity'
+    expect(page).to have_content "Activity was successfully created"
+  end
+  specify 'As an admin, I should be able to create a resource' do
+    admin = FactoryGirl.create(:admin)
+    login_as
+    visit '/'
+    click_link 'Create Activity'
+    click_button 'New Resource'
+    fill_in 'Title', with: 'Test-admin'
+    fill_in 'Activity description', with: 'Test-Desc'
+    fill_in 'Email', with: 'test@testadmin.com'
+    click_link 'Create Resource'
+    expect(page).to have_content "Resource was successfully created."
+  end
+
 =begin
   specify 'As an admin I can approve a resource request, which sends an email' do
     admin = FactoryGirl.create(:admin)

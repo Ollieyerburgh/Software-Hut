@@ -19,6 +19,7 @@ class ActivitiesController < ApplicationController
   end
   # GET /activities/1
   def show
+    flash.now[:notice] = 'Please enter a search string'
   end
 
   # GET /activities/new
