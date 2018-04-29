@@ -52,18 +52,19 @@ class Activity < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   VALID_POSTCODE_REGEX =  /\A[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}\z/
   VALID_DATE_REGEX = /\A(?:0?[1-9]|1[0-2])\/(?:0?[1-9]|[1-2]\d|3[01])\/\d{4}\Z/
-  validates :title, presence: true
-  validates :description, presence: true
-  validates :start_date, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format, please try dd/mm/yyyy"}
-  validates :end_date, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format, please try dd/mm/yyyy"}
-  validates :deadline, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format, please try dd/mm/yyyy"}
-  validates :postcode, presence: true, format: {with: VALID_POSTCODE_REGEX, message: "Invalid postcode format"}
-  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
-  validates :link, presence: true
+  validates :title, presence: true, :if => lambda { |a| a.current_step == "main" }
+  validates :description, presence: true, :if => lambda { |a| a.current_step == "main" }
+  validates :start_date, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format, please try dd/mm/yyyy"}, :if => lambda { |a| a.current_step == "date" }
+  validates :end_date, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format, please try dd/mm/yyyy"}, :if => lambda { |a| a.current_step == "date" }
+  validates :deadline, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format, please try dd/mm/yyyy"}, :if => lambda { |a| a.current_step == "date" }
+  validates :postcode, presence: true, format: {with: VALID_POSTCODE_REGEX, message: "Invalid postcode format"}, :if => lambda { |a| a.current_step == "main" }
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}, :if => lambda { |a| a.current_step == "main" }
+  validates :link, presence: true, :if => lambda { |a| a.current_step == "main" }
   include ActiveModel::AttributeMethods
 
   attr_accessor :terms_of_service
-  validates :terms_of_service, acceptance: { accept: '1' }
+  attr_writer :current_step
+  validates :terms_of_service, acceptance: { accept: '1' } , :if => lambda { |a| a.current_step == "rest" }
 
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
@@ -73,6 +74,31 @@ class Activity < ApplicationRecord
     where("lower(description) LIKE ? OR lower(title) LIKE ? OR lower(address) LIKE ?", "%#{search.downcase}%","%#{search.downcase}%" ,"%#{search.downcase}%")
   }
   scope :subject, -> (subject) { where(subject_id: Subject.where(name: subject))}
+
+
+  def current_step
+    @current_step || steps.first
+  end
+
+  def steps
+    %w[main date rest]
+  end
+
+  def next_step
+    self.current_step = steps[steps.index(current_step)+1]
+  end
+
+  def previous_step
+    self.current_step = steps[steps.index(current_step)-1]
+  end
+
+  def first_step
+    current_step == steps.first
+  end
+
+  def last_step
+    current_step == steps.last
+  end
 
   private
     def self.filter(filtering_params)

@@ -11,6 +11,9 @@
     %h1 New activity
 
 .form.container
-  = render 'form'
+  = simple_form_for @activity do |f|
+    = f.error_notification
+    = render "#{@activity.current_step}_step", :f => f
 
-= link_to 'Back', activities_path
+    = f.submit "Back", name: "back_button" unless @activity.first_step
+    = f.submit "Continue"

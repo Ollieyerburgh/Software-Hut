@@ -17,10 +17,12 @@
         %td= resource.title
         %td= resource.description
         %td= resource.email
-        %td= link_to "Download", resource.files[0].url, download: ''
+        %td= link_to "Download", resource.files[0].url, download: '' unless resource.files[0].nil?
         %td= link_to 'Show', resource
-        %td= link_to 'Edit', edit_resource_path(resource)
-        %td= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' }
+        - if can? :destroy, resource
+          %td= link_to 'Edit', edit_resource_path(resource)
+        - if can? :destroy, resource
+          %td= link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 

@@ -5,17 +5,19 @@ describe 'Admin features', js: true do
   specify 'As an admin I can approve an activity request from a guest' do
     admin = FactoryGirl.create(:admin)
     visit '/'
-    click_link "Create Activity"
+    click_link 'Create Activity'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Start Date', with: '01/02/2003'
-    fill_in 'End Date', with: '01/02/2004'
-    fill_in 'Deadline for application', with: '01/02/2004'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    click_button 'Continue'
+    fill_in 'Start Date', with: '01/01/2001'
+    fill_in 'End Date', with: '01/01/2001'
+    fill_in 'Deadline for application', with: '01/01/2005'
+    click_button 'Continue'
     check 'activity_terms_of_service'
-    click_button 'Create Activity'
+    click_button 'Continue'
     login_as(admin)
     visit '/admin/requests/show'
     visit '/admin'
@@ -32,18 +34,19 @@ describe 'Admin features', js: true do
     user = FactoryGirl.create(:user1)
     login_as(user)
     visit '/'
-    click_link "Create Activity"
+    click_link 'Create Activity'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Start Date', with: '01/02/2003'
-    fill_in 'End Date', with: '01/02/2004'
-    fill_in 'Deadline for application', with: '01/02/2004'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'UserTest@user.com'
+    click_button 'Continue'
+    fill_in 'Start Date', with: '01/01/2001'
+    fill_in 'End Date', with: '01/01/2001'
+    fill_in 'Deadline for application', with: '01/01/2005'
+    click_button 'Continue'
     check 'activity_terms_of_service'
-
-    click_button 'Create Activity'
+    click_button 'Continue'
     login_as(admin)
     visit '/admin/requests/show'
     visit '/admin'
@@ -58,17 +61,19 @@ describe 'Admin features', js: true do
   specify 'As an admin I can reject an activity request from a guest' do
     admin = FactoryGirl.create(:admin)
     visit '/'
-    click_link "Create Activity"
+    click_link 'Create Activity'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Start Date', with: '01/02/2003'
-    fill_in 'End Date', with: '01/02/2004'
-    fill_in 'Deadline for application', with: '01/02/2004'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'GuestReject@test.com'
+    click_button 'Continue'
+    fill_in 'Start Date', with: '01/01/2001'
+    fill_in 'End Date', with: '01/01/2001'
+    fill_in 'Deadline for application', with: '01/01/2005'
+    click_button 'Continue'
     check 'activity_terms_of_service'
-    click_button 'Create Activity'
+    click_button 'Continue'
     login_as(admin)
     visit '/admin/requests/show'
     visit '/admin'
@@ -90,17 +95,19 @@ describe 'Admin features', js: true do
     user = FactoryGirl.create(:user1)
     login_as(user)
     visit '/'
-    click_link "Create Activity"
+    click_link 'Create Activity'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Start Date', with: '01/02/2003'
-    fill_in 'End Date', with: '01/02/2004'
-    fill_in 'Deadline for application', with: '01/02/2004'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'UserReject@test.com'
+    click_button 'Continue'
+    fill_in 'Start Date', with: '01/01/2001'
+    fill_in 'End Date', with: '01/01/2001'
+    fill_in 'Deadline for application', with: '01/01/2005'
+    click_button 'Continue'
     check 'activity_terms_of_service'
-    click_button 'Create Activity'
+    click_button 'Continue'
     login_as(admin)
     visit '/admin/requests/show'
     visit '/admin'
@@ -180,31 +187,39 @@ describe 'Admin features', js: true do
 
   specify 'As an admin, I should be able to create an activity' do
     admin = FactoryGirl.create(:admin)
-    login_as
+    visit '/admins/sign_in'
+    fill_in 'Email', with: 'admin@admin.com'
+    fill_in 'Password', with: 'test12'
+    click_link 'Log in'
     visit '/'
     click_link 'Create Activity'
-    fill_in 'Title', with: 'Test-admin'
-    fill_in 'Activity description', with: 'Test-Admin'
-    fill_in 'Start Date', with: '01/02/2003'
-    fill_in 'End Date', with: '01/02/2004'
-    fill_in 'Deadline for application', with: '01/02/2004'
+    fill_in 'Title', with: 'Test-title'
+    fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
+    click_button 'Continue'
+    fill_in 'Start Date', with: '01/01/2001'
+    fill_in 'End Date', with: '01/01/2001'
+    fill_in 'Deadline for application', with: '01/01/2005'
+    click_button 'Continue'
     check 'activity_terms_of_service'
-    click_button 'Create Activity'
+    click_button 'Continue'
     expect(page).to have_content "Activity was successfully created"
   end
   specify 'As an admin, I should be able to create a resource' do
     admin = FactoryGirl.create(:admin)
-    login_as
+    visit '/admins/sign_in'
+    fill_in 'Email', with: 'admin@admin.com'
+    fill_in 'Password', with: 'test12'
+    click_link 'Log in'
     visit '/'
     click_link 'Create Activity'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-admin'
     fill_in 'Activity description', with: 'Test-Desc'
     fill_in 'Email', with: 'test@testadmin.com'
-    click_link 'Create Resource'
+    click_button 'Create Resource'
     expect(page).to have_content "Resource was successfully created."
   end
 

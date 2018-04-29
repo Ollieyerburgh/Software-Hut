@@ -18,7 +18,7 @@
             %td.activity-title= activity.title
             %td.activity-description= activity.description
             %td.activity-option
-              = link_to like_activity_path(activity), class:"like-btn", id:"like_#{activity.id}", method: :put, visible: :true, remote: :true do
+              = link_to like_activity_path(activity), class:"like-btn", id:"like_#{activity.id}", method: :put, remote: :true do
                 = fa_icon('thumbs-up')
             %td{id: "likes_#{activity.id}"}
               = activity.get_upvotes.size

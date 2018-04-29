@@ -90,7 +90,6 @@ describe 'User registration', js: true do
 
   specify 'I can like an activity, which changes like count' do
     activity = FactoryGirl.create(:activity_approved)
-    puts activity.id
     user = FactoryGirl.create(:user1)
     visit '/'
     click_link "Log in"
@@ -101,12 +100,12 @@ describe 'User registration', js: true do
     expect(page).to have_css("#likes_1", text: "0")
     Capybara.page.find('.like-btn').click
     visit '/activities'
+    sleep(5)
     expect(page).to have_css("#likes_1", text: "1")
   end
 
   specify 'Users who liked an event receive cancellation email' do
     activity = FactoryGirl.create(:activity_approved)
-    puts activity.id
     user = FactoryGirl.create(:user1)
     visit '/'
     click_link "Log in"
