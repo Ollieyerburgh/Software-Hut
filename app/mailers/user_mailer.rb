@@ -20,8 +20,14 @@ class UserMailer < ApplicationMailer
   end
 
   def weekly_email(user)
-    @user = user  
+    @user = user
     mail(to: @user.email, subject: 'Your weekly HeppSY email')
+  end
+
+  def cancellation_email(user, activity)
+    @user = user
+    @activity = activity
+    mail(to: @user.email, subject: "An event you're interested in has been cancelled")
   end
 
 

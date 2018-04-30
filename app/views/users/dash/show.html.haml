@@ -79,8 +79,7 @@
         %tr
           %td= resource.title
           %td= resource.description
-          %td= link_to "Download", resource.files[0].url, download: ''
-          -# This should work  %a{:href => "resource.resources[0].path"} Link  
+          %td= link_to "Download", resource.files[0].url, download: '' unless resource.files[0].nil?
 
   .paginate-container
     .paginate

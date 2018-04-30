@@ -30,6 +30,10 @@ class Resource < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   validates :description, presence: true
   validates :title, presence: true
+  include ActiveModel::AttributeMethods
+  attr_accessor :terms_of_service
+  validates :terms_of_service, acceptance: { accept: '1' }
+
 
   scope :query, -> (search) {
     where("lower(description) LIKE ? OR lower(title) LIKE ?", "%#{search.downcase}%","%#{search.downcase}%")

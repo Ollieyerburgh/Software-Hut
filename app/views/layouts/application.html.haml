@@ -46,14 +46,17 @@
 
           .collapse.navbar-collapse
             %ul.nav.navbar-nav
-              - if (admin_signed_in? == true) || (user_signed_in? == true)
+              - if user_signed_in? == true
                 = navbar_link_to :activities, title: "Saved Activities", identifier: :index do
                   = fa_icon 'calendar'
                   Saved Activities
-              - if admin_signed_in?
-                = navbar_link_to :admin_index, title: "Admin", identifier: :index do
+              - if admin_signed_in? == true
+                = navbar_link_to :admin_index, title: "Admin", identifier: :dashboard do
                   = fa_icon 'address-book'
                   Dashboard
+                = navbar_link_to :activities, title: "Activities", identifier: :activities do
+                  = fa_icon 'calendar'
+                  Activities
                 = navbar_link_to :root, title: "Go to the home page", identifier: :home do
                   = fa_icon 'search'
                   Search

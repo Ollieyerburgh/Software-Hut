@@ -22,8 +22,10 @@ class Admin::RequestsController < ApplicationController
     @activity = Activity.find(params[:id])
     @contact = Request.new(params[:request])
     if request.post?
+      @activity.update_column(:status, 'rejected')
       UserMailer.rejection_email(@contact.email, @contact.message, @activity).deliver
       redirect_to "/admin/requests/show", notice: 'Rejection email was sent.'
+
     end
   end
 
@@ -32,8 +34,10 @@ class Admin::RequestsController < ApplicationController
     @resource = Resource.find(params[:id])
     @contact = Request.new(params[:request])
     if request.post?
+      @resource.update_column(:status, 'rejected')
       UserMailer.rejection_email(@contact.email, @contact.message, @resource).deliver
       redirect_to "/admin/requests/show", notice: 'Rejection email was sent.'
+
     end
   end
 

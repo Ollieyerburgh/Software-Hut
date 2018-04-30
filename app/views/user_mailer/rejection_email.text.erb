@@ -1,6 +1,6 @@
-Hello
+Hello <%=@user.forename unless @user.nil? %>
 ===============================================
 
 Unfortunately your request for <%= @activity.title %> has been rejected.
 
-This has happened because <%= @message  %>
+This has happened because: <%= @message  %>

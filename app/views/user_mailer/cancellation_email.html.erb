@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello <%=@user.forename unless @user.nil?%> </h1>
+    <p>
+      Unfortunately the activity "<%= @activity.title %>" has been cancelled.
+      This email is just to let you know so that you don't turn up.
+    </p>
+
+  </body>
+</html>
