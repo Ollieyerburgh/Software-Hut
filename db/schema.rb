@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180426103909) do
+ActiveRecord::Schema.define(version: 20180430121412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,13 @@ ActiveRecord::Schema.define(version: 20180426103909) do
 
   create_table "ages", force: :cascade do |t|
     t.string "age"
+  end
+
+  create_table "ages_preferences", id: false, force: :cascade do |t|
+    t.bigint "preference_id", null: false
+    t.bigint "age_id", null: false
+    t.index ["age_id", "preference_id"], name: "index_ages_preferences_on_age_id_and_preference_id"
+    t.index ["preference_id", "age_id"], name: "index_ages_preferences_on_preference_id_and_age_id"
   end
 
   create_table "deliveries", force: :cascade do |t|

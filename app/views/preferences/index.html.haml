@@ -6,7 +6,7 @@
       %th Subject Name
       %th Theme Name
       %th Delivery Method
-      %th
+      %th Age
 
 
   %tbody
@@ -21,7 +21,9 @@
         %td
           - preference.delivery_ids.each do |delivery|
             = Delivery.find(delivery).method
-        %td= preference.subject_ids
+        %td
+          - preference.age_ids.each do |age|
+            = Age.find(age).age
         %td= link_to 'Show',preference
         %td= link_to 'Edit', edit_preference_path(preference)
         %td= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' }
