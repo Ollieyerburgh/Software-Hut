@@ -1,11 +1,12 @@
-= simple_form_for(@preference) do |f|
-  = f.error_notification
+.container
+  = simple_form_for(@preference) do |f|
+    = f.error_notification
 
-  .form-inputs
-    = f.association :subjects, input_html: { class: 'select2' }
-    = f.association :themes, input_html: { class: 'select2' }
-    = f.association :deliveries, label_method: :method, input_html: { class: 'select2' }
-    = f.association :ages, label_method: :method, input_html: { class: 'select2' }
+    .form-inputs
+      = f.association :subjects, input_html: { class: 'select2' }
+      = f.association :themes, input_html: { class: 'select2' }
+      = f.association :deliveries, label_method: :method, input_html: { class: 'select2' }
+      = f.association :ages, label_method: :age, input_html: { class: 'select2' }
 
-  .form-actions
-    = f.button :submit
+    .form-actions
+      = f.button :submit
