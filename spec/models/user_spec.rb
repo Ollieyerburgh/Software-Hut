@@ -18,6 +18,9 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  postcode               :string
+#  failed_attempts        :integer          default(0), not null
+#  unlock_token           :string
+#  locked_at              :datetime
 #
 # Indexes
 #

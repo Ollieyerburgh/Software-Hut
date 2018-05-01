@@ -18,6 +18,9 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  postcode               :string
+#  failed_attempts        :integer          default(0), not null
+#  unlock_token           :string
+#  locked_at              :datetime
 #
 # Indexes
 #
@@ -31,8 +34,8 @@
       email "ollieyerburgh@test.com"
       forename "test"
       surname "test"
-      password "foobar"
-      password_confirmation "foobar"
+      password "foobar12"
+      password_confirmation "foobar12"
       postcode "S102SQ"
 
 
@@ -41,8 +44,8 @@
         email "ollieyerburgh@test1.com"
         forename "test"
         surname "test"
-        password "foobar"
-        password_confirmation "foobar"
+        password "foobar12"
+        password_confirmation "foobar12"
         postcode "S102SQ"
       end
 

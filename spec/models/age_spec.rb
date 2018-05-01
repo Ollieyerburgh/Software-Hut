@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: ages
+#
+#  id  :integer          not null, primary key
+#  age :string
+#
+
 require 'rails_helper'
 
 RSpec.describe Age, type: :model do

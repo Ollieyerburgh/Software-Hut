@@ -18,6 +18,9 @@
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  postcode               :string
+#  failed_attempts        :integer          default(0), not null
+#  unlock_token           :string
+#  locked_at              :datetime
 #
 # Indexes
 #
@@ -39,7 +42,7 @@ class User < ApplicationRecord
   validates :postcode, presence: true, format: { with: VALID_POSTCODE_REGEX}
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :lockable
 
   after_create :send_welcome_email
   after_create :send_weekly_email
