@@ -19,16 +19,17 @@ user = User.find_by_email("fake@sheffield.ac.uk")
   user.resources.create(title: Faker::Name.unique.name, link: Faker::Internet.url, description: Faker::Company.bs, email: Faker::Internet.email, status: 'pending')
 end
 
-<<<<<<< HEAD
 subjects =  ['Maths', 'English', 'Physics', 'Geography', 'Computer Science']
 subjects.each { |subject| Subject.create(name: subject)}
 
-themes =  ['Careers', 'Employability', 'Higher Education', 'University', 'Study Skills']
+themes =  ['Careers', 'Employability', 'Higher Education', 'University',
+  'Apprenticeship', 'Work-Related Learning', 'Subject Knowledge, Enrichement',
+  'Confidence/Aspriation', 'Citizenship', 'Health & Wellbeing', 'Study Skills',
+  'Soft Skills']
 themes.each { |theme| Theme.create(name: theme)}
 
 deliveries =  ['In school/college', 'Out of school/college', 'Online']
 deliveries.each { |delivery| Delivery.create(method: delivery)}
-=======
 subjects =  ['maths', 'english', 'physics', 'geography', 'computer science']
 subjects.each { |subject| Subject.create(name: subject)}
 
@@ -38,5 +39,7 @@ themes.each { |theme| Theme.create(name: theme)}
 deliveries =  ['In school/college', 'Out of school/College', 'Online']
 deliveries.each { |delivery| Delivery.create(method: delivery)}
 
-Preferences.where(preference_id: '1', theme_ids: '[1,2]', subject_ids: '[1,2]')
->>>>>>> 71bff0299093046fda11abdc1111a683b34078ec
+ages = ['11-14', '14-16', '16-19', '19+']
+ages.each {|age| Age.create(age: age)}
+
+#Preferences.where(preference_id: '1', theme_ids: '[1,2]', subject_ids: '[1,2]')

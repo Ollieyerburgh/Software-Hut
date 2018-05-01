@@ -1,32 +1,48 @@
-%h1 Listing preferences
+.generic-container
+  .generic-header
+  %h1 My Preferences
 
-%table.table
-  %thead
-    %tr
-      %th Subject Name
-      %th Theme Name
-      %th Delivery Method
-      %th
-
-
-  %tbody
-    - @preferences.each do |preference|
+.container
+  %table.table
+    %thead
       %tr
-        %td
-          - preference.subject_ids.each do |subject|
-            = Subject.find(subject).name
-        %td
-          - preference.theme_ids.each do |theme|
-            = Theme.find(theme).name
-        %td
-          - preference.delivery_ids.each do |delivery|
-            = Delivery.find(delivery).method
-        %td= preference.subject_ids
-        %td= link_to 'Show',preference
-        %td= link_to 'Edit', edit_preference_path(preference)
-        %td= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
+        %th Subjects
+        %th Themes
+        %th Delivery Methods
+        %th Ages
 
 
-= link_to 'New Preference', new_preference_path
+    %tbody
+      - @preferences.each do |preference|
+        %tr
+          %td
+            - preference.subject_ids.each do |subject|
+              - if (preference.subject_ids.length > 1 && subject != preference.subject_ids.last)
+                = Subject.find(subject).name + ","
+              - else
+                = Subject.find(subject).name
+          %td
+            - preference.theme_ids.each do |theme|
+              - if (preference.theme_ids.length > 1 && theme != preference.theme_ids.last)
+                = Theme.find(theme).name + ","
+              - else
+                = Theme.find(theme).name
+          %td
+            - preference.delivery_ids.each do |delivery|
+              - if (preference.delivery_ids.length > 1 && delivery != preference.delivery_ids.last)
+                = Delivery.find(delivery).method + ","
+              - else
+                = Delivery.find(delivery).method
+          %td
+            - preference.age_ids.each do |age|
+              - if (preference.age_ids.length > 1 && age != preference.age_ids.last)
+                = Age.find(age).age + ","
+              - else
+                = Age.find(age).age
+          %td= link_to 'Show',preference
+          %td= link_to 'Edit', edit_preference_path(preference)
+          %td= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' }
+
+  %br
+
+  = link_to 'New Preference', new_preference_path
