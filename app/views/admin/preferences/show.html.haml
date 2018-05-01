@@ -1,0 +1,66 @@
+.generic-container
+  .generic-header
+  %h1 Edit preference options
+%br
+.container
+  %table.table
+    %thead
+      %tr
+        %th
+          %h2 Subjects
+          %br
+          = link_to 'New Subject', new_subject_path
+
+    %tbody
+      - @subjects.each do |subject|
+        %tr
+          %td
+            = subject.name
+          %td
+            = link_to 'Edit | ', edit_subject_path(subject)
+            = link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' }
+
+    %thead
+      %tr
+        %th
+          %h2 Themes
+          %br
+          = link_to 'New Theme', new_theme_path
+    %tbody
+      - @themes.each do |theme|
+        %tr
+          %td
+            = theme.name
+          %td
+            = link_to 'Edit | ', edit_theme_path(theme)
+            = link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' }
+
+    %thead
+      %tr
+        %th
+          %h2 Delivery methods
+          %br
+          = link_to 'New delivery method', new_delivery_path
+    %tbody
+      - @deliveries.each do |delivery|
+        %tr
+          %td
+            = delivery.method
+          %td
+            = link_to 'Edit | ', edit_delivery_path(delivery)
+            = link_to 'Destroy', delivery, method: :delete, data: { confirm: 'Are you sure?' }
+
+    %thead
+      %tr
+        %th
+          %h2 Ages
+          %br
+          = link_to 'New age ', new_age_path
+    %tbody
+      - @ages.each do |age|
+        %tr
+          %td
+            = age.age
+          %td
+            = link_to 'Edit | ', edit_age_path(age)
+            = link_to 'Destroy', age, method: :delete, data: { confirm: 'Are you sure?' }

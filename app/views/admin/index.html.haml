@@ -19,3 +19,10 @@
         %h2 Admin invite
         %p Invite people to become admins here
         = link_to 'Manage admins', '/admin/registrations/new', class:'btn btn-default', id: 'register'
+
+    .col-sm-4
+      .dash_utilities
+        =image_tag "Preference.png", class: "img-responsive center-block"
+        %h2 Edit preference options
+        %p Add/Edit/Delete Subjects, Themes, Delivery methods, and Ages here
+        = link_to 'Manage preferences', '/admin/preferences/index', class:'btn btn-default', id: 'preference'
