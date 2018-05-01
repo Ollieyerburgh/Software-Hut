@@ -36,7 +36,7 @@
           %td
             - preference.age_ids.each do |age|
               - if (preference.age_ids.length > 1 && age != preference.age_ids.last)
-                = Age.find(age).method + ","
+                = Age.find(age).age + ","
               - else
                 = Age.find(age).age
           %td= link_to 'Show',preference
