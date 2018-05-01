@@ -1,16 +1,11 @@
 class PreferencesController < ApplicationController
   before_action :set_preference, only: [:show, :edit, :update, :destroy]
+  before_action :only_one_pref, only: [:new]
 
   # GET /preferences
   def index
     @preferences = Preference.all
     @user = current_user
-
-    #@subject= Subject.all
-    #@subject_list=[]
-    #@subject.each do |s|
-    #  @subject_list << [s.name,s.id]
-    #end
   end
 
   # GET /preferences/1
@@ -32,14 +27,9 @@ class PreferencesController < ApplicationController
     if user_signed_in?
       @preference = Preference.new(preference_params)
       @preference.user_id = current_user.id
-
     else
       @preference = Activity.new(preference_params)
     end
-
-    #@user = current_user
-    #@preference = Preference.new(preference_params)
-    #@preference.user_id = @user.id
 
     if @preference.save
       redirect_to preferences_path, notice: 'Preference was successfully created.'
@@ -61,6 +51,11 @@ class PreferencesController < ApplicationController
   def destroy
     @preference.destroy
     redirect_to preferences_url, notice: 'Preference was successfully destroyed.'
+  end
+
+  def only_one_pref
+      return unless !(Preference.all.length < 1)
+      redirect_to preferences_path, alert: 'One preference only.'
   end
 
   private

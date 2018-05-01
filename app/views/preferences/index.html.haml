@@ -36,13 +36,12 @@
           %td
             - preference.age_ids.each do |age|
               - if (preference.age_ids.length > 1 && age != preference.age_ids.last)
-                = Age.find(age).method + ","
+                = Age.find(age).age + ","
               - else
                 = Age.find(age).age
-          %td= link_to 'Show',preference
           %td= link_to 'Edit', edit_preference_path(preference)
           %td= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' }
 
   %br
-
-  = link_to 'New Preference', new_preference_path
+  - if  (@preferences.length < 1)
+    = link_to 'New Preference', new_preference_path
