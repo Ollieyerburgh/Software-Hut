@@ -11,6 +11,7 @@ class Ability
         can [:edit, :update, :destroy], Activity, user_id: model.id
         can [:new, :read, :create], Activity
         can [:edit, :update, :destroy], Resource, user_id: model.id
+        can [:new, :edit, :update, :destroy, :create, :read], Preference, user_id: model.id
         can [:new, :read, :create], Resource
       else
         can [:new, :read, :create], Activity, id: '100000'

@@ -10,7 +10,7 @@
 #  email       :string
 #  user_id     :integer
 #  subject_id  :integer
-#  files       :json
+#  file        :string
 #
 # Indexes
 #

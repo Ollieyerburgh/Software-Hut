@@ -10,7 +10,7 @@
 #  email       :string
 #  user_id     :integer
 #  subject_id  :integer
-#  files       :json
+#  file        :string
 #
 # Indexes
 #
@@ -23,7 +23,7 @@
 #
 
 class Resource < ApplicationRecord
-  mount_uploaders :files, FileUploader
+  mount_uploader :file, FileUploader
   belongs_to :user,  optional: true
   has_and_belongs_to_many :subjects
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
