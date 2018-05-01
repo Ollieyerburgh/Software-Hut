@@ -1,5 +1,6 @@
 class PreferencesController < ApplicationController
   before_action :set_preference, only: [:show, :edit, :update, :destroy]
+  authorize_resource
   before_action :only_one_pref, only: [:new]
 
   # GET /preferences
