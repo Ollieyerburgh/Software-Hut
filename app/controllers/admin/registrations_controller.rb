@@ -1,7 +1,5 @@
 class Admin::RegistrationsController < ApplicationController
 
-
-
   def new
     @admins = Admin.new
   end

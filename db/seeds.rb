@@ -30,14 +30,7 @@ themes.each { |theme| Theme.create(name: theme)}
 
 deliveries =  ['In school/college', 'Out of school/college', 'Online']
 deliveries.each { |delivery| Delivery.create(method: delivery)}
-subjects =  ['maths', 'english', 'physics', 'geography', 'computer science']
-subjects.each { |subject| Subject.create(name: subject)}
 
-themes =  ['Careers', 'Employability', 'physics', 'geography', 'computer science']
-themes.each { |theme| Theme.create(name: theme)}
-
-deliveries =  ['In school/college', 'Out of school/College', 'Online']
-deliveries.each { |delivery| Delivery.create(method: delivery)}
 
 ages = ['11-14', '14-16', '16-19', '19+']
 ages.each {|age| Age.create(age: age)}
