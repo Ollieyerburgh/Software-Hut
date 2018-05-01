@@ -180,7 +180,7 @@ describe 'Admin features', js: true do
     click_link 'Account'
     fill_in 'Password', with: 'password1'
     fill_in 'Password confirmation', with: 'password1'
-    fill_in 'Current password', with: 'test12'
+    fill_in 'Current password', with: 'test1234'
     click_button 'Update'
     expect(page).to have_content 'Your account has been updated successfully'
   end
@@ -189,7 +189,7 @@ describe 'Admin features', js: true do
     admin = FactoryGirl.create(:admin)
     visit '/admins/sign_in'
     fill_in 'Email', with: 'admin@admin.com'
-    fill_in 'Password', with: 'test12'
+    fill_in 'Password', with: 'test1234'
     click_link 'Log in'
     visit '/'
     click_link 'Create Activity'
@@ -211,7 +211,7 @@ describe 'Admin features', js: true do
     admin = FactoryGirl.create(:admin)
     visit '/admins/sign_in'
     fill_in 'Email', with: 'admin@admin.com'
-    fill_in 'Password', with: 'test12'
+    fill_in 'Password', with: 'test1234'
     click_link 'Log in'
     visit '/'
     click_link 'Create Activity'

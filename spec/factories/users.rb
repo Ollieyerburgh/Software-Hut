@@ -31,8 +31,8 @@
       email "ollieyerburgh@test.com"
       forename "test"
       surname "test"
-      password "foobar"
-      password_confirmation "foobar"
+      password "foobar12"
+      password_confirmation "foobar12"
       postcode "S102SQ"
 
 
@@ -41,8 +41,8 @@
         email "ollieyerburgh@test1.com"
         forename "test"
         surname "test"
-        password "foobar"
-        password_confirmation "foobar"
+        password "foobar12"
+        password_confirmation "foobar12"
         postcode "S102SQ"
       end
 

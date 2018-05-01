@@ -61,7 +61,7 @@ describe 'Managing activites', js:true do
     visit '/'
     click_link 'Log in'
     fill_in 'Email', with: "ollieyerburgh@test1.com"
-    fill_in 'Password', with: 'foobar'
+    fill_in 'Password', with: 'foobar12'
     click_button 'Log in'
     visit '/'
     click_link 'Create Activity'
@@ -81,7 +81,7 @@ describe 'Managing activites', js:true do
     click_link 'Log out'
     click_link 'Log in'
     fill_in 'Email', with: "ollieyerburgh@test1.com"
-    fill_in 'Password', with: 'foobar'
+    fill_in 'Password', with: 'foobar12'
     click_button 'Log in'
     find('.dropdown-toggle').click
     click_link 'My Activities'
@@ -94,7 +94,7 @@ describe 'Managing activites', js:true do
     visit '/'
     click_link 'Log in'
     fill_in 'Email', with: "ollieyerburgh@test1.com"
-    fill_in 'Password', with: 'foobar'
+    fill_in 'Password', with: 'foobar12'
     click_button 'Log in'
     visit '/'
     click_link 'Saved Activities'
