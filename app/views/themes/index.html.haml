@@ -1,20 +1,21 @@
-%h1 Listing themes
+.container
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
+  %h1 Listing themes
 
-  %tbody
-    - @themes.each do |theme|
+  %table
+    %thead
       %tr
-        %td= theme.name
-        %td= link_to 'Show', theme
-        %td= link_to 'Edit', edit_theme_path(theme)
-        %td= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Name
+        %th
+        %th
 
-%br
+    %tbody
+      - @themes.each do |theme|
+        %tr
+          %td= theme.name
+          %td= link_to 'Edit', edit_theme_path(theme)
+          %td= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Theme', new_theme_path
+  %br
+
+  = link_to 'New Theme', new_theme_path
