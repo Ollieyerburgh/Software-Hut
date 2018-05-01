@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180501120253) do
+ActiveRecord::Schema.define(version: 20180501122850) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,7 +182,7 @@ ActiveRecord::Schema.define(version: 20180501120253) do
     t.string "email"
     t.bigint "user_id"
     t.bigint "subject_id"
-    t.json "files"
+    t.string "file"
     t.index ["subject_id"], name: "index_resources_on_subject_id"
     t.index ["user_id"], name: "index_resources_on_user_id"
   end

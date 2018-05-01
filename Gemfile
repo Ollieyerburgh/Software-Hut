@@ -37,7 +37,7 @@ gem 'devise'
 gem 'devise_ldap_authenticatable'
 gem 'devise_cas_authenticatable'
 gem 'cancancan'
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.0'
 
 gem 'whenever'
 gem 'delayed_job'

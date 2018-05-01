@@ -435,7 +435,7 @@ DEPENDENCIES
   capistrano-rvm
   capybara
   capybara-select2!
-  carrierwave
+  carrierwave (~> 1.0)
   coffee-rails
   daemons
   database_cleaner

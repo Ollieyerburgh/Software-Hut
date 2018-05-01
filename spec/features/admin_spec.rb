@@ -162,8 +162,8 @@ describe 'Admin features', js: true do
     visit '/admin'
     click_link 'register'
     fill_in 'Email', with: 'admin2@admin2.com'
-    fill_in 'Password', with: '123456'
-    fill_in 'Password confirmation', with: '123456'
+    fill_in 'Password', with: '12345678'
+    fill_in 'Password confirmation', with: '12345678'
     click_button 'Create Admin'
 
     expect(page).to have_content 'Admin added'
@@ -219,6 +219,7 @@ describe 'Admin features', js: true do
     fill_in 'Title', with: 'Test-admin'
     fill_in 'Activity description', with: 'Test-Desc'
     fill_in 'Email', with: 'test@testadmin.com'
+    check 'resource_terms_of_service'
     click_button 'Create Resource'
     expect(page).to have_content "Resource was successfully created."
   end
