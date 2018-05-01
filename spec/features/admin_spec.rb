@@ -265,6 +265,130 @@ describe 'Admin features', js: true do
       click_button 'Update Subject'
       expect(page).to have_content 'Subject was successfully updated.'
     end
+    specify 'As an admin, I should be able to add a Theme from dashboard' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      expect(page).to_not have_content 'test-theme'
+      click_link 'New Theme'
+      fill_in 'Name', with: 'test-theme'
+      click_button 'Create Theme'
+      expect(page).to have_content 'Theme was successfully created.'
+      visit '/admin/preferences/index'
+      expect(page).to have_content 'test-theme'
+    end
+
+    specify 'As an admin, I can delete a theme' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      click_link 'New Theme'
+      fill_in 'Name', with: 'test-theme'
+      click_button 'Create Theme'
+      visit '/admin/preferences/index'
+      sleep 1
+      page.accept_confirm { click_link "Destroy" }
+      expect(page).to have_content 'Theme was successfully destroyed.'
+    end
+
+    specify 'As an admin, I can edit a theme' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      click_link 'New Theme'
+      fill_in 'Name', with: 'test-theme'
+      click_button 'Create Theme'
+      sleep 1
+      visit '/admin/preferences/index'
+      click_link 'Edit'
+      fill_in 'Name', with: 'txt-pref'
+      click_button 'Update Theme'
+      expect(page).to have_content 'Theme was successfully updated.'
+    end
+
+    specify 'As an admin, I should be able to add a Delivery method from dashboard' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      expect(page).to_not have_content 'test-delivery'
+      click_link 'New delivery method'
+      fill_in 'Method', with: 'test-delivery'
+      click_button 'Create Delivery'
+      expect(page).to have_content 'Delivery was successfully created'
+      visit '/admin/preferences/index'
+      expect(page).to have_content 'test-delivery'
+    end
+
+    specify 'As an admin, I can delete a delivery method' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      click_link 'New delivery method'
+      fill_in 'Method', with: 'test-delivery'
+      click_button 'Create Delivery'
+      visit '/admin/preferences/index'
+      sleep 1
+      page.accept_confirm { click_link "Destroy" }
+      expect(page).to have_content 'Delivery was successfully destroyed.'
+    end
+
+    specify 'As an admin, I can edit a delivery method' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      click_link 'New delivery method'
+      fill_in 'Method', with: 'test-delivery'
+      click_button 'Create Delivery'
+      sleep 1
+      visit '/admin/preferences/index'
+      click_link 'Edit'
+      fill_in 'Method', with: 'txt-pref'
+      click_button 'Update Delivery'
+      expect(page).to have_content 'Delivery was successfully updated.'
+    end
+
+    specify 'As an admin, I should be able to add an age preference from dashboard' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      expect(page).to_not have_content '90-100'
+      click_link 'New age'
+      fill_in 'Age', with: '90-100'
+      click_button 'Create Age'
+      expect(page).to have_content 'Age was successfully created'
+      visit '/admin/preferences/index'
+      expect(page).to have_content '90-100'
+    end
+
+    specify 'As an admin, I should be able to edit age preference from dashboard' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      click_link 'New age'
+      fill_in 'Age', with: '90-100'
+      click_button 'Create Age'
+      visit '/admin/preferences/index'
+      click_link 'Edit'
+      fill_in 'Age', with: '900'
+      click_button 'Update Age'
+      expect(page).to have_content 'Age was successfully updated'
+      visit '/admin/preferences/index'
+      expect(page).to_not have_content '90-100'
+      expect(page).to have_content '900'
+    end
+
+    specify 'As an admin, I should be able to delete an age preference from dashboard' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      click_link 'New age'
+      fill_in 'Age', with: '90-100'
+      click_button 'Create Age'
+      visit '/admin/preferences/index'
+      page.accept_confirm { click_link "Destroy" }
+      expect(page).to have_content 'Age was successfully destroyed'
+    end
+
   end
 =begin
   specify 'As an admin I can approve a resource request, which sends an email' do
