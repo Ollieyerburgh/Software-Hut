@@ -39,7 +39,6 @@
                 = Age.find(age).age + ","
               - else
                 = Age.find(age).age
-          %td= link_to 'Show',preference
           %td= link_to 'Edit', edit_preference_path(preference)
           %td= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' }
 

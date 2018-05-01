@@ -6,12 +6,6 @@ class PreferencesController < ApplicationController
   def index
     @preferences = Preference.all
     @user = current_user
-
-    #@subject= Subject.all
-    #@subject_list=[]
-    #@subject.each do |s|
-    #  @subject_list << [s.name,s.id]
-    #end
   end
 
   # GET /preferences/1
@@ -20,7 +14,7 @@ class PreferencesController < ApplicationController
 
   # GET /preferences/new
   def new
-      @preference = Preference.new
+    @preference = Preference.new
   end
 
   # GET /preferences/1/edit
@@ -36,10 +30,6 @@ class PreferencesController < ApplicationController
     else
       @preference = Activity.new(preference_params)
     end
-
-    #@user = current_user
-    #@preference = Preference.new(preference_params)
-    #@preference.user_id = @user.id
 
     if @preference.save
       redirect_to preferences_path, notice: 'Preference was successfully created.'
@@ -65,7 +55,7 @@ class PreferencesController < ApplicationController
 
   def only_one_pref
       return unless !(Preference.all.length < 1)
-      redirect_to root_path, alert: 'One preference only.'
+      redirect_to preferences_path, alert: 'One preference only.'
   end
 
   private

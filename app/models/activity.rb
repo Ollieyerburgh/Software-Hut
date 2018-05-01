@@ -44,6 +44,7 @@ class Activity < ApplicationRecord
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :themes
   has_and_belongs_to_many :deliveries
+  has_and_belongs_to_many :ages
 
   belongs_to :user, optional: true
 
