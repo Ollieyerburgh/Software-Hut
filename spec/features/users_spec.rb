@@ -1,21 +1,48 @@
 require 'rails_helper'
 
 describe 'User registration', js: true do
-  specify 'I can Sign up as a user' do
+  specify 'I can Sign up as a user with a long password' do
     visit '/'
     expect(page).to have_content 'Sign up'
     click_link 'Sign up'
     fill_in 'Forename', with: 'Test'
     fill_in 'Surname', with: 'Test-Surname'
     fill_in 'Email', with: 'Test-Email@hotmail.com'
-    fill_in 'Password', with: 'test12'
-    fill_in 'Password confirmation', with: 'test12'
+    fill_in 'Password', with: 'test123434'
+    fill_in 'Password confirmation', with: 'test123434'
     fill_in 'Postcode', with: 'S102SQ'
     click_button 'Sign up'
-    expect(page).to have_content 'Hello, Test!'
-    click_link 'Hello, Test!'
-    click_link 'Log out'
+    expect(page).to have_content 'Welcome! You have signed up successfully'
+    expect(page).to_not have_content 'is too short (minimum is 8 characters)'
+
   end
+
+  specify 'I cannot Sign up as a user with a short password' do
+    visit '/'
+    expect(page).to have_content 'Sign up'
+    click_link 'Sign up'
+    fill_in 'Forename', with: 'Test'
+    fill_in 'Surname', with: 'Test-Surname'
+    fill_in 'Email', with: 'Test-Email@hotmail.com'
+    fill_in 'Password', with: 'test123'
+    fill_in 'Password confirmation', with: 'test123'
+    fill_in 'Postcode', with: 'S102SQ'
+    click_button 'Sign up'
+    expect(page).to_not have_content 'Welcome! You have signed up successfully'
+    expect(page).to have_content 'is too short (minimum is 8 characters)'
+
+  end
+
+  specify "My account is locked if I enter my password wrong too many times" do
+      visit "/users/sign_in"
+      user = FactoryGirl.create(:user)
+      20.times do
+        fill_in "Email", with: user.email
+        fill_in "Password", with: 'notmypassword'
+        click_button 'Log in'
+      end
+      expect(page).to have_content 'Your account is locked.'
+    end
 
   specify 'I can click forgotton password, which will email me a link to new' do
     user = FactoryGirl.create(:user)
@@ -35,7 +62,7 @@ describe 'User registration', js: true do
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test.com"
-    fill_in "Password", with: "foobar"
+    fill_in "Password", with: "foobar12"
     click_button "Log in"
     visit '/'
     expect(page).to have_content 'test-title'
@@ -52,8 +79,8 @@ describe 'User registration', js: true do
     click_link 'Sign up'
     fill_in 'Surname', with: 'Test-Surname'
     fill_in 'Email', with: 'Test-Email@hotmail.com'
-    fill_in 'Password', with: 'test12'
-    fill_in 'Password confirmation', with: 'test12'
+    fill_in 'Password', with: 'test1234'
+    fill_in 'Password confirmation', with: 'test1234'
     fill_in 'Postcode', with: 'S102SQ'
     click_button 'Sign up'
     expect(page).to have_content 'Please review the problems below:'
@@ -68,8 +95,8 @@ describe 'User registration', js: true do
     fill_in 'Forename', with: 'Test'
     fill_in 'Surname', with: 'Test-Surname'
     fill_in 'Email', with: 'Test-Email@hotmail.com'
-    fill_in 'Password', with: 'test12'
-    fill_in 'Password confirmation', with: 'test12'
+    fill_in 'Password', with: 'test1234'
+    fill_in 'Password confirmation', with: 'test1234'
     fill_in 'Postcode', with: 'S102SQ'
     click_button 'Sign up'
     expect(page).to have_content 'Hello, Test!'
@@ -79,8 +106,8 @@ describe 'User registration', js: true do
     fill_in 'Forename', with: 'Test'
     fill_in 'Surname', with: 'Test-Surname'
     fill_in 'Email', with: 'Test-Email@hotmail.com'
-    fill_in 'Password', with: 'test12'
-    fill_in 'Password confirmation', with: 'test12'
+    fill_in 'Password', with: 'test1234'
+    fill_in 'Password confirmation', with: 'test1234'
     fill_in 'Postcode', with: 'S102SQ'
     click_button 'Sign up'
     expect(page).to have_content 'Please review the problems below:'
@@ -94,7 +121,7 @@ describe 'User registration', js: true do
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test1.com"
-    fill_in "Password", with: "foobar"
+    fill_in "Password", with: "foobar12"
     click_button "Log in"
     visit '/activities'
     expect(page).to have_css("#likes_1", text: "0")
@@ -110,7 +137,7 @@ describe 'User registration', js: true do
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test1.com"
-    fill_in "Password", with: "foobar"
+    fill_in "Password", with: "foobar12"
     click_button "Log in"
     visit '/activities'
     Capybara.page.find('.like-btn').click
@@ -119,7 +146,7 @@ describe 'User registration', js: true do
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test.com"
-    fill_in "Password", with: "foobar"
+    fill_in "Password", with: "foobar12"
     click_button "Log in"
     visit '/activities'
     page.accept_confirm { click_link "Destroy" }

@@ -1,6 +1,7 @@
-%h1 New delivery
+.container
 
-= simple_form_for(@delivery) do |f|
+  %h1 New delivery
 
-     = f.input :method
-     = f.button :submit
+  = render 'form'
+
+  = link_to 'Back', "/admin/preferences/index"

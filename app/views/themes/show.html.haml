@@ -1,0 +1,7 @@
+.container
+  %p#notice= notice
+
+  %b Name:
+  = @theme.name
+  = link_to 'Edit', edit_theme_path(@theme)
+  = link_to 'Back', "/admin/preferences/index"

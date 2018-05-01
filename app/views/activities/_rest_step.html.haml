@@ -2,4 +2,5 @@
   = f.association :subjects, input_html: { class: 'select2' }
   = f.association :themes, input_html: { class: 'select2' }
   = f.association :deliveries, label_method: :method, input_html: { class: 'select2' }
+  = f.association :ages, label_method: :age, input_html: { class: 'select2' }
   = f.input :terms_of_service, as: :boolean, label: "I agree that I have permission to post this activity on this website"

@@ -1,0 +1,10 @@
+.container
+
+  = simple_form_for(@delivery) do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :method
+
+    .form-actions
+      = f.button :submit

@@ -8,7 +8,8 @@ describe 'Managing activites', js:true do
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Email', with: 'Test@hotmail.co.uk'
-    attach_file("files", Rails.root + "spec/features/file.pdf")
+    attach_file("resource_file", Rails.root + "spec/features/file.pdf")
+    check 'resource_terms_of_service'
     click_button 'Create Resource'
     expect(page).to have_content 'Resource was successfully created'
   end
@@ -21,7 +22,7 @@ describe 'Managing activites', js:true do
     click_button 'New Resource'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Email', with: 'test@hotmail.com'
-    attach_file("files", Rails.root + "spec/features/file.pdf")
+    check 'resource_terms_of_service'
     click_button 'Create Resource'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -34,7 +35,7 @@ describe 'Managing activites', js:true do
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Email', with: 'test@hotmail.com'
-    attach_file("files", Rails.root + "spec/features/file.pdf")
+    check 'resource_terms_of_service'
     click_button 'Create Resource'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -47,7 +48,7 @@ describe 'Managing activites', js:true do
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
-    attach_file("files", Rails.root + "spec/features/file.pdf")
+    check 'resource_terms_of_service'
     click_button 'Create Resource'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -61,7 +62,7 @@ describe 'Managing activites', js:true do
     visit '/'
     click_link 'Log in'
     fill_in 'Email', with: "ollieyerburgh@test1.com"
-    fill_in 'Password', with: 'foobar'
+    fill_in 'Password', with: 'foobar12'
     click_button 'Log in'
     visit '/'
     click_link 'Create Activity'
@@ -69,6 +70,8 @@ describe 'Managing activites', js:true do
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Email', with: 'Test@hotmail.co.uk'
+    attach_file("resource_file", Rails.root + "spec/features/file.pdf")
+    check 'resource_terms_of_service'
     click_button 'Create Resource'
     expect(page).to have_content 'Resource was successfully created'
     find('.dropdown-toggle').click
@@ -81,7 +84,7 @@ describe 'Managing activites', js:true do
     click_link 'Log out'
     click_link 'Log in'
     fill_in 'Email', with: "ollieyerburgh@test1.com"
-    fill_in 'Password', with: 'foobar'
+    fill_in 'Password', with: 'foobar12'
     click_button 'Log in'
     find('.dropdown-toggle').click
     click_link 'My Activities'
@@ -94,7 +97,7 @@ describe 'Managing activites', js:true do
     visit '/'
     click_link 'Log in'
     fill_in 'Email', with: "ollieyerburgh@test1.com"
-    fill_in 'Password', with: 'foobar'
+    fill_in 'Password', with: 'foobar12'
     click_button 'Log in'
     visit '/'
     click_link 'Saved Activities'

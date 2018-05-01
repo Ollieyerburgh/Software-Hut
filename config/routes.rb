@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :themes
   resources :deliveries
   resources :preferences
+  resources :ages
 
 
   devise_for :admins
@@ -23,7 +24,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :preferences
   end
+
+
   resources :resources
 
   resources :activities do
@@ -36,6 +40,8 @@ Rails.application.routes.draw do
   namespace :users do
     resources :dash
   end
+
+
 
 
   match "/403", to: "errors#error_403", via: :all

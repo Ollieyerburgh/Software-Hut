@@ -79,7 +79,7 @@
         %tr
           %td= resource.title
           %td= resource.description
-          %td= link_to "Download", resource.files[0].url, download: '' unless resource.files[0].nil?
+          %td= link_to "Download", resource.file.url, download: '' unless resource.file.blank?
 
   .paginate-container
     .paginate

@@ -1,6 +1,7 @@
-%h1 New theme
+.container
 
-= simple_form_for(@theme) do |f|
+  %h1 New theme
 
-     = f.input :name
-     = f.button :submit
+  = render 'form'
+
+  = link_to 'Back', "/admin/preferences/index"

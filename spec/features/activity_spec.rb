@@ -161,7 +161,7 @@ describe 'Managing activites', js: true do
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test.com"
-    fill_in "Password", with: "foobar"
+    fill_in "Password", with: "foobar12"
     click_button "Log in"
     click_link "Saved Activities"
     click_link "Edit"
@@ -178,7 +178,7 @@ describe 'Managing activites', js: true do
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test.com"
-    fill_in "Password", with: "foobar"
+    fill_in "Password", with: "foobar12"
     click_button "Log in"
     click_link "Saved Activities"
     page.accept_confirm { click_link "Destroy" }
@@ -191,7 +191,7 @@ describe 'Managing activites', js: true do
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test1.com"
-    fill_in "Password", with: "foobar"
+    fill_in "Password", with: "foobar12"
     click_button "Log in"
     visit '/activities'
     expect(page).to have_content "test"
@@ -204,7 +204,7 @@ describe 'Managing activites', js: true do
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test1.com"
-    fill_in "Password", with: "foobar"
+    fill_in "Password", with: "foobar12"
     click_button "Log in"
     visit '/activities'
     expect(page).to have_content "test"
@@ -248,7 +248,7 @@ describe 'Managing activites', js: true do
     visit '/'
     click_link 'Log in'
     fill_in 'Email', with: "ollieyerburgh@test1.com"
-    fill_in 'Password', with: 'foobar'
+    fill_in 'Password', with: 'foobar12'
     click_button 'Log in'
     visit '/activities'
     sleep 5.seconds
