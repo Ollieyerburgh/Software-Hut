@@ -39,7 +39,10 @@ gem 'devise_cas_authenticatable'
 gem 'cancancan'
 gem 'carrierwave'
 
-gem 'whenever'
+
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem "whenever", require: false
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'delayed-plugins-airbrake'

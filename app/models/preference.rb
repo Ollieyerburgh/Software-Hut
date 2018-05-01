@@ -26,4 +26,14 @@ class Preference < ApplicationRecord
   has_and_belongs_to_many :deliveries
   has_and_belongs_to_many :ages
   validates :theme_id, :delivery_id, :subject_id, :age_id, presence: false
+
+  after_create :send_weekly_email
+
+  private
+
+  def send_weekly_email
+    @activities = Activity.all
+    @user = User.find_by(id: user_id)
+    UserMailer.weekly_email(preference_id, @activities, @user).deliver
+  end
 end
