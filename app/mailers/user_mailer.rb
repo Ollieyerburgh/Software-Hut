@@ -19,7 +19,9 @@ class UserMailer < ApplicationMailer
     mail(to: email, subject: 'Your HeppSY request has been rejected', message: @message)
   end
 
-  def weekly_email(user)
+  def weekly_email(preference, activities, user)
+    @preference = preference
+    @activities = activities
     @user = user
     mail(to: @user.email, subject: 'Your weekly HeppSY email')
   end

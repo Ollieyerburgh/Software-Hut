@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello <%= @user.forename %> </h1>
+    <p>
+      THis is your weekly email about activities and resources that match your preferences.
+    </p>
+    </br>
+     <% @activities.each do |activity| %>
+      <% if (@user.preference.subject_ids == activity.subject_ids) && (@user.preference.delivery_ids == activity.delivery_ids) && (@user.preference.theme_ids == activity.theme_ids) && (@user.preference.age_ids == activity.age_ids)%>
+        <p> Event Title: <%= activity.title %> </p>
+        <p> Description: <%=activity.description %> </p>
+        <p> Link to website: <%= activity.link %> </p>
+        <p> Address: <%= activity.link %> </h2>
+      <% end %>
+    <% end %>
+    <p>
+      To login to the site, just follow this link: <%= @url %>.
+    </p>
+    <p>Thank you, have a great day!</p>
+  </body>
+</html>
