@@ -24,17 +24,25 @@ describe 'User registration', js: true do
     fill_in 'Forename', with: 'Test'
     fill_in 'Surname', with: 'Test-Surname'
     fill_in 'Email', with: 'Test-Email@hotmail.com'
-    fill_in 'Password', with: 'test12343'
-    fill_in 'Password confirmation', with: 'test12343'
+    fill_in 'Password', with: 'test123'
+    fill_in 'Password confirmation', with: 'test123'
     fill_in 'Postcode', with: 'S102SQ'
     click_button 'Sign up'
-    expect(page).to have_content 'Hello, Test!'
-    click_link 'Hello, Test!'
-    click_link 'Log out'
     expect(page).to_not have_content 'Welcome! You have signed up successfully'
     expect(page).to have_content 'is too short (minimum is 8 characters)'
 
   end
+
+  specify "My account is locked if I enter my password wrong too many times" do
+      visit "/users/sign_in"
+      user = FactoryGirl.create(:user)
+      20.times do
+        fill_in "Email", with: user.email
+        fill_in "Password", with: 'notmypassword'
+        click_button 'Log in'
+      end
+      expect(page).to have_content 'Your account is locked.'
+    end
 
   specify 'I can click forgotton password, which will email me a link to new' do
     user = FactoryGirl.create(:user)
