@@ -1,4 +1,3 @@
-
 .activity-options-container
   .activity-options-innner-container
     .activity-action-option
@@ -6,6 +5,33 @@
     .activity-action-option
       = button_to 'New Resource', new_resource_path, :method => "get"
 
+.container
+  %h1 Saved activities new
+  - @activities.each do |activity|
+    - if @user.voted_for? activity
+      .well
+        .activity-date
+        Date:
+        = activity.deadline
+        %br
+        .activity-title
+        Title:
+        = activity.title
+        %br
+        .activity-description
+        Description:
+        = activity.description
+        %br{id: "likes_#{activity.id}"}
+        .activity-option
+          = link_to like_activity_path(activity), class:"like-btn", id:"like_#{activity.id}", method: :put, remote: :true do
+            = fa_icon('thumbs-up')
+
+            = activity.get_upvotes.size
+        = link_to 'See more | ', activity
+        - if can? :edit, activity
+          = link_to 'Edit | ', edit_activity_path(activity)
+        - if can? :destroy, activity
+          = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
 
 .container
   %h1  Saved Activities
