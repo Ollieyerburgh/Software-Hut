@@ -3,13 +3,14 @@
 %table
   %thead
     %tr
-      %th
+      %th Method
       %th
       %th
 
   %tbody
     - @deliveries.each do |delivery|
       %tr
+        %td= delivery.method
         %td= link_to 'Show', delivery
         %td= link_to 'Edit', edit_delivery_path(delivery)
         %td= link_to 'Destroy', delivery, method: :delete, data: { confirm: 'Are you sure?' }

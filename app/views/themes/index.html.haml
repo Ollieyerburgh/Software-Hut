@@ -3,13 +3,14 @@
 %table
   %thead
     %tr
-      %th
+      %th Name
       %th
       %th
 
   %tbody
     - @themes.each do |theme|
       %tr
+        %td= theme.name
         %td= link_to 'Show', theme
         %td= link_to 'Edit', edit_theme_path(theme)
         %td= link_to 'Destroy', theme, method: :delete, data: { confirm: 'Are you sure?' }

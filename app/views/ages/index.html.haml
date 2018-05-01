@@ -3,13 +3,14 @@
 %table
   %thead
     %tr
-      %th
+      %th Name
       %th
       %th
 
   %tbody
     - @ages.each do |age|
       %tr
+        %td= age.age
         %td= link_to 'Show', age
         %td= link_to 'Edit', edit_age_path(age)
         %td= link_to 'Destroy', age, method: :delete, data: { confirm: 'Are you sure?' }

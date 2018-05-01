@@ -34,7 +34,7 @@ class ThemesController < ApplicationController
   # PATCH/PUT /themes/1
   def update
     if @theme.update(theme_params)
-      redirect_to @theme, notice: 'Theme was successfully updated.'
+      redirect_to "/admin/preferences/index", notice: 'Theme was successfully updated.'
     else
       render :edit
     end
@@ -54,6 +54,6 @@ class ThemesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def theme_params
-      params.fetch(:theme, {})
+      params.require(:theme).permit(:name)
     end
 end

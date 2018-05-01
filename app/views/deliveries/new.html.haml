@@ -1,6 +1,5 @@
 %h1 New delivery
 
-= simple_form_for(@delivery) do |f|
+= render 'form'
 
-     = f.input :method
-     = f.button :submit
+= link_to 'Back', deliveries_path

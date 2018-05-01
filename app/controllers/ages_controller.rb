@@ -34,7 +34,7 @@ class AgesController < ApplicationController
   # PATCH/PUT /ages/1
   def update
     if @age.update(age_params)
-      redirect_to @age, notice: 'Age was successfully updated.'
+      redirect_to "/admin/preferences/index", notice: 'Age was successfully updated.'
     else
       render :edit
     end
