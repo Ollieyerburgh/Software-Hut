@@ -1,7 +1,8 @@
-%p#notice= notice
-%b Age:
-= @age.age
+.container
 
-= link_to 'Edit', edit_age_path(@age)
-\|
-= link_to 'Back', ages_path
+  %p#notice= notice
+  %b Age:
+  = @age.age
+
+  = link_to 'Edit', edit_age_path(@age)
+  = link_to 'Back', "/admin/preferences/index"

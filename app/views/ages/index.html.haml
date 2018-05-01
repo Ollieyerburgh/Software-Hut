@@ -1,20 +1,21 @@
-%h1 Listing ages
+.container
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
+  %h1 Listing ages
 
-  %tbody
-    - @ages.each do |age|
+  %table
+    %thead
       %tr
-        %td= age.age
-        %td= link_to 'Show', age
-        %td= link_to 'Edit', edit_age_path(age)
-        %td= link_to 'Destroy', age, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Name
+        %th
+        %th
 
-%br
+    %tbody
+      - @ages.each do |age|
+        %tr
+          %td= age.age
+          %td= link_to 'Edit', edit_age_path(age)
+          %td= link_to 'Destroy', age, method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Age', new_age_path
+  %br
+
+  = link_to 'New Age', new_age_path

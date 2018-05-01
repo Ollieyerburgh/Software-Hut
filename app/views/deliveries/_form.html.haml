@@ -1,8 +1,10 @@
-= simple_form_for(@delivery) do |f|
-  = f.error_notification
+.container
 
-  .form-inputs
-    = f.input :method
+  = simple_form_for(@delivery) do |f|
+    = f.error_notification
 
-  .form-actions
-    = f.button :submit
+    .form-inputs
+      = f.input :method
+
+    .form-actions
+      = f.button :submit

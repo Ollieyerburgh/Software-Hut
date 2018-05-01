@@ -1,20 +1,21 @@
-%h1 Listing deliveries
+.container
 
-%table
-  %thead
-    %tr
-      %th Method
-      %th
-      %th
+  %h1 Listing deliveries
 
-  %tbody
-    - @deliveries.each do |delivery|
+  %table
+    %thead
       %tr
-        %td= delivery.method
-        %td= link_to 'Show', delivery
-        %td= link_to 'Edit', edit_delivery_path(delivery)
-        %td= link_to 'Destroy', delivery, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Method
+        %th
+        %th
 
-%br
+    %tbody
+      - @deliveries.each do |delivery|
+        %tr
+          %td= delivery.method
+          %td= link_to 'Edit', edit_delivery_path(delivery)
+          %td= link_to 'Destroy', delivery, method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Delivery', new_delivery_path
+  %br
+
+  = link_to 'New Delivery', new_delivery_path

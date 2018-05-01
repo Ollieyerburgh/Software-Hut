@@ -1,21 +1,22 @@
-%h1 Listing subjects
+.container
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th
-      %th
-      %th
+  %h1 Listing subjects
 
-  %tbody
-    - @subjects.each do |subject|
+  %table
+    %thead
       %tr
-        %td= subject.name
-        %td= link_to 'Show', subject
-        %td= link_to 'Edit', edit_subject_path(subject)
-        %td= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' }
+        %th Name
+        %th
+        %th
+        %th
 
-%br
+    %tbody
+      - @subjects.each do |subject|
+        %tr
+          %td= subject.name
+          %td= link_to 'Edit', edit_subject_path(subject)
+          %td= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' }
 
-= link_to 'New Subject', new_subject_path
+  %br
+
+  = link_to 'New Subject', new_subject_path
