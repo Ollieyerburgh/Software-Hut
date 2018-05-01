@@ -1,0 +1,19 @@
+%h1 Listing ages
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @ages.each do |age|
+      %tr
+        %td= link_to 'Show', age
+        %td= link_to 'Edit', edit_age_path(age)
+        %td= link_to 'Destroy', age, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Age', new_age_path

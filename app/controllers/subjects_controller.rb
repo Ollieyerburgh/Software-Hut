@@ -22,7 +22,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
 
     if @subject.save
-      redirect_to :admin_index, notice: 'Subject was created.'
+      redirect_to admin_preference_path, method: :get, notice: 'Subject was created.'
     else
       render :new
     end
