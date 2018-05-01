@@ -8,6 +8,7 @@
 
 FactoryGirl.define do
   factory :age do
-    
+    age "9-11"
+
   end
 end

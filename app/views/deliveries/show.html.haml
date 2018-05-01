@@ -1,7 +1,8 @@
-%p#notice= notice
-%b Method:
-= @delivery.method
+.container
+  %p#notice= notice
+  %b Method:
+  = @delivery.method
 
-= link_to 'Edit', edit_delivery_path(@delivery)
-\|
-= link_to 'Back', deliveries_path
+  = link_to 'Edit', edit_delivery_path(@delivery)
+  \|
+  = link_to 'Back', deliveries_path

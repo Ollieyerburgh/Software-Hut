@@ -1,14 +1,13 @@
 class DeliveriesController < ApplicationController
   before_action :set_delivery, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   # GET /deliveries
   def index
     @deliveries = Delivery.all
   end
 
-  # GET /deliveries/1
-  def show
-  end
+
 
   # GET /deliveries/new
   def new
@@ -54,6 +53,6 @@ class DeliveriesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def delivery_params
-      params.require(:delivery).permit(:method)
+      params.require(:delivery).permit(:method, :created_at, :updated_at)
     end
 end

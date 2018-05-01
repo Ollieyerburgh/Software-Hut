@@ -1,14 +1,12 @@
 class ThemesController < ApplicationController
   before_action :set_theme, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   # GET /themes
   def index
     @themes = Theme.all
   end
 
-  # GET /themes/1
-  def show
-  end
 
   # GET /themes/new
   def new

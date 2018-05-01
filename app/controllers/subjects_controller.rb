@@ -1,4 +1,5 @@
 class SubjectsController < ApplicationController
+  authorize_resource
 
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
 

@@ -22,6 +22,6 @@
 
 FactoryGirl.define do
   factory :subject do
-    name "MyString"
+    name "subject"
   end
 end

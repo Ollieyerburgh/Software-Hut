@@ -10,6 +10,8 @@
 
 #FactoryGirl.define do
 #  factory :delivery do
-#    method "MyString"
+#    method "Delivery"
+#    created_at
+#    updated_at
 #  end
-#end
+#nd
