@@ -42,7 +42,7 @@ class PreferencesController < ApplicationController
   # PATCH/PUT /preferences/1
   def update
     if @preference.update(preference_params)
-      redirect_to @preference, notice: 'Preference was successfully updated.'
+      redirect_to root_path, notice: 'Preference was successfully updated.'
     else
       render :edit
     end

@@ -224,6 +224,48 @@ describe 'Admin features', js: true do
     expect(page).to have_content "Resource was successfully created."
   end
 
+  context 'Preferences' do
+    specify 'As an admin, I should be able to add a Subject from dashboard' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      expect(page).to_not have_content 'test-subject'
+      click_link 'New Subject'
+      fill_in 'Name', with: 'test-subject'
+      click_button 'Create Subject'
+      expect(page).to have_content 'Subject was created.'
+      visit '/admin/preferences/index'
+      expect(page).to have_content 'test-subject'
+    end
+
+    specify 'As an admin, I can delete a subject' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      click_link 'New Subject'
+      fill_in 'Name', with: 'test-subject'
+      click_button 'Create Subject'
+      visit '/admin/preferences/index'
+      sleep 1
+      page.accept_confirm { click_link "Destroy" }
+      expect(page).to have_content 'Subject was successfully destroyed.'
+    end
+
+    specify 'As an admin, I can edit a subject' do
+      admin = FactoryGirl.create(:admin)
+      login_as(admin)
+      visit '/admin/preferences/index'
+      click_link 'New Subject'
+      fill_in 'Name', with: 'test-subject'
+      click_button 'Create Subject'
+      sleep 1
+      visit '/admin/preferences/index'
+      click_link 'Edit'
+      fill_in 'Name', with: 'txt-pref'
+      click_button 'Update Subject'
+      expect(page).to have_content 'Subject was successfully updated.'
+    end
+  end
 =begin
   specify 'As an admin I can approve a resource request, which sends an email' do
     admin = FactoryGirl.create(:admin)
