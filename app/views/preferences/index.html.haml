@@ -44,5 +44,5 @@
           %td= link_to 'Destroy', preference, method: :delete, data: { confirm: 'Are you sure?' }
 
   %br
-
-  = link_to 'New Preference', new_preference_path
+  - if  (@preferences.length < 1)
+    = link_to 'New Preference', new_preference_path
