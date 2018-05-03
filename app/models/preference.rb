@@ -34,6 +34,6 @@ class Preference < ApplicationRecord
   def send_weekly_email
     @activities = Activity.all
     @user = User.find_by(id: user_id)
-    UserMailer.weekly_email(preference_id, @activities, @user).deliver
+    UserMailer.weekly_email(id, @activities, @user).deliver
   end
 end

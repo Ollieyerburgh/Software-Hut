@@ -6,11 +6,12 @@
     = f.input :description, label: 'Activity description'
     = f.input :email, label: 'Email', placeholder: 'YourEmail@here.com'
 
-
   .form-file_field
     = f.input :file, as: :file, name: 'files'
     = f.hidden_field :file_cache
-    = f.input :terms_of_service, as: :boolean, label: "I agree that I have permission to post this resource on this website"
+    = f.input :terms_of_service, as: :boolean, inline_label: "I agree that I have permission to post this resource on this website"
+
+    %br
 
   .form-actions
     = f.button :submit
