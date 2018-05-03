@@ -1,6 +1,6 @@
 .container
 
-  %h1  Pending activities
+  %h1  Approved activities
   %table.table.table-bordered.table-striped
     %thead
       %tr
@@ -9,18 +9,16 @@
         %th.col Deadline
         %th.col URL
         %th.col Postcode
+        %th.col Likes
     %tbody
-      - @pendingactivities.each do |activity|
+      - @approvedactivities.each do |activity|
         %tr
           %td= activity.title
           %td= activity.description
           %td= activity.deadline
           %td= activity.link
           %td= activity.postcode
-
-  .paginate-container
-    .paginate
-      = will_paginate @pendingactivities
+          %td= activity.get_upvotes.size fa_icon('thumbs-up')
 
   %h1  Rejected activities
   %table.table.table-bordered.table-striped
@@ -45,7 +43,7 @@
               = link_to 'Edit', edit_activity_path(activity), class:"btn btn-default"
               = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"
 
-  %h1  Approved activities
+  %h1  Pending activities
   %table.table.table-bordered.table-striped
     %thead
       %tr
@@ -55,18 +53,21 @@
         %th.col URL
         %th.col Postcode
     %tbody
-      - @rejectedactivities.each do |activity|
+      - @pendingactivities.each do |activity|
         %tr
           %td= activity.title
           %td= activity.description
           %td= activity.deadline
           %td= activity.link
           %td= activity.postcode
+
   .paginate-container
     .paginate
-      = will_paginate @rejectedactivities
+      = will_paginate @pendingactivities
 
-  %h1  Resources
+  %hr
+
+  %h1  Approved Resources
   %table.table.table-bordered.table-striped
     %thead
       %tr
@@ -75,12 +76,38 @@
         %th.col Resource
 
     %tbody
-      - @resources.each do |resource|
+      - @approvedresources.each do |resource|
         %tr
           %td= resource.title
           %td= resource.description
           %td= link_to "Download", resource.file.url, download: '' unless resource.file.blank?
 
-  .paginate-container
-    .paginate
-      = will_paginate @resources
+  %h1  Rejected Resources
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.col Title
+        %th.col Description
+        %th.col Resource
+
+    %tbody
+      - @rejectedresources.each do |resource|
+        %tr
+          %td= resource.title
+          %td= resource.description
+          %td= link_to "Download", resource.file.url, download: '' unless resource.file.blank?
+
+  %h1  Pending Resources
+  %table.table.table-bordered.table-striped
+    %thead
+      %tr
+        %th.col Title
+        %th.col Description
+        %th.col Resource
+
+    %tbody
+      - @pendingresources.each do |resource|
+        %tr
+          %td= resource.title
+          %td= resource.description
+          %td= link_to "Download", resource.file.url, download: '' unless resource.file.blank?

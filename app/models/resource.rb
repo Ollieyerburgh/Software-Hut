@@ -42,6 +42,7 @@ class Resource < ApplicationRecord
 
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
+  scope :rejected, -> { where(status: 'rejected')}
 
   include ActiveModel::AttributeMethods
 

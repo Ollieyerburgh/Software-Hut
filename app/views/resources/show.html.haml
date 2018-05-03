@@ -1,16 +1,12 @@
-%p#notice= notice
+.container
+  .well
+    %p#notice= notice
 
-%p
-  %b Title:
-  = @resource.title
-%p
-  %b Description:
-  = @resource.description
-%p
-  %b Email:
-  = @resource.email
-
-
-= link_to 'Edit', edit_resource_path(@resource)
-
-= link_to 'Back', resources_path
+    %p
+      %b Title:
+      = @resource.title
+    %p
+      %b Description:
+      = @resource.description
+    %p
+      = link_to "Download", @resource.file.url, download: '' unless @resource.file.blank?
