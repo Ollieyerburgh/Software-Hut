@@ -2,16 +2,12 @@
 #
 # Table name: deliveries
 #
-#  id         :integer          not null, primary key
-#  method     :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id     :integer          not null, primary key
+#  method :string
 #
 
 #FactoryGirl.define do
 #  factory :delivery do
-#    method "Delivery"
-#    created_at
-#    updated_at
+#    method "hello"
 #  end
-#nd
+#end

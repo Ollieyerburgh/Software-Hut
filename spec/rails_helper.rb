@@ -7,6 +7,7 @@ ENV["RAILS_ENV"] ||= 'test'
 require 'spec_helper'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'capybara-bootstrap-datepicker/rspec'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -129,6 +130,7 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, phantomjs_logger: WarningSuppressor)
 end
 Capybara.javascript_driver = :poltergeist
+
 Capybara.register_server :thin do |app, port|
   require 'rack/handler/thin'
   Rack::Handler::Thin.run(app, Port: port)

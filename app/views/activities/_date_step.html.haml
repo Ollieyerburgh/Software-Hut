@@ -1,4 +1,17 @@
 .form-inputs.activities
-  = f.input :start_date, label: 'Start Date'
-  = f.input :end_date, label: 'End Date'
-  = f.input :deadline, label: 'Deadline for application'
+
+  = f.label 'Start Date'
+  = f.text_field :start_date, 'data-behaviour' => 'datepicker', label: 'Start Date'
+  = f.label 'End Date'
+  = f.text_field :end_date, 'data-behaviour' => 'datepicker', label: 'Start Date'
+  = f.label 'Deadline for application'
+  = f.text_field :deadline, 'data-behaviour' => 'datepicker', label: 'Start Date'
+
+
+:javascript
+
+  $('[data-behaviour~=datepicker]').datepicker({
+                           format: 'dd/mm/yyyy',
+                           autoclose: true,
+                           orientation: 'bottom'
+                           });

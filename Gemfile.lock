@@ -92,6 +92,8 @@ GEM
       execjs
     bcrypt (3.1.11)
     bindex (0.5.0)
+    bootstrap-datepicker-rails (1.8.0.1)
+      railties (>= 3.0)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
@@ -123,6 +125,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    capybara-bootstrap-datepicker (0.1.1)
     carrierwave (1.2.2)
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
@@ -439,6 +442,7 @@ DEPENDENCIES
   acts_as_votable
   airbrake!
   annotate
+  bootstrap-datepicker-rails
   bootstrap-sass
   bootstrap-will_paginate
   byebug
@@ -449,6 +453,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rvm
   capybara
+  capybara-bootstrap-datepicker
   capybara-select2!
   carrierwave (~> 1.0)
   coffee-rails

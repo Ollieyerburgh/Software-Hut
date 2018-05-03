@@ -12,9 +12,9 @@ describe 'Admin features', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
-    fill_in 'Start Date', with: '01/01/2001'
-    fill_in 'End Date', with: '01/01/2001'
-    fill_in 'Deadline for application', with: '01/01/2005'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('01/01/2009')")
+    page.execute_script("$('#activity_deadline').val('01/01/2010')")
     click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
@@ -41,9 +41,9 @@ describe 'Admin features', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'UserTest@user.com'
     click_button 'Continue'
-    fill_in 'Start Date', with: '01/01/2001'
-    fill_in 'End Date', with: '01/01/2001'
-    fill_in 'Deadline for application', with: '01/01/2005'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('01/01/2009')")
+    page.execute_script("$('#activity_deadline').val('01/01/2010')")
     click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
@@ -68,9 +68,9 @@ describe 'Admin features', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'GuestReject@test.com'
     click_button 'Continue'
-    fill_in 'Start Date', with: '01/01/2001'
-    fill_in 'End Date', with: '01/01/2001'
-    fill_in 'Deadline for application', with: '01/01/2005'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('01/01/2009')")
+    page.execute_script("$('#activity_deadline').val('01/01/2010')")
     click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
@@ -102,9 +102,9 @@ describe 'Admin features', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'UserReject@test.com'
     click_button 'Continue'
-    fill_in 'Start Date', with: '01/01/2001'
-    fill_in 'End Date', with: '01/01/2001'
-    fill_in 'Deadline for application', with: '01/01/2005'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('01/01/2009')")
+    page.execute_script("$('#activity_deadline').val('01/01/2010')")
     click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
@@ -199,9 +199,9 @@ describe 'Admin features', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
-    fill_in 'Start Date', with: '01/01/2001'
-    fill_in 'End Date', with: '01/01/2001'
-    fill_in 'Deadline for application', with: '01/01/2005'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('01/01/2009')")
+    page.execute_script("$('#activity_deadline').val('01/01/2010')")
     click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'

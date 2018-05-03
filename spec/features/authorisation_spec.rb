@@ -2,17 +2,16 @@ require 'rails_helper'
 
 describe 'Authorisation', js: true do
   specify 'I can create an activity when not signed in' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
-    fill_in 'Start Date', with: '01/01/2001'
-    fill_in 'End Date', with: '01/01/2001'
-    fill_in 'Deadline for application', with: '01/01/2005'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('01/01/2009')")
+    page.execute_script("$('#activity_deadline').val('01/01/2010')")
     click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
@@ -62,6 +61,7 @@ describe 'Authorisation', js: true do
 
   specify 'I cannot visit age create or edit as a guest' do
     age = FactoryGirl.create(:age)
+    sleep 1
     visit '/ages/new'
     expect(page).to have_content 'Access Denied 403'
     visit '/ages/1/edit'
@@ -103,21 +103,35 @@ describe 'Authorisation', js: true do
   end
 
   specify 'I cannot visit delivery method create or edit as a user' do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    visit '/admin/preferences/index'
+    click_link 'New delivery method'
+    fill_in 'Method', with: 'test'
+    click_button 'Create Delivery'
+    find('.dropdown-toggle').click
+    click_link "Log out"
     user = FactoryGirl.create(:user)
     login_as(user)
-    delivery = FactoryGirl.create(:delivery)
     visit '/deliveries/new'
     expect(page).to have_content 'Access Denied 403'
-    visit '/deliveries/1/new'
+    visit '/deliveries/1/edit'
     expect(page).to have_content 'Access Denied 403'
   end
 
 
   specify 'I cannot visit delivery method create or edit as a guest' do
-    delivery = FactoryGirl.create(:delivery)
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    visit '/admin/preferences/index'
+    click_link 'New delivery method'
+    fill_in 'Method', with: 'test'
+    click_button 'Create Delivery'
+    find('.dropdown-toggle').click
+    click_link "Log out"
     visit '/deliveries/new'
     expect(page).to have_content 'Access Denied 403'
-    visit '/deliveries/1/new'
+    visit '/deliveries/1/edit'
     expect(page).to have_content 'Access Denied 403'
   end
 

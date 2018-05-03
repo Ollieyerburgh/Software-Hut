@@ -12,6 +12,7 @@ gem 'mail_form'
 gem 'pg'
 
 gem 'airbrake', git: 'https://github.com/epigenesys/airbrake.git', branch: 'airbrake-v4'
+gem 'bootstrap-datepicker-rails'
 
 gem 'haml-rails'
 gem 'sass-rails'
@@ -84,7 +85,7 @@ group :test do
   gem 'capybara'
   gem 'poltergeist'
   gem 'rspec-instafail', require: false
-
+  gem 'capybara-bootstrap-datepicker'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'simplecov'

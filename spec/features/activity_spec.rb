@@ -4,8 +4,7 @@ describe 'Managing activites', js: true do
 
 
   specify 'I cannot create an activity without filling in Title' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
@@ -36,11 +35,10 @@ describe 'Managing activites', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
-    fill_in 'End Date', with: '01/01/2001'
-    fill_in 'Deadline for application', with: '01/01/2005'
+    page.execute_script("$('#activity_end_date').val('01/01/2008')")
+    page.execute_script("$('#activity_deadline').val('01/01/2008')")
     click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
-    expect(page).to have_content "can't be blank"
   end
 
   specify 'I cannot create an activity without filling in End Date' do
@@ -52,11 +50,10 @@ describe 'Managing activites', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
-    fill_in 'Start Date', with: '01/01/2001'
-    fill_in 'Deadline for application', with: '01/01/2005'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_deadline').val('01/01/2008')")
     click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
-    expect(page).to have_content "can't be blank"
   end
 
   specify 'I cannot create an activity without filling in Deadline Date' do
@@ -68,11 +65,10 @@ describe 'Managing activites', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
-    fill_in 'End Date', with: '01/01/2001'
-    fill_in 'Start Date', with: '01/01/2005'
+    page.execute_script("$('#activity_end_date').val('01/01/2008')")
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
     click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
-    expect(page).to have_content "can't be blank"
   end
 
   specify 'I cannot create an activity without filling in Web Address ' do
@@ -139,23 +135,6 @@ describe 'Managing activites', js: true do
     expect(page).to have_content "Invalid postcode format"
   end
 
-  specify 'I cannot create an activity without filling in date in correct format' do
-    visit '/'
-    click_link 'Create Activity'
-    fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'test@hotmail.com'
-    click_button 'Continue'
-    fill_in 'Start Date', with: '01/01/01'
-    fill_in 'End Date', with: '01/01/2001'
-    fill_in 'Deadline for application', with: '01/01/2005'
-    click_button 'Continue'
-    expect(page).to have_content 'Please review the problems below:'
-    expect(page).to have_content "Invalid date format, please try dd/mm/yyyy"
-  end
-
   specify 'I can edit an event that I have made' do
     activity = FactoryGirl.create(:activity_approved)
     visit '/'
@@ -220,9 +199,9 @@ describe 'Managing activites', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
-    fill_in 'Start Date', with: '01/01/2001'
-    fill_in 'End Date', with: '01/01/2001'
-    fill_in 'Deadline for application', with: '01/01/2005'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('01/05/2010')")
+    page.execute_script("$('#activity_deadline').val('02/10/2012')")
     click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'

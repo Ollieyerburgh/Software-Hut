@@ -2,10 +2,8 @@
 #
 # Table name: deliveries
 #
-#  id         :integer          not null, primary key
-#  method     :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id     :integer          not null, primary key
+#  method :string
 #
 
 class Delivery < ApplicationRecord
