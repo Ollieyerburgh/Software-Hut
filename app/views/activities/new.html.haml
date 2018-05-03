@@ -14,8 +14,9 @@
   = simple_form_for @activity do |f|
     = f.error_notification
     = render "#{@activity.current_step}_step", :f => f
-
+    %br
     = f.submit "Back", name: "back_button" unless @activity.first_step
+    %br
     = f.submit "Continue"
 
 %br
