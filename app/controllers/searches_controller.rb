@@ -1,13 +1,24 @@
-require 'will_paginate/array' 
-
-GOOGLE_MAPS_API_KEY='AIzaSyDBMRmPZIprE8Ythh4OtZr6isPJKcrgtAE'
+require 'google_maps_service'
 
 class SearchesController < ApplicationController
+
 
   respond_to :js, :json, :html
 
   # GET /searches/1
   def show
+    gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDdFojl37akCcM9_TICN7BWjSALccfO5g0')
+    origins = ["RG45 7ND"]
+    destinations = ["S11 8TD"]
+
+    distance = gmaps.distance_matrix(
+      'RG45 7ND',
+      'S118TD',
+     )
+    
+    print(distance)
+    sleep(5)
+
     @search=params[:query]
     @postcode = params[:postcode]
     @distance = params[:distance]
@@ -27,6 +38,7 @@ class SearchesController < ApplicationController
     @activities.each { |activity| 
       postcode = activity.postcode
       distance = Google::Maps.distance(@postcode.to_s, "RG45 7ND")
+      puts distance
       @distances.push(distance)
     }
     @results_length = 0 #@activities.size + @resources.size 
