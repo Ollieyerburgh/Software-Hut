@@ -70,7 +70,7 @@ class ActivitiesController < ApplicationController
       @activity.update_column(:status, 'pending')
       redirect_to @activity, notice: 'Activity was successfully updated.'
     else
-      render :edit
+      render :root
     end
   end
 
@@ -103,6 +103,6 @@ class ActivitiesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def activity_params
       params.require(:activity).permit(:title, :description, :start_date, :end_date, :deadline, :postcode, :tags, :add_documents, :link, :email,
-      :eligability, :capacity, :user_id, :terms_of_service, subject_ids: [], theme_ids: [], delivery_ids: [] )
+      :eligability, :capacity, :user_id, :terms_of_service, subject_ids: [], theme_ids: [], delivery_ids: [], age_ids: []  )
     end
 end
