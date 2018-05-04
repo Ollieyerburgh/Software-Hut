@@ -1,5 +1,6 @@
 .form-inputs.activities
 
+  = f.input :eligibility_criteria, label: 'Eligability Criteria', :maxlength => 50
   = f.label 'Start Date'
   = f.text_field :start_date, 'data-behaviour' => 'datepicker', label: 'Start Date'
   %br
