@@ -8,23 +8,25 @@ class SearchesController < ApplicationController
   # GET /searches/1
   def show
     gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDdFojl37akCcM9_TICN7BWjSALccfO5g0')
-    origins = ["RG45 7ND"]
+    origins = ["RG45 7ND", "GL8 8XY", "S10 2SQ"]
     destinations = ["S11 8TD"]
 
     distance = gmaps.distance_matrix(
-      'RG45 7ND',
-      'S118TD',
+      origins,
+      destinations
      )
     
-    print(distance)
-    sleep(5)
+    distance[:rows].each { |distance|
+      puts distance[:elements][0][:distance][:value]
+    }
+
 
     @search=params[:query]
     @postcode = params[:postcode]
     @distance = params[:distance]
 
     puts @postcode
-    puts "above"
+
     @subject=params[:subject]
     if @subject=="Subject"
       puts "Subject not supplied"
