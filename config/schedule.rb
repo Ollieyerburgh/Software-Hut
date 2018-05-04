@@ -13,7 +13,12 @@ end
 
 require 'rake'
 env :MAILTO, 'systems@epigenesys.org.uk'
-set :output, { standard: 'log/whenever.log' }
+set :output, 'log/whenever.log'
+set :environment, 'development'
+
+every :day, at: '1:10pm' do
+  rake 'send_weekly_email', :environment => 'development'
+end
 
 every :reboot, roles: [ :db ] do
   runner "require 'delayed/command'; Delayed::Command.new(['-p #{@delayed_job_args_p}', '-n #{@delayed_job_args_n}', 'start']).daemonize"
