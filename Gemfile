@@ -30,7 +30,8 @@ gem 'draper'
 gem 'ransack', '~> 1.8.0'
 gem "twitter-bootstrap-rails"
 gem 'polyamorous', '~> 1.3.1'
-
+gem 'underscore-rails'
+gem 'dependent-fields-rails'
 gem 'will_paginate', '~> 3.1.5'
 gem 'bootstrap-will_paginate'
 

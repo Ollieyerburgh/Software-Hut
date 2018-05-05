@@ -21,6 +21,13 @@
 #  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string
 #  locked_at              :datetime
+#  role                   :string
+#  school                 :string
+#  dob                    :string
+#  answer                 :string
+#  organisation           :string
+#  studyyear              :string
+#  associatedschool       :string
 #
 # Indexes
 #

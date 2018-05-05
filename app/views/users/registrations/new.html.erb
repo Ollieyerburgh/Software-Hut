@@ -1,0 +1,57 @@
+
+<div class="generic-container">
+  <div class="generic-header">
+    <h2>User registration</h2>
+
+  </div>
+</div>
+
+<div class="form container">
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= f.error_notification %>
+
+    <div class="form-inputs">
+      <%= f.input :forename, required:true, autofocus:true %>
+      <%= f.input :surname, required:true, autofocus: true %>
+      <%= f.input :email, required: true, autofocus: true %>
+      <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+      <%= f.input :password_confirmation, required: true %>
+      <%= f.input :postcode, required: true%>
+
+      <%= f.input :role, collection: ['Learner', 'Guardian/Parent', 'Teacher/Advisor', 'Partner'], input_html: { class: 'select2' }, id: 'user_role'%>
+      <div class="js-dependent-fields" data-select-id="user_role" data-option-value="Learner">
+        <%= f.input :school, required:true, autofocus:true %>
+        <%= f.label 'Date of Birth'%>
+        <br>
+        <%= f.text_field :dob, 'data-behaviour' => 'datepicker', label: 'Date of Birth'%>
+        <%= f.input :studyyear, required:true, autofocus:true, :label => "Year of study" %>
+        <%= f.input :answer, required:true, autofocus:true, :label => "How did you hear about HeppSY?" %>
+
+      </div>
+      <div class="js-dependent-fields" data-select-id="user_role" data-option-value="Guardian/Parent">
+        <%= f.input :associatedschool, required:true, autofocus:true , :label => "Associated School" %>
+        <%= f.input :answer, required:true, autofocus:true, :label => "How did you hear about HeppSY?"%>
+      </div>
+      <div class="js-dependent-fields" data-select-id="user_role" data-option-value="Partner">
+        <%= f.input :organisation, required:true, autofocus:true %>
+        <%= f.input :answer, required:true, autofocus:true, :label => "How did you hear about HeppSY?"%>
+      </div>
+      <div class="js-dependent-fields" data-select-id="user_role" data-option-value="Teacher/Advisor">
+        <%= f.input :school, required:true, autofocus:true %>
+        <%= f.input :answer, required:true, autofocus:true, :label => "How did you hear about HeppSY?" %>
+      </div>
+
+    </div>
+    <div class="form-actions">
+      <%= f.button :submit, "Sign up" %>
+    </div>
+  <% end %>
+</div>
+<script> $(document).ready(function() { DependentFields.bind() });
+$('[data-behaviour~=datepicker]').datepicker({
+                         format: 'dd/mm/yyyy',
+                         autoclose: true,
+                         orientation: 'bottom'
+                         });
+</script>
+<br>
