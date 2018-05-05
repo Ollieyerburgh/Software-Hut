@@ -44,7 +44,7 @@ gem 'carrierwave', '~> 1.0'
 
 gem 'sidekiq'
 gem 'sinatra', require: false
-gem "whenever", require: false
+gem 'whenever', require: false
 gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'delayed-plugins-airbrake'

@@ -22,10 +22,11 @@ set :log_level,               :info
 set :pty,                     true
 set :keep_releases,           2
 
+require 'whenever/capistrano'
 ## Whenever configuration
-set :whenever_command,        [:bundle, :exec, :whenever]
+set :whenever_command,        'bundle exec whenever'
 set :whenever_roles,          [:db]
-set :whenever_environment,    -> { (fetch(:rails_env) || fetch(:stage)) }
+set :whenever_environment,    defer {stage}
 set :whenever_identifier,     -> { "#{fetch(:application)}-#{fetch(:whenever_environment)}" }
 set :whenever_variables,      -> { "\"environment=#{fetch(:whenever_environment)}&delayed_job_args_p=#{fetch(:delayed_job_identifier)}&delayed_job_args_n=#{fetch(:delayed_job_workers)}\"" }
 
