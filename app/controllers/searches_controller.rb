@@ -16,11 +16,18 @@ class SearchesController < ApplicationController
     @resources = Resource.filter(params.slice(:query, :subject)).paginate(page: params[:page], per_page: 10)
 
     #get the postcodes of the activities 
-    origins = @activites.all.map {|x| x.postcode}
+    origins = @activities.all.map {|x| x.postcode}
+    puts origins
+    puts 'here'
+    sleep(10)
 
     #get the postcode implemented or the postcode of the user if logged in 
-    destination = params[:postcode]
-    
+    if current_user 
+      destination = current_user.postcode
+    else
+      destination = params[:postcode]
+    end
+
     #find the distances from activities to inputted postcode
     distance = gmaps.distance_matrix(
       origins,
