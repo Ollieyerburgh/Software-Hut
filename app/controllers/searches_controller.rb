@@ -16,10 +16,7 @@ class SearchesController < ApplicationController
     @resources = Resource.filter(params.slice(:query, :subject)).paginate(page: params[:page], per_page: 10)
 
     #get the postcodes of the activities 
-    origins = @activities.all.map {|x| x.postcode}
-    puts origins
-    puts 'here'
-    sleep(10)
+    origins = Activity.all.map {|x| x.postcode}
 
     #get the postcode implemented or the postcode of the user if logged in 
     if current_user 
@@ -41,7 +38,8 @@ class SearchesController < ApplicationController
     }
 
     #convert activities to hashes (so we can add distances to them)
-    @activities = @activities.to_hash.map(&:symbolize_keys)
+    @activities = Activity.all.as_json(:root => true)
+    #@activities = @activities.as_json(:root => true)
 
     #add distances to activities
     @activities.each_with_index {|activity, index| 
