@@ -46,6 +46,9 @@ class SearchesController < ApplicationController
      activity['distance'] = @distances[index]
     }
 
+    #order activities by length of distance
+    @activities = @activities.sort_by { |k| k["distance"] }.reverse!
+
     #find results length to display on search page
     @results_length = @activities.size + @resources.size 
 
