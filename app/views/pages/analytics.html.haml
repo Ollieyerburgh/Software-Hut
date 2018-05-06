@@ -1,0 +1,39 @@
+.container
+  .row
+    %h1 Analytics
+
+  .row
+    %h4 User groups
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th.col Learner
+          %th.col Partner
+          %th.col Teacher/Advisor
+          %th.col Parent/Guardian
+
+      %tbody
+        %tr
+          %td= @learners.size
+          %td= @partners.size
+          %td= @parents.size
+          %td= @teachers.size
+
+  .row
+    %h4 How did you hear about HeppSY?
+    %table.table.table-bordered.table-striped
+      %thead
+        %tr
+          %th.col User type
+          %th.col Answer
+
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td= user.role unless user.role.nil?
+            %td= user.answer unless user.answer.nil?
+
+
+.paginate-container
+  .paginate
+    = will_paginate @users

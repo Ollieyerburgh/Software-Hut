@@ -17,28 +17,26 @@
       <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
       <%= f.input :password_confirmation, required: true %>
       <%= f.input :postcode, required: true%>
+      <%= f.input :answer, required:true, autofocus:true, :label => "How did you hear about HeppSY?"%>
 
-      <%= f.input :role, collection: ['Learner', 'Guardian/Parent', 'Teacher/Advisor', 'Partner'], input_html: { class: 'select2' }, id: 'user_role'%>
+
+      <%= f.input :role, collection: ['Learner', 'Guardian/Parent', 'Teacher/Advisor', 'Partner'], input_html: { class: 'select2' }, id: 'user_role', required: true%>
       <div class="js-dependent-fields" data-select-id="user_role" data-option-value="Learner">
-        <%= f.input :school, required:true, autofocus:true %>
-        <%= f.label 'Date of Birth'%>
-        <br>
-        <%= f.text_field :dob, 'data-behaviour' => 'datepicker', label: 'Date of Birth'%>
-        <%= f.input :studyyear, required:true, autofocus:true, :label => "Year of study" %>
-        <%= f.input :answer, required:true, autofocus:true, :label => "How did you hear about HeppSY?" %>
+      <%= f.input :school, required:true, autofocus:true%>
+      <%= f.label 'Date of Birth'%>
+      <br>
+      <%= f.text_field :dob, 'data-behaviour' => 'datepicker', label: 'Date of Birth'%>
+      <%= f.input :studyyear, required:true, autofocus:true, :label => "Year of study" %>
 
       </div>
       <div class="js-dependent-fields" data-select-id="user_role" data-option-value="Guardian/Parent">
-        <%= f.input :associatedschool, required:true, autofocus:true , :label => "Associated School" %>
-        <%= f.input :answer, required:true, autofocus:true, :label => "How did you hear about HeppSY?"%>
+      <%= f.input :associatedschool, required:true, autofocus:true , :label => "Associated School" %>
       </div>
       <div class="js-dependent-fields" data-select-id="user_role" data-option-value="Partner">
-        <%= f.input :organisation, required:true, autofocus:true %>
-        <%= f.input :answer, required:true, autofocus:true, :label => "How did you hear about HeppSY?"%>
+      <%= f.input :organisation, required:true, autofocus:true %>
       </div>
       <div class="js-dependent-fields" data-select-id="user_role" data-option-value="Teacher/Advisor">
-        <%= f.input :school, required:true, autofocus:true %>
-        <%= f.input :answer, required:true, autofocus:true, :label => "How did you hear about HeppSY?" %>
+      <%= f.input :school, required:true, autofocus:true %>
       </div>
 
     </div>

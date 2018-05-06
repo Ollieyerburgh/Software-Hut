@@ -105,6 +105,13 @@
                         = navbar_link_to :edit_admin_registration, title: "Account page", identifier: :account do
                           = fa_icon 'user'
                           Account
+                      %li
+                        = link_to analytics_path, method: :get, title: "See analytics" do
+                          = fa_icon 'line-chart', text: 'Analytics'
+                      %li
+                        = link_to help_path, method: :get, title: "Help here" do
+                          = fa_icon 'question', text: 'Help'
+
 
       #main-container.container
 
