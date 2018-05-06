@@ -16,8 +16,9 @@
     .filter
       .filter-box
         %p Distance
-      .filter-box1
-        %input{:placeholder => "Postcode", :id => "postcode_value"}
+      - if !current_user
+        .filter-box1
+          %input{:placeholder => "Postcode", :id => "postcode_value"}
       .slider-center
         %input#example_id{:name => "example_name", :type => "text", :value => ""}/
     -#

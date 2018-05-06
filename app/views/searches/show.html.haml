@@ -3,43 +3,7 @@
     %h1 Subject is #{@subject}
     %h1 Distance is #{@distance}
     %h1 Distances are #{p @distances}
-
-    - if @results_length.size < 2
-      %h1 Found #{@activities.size} result for "#{@search.capitalize}"
-    - else
-      %h1 Found #{@activities.size} results for "#{@search.capitalize}"
-
-.results-container
-  .results-inner
-    %table
-      %tbody
-      - 10.times do |count|
-        - if @activities[count]
-          %tr
-            %td.result-title Event Title: #{@activities[count].title}
-            %td.result-date Event date: #{@activities[count].start_date} #{@activities[count].end_date}
-            %td.result-description Description: #{@activities[count].description}
-            %td.result-link Link to website: #{@activities[count].link}
-            %td.result-address Address: #{@activities[count].link}
-            %td.result-contact #{@activities[count].email}
-            %td
-              = @activities[count].id
-              = link_to like_activity_path(@activities[count]), class:"like-btn", method: :put, remote: :true do
-                = fa_icon('thumbs-up')
-            %td.likes-count
-              = @activities[count].get_upvotes.size
-        - if @resources[count]
-          %tr
-            %td.result-title Resource Title: #{@resources[count].title}
-            %td.result-description Description: #{@resources[count].description}
-            %td.result-link Link to website: #{@resources[count].link}
-            %td.result-contact #{@resources[count].email}
+    %h1 Activities are #{p @activities}
 
 
 
-.paginate-container
-  .paginate
-    - if @activities.size > @resources.size
-      = will_paginate @activities, :params => { :search => @search }
-    - else
-      = will_paginate @resources, :params => { :search => @search }
