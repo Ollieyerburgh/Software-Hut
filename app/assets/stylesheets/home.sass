@@ -1,6 +1,6 @@
 $teal: #1cb495
 $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
-
+  
 .search-container
   text-align: center
 
@@ -35,11 +35,11 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
   display: flex
   justify-content: space-around
   align-items: center
+  background: pink
 
-.filter-box
+#filter-box
   border: 1px solid #BFBFBF
   font-size: 5px
-  width: 15%
   height: 50px
   border-radius: 5px
   display: flex
@@ -81,6 +81,18 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
 #more-filters
   background: $teal
   color: white
+  padding: 10px
+  border-radius: 10px
+
+#more-filters p
+  margin: 0px !important
+
+#more-filters:hover
+  background: white
+  color: $teal
+  border: 2px solid $teal
+  cursor: pointer
+
 
 
 .col-md-8.col-centered
@@ -166,3 +178,4 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
   &:hover
     color: #333333
   
+.filter-button
