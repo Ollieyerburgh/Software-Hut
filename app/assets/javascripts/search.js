@@ -1,7 +1,7 @@
 $( document ).ready(function() {
     $("#example_id").ionRangeSlider({
         min: '0',
-        max: '500'
+        max: '1400'
     });
     $(".slickaroo").slick({
         dots: false,
@@ -45,6 +45,10 @@ $( document ).ready(function() {
         var e = document.getElementById("selecttheme");
         var subject = e.options[e.selectedIndex].value;
         document.getElementById("theme").value = subject;
+
+        var e = document.getElementById("selectdelivery");
+        var subject = e.options[e.selectedIndex].value;
+        document.getElementById("delivery").value = subject;
 
         this.submit(); // If all the validations succeeded
     });

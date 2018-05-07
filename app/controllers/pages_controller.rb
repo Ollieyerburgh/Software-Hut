@@ -8,6 +8,8 @@ class PagesController < ApplicationController
       'Apprenticeship', 'Work-Related Learning', 'Subject Knowledge, Enrichement',
       'Confidence/Aspriation', 'Citizenship', 'Health & Wellbeing', 'Study Skills',
       'Soft Skills']
+    @deliveries =  ['In school/college', 'Out of school/college', 'Online']
+
   end
 
   def help

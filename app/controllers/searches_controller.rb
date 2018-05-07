@@ -9,8 +9,10 @@ class SearchesController < ApplicationController
   def show
 
     #get themes and subject
-    puts params[:theme]
-    puts params[:subject]
+    @theme = params[:theme]
+    @subject = params[:subject]
+    @delivery = params[:delivery]
+    @distance_wanted = params[:distance]
 
     #connect to Google maps API client
     gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDdFojl37akCcM9_TICN7BWjSALccfO5g0')
@@ -39,6 +41,13 @@ class SearchesController < ApplicationController
     @distances = []
     distance[:rows].each { |distance|
       @distances.push(distance[:elements][0][:distance][:value])
+    }
+
+    #remove activities whose distance is greater than specified
+    @distances.each_with_index {|distance, index| 
+      if (distance > @distance_wanted.to_i)
+        @activities = @activities - [@activities[index]]
+      end
     }
 
     #convert activities to hashes (so we can add distances to them)
