@@ -45,6 +45,7 @@ class Resource < ApplicationRecord
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
   scope :rejected, -> { where(status: 'rejected')}
+  scope :theme, -> (theme) { joins(:themes).where(themes: { name: theme }) }
 
   include ActiveModel::AttributeMethods
 

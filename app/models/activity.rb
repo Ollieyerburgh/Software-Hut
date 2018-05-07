@@ -75,8 +75,7 @@ class Activity < ApplicationRecord
     where("lower(description) LIKE ? OR lower(title) LIKE ? OR lower(address) LIKE ?", "%#{search.downcase}%","%#{search.downcase}%" ,"%#{search.downcase}%")
   }
   scope :subject, -> (subject) { where(subject_id: Subject.where(name: subject))}
-  scope :theme, -> (subject) { where(theme_id: Subject.where(name: subject))}
-
+  scope :theme, -> (theme) {joins(:themes).where(themes: { name: theme })}
 
   def current_step
     @current_step || steps.first
