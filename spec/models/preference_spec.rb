@@ -2,13 +2,13 @@
 #
 # Table name: preferences
 #
-#  id            :integer          not null, primary key
-#  preference_id :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  theme_id      :integer
-#  delivery_id   :integer
-#  user_id       :integer
+#  id          :integer          not null, primary key
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  subject_id  :integer
+#  theme_id    :integer
+#  delivery_id :integer
+#  user_id     :integer
 #
 # Indexes
 #

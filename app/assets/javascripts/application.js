@@ -12,3 +12,5 @@
 //= require jquery.slick
 //= require_tree .
 //= require bootstrap-datepicker
+//= require dependent-fields
+//= require underscore
