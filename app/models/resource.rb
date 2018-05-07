@@ -26,6 +26,7 @@ class Resource < ApplicationRecord
   mount_uploader :file, FileUploader
   belongs_to :user,  optional: true
   has_and_belongs_to_many :subjects
+  has_and_belongs_to_many :themes
   has_and_belongs_to_many :deliveries
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
