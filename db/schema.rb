@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180503104156) do
+ActiveRecord::Schema.define(version: 20180505111159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,8 +119,6 @@ ActiveRecord::Schema.define(version: 20180503104156) do
   create_table "deliveries_preferences", id: false, force: :cascade do |t|
     t.bigint "delivery_id", null: false
     t.bigint "preference_id", null: false
-    t.index ["delivery_id", "preference_id"], name: "index_deliveries_preferences_on_delivery_id_and_preference_id"
-    t.index ["preference_id", "delivery_id"], name: "index_deliveries_preferences_on_preference_id_and_delivery_id"
   end
 
   create_table "deliveries_users", id: false, force: :cascade do |t|
@@ -151,9 +149,9 @@ ActiveRecord::Schema.define(version: 20180503104156) do
   end
 
   create_table "preferences", force: :cascade do |t|
-    t.integer "preference_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "subject_id"
     t.integer "theme_id"
     t.integer "delivery_id"
     t.bigint "user_id"
@@ -253,6 +251,13 @@ ActiveRecord::Schema.define(version: 20180503104156) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
+    t.string "role"
+    t.string "school"
+    t.string "dob"
+    t.string "answer"
+    t.string "organisation"
+    t.string "studyyear"
+    t.string "associatedschool"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

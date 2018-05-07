@@ -152,6 +152,10 @@ GEM
     delayed_job_active_record (4.1.2)
       activerecord (>= 3.0, < 5.2)
       delayed_job (>= 3.0, < 5)
+    dependent-fields-rails (0.4.2)
+      coffee-rails
+      jquery-rails
+      railties (>= 3.1)
     devise (4.3.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -424,6 +428,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
+    underscore-rails (1.8.3)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.5.1)
@@ -468,6 +473,7 @@ DEPENDENCIES
   delayed-plugins-airbrake
   delayed_job
   delayed_job_active_record
+  dependent-fields-rails
   devise
   devise_cas_authenticatable
   devise_ldap_authenticatable
@@ -511,6 +517,7 @@ DEPENDENCIES
   turbolinks
   twitter-bootstrap-rails
   uglifier
+  underscore-rails
   web-console
   whenever
   will_paginate (~> 3.1.5)
