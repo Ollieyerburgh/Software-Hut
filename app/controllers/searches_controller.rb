@@ -30,7 +30,7 @@ class SearchesController < ApplicationController
       origins,
       destination
      )
-
+    
     #get the distances in an array
     @distances = []
     distance[:rows].each { |distance|
@@ -39,7 +39,6 @@ class SearchesController < ApplicationController
 
     #convert activities to hashes (so we can add distances to them)
     @activities_hash = Activity.all.as_json(:root => true)
-    #@activities = @activities.as_json(:root => true)
 
     #add distances to activities
     @activities_hash.each_with_index {|activity, index| 
@@ -57,6 +56,7 @@ class SearchesController < ApplicationController
 
     #find search query to show on results page
     @search = params[:query]
+
   end
 
   # GET /searches/new
