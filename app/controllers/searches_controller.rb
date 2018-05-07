@@ -16,7 +16,6 @@ class SearchesController < ApplicationController
     if params[:postcode] == '' && !current_user
       @distance_filter = false
     end
-    puts "Distance wanted is: #{@distance_filter}"
 
     #filter the activites + resources by query + subject (this uses scopes stored in the relevant models director)
     @activities = Activity.filter(params.slice(:query, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)

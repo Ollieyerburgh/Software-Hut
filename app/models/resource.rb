@@ -45,6 +45,8 @@ class Resource < ApplicationRecord
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
   scope :rejected, -> { where(status: 'rejected')}
+
+  scope :subject, -> (subject) { joins(:subjects).where(subjects: {name: subject}) }
   scope :theme, -> (theme) { joins(:themes).where(themes: { name: theme }) }
   scope :delivery, -> (delivery) {joins(:deliveries).where(deliveries: { method: delivery })}
 

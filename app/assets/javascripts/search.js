@@ -41,14 +41,23 @@ $( document ).ready(function() {
         var e = document.getElementById("selectsubject");
         var subject = e.options[e.selectedIndex].value;
         document.getElementById("subject").value = subject;
+        if (subject=='Subject') {
+            $('#subject').remove();
+        }
 
         var e = document.getElementById("selecttheme");
         var subject = e.options[e.selectedIndex].value;
         document.getElementById("theme").value = subject;
+        if (subject=='Theme') {
+            $('#theme').remove();
+        }
 
         var e = document.getElementById("selectdelivery");
         var subject = e.options[e.selectedIndex].value;
         document.getElementById("delivery").value = subject;
+        if (subject=='Delivery method') {
+            $('#delivery').remove();
+        }
 
         this.submit(); // If all the validations succeeded
     });
