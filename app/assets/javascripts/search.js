@@ -1,6 +1,5 @@
 $( document ).ready(function() {
     $("#example_id").ionRangeSlider({
-        type: 'double',
         min: '0',
         max: '500'
     });
@@ -39,9 +38,14 @@ $( document ).ready(function() {
         var postcode = document.getElementById("postcode_value").value;
         document.getElementById("postcode").value = postcode;
 
-        //var e = document.getElementById("selectsubject");
-        //var subject = e.options[e.selectedIndex].value;
-        //document.getElementById("subject").value = subject;
+        var e = document.getElementById("selectsubject");
+        var subject = e.options[e.selectedIndex].value;
+        document.getElementById("subject").value = subject;
+
+        var e = document.getElementById("selecttheme");
+        var subject = e.options[e.selectedIndex].value;
+        document.getElementById("theme").value = subject;
+
         this.submit(); // If all the validations succeeded
     });
 });

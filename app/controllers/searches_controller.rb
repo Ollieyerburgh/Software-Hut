@@ -8,12 +8,16 @@ class SearchesController < ApplicationController
   # GET /searches/1
   def show
 
+    #get themes and subject
+    puts params[:theme]
+    puts params[:subject]
+
     #connect to Google maps API client
     gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDdFojl37akCcM9_TICN7BWjSALccfO5g0')
     
     #filter the activites + resources by query + subject (this uses scopes stored in the relevant models director)
-    @activities = Activity.filter(params.slice(:query, :subject)).paginate(page: params[:page], per_page: 10)
-    @resources = Resource.filter(params.slice(:query, :subject)).paginate(page: params[:page], per_page: 10)
+    @activities = Activity.filter(params.slice(:query, :subject, :theme)).paginate(page: params[:page], per_page: 10)
+    @resources = Resource.filter(params.slice(:query, :subject, :theme)).paginate(page: params[:page], per_page: 10)
 
     #get the postcodes of the activities 
     origins = Activity.all.map {|x| x.postcode}

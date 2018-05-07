@@ -9,6 +9,7 @@
   = form_tag("/search", method: "post", id: 'helloworld', ) do
     = text_field_tag(:query)
     = hidden_field_tag 'subject', '', :id => "subject"
+    = hidden_field_tag 'theme', '', :id => "theme"
     = hidden_field_tag 'distance', '', :id => "distance"
     = hidden_field_tag 'postcode', '', :id => "postcode" 
     = hidden_field_tag 'page', '1'
@@ -46,7 +47,6 @@
             .subject-choice
               %option
                 = theme.capitalize
-
 
 
 .container-fluid.margin-top-50
