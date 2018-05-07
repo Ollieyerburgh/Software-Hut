@@ -16,14 +16,14 @@
   .filter-container
     .row.filter-row.center-flex
       .col-sm-4
-        .col-sm-6
-          %p Distance (km)
-        - if !current_user
-          .col-sm-6.center-flex
-            %input{:placeholder => "Postcode", :id => "postcode_value"}
+        .row
+          .col-sm-6
+            %p Distance (km)
+          - if !current_user
+            .col-sm-6.center-flex
+              %input{:placeholder => "Postcode", :id => "postcode_value"}
       .col-sm-6
-        .d-flex.align-items-start.justify-content-center
-          %input#example_id{:name => "example_name", :type => "text", :value => ""}/
+        %input#example_id{:name => "example_name", :type => "text", :value => ""}/
       .col-sm-2#more-filters
         %p + Filters
   
