@@ -9,21 +9,27 @@
   = form_tag("/search", method: "post", id: 'helloworld', ) do
     = text_field_tag(:query)
     = hidden_field_tag 'subject', '', :id => "subject"
+    = hidden_field_tag 'theme', '', :id => "theme"
     = hidden_field_tag 'distance', '', :id => "distance"
     = hidden_field_tag 'postcode', '', :id => "postcode" 
     = hidden_field_tag 'page', '1'
+
   .filter-container
-    .filter
-      .filter-box
-        %p Distance
-      - if !current_user
-        .filter-box1
-          %input{:placeholder => "Postcode", :id => "postcode_value"}
-      .slider-center
+    .row.filter-row.center-flex
+      .col-sm-4
+        .row
+          .col-sm-6
+            %p Distance (km)
+          - if !current_user
+            .col-sm-6.center-flex
+              %input{:placeholder => "Postcode", :id => "postcode_value"}
+      .col-sm-6
         %input#example_id{:name => "example_name", :type => "text", :value => ""}/
-    
-    .filter
-      .filter-box1
+      .col-sm-2#more-filters
+        %p + Filters
+  
+    .row.filter-row#extra-filters
+      .col-sm-12
         %select{:id => "selectsubject"}
           .subject-choice
             %option{:disabled => "disabled", :selected => "selected"}
@@ -33,8 +39,6 @@
               %option
                 = subject.name.capitalize
 
-    .filter
-      .filter-box1
         %select{:id => "selecttheme"}
           .subject-choice
             %option{:disabled => "disabled", :selected => "selected"}
@@ -43,9 +47,6 @@
             .subject-choice
               %option
                 = theme.capitalize
-
-      .filter-box#more-filters
-        %p + Filters
 
 
 .container-fluid.margin-top-50

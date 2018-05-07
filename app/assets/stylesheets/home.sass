@@ -1,6 +1,8 @@
 $teal: #1cb495
 $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
 $light-yellow: #ffd051
+$light-orange: #ffab51
+$light-purple: #b194d1
 
 .search-container
   text-align: center
@@ -36,11 +38,11 @@ $light-yellow: #ffd051
   display: flex
   justify-content: space-around
   align-items: center
+  background: pink
 
-.filter-box
+#filter-box
   border: 1px solid #BFBFBF
   font-size: 5px
-  width: 15%
   height: 50px
   border-radius: 5px
   display: flex
@@ -82,15 +84,31 @@ $light-yellow: #ffd051
 #more-filters
   background: $teal
   color: white
+  padding: 10px
+  border-radius: 10px
+
+#more-filters p
+  margin: 0px !important
+  color: white
+
+#more-filters:hover p
+  color: $teal
+
+#more-filters:hover
+  background: white
+  color: $teal
+  border: 2px solid $teal
+  cursor: pointer
+
 
 
 .col-md-8.col-centered
-  border: 1px solid $light-yellow
+  border: 1px solid $light-purple
   border-radius: 5px
   margin-bottom: 15px
   height: 50px
   &:hover
-    background: $light-yellow
+    background: $light-purple
     color: white
     cursor: pointer
 
