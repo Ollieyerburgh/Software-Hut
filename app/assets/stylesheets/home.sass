@@ -38,11 +38,11 @@ $light-orange: #ffab51
   display: flex
   justify-content: space-around
   align-items: center
+  background: pink
 
-.filter-box
+#filter-box
   border: 1px solid #BFBFBF
   font-size: 5px
-  width: 15%
   height: 50px
   border-radius: 5px
   display: flex
@@ -84,6 +84,22 @@ $light-orange: #ffab51
 #more-filters
   background: $teal
   color: white
+  padding: 10px
+  border-radius: 10px
+
+#more-filters p
+  margin: 0px !important
+  color: white
+
+#more-filters:hover p
+  color: $teal
+
+#more-filters:hover
+  background: white
+  color: $teal
+  border: 2px solid $teal
+  cursor: pointer
+
 
 
 .col-md-8.col-centered
@@ -168,3 +184,4 @@ $light-orange: #ffab51
   border: none
   &:hover
     color: #333333
+  

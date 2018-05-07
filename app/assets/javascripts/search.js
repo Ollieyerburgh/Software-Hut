@@ -1,5 +1,9 @@
 $( document ).ready(function() {
-    $("#example_id").ionRangeSlider();
+    $("#example_id").ionRangeSlider({
+        type: 'double',
+        min: '0',
+        max: '500'
+    });
     $(".slickaroo").slick({
         dots: false,
         accessibility: false,
@@ -10,6 +14,19 @@ $( document ).ready(function() {
         slidesToShow: 3,
         slidesToScroll: 1,
 
+    });
+
+    $('#extra-filters').hide();
+
+    $( "#more-filters" ).click(function() {
+        if ( $('#extra-filters').is(':visible'))  {
+            $('#extra-filters').hide();
+            $("#more-filters p").text("+ Filters");
+        } else {
+            $('#extra-filters').show();
+            $("#more-filters p").text("- Filters");
+
+        }
     });
 
     $('#helloworld').submit(function(ev) {
