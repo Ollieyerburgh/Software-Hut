@@ -8,9 +8,9 @@
 
 .generic-container
   .generic-header
-    %h2  New activity
+    %h1 New activity
 
-.form.container.act
+.form.container
   = simple_form_for @activity do |f|
     = f.error_notification
     = render "#{@activity.current_step}_step", :f => f
