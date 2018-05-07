@@ -1,24 +1,25 @@
 .generic-container
   .generic-header
     %h1 Subject is #{@subject}
-    %h1 Distance is #{@distance}
+    %h1 Distance is #{@distance_wanted}
     %h1 Distances are #{p @distances}
-
-    %h1 Found #{@activities.size} result for "#{@search.capitalize}" with subject #{@subject}, distance #{@distance_wanted}, theme #{@theme} and delivery #{@delivery} "
+    %h1 Found #{@results_length.size} result for "#{@search.capitalize}" with subject #{@subject}, theme #{@theme} and delivery #{@delivery} "
+    %h1 Activities #{p @activities}
+    %h1 Resources #{p @resources}
 
 .results-container
   .results-inner
     %table
-      %tbody
+      %tbody        
       - 10.times do |count|
-        - if @activities_hash[count]
+        - if @activities[count]
           %tr
-            %td.result-title Event Title: #{@activities_hash[count]['title']}
-            %td.result-date Event date: #{@activities[count]['start_date']} #{@activities_hash[count]['end_date']}
-            %td.result-description Description: #{@activities_hash[count]['description']}
-            %td.result-link Link to website: #{@activities_hash[count]['link']}
-            %td.result-address Address: #{@activities_hash[count]['link']}
-            %td.result-contact #{@activities_hash[count]['email']}
+            %td.result-title Event Title: #{@activities[count].title}
+            %td.result-date Event date: #{@activities[count]['start_date']} #{@activities[count].end_date}
+            %td.result-description Description: #{@activities[count].description}
+            %td.result-link Link to website: #{@activities[count].link}
+            %td.result-address Address: #{@activities[count].link}
+            %td.result-contact #{@activities[count].email}
             %td
               = @activities[count]['id']
               = link_to like_activity_path(@activities[count]), class:"like-btn", method: :put, remote: :true do
