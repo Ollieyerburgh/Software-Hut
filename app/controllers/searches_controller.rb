@@ -30,7 +30,7 @@ class SearchesController < ApplicationController
       origins,
       destination
      )
-
+    
     #get the distances in an array
     @distances = []
     distance[:rows].each { |distance|
@@ -38,19 +38,24 @@ class SearchesController < ApplicationController
     }
 
     #convert activities to hashes (so we can add distances to them)
-    @activities = Activity.all.as_json(:root => true)
-    #@activities = @activities.as_json(:root => true)
+    @activities_hash = Activity.all.as_json(:root => true)
 
     #add distances to activities
-    @activities.each_with_index {|activity, index| 
+    @activities_hash.each_with_index {|activity, index| 
      activity['distance'] = @distances[index]
     }
 
+    #order array of activerecord activities results on distance
+    @activities.sort_by{|x| @activities_hash.index x['distance']}.reverse!
+
     #order activities by length of distance
-    @activities = @activities.sort_by { |k| k["distance"] }.reverse!
+    @activities_hash = @activities.sort_by { |k| k["distance"] }.reverse!
 
     #find results length to display on search page
     @results_length = @activities.size + @resources.size 
+
+    #find search query to show on results page
+    @search = params[:query]
 
   end
 

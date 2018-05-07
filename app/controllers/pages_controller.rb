@@ -4,6 +4,10 @@ class PagesController < ApplicationController
     @activities = Activity.all.order(cached_votes_up: :desc)
     @subjects = Subject.all.limit(20)
     @current_nav_identifier = :home
+    @themes =  ['Careers', 'Employability', 'Higher Education', 'University',
+      'Apprenticeship', 'Work-Related Learning', 'Subject Knowledge, Enrichement',
+      'Confidence/Aspriation', 'Citizenship', 'Health & Wellbeing', 'Study Skills',
+      'Soft Skills']
   end
 
   def help

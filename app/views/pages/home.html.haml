@@ -21,17 +21,28 @@
           %input{:placeholder => "Postcode", :id => "postcode_value"}
       .slider-center
         %input#example_id{:name => "example_name", :type => "text", :value => ""}/
-    -#
-      .filter
-        .filter-box1
-          %select{:id => "selectsubject"}
+    
+    .filter
+      .filter-box1
+        %select{:id => "selectsubject"}
+          .subject-choice
+            %option{:disabled => "disabled", :selected => "selected"}
+              Subject
+          - @subjects.each do |subject|
             .subject-choice
-              %option{:disabled => "disabled", :selected => "selected"}
-                Subject
-            - @subjects.each do |subject|
-              .subject-choice
-                %option
-                  = subject.name.capitalize
+              %option
+                = subject.name.capitalize
+
+    .filter
+      .filter-box1
+        %select{:id => "selecttheme"}
+          .subject-choice
+            %option{:disabled => "disabled", :selected => "selected"}
+              Theme
+          - @themes.each do |theme|
+            .subject-choice
+              %option
+                = theme.capitalize
 
       .filter-box#more-filters
         %p + Filters
