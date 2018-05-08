@@ -1,7 +1,5 @@
-
-%br
 .container
-  %h1  Pending activities
+  %h2  Pending activities
   %table.table.table-bordered.table-striped
     %thead
       %tr
@@ -23,9 +21,9 @@
           %td= activity.postcode
           %td
             = link_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => activity.id}, method: :post, class:'btn btn-default'
-            = link_to 'Reject', edit_admin_request_path(activity.id), class:'btn btn-danger'
+            = link_to 'Request changes', edit_admin_request_path(activity.id), class:'btn btn-danger'
   %br
-  %h1  Pending resources
+  %h2  Pending resources
   %table.table.table-bordered.table-striped
     %thead
       %tr
@@ -41,9 +39,9 @@
           %td= resource.email
           %td
             = link_to 'Approve', {:controller => 'admin/requests', :action => 'approve', :id => resource.id}, method: :post, class:'btn btn-default'
-            = link_to 'Reject', reject_admin_request_path(resource.id), class:'btn btn-danger'
-
-  %h1  Approved resources
+            = link_to 'Request changes', reject_admin_request_path(resource.id), class:'btn btn-danger'
+  %br
+  %h2  Approved resources
   %table.table.table-bordered.table-striped
     %thead
       %tr
@@ -56,8 +54,8 @@
           %td= resource.title
           %td= resource.description
           %td= resource.email
-
-  %h1  Rejected requests
+  %br
+  %h2  Rejected requests
   %table.table.table-bordered.table-striped
     %thead
       %tr
