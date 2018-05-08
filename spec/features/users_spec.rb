@@ -11,10 +11,30 @@ describe 'User registration', js: true do
     fill_in 'Password', with: 'test123434'
     fill_in 'Password confirmation', with: 'test123434'
     fill_in 'Postcode', with: 'S102SQ'
+    fill_in 'How did you hear about HeppSY?', with: 'test-answer'
     click_button 'Sign up'
     expect(page).to have_content 'Welcome! You have signed up successfully'
     expect(page).to_not have_content 'is too short (minimum is 8 characters)'
 
+  end
+  specify 'I can Sign up as a user with a long password' do
+    visit '/'
+    expect(page).to have_content 'Sign up'
+    click_link 'Sign up'
+    fill_in 'Forename', with: 'Test'
+    fill_in 'Surname', with: 'Test-Surname'
+    fill_in 'Email', with: 'Test-Email1@hotmail.com'
+    fill_in 'Password', with: 'test123434'
+    fill_in 'Password confirmation', with: 'test123434'
+    fill_in 'Postcode', with: 'S102SQ'
+    fill_in 'How did you hear about HeppSY?', with: 'test-answer'
+    select "Learner", :from => "Role"
+    fill_in 'School', with: 'School-test'
+    fill_in 'Year of study', with: 'year 10'
+    page.execute_script("$('#user_dob').val('01/01/2000')")
+    click_button 'Sign up'
+    expect(page).to have_content 'Welcome! You have signed up successfully'
+    expect(User.count).to increase_by(1)
   end
 
   specify 'I cannot Sign up as a user with a short password' do
@@ -27,6 +47,8 @@ describe 'User registration', js: true do
     fill_in 'Password', with: 'test123'
     fill_in 'Password confirmation', with: 'test123'
     fill_in 'Postcode', with: 'S102SQ'
+    fill_in 'How did you hear about HeppSY?', with: 'test-answer'
+
     click_button 'Sign up'
     expect(page).to_not have_content 'Welcome! You have signed up successfully'
     expect(page).to have_content 'is too short (minimum is 8 characters)'
@@ -82,6 +104,8 @@ describe 'User registration', js: true do
     fill_in 'Password', with: 'test1234'
     fill_in 'Password confirmation', with: 'test1234'
     fill_in 'Postcode', with: 'S102SQ'
+    fill_in 'How did you hear about HeppSY?', with: 'test-answer'
+
     click_button 'Sign up'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -98,6 +122,8 @@ describe 'User registration', js: true do
     fill_in 'Password', with: 'test1234'
     fill_in 'Password confirmation', with: 'test1234'
     fill_in 'Postcode', with: 'S102SQ'
+    fill_in 'How did you hear about HeppSY?', with: 'test-answer'
+
     click_button 'Sign up'
     expect(page).to have_content 'Hello, Test!'
     click_link 'Hello, Test!'
@@ -109,6 +135,8 @@ describe 'User registration', js: true do
     fill_in 'Password', with: 'test1234'
     fill_in 'Password confirmation', with: 'test1234'
     fill_in 'Postcode', with: 'S102SQ'
+    fill_in 'How did you hear about HeppSY?', with: 'test-answer'
+
     click_button 'Sign up'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content 'Email has already been taken'
