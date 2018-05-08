@@ -7,26 +7,26 @@
       %tbody
       - 10.times do |count|
         - @class = 'kk'
-        - if count == 0 || count == 4 || count == 8 
-          - @class = 'result1'  
+        - if count == 0 || count == 4 || count == 8
+          - @class = 'result1'
         - elsif count == 1 || count == 5 || count == 9
-          - @class = 'result2'  
+          - @class = 'result2'
         - elsif count == 2 || count ==6 || count == 10
-          - @class = 'result3'  
+          - @class = 'result3'
         - elsif count == 3 || count == 7
-          - @class = 'result4'  
-          
+          - @class = 'result4'
+
 
         - if @activities_hash[count]
 
-        - @link = 'http://localhost:3000/activities/' + @activities_hash[count]['activity']['id'].to_s
+        - @link = 'https://team18.demo3.hut.shefcompsci.org.uk/activities/' + @activities_hash[count]['activity']['id'].to_s
 
-          %tr{:class => @class, :data => {:link => @link} } 
+          %tr{:class => @class, :data => {:link => @link} }
             %td.result-title #{@activities_hash[count]['activity']['title']} #{@colour}
-            %td.result-date 
-              Date: 
+            %td.result-date
+              Date:
               %span(class="date-span")
-                #{@activities[count]['start_date']}  
+                #{@activities[count]['start_date']}
               to
               %span(class="date-span")
                 #{@activities_hash[count]['activity']['end_date']}

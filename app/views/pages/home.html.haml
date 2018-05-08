@@ -65,16 +65,16 @@
         .slickaroo
           - @activities.take(10).each_with_index do |activity, count|
 
-            - if count == 0 || count == 4 || count == 8 
-              - @class = 'result1'  
+            - if count == 0 || count == 4 || count == 8
+              - @class = 'result1'
             - elsif count == 1 || count == 5 || count == 9
-              - @class = 'result2'  
+              - @class = 'result2'
             - elsif count == 2 || count ==6 || count == 10
-              - @class = 'result3'  
+              - @class = 'result3'
             - elsif count == 3 || count == 7
-              - @class = 'result4'  
-            
-            - @link = 'http://localhost:3000/activities/' + activity.id.to_s
+              - @class = 'result4'
+
+            - @link = 'https://team18.demo3.hut.shefcompsci.org.uk/activities/' + activity.id.to_s
 
             .col-md-8.col-centered.flex{:class => @class, :data => {:link => @link}}
               .event-date.vcenter
