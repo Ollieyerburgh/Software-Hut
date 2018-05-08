@@ -73,8 +73,10 @@
               - @class = 'result3'  
             - elsif count == 3 || count == 7
               - @class = 'result4'  
-                
-            .col-md-8.col-centered.flex{:class => @class}
+            
+            - @link = 'http://localhost:3000/activities/' + activity.id.to_s
+
+            .col-md-8.col-centered.flex{:class => @class, :data => {:link => @link}}
               .event-date.vcenter
                 = activity.start_date
               .event-title.vcenter.truncate
