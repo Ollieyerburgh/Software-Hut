@@ -12,6 +12,7 @@
   = f.label 'Deadline for application'
   = f.text_field :deadline, 'data-behaviour' => 'datepicker', label: 'Start Date'
   %br
+  = f.input :terms_of_service, as: :boolean, label: "I agree that I have permission to post this activity on this website"
 
 
 :javascript

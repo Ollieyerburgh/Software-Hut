@@ -83,7 +83,7 @@ class Activity < ApplicationRecord
   end
 
   def steps
-    %w[main date rest]
+    %w[main rest date]
   end
 
   def next_step
