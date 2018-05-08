@@ -8,14 +8,14 @@
       - 10.times do |count|
         - if @activities_hash[count]
           %tr
-            %td.result-title Event Title: #{@activities_hash[count]['title']}
-            %td.result-date Event date: #{@activities[count]['start_date']} #{@activities_hash[count]['end_date']}
-            %td.result-description Description: #{@activities_hash[count]['description']}
-            %td.result-link Link to website: #{@activities_hash[count]['link']}
-            %td.result-address Address: #{@activities_hash[count]['link']}
-            %td.result-contact #{@activities_hash[count]['email']}
+            %td.result-title Event Title: #{@activities_hash[count]['activity']['title']}
+            %td.result-date Event date: #{@activities[count]['start_date']} #{@activities_hash[count]['activity']['end_date']}
+            %td.result-description Description: #{@activities_hash[count]['activity']['description']}
+            %td.result-link Link to website: #{@activities_hash[count]['activity']['link']}
+            %td.result-address Address: #{@activities_hash[count]['activity']['link']}
+            %td.result-contact #{@activities_hash[count]['activity']['email']}
             %td
-              = @activities_hash[count]['id']
+              = @activities_hash[count]['activity']['id']
               = link_to like_activity_path(Activity.find_by_id(@activities_hash[count]['activity']['id'])), class:"like-btn", method: :put, remote: :true do
                 = fa_icon('thumbs-up')
             %td.likes-count
