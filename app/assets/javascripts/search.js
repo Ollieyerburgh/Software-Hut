@@ -1,4 +1,9 @@
 $( document ).ready(function() {
+
+    $("tr").click(function() {
+        window.location = $(this).data("link");
+    });
+
     $("#example_id").ionRangeSlider({
         min: '0',
         max: '1400'
