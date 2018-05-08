@@ -8,6 +8,7 @@ $( document ).ready(function() {
         min: '0',
         max: '1400'
     });
+    
     $(".slickaroo").slick({
         dots: false,
         accessibility: false,
@@ -77,5 +78,3 @@ $( document ).ready(function() {
         this.submit(); // If all the validations succeeded
     });
 });
-
-
