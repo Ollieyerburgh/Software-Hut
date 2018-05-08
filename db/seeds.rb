@@ -25,8 +25,8 @@ deliveries.each { |delivery| Delivery.create(method: delivery)}
 ages = ['11-14', '14-16', '16-19', '19+']
 ages.each {|age| Age.create(age: age)}
 
-User.create(email:'fake@sheffield.ac.uk', password:'password', password_confirmation: 'password', id: '20', forename: 'isaac', surname: 'yerdburgh',  postcode: Faker::Address.postcode, )
-Admin.where(email: 'admin1@sheffield.ac.uk').first_or_create(password:'password', password_confirmation: 'password', id: '1')
+User.create(email:'fake@sheffield.ac.uk', password:'password', password_confirmation: 'password', id: '20', forename: 'isaac', surname: 'yerdburgh',  postcode: 'S102SQ', )
+Admin.create(email: 'isaac@test.com', password:'password', password_confirmation: 'password', id: '1')
 
 user = User.find_by_email("fake@sheffield.ac.uk")
 
