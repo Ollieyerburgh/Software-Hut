@@ -38,6 +38,12 @@ $( document ).ready(function() {
         var postcode = document.getElementById("postcode_value").value;
         document.getElementById("postcode").value = postcode;
 
+        var e = document.getElementById("query").value;
+        if (e=='') {
+            alert('Removing search');
+            $('#query').remove();
+        }
+
         var e = document.getElementById("selectsubject");
         var subject = e.options[e.selectedIndex].value;
         document.getElementById("subject").value = subject;
