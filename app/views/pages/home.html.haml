@@ -5,7 +5,7 @@
   .searchtext
     .title-home
       %h1 Search Heppsy
-    %p Find educational resources, activities + more. Use filters for a more advanced match
+    %p Find educational resources, activities + more. Use filters for a more advanced match.
   .searchbox
   = form_tag("/search", method: "post", id: 'helloworld', ) do
     = text_field_tag(:query)
@@ -21,7 +21,10 @@
       .col-sm-4
         .row
           .col-sm-6
-            %p Distance (km)
+            %p
+              Distance (km)
+              %a{"data-content" => "Select the distance range you want to search activities within", "data-toggle" => "popover", :href => "#", :title => "Distance"}
+                %span.glyphicon.glyphicon-question-sign
           - if !current_user
             .col-sm-6.center-flex
               %input{:placeholder => "Postcode", :id => "postcode_value"}

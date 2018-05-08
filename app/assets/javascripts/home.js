@@ -5,3 +5,7 @@ $( document ).on('turbolinks:load', function() {
     });
 
 });
+
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
