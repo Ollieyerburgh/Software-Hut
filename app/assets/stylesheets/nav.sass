@@ -1,10 +1,18 @@
+$light-purple: #b194d1
+$light-blue: #91e4f7
+$light-orange: #ffab51
+$teal: #1cb495
+$pink: #d94a6a
+
+
 nav
   padding: 1em
   position: relative
 div.collapse.navbar-collapse
   float: right
 
-.container
+.container table
+  width: 100%
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus
   border-bottom: 2px solid
@@ -34,26 +42,26 @@ div.collapse.navbar-collapse
   height: 45px
   text-align: center
   &:hover
-    background-color: #1cb495
+    background-color: $light-purple
     color: white
-    border: 2px solid white
+    border: 2px solid $light-purple
 
 .navbar-default .navbar-nav > li > a.sign-up-button
   display: flex
   align-self: center
   justify-content: center
   align-items: center
-  background: #d94a6a
-  border: 2px solid #d94a6a
+  background: $light-purple
+  border: 2px solid $light-purple
   height: 45px
   border-radius: 5px
   color: white
   width: 120px
   text-align: center
   &:hover
-    background-color: #1cb495
-    color: white
-    border: 2px solid #d94a6a
+    background-color: white
+    color: black
+    border: 2px solid white
 
 .navbar-nav
   display: flex

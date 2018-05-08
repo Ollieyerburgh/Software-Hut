@@ -1,5 +1,8 @@
 $teal: #1cb495
 $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
+$light-yellow: #ffd051
+$light-orange: #ffab51
+$light-purple: #b194d1
 
 .search-container
   text-align: center
@@ -29,17 +32,17 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
   margin: 0 auto
   margin-top: 15px
 
-.filter 
+.filter
   width: 100%
   margin: 10px
   display: flex
   justify-content: space-around
   align-items: center
+  background: pink
 
-.filter-box
+#filter-box
   border: 1px solid #BFBFBF
   font-size: 5px
-  width: 15%
   height: 50px
   border-radius: 5px
   display: flex
@@ -73,7 +76,7 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
   font-size: 20px
   font-family: $nice-font
   text-transform: uppercase
-  
+
 .filter-box p
   font-size: 15px
   margin: 0
@@ -81,15 +84,31 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
 #more-filters
   background: $teal
   color: white
+  padding: 10px
+  border-radius: 10px
+
+#more-filters p
+  margin: 0px !important
+  color: white
+
+#more-filters:hover p
+  color: $teal
+
+#more-filters:hover
+  background: white
+  color: $teal
+  border: 2px solid $teal
+  cursor: pointer
+
 
 
 .col-md-8.col-centered
-  border: 1px solid $teal
+  border: 1px solid $light-purple
   border-radius: 5px
   margin-bottom: 15px
   height: 50px
   &:hover
-    background: $teal
+    background: $light-purple
     color: white
     cursor: pointer
 
@@ -124,7 +143,7 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
   width: 50%
 
 
-.event-likes  
+.event-likes
   display: flex
   justify-self: center
   width: 5%
@@ -148,21 +167,20 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
     width: 40%
   .event-title
     font-size: 15px
-    width: 60%  
+    width: 60%
 
 @media screen and (max-width: 1200px)
   .event-title
     font-size: 15px
 
-.truncate 
+.truncate
   white-space: nowrap
   overflow: hidden
   text-overflow: ellipsis
 
-.filter-box1 select 
+.filter-box1 select
   width: 100px
   background: white
   border: none
   &:hover
     color: #333333
-  

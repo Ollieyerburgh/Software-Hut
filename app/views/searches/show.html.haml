@@ -1,9 +1,37 @@
 .generic-container
   .generic-header
-    %h1 Subject is #{@subject}
-    %h1 Distance is #{@distance}
-    %h1 Distances are #{p @distances}
-    %h1 Activities are #{p @activities}
+
+.results-container
+  .results-inner
+    %table
+      %tbody
+      - 10.times do |count|
+        - if @activities_hash[count]
+          %tr
+            %td.result-title Event Title: #{@activities_hash[count]['title']}
+            %td.result-date Event date: #{@activities[count]['start_date']} #{@activities_hash[count]['end_date']}
+            %td.result-description Description: #{@activities_hash[count]['description']}
+            %td.result-link Link to website: #{@activities_hash[count]['link']}
+            %td.result-address Address: #{@activities_hash[count]['link']}
+            %td.result-contact #{@activities_hash[count]['email']}
+            %td
+              = @activities_hash[count]['id']
+              = link_to like_activity_path(Activity.find_by_id(@activities_hash[count]['activity']['id'])), class:"like-btn", method: :put, remote: :true do
+                = fa_icon('thumbs-up')
+            %td.likes-count
+              = (Activity.find_by_id(@activities_hash[count]['activity']['id'])).get_upvotes.size
+        - if @resources[count]
+          %tr
+            %td.result-title Resource Title: #{@resources[count].title}
+            %td.result-description Description: #{@resources[count].description}
+            %td.result-link Link to website: #{@resources[count].link}
+            %td.result-contact #{@resources[count].email}
 
 
 
+.paginate-container
+  .paginate
+    - if @activities.size > @resources.size
+      = will_paginate @activities, :params => { :search => @search }
+    - else
+      = will_paginate @resources, :params => { :search => @search }

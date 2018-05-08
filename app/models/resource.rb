@@ -26,6 +26,8 @@ class Resource < ApplicationRecord
   mount_uploader :file, FileUploader
   belongs_to :user,  optional: true
   has_and_belongs_to_many :subjects
+  has_and_belongs_to_many :themes
+  has_and_belongs_to_many :deliveries
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   validates :description, presence: true
@@ -43,6 +45,10 @@ class Resource < ApplicationRecord
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
   scope :rejected, -> { where(status: 'rejected')}
+
+  scope :subject, -> (subject) { joins(:subjects).where(subjects: {name: subject}) }
+  scope :theme, -> (theme) { joins(:themes).where(themes: { name: theme }) }
+  scope :delivery, -> (delivery) {joins(:deliveries).where(deliveries: { method: delivery })}
 
   include ActiveModel::AttributeMethods
 
