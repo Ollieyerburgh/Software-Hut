@@ -1,6 +1,7 @@
 
 .container
-  %h1 Saved activities
+  %h2 Saved activities
+  - no_act = 0
   - @activities.each do |activity|
     - if @user.voted_for? activity
       .well
@@ -22,4 +23,7 @@
 
             = activity.get_upvotes.size
         = link_to 'See more ', activity
-        
+    - else
+      - no_act += 1
+  - if no_act == @activities.length
+    %p You have no saved activities.
