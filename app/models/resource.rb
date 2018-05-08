@@ -46,6 +46,10 @@ class Resource < ApplicationRecord
   scope :approved, -> { where(status: 'approved')}
   scope :rejected, -> { where(status: 'rejected')}
 
+  scope :subject, -> (subject) { joins(:subjects).where(subjects: {name: subject}) }
+  scope :theme, -> (theme) { joins(:themes).where(themes: { name: theme }) }
+  scope :delivery, -> (delivery) {joins(:deliveries).where(deliveries: { method: delivery })}
+
   include ActiveModel::AttributeMethods
 
   scope :subject, -> (subject) { where(subject_id: Subject.where(name: subject))}

@@ -3,15 +3,17 @@
 
 .search-container
   .searchtext
-    %h1 Search Heppsy
+    .title-home
+      %h1 Search Heppsy
     %p Find educational resources, activities + more. Use filters for a more advanced match
   .searchbox
   = form_tag("/search", method: "post", id: 'helloworld', ) do
     = text_field_tag(:query)
     = hidden_field_tag 'subject', '', :id => "subject"
     = hidden_field_tag 'theme', '', :id => "theme"
+    = hidden_field_tag 'delivery', '', :id => "delivery"
     = hidden_field_tag 'distance', '', :id => "distance"
-    = hidden_field_tag 'postcode', '', :id => "postcode" 
+    = hidden_field_tag 'postcode', '', :id => "postcode"
     = hidden_field_tag 'page', '1'
 
   .filter-container
@@ -27,7 +29,7 @@
         %input#example_id{:name => "example_name", :type => "text", :value => ""}/
       .col-sm-2#more-filters
         %p + Filters
-  
+
     .row.filter-row#extra-filters
       .col-sm-12
         %select{:id => "selectsubject"}
@@ -47,7 +49,14 @@
             .subject-choice
               %option
                 = theme.capitalize
-
+        %select{:id => "selectdelivery"}
+          .subject-choice
+            %option{:disabled => "disabled", :selected => "selected"}
+              Delivery method
+          - @deliveries.each do |delivery|
+            .subject-choice
+              %option
+                = delivery.capitalize
 
 .container-fluid.margin-top-50
   .row

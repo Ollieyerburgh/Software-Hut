@@ -1,30 +1,44 @@
 .generic-container
   .generic-header
-    %h1 Subject is #{@subject}
-    %h1 Distance is #{@distance}
-    %h1 Distances are #{p @distances}
-
-    %h1 Found #{@activities.size} result for "#{@search.capitalize}"
 
 .results-container
   .results-inner
     %table
       %tbody
       - 10.times do |count|
+        - @class = 'kk'
+        - if count == 0 || count == 4 || count == 8 
+          - @class = 'result1'  
+        - elsif count == 1 || count == 5 || count == 9
+          - @class = 'result2'  
+        - elsif count == 2 || count ==6 || count == 10
+          - @class = 'result3'  
+        - elsif count == 3 || count == 7
+          - @class = 'result4'  
+          
+
         - if @activities_hash[count]
-          %tr
-            %td.result-title Event Title: #{@activities_hash[count]['title']}
-            %td.result-date Event date: #{@activities[count]['start_date']} #{@activities_hash[count]['end_date']}
-            %td.result-description Description: #{@activities_hash[count]['description']}
-            %td.result-link Link to website: #{@activities_hash[count]['link']}
-            %td.result-address Address: #{@activities_hash[count]['link']}
-            %td.result-contact #{@activities_hash[count]['email']}
+
+        - @link = 'http://localhost:3000/activities/' + @activities_hash[count]['activity']['id'].to_s
+
+          %tr{:class => @class, :data => {:link => @link} } 
+            %td.result-title #{@activities_hash[count]['activity']['title']} #{@colour}
+            %td.result-date 
+              Date: 
+              %span(class="date-span")
+                #{@activities[count]['start_date']}  
+              to
+              %span(class="date-span")
+                #{@activities_hash[count]['activity']['end_date']}
+            %td.result-description #{@activities_hash[count]['activity']['description']}
+            %td.result-link Link to website: #{@activities_hash[count]['activity']['link']}
+            %td.result-address Address: #{@activities_hash[count]['activity']['link']}
+            %td.result-contact #{@activities_hash[count]['activity']['email']}
             %td
-              = @activities[count]['id']
-              = link_to like_activity_path(@activities[count]), class:"like-btn", method: :put, remote: :true do
+              = link_to like_activity_path(Activity.find_by_id(@activities_hash[count]['activity']['id'])), class:"like-btn", method: :put, remote: :true do
                 = fa_icon('thumbs-up')
             %td.likes-count
-              = @activities[count].get_upvotes.size
+              = (Activity.find_by_id(@activities_hash[count]['activity']['id'])).get_upvotes.size
         - if @resources[count]
           %tr
             %td.result-title Resource Title: #{@resources[count].title}

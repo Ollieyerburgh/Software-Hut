@@ -44,6 +44,7 @@
       password "foobar12"
       password_confirmation "foobar12"
       postcode "S102SQ"
+      answer "hello"
 
 
 
@@ -54,6 +55,7 @@
         password "foobar12"
         password_confirmation "foobar12"
         postcode "S102SQ"
+        answer "hello"
       end
 
 
