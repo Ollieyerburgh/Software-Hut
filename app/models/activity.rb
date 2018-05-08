@@ -65,7 +65,7 @@ class Activity < ApplicationRecord
 
   attr_accessor :terms_of_service
   attr_writer :current_step
-  validates :terms_of_service, acceptance: { accept: '1' } , :if => lambda { |a| a.current_step == "rest" }
+  validates :terms_of_service, acceptance: { accept: '1' } , :if => lambda { |a| a.current_step == "date" }
 
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
