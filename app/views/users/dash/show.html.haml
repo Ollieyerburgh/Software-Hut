@@ -10,6 +10,7 @@
         %th.col URL
         %th.col Postcode
         %th.col Likes
+        %th.col Actions
     %tbody
       - @approvedactivities.each do |activity|
         %tr
@@ -19,6 +20,10 @@
           %td= activity.link
           %td= activity.postcode
           %td= activity.get_upvotes.size
+          %td
+            - if can? :update, activity
+              = link_to 'Edit', edit_activity_path(activity), class:"btn btn-default"
+              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"
 
   %h1  Rejected activities
   %table.table.table-bordered.table-striped
@@ -74,6 +79,7 @@
         %th.col Title
         %th.col Description
         %th.col Resource
+        %th.col Actions
 
     %tbody
       - @approvedresources.each do |resource|
@@ -81,6 +87,10 @@
           %td= resource.title
           %td= resource.description
           %td= link_to "Download", resource.file.url, download: '' unless resource.file.blank?
+          %td
+            - if can? :update, activity
+              = link_to 'Edit', edit_activity_path(activity), class:"btn btn-default"
+              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"
 
   %h1  Rejected Resources
   %table.table.table-bordered.table-striped
@@ -89,6 +99,7 @@
         %th.col Title
         %th.col Description
         %th.col Resource
+        %th.col Actions
 
     %tbody
       - @rejectedresources.each do |resource|
@@ -96,6 +107,10 @@
           %td= resource.title
           %td= resource.description
           %td= link_to "Download", resource.file.url, download: '' unless resource.file.blank?
+          %td
+            - if can? :update, activity
+              = link_to 'Edit', edit_activity_path(activity), class:"btn btn-default"
+              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"
 
   %h1  Pending Resources
   %table.table.table-bordered.table-striped

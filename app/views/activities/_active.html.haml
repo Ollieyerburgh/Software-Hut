@@ -1,6 +1,6 @@
 
 .container
-  %h1 Saved activities new
+  %h1 Saved activities
   - @activities.each do |activity|
     - if @user.voted_for? activity
       .well
@@ -19,61 +19,7 @@
         .activity-option
           = link_to like_activity_path(activity), class:"like-btn", id:"like_#{activity.id}", method: :put, remote: :true do
             = fa_icon('thumbs-up')
-              
+
             = activity.get_upvotes.size
         = link_to 'See more ', activity
-        - if can? :edit, activity
-          = link_to 'Edit | ', edit_activity_path(activity)
-        - if can? :destroy, activity
-          = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
-
-.container
-  %h1  Saved Activities
-  %table
-    %tbody
-      - @activities.each do |activity|
-        - if @user.voted_for? activity
-          %tr
-            %td.activity-date= activity.deadline
-            %td.activity-title= activity.title
-            %td.activity-description= activity.description
-            %td.activity-option
-              = link_to like_activity_path(activity), class:"like-btn", id:"like_#{activity.id}", method: :put, remote: :true do
-                = fa_icon('thumbs-up')
-            %td{id: "likes_#{activity.id}"}
-              = activity.get_upvotes.size
-            %td.activity-option
-              = link_to 'See more', activity
-            %td.activity-option
-              - if can? :edit, activity
-                = link_to 'Edit', edit_activity_path(activity)
-            %td.activity-option
-              - if can? :destroy, activity
-                = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
-
-
-  %h1  Other activities
-  %table
-    %tbody
-      - @activities.each do |activity|
-        %tr
-          %td.activity-date= activity.deadline
-          %td.activity-title= activity.title
-          %td.activity-description= activity.description
-          %td.activity-option
-            = link_to like_activity_path(activity), class:"like-btn", method: :put, id:"like_#{activity.id}", remote: :true do
-              = fa_icon('thumbs-up')
-          %td{id: "likes_#{activity.id}"}
-            = activity.get_upvotes.size
-          %td.activity-option
-            = link_to 'Show', activity
-          %td.activity-option
-            - if can? :update, activity
-              = link_to 'Edit', edit_activity_path(activity)
-          %td.activity-option
-            - if can? :destroy, activity
-              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
-
-
-
-%br
+        
