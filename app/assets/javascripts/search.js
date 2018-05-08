@@ -40,7 +40,7 @@ $( document ).ready(function() {
 
         var e = document.getElementById("query").value;
         if (e=='') {
-            $('#query').remove();
+            e.id='notquery';
         }
 
         var e = document.getElementById("selectsubject");
