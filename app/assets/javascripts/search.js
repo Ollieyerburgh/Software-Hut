@@ -1,8 +1,13 @@
 $( document ).ready(function() {
-    $("#example_id").ionRangeSlider({
-        min: '0',
-        max: '1400'
-    });
+    try {
+      $("#example_id").ionRangeSlider({
+          min: '0',
+          max: '1400'
+      });
+    } catch (err) {
+      alert(err);
+    }
+    
     $(".slickaroo").slick({
         dots: false,
         accessibility: false,
@@ -72,5 +77,3 @@ $( document ).ready(function() {
         this.submit(); // If all the validations succeeded
     });
 });
-
-

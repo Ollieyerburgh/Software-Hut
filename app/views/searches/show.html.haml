@@ -8,7 +8,7 @@
       - 10.times do |count|
         - if @activities_hash[count]
           %tr
-            %td.result-title Event Title: #{@activities_hash[count]['title']}
+            %td.result-title Event Title: #{@activities_hash[count]['activity']['title']}
             %td.result-date Event date: #{@activities[count]['start_date']} #{@activities_hash[count]['end_date']}
             %td.result-description Description: #{@activities_hash[count]['description']}
             %td.result-link Link to website: #{@activities_hash[count]['link']}
