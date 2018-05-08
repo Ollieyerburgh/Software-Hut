@@ -34,7 +34,7 @@
             %td.result-link Link to website: #{@activities_hash[count]['activity']['link']}
             %td.result-address Address: #{@activities_hash[count]['activity']['link']}
             %td.result-contact #{@activities_hash[count]['activity']['email']}
-            %td
+            %td.liker
               = link_to like_activity_path(Activity.find_by_id(@activities_hash[count]['activity']['id'])), class:"like-btn", method: :put, remote: :true do
                 = fa_icon('thumbs-up')
             %td.likes-count
