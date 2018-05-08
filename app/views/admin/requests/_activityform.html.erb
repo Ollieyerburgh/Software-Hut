@@ -1,21 +1,24 @@
-<%= form_for @contact, url: edit_admin_request_path, remote: true do |f| %>
-    <div class="col-md-6">
+<div class="form container">
 
-        <%= f.label :email %></br>
-        <%= f.text_field :email, readonly: true, value: @activity.email %></br>
+  <%= form_for @contact, url: edit_admin_request_path, remote: true do |f| %>
+      <div class="col-md-6">
 
-      <%= f.label :message %></br>
-      <%= f.text_area :message, rows: 8, cols: 40, required: true, class: "contact-form-text-area",
-                        placeholder: "Input rejection message here."%></br>
+          <%= f.label :email %></br>
+          <%= f.text_field :email, readonly: true, value: @activity.email %></br>
 
-      <div class= "hidden">
-        <%= f.label :nickname %>
-        <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+        <%= f.label :message %></br>
+        <%= f.text_area :message, rows: 8, cols: 40, required: true, class: "contact-form-text-area form-control",
+                          placeholder: "Detail the changes that you would like the user to append here."%></br>
+
+        <div class= "hidden">
+          <%= f.label :nickname %>
+          <%= f.text_field :nickname, :hint => 'Leave this field blank!' %>
+        </div>
+
+        <%= f.submit 'Send Message', class: 'btn btn-primary', value: 'Submit' %>
       </div>
-
-      <%= f.submit 'Send Message', class: 'btn btn-primary', value: 'Submit' %>
+    <% end %>
+    <div class="col-md-6" id="flash-message">
+      <%= render 'flash' %>
     </div>
-  <% end %>
-  <div class="col-md-6" id="flash-message">
-    <%= render 'flash' %>
-  </div>
+</div>

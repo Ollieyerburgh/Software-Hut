@@ -1,6 +1,9 @@
 .form-inputs.activities
-
+  %a.tooltip-toggle{"aria-label" => "Who can go to this event? For example, first in family to go to university", :href => "#", :tabindex => "0"}
+    %i.fa.fa-question
   = f.input :eligibility_criteria, label: 'Eligability Criteria', :maxlength => 50
+
+
   = f.label 'Start Date'
   = f.text_field :start_date, 'data-behaviour' => 'datepicker', label: 'Start Date'
   %br
