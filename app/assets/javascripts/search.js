@@ -35,8 +35,13 @@ $( document ).ready(function() {
         var distance_value = slider.result.from;
         document.getElementById("distance").value = distance_value;
 
-        var postcode = document.getElementById("postcode_value").value;
-        document.getElementById("postcode").value = postcode;
+
+        if (document.getElementById("postcode_value")) {
+            var postcode = document.getElementById("postcode_value").value;
+            if (postcode != null) {
+                document.getElementById("postcode").value = postcode;
+            }
+        }
 
         var e = document.getElementById("query").value;
         if (e=='') {
