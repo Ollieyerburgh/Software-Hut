@@ -40,7 +40,6 @@ $( document ).ready(function() {
 
         var e = document.getElementById("query").value;
         if (e=='') {
-            alert('Removing search');
             $('#query').remove();
         }
 

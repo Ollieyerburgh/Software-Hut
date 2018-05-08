@@ -16,15 +16,16 @@ class SearchesController < ApplicationController
     if params[:postcode] == '' && !current_user
       @distance_filter = false
     end
+    @distance_wanted = params[:distance].to_i
+    puts "Distance wanted is: #{@distance_wanted}"
+
     #filter the activites + resources by query + subject (this uses scopes stored in the relevant models director)
     @activities = Activity.filter(params.slice(:query, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
     @resources = Resource.filter(params.slice(:query, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
-    p @activities
-    p @resources
 
     if @distance_filter
       #get the postcodes of the activities 
-      origins = @activities.all.map {|x| x.postcode}
+      origins = @activities.map {|x| x.postcode}
 
       #connect to Google maps API client
       gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDdFojl37akCcM9_TICN7BWjSALccfO5g0')
@@ -45,33 +46,44 @@ class SearchesController < ApplicationController
       #get the distances in an array
       @distances = []
       distance[:rows].each { |distance|
-        @distances.push(distance[:elements][0][:distance][:value])
+        @distances.push((distance[:elements][0][:distance][:value]/1000).to_i)
       }
 
       #remove activities whose distance is greater than specified
       @distances.each_with_index {|distance, index| 
-        if (distance > @distance_wanted.to_i)
+        if (distance > @distance_wanted)
+          puts "Removing activity as distance too big"
           @activities = @activities - [@activities[index]]
         end
       }
 
       #convert activities to hashes (so we can add distances to them)
-      @activities_hash = Activity.all.as_json(:root => true)
+      @activities_hash = @activities.as_json(:root => true) #array of hashes
+      p @activities_hash
+      p 'here'
 
       #add distances to activities
       @activities_hash.each_with_index {|activity, index| 
         activity['distance'] = @distances[index]
       }
+      p @activities_hash
+      p 'here'
 
       #order array of activerecord activities results on distance
-      @activities.sort_by{|x| @activities_hash.index x['distance']}.reverse!
+      @activities.sort_by{|x| @activities_hash.index x['distance']}
 
       #order activities by length of distance
-      @activities_hash = @activities.sort_by { |k| k["distance"] }.reverse!
+      @activities_hash = @activities_hash.sort_by { |k| k["distance"] }
 
       #turn the hash back into an array for iteration 
-      @activities = @activities_hash.values
+      #@activities = @activities_hash
+
+      #don't show resources for location search
+      #@resourcers = []
+    else
+      @activities_hash = @activities.as_json(:root => true) 
     end
+
 
     #find results length to display on search page
     @results_length = @activities.size + @resources.size 

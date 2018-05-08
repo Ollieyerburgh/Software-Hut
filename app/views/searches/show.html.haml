@@ -1,23 +1,25 @@
+.generic-container
+  .generic-header
 
 .results-container
   .results-inner
     %table
-      %tbody        
+      %tbody
       - 10.times do |count|
-        - if @activities[count]
+        - if @activities_hash[count]
           %tr
-            %td.result-title Event Title: #{@activities[count].title}
-            %td.result-date Event date: #{@activities[count]['start_date']} #{@activities[count].end_date}
-            %td.result-description Description: #{@activities[count].description}
-            %td.result-link Link to website: #{@activities[count].link}
-            %td.result-address Address: #{@activities[count].link}
-            %td.result-contact #{@activities[count].email}
+            %td.result-title Event Title: #{@activities_hash[count]['title']}
+            %td.result-date Event date: #{@activities[count]['start_date']} #{@activities_hash[count]['end_date']}
+            %td.result-description Description: #{@activities_hash[count]['description']}
+            %td.result-link Link to website: #{@activities_hash[count]['link']}
+            %td.result-address Address: #{@activities_hash[count]['link']}
+            %td.result-contact #{@activities_hash[count]['email']}
             %td
-              = @activities[count]['id']
-              = link_to like_activity_path(@activities[count]), class:"like-btn", method: :put, remote: :true do
+              = @activities_hash[count]['id']
+              = link_to like_activity_path(Activity.find_by_id(@activities_hash[count]['activity']['id'])), class:"like-btn", method: :put, remote: :true do
                 = fa_icon('thumbs-up')
             %td.likes-count
-              = @activities[count].get_upvotes.size
+              = (Activity.find_by_id(@activities_hash[count]['activity']['id'])).get_upvotes.size
         - if @resources[count]
           %tr
             %td.result-title Resource Title: #{@resources[count].title}
