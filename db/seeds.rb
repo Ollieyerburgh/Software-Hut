@@ -26,13 +26,13 @@ ages = ['11-14', '14-16', '16-19', '19+']
 ages.each {|age| Age.create(age: age)}
 
 User.create(email:'fake@sheffield.ac.uk', password:'password', password_confirmation: 'password', id: '20', forename: 'isaac', surname: 'yerdburgh',  postcode: 'S102SQ', )
-Admin.create(email: 'isaac@test.com', password:'password', password_confirmation: 'password', id: '1')
+Admin.create(email: 'admin@test.com', password:'password', password_confirmation: 'password', id: '1')
 
-user = User.find_by_email("fake@sheffield.ac.uk")
+#user = User.find_by_email("fake@sheffield.ac.uk")
 
-user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: 's12dw', link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'approved', theme_ids: [1,2], subject_ids: [1,5], delivery_ids: [1], age_ids: [1])
-user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: 's37hb', link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'approved', theme_ids: [1,2], subject_ids: [1,5], delivery_ids: [1], age_ids: [1])
-user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: 'gl103qx' , link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'approved', theme_ids: [1,2], subject_ids: [1,5], delivery_ids: [1], age_ids: [1])
+#user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: 's12dw', link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'approved', theme_ids: [1,2], subject_ids: [1,5], delivery_ids: [1], age_ids: [1])
+#user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: 's37hb', link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'approved', theme_ids: [1,2], subject_ids: [1,5], delivery_ids: [1], age_ids: [1])
+#user.activities.create(title: Faker::Name.title, description: Faker::Company.bs, start_date: '01/13/2019', end_date: '02/13/2019', deadline: '01/13/2019', postcode: 'gl103qx' , link: Faker::Internet.url, email: Faker::Internet.email, address: Faker::Address.street_address, status: 'approved', theme_ids: [1,2], subject_ids: [1,5], delivery_ids: [1], age_ids: [1])
 
 
 
