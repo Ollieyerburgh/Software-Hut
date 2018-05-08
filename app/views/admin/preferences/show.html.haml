@@ -1,14 +1,15 @@
 .generic-container
   .generic-header
-  %h1 Edit preference options
+  %h2 Edit preference options
 %br
 .container
+  
   %table.table
     %thead
       %tr
         %th
-          %h2 Subjects
-          %br
+
+          %h4 Subjects
           = link_to 'New Subject', new_subject_path
 
     %tbody
@@ -23,8 +24,8 @@
     %thead
       %tr
         %th
-          %h2 Themes
           %br
+          %h4 Themes
           = link_to 'New Theme', new_theme_path
     %tbody
       - @themes.each do |theme|
@@ -38,8 +39,8 @@
     %thead
       %tr
         %th
-          %h2 Delivery methods
           %br
+          %h4 Delivery methods
           = link_to 'New delivery method', new_delivery_path
     %tbody
       - @deliveries.each do |delivery|
@@ -53,8 +54,8 @@
     %thead
       %tr
         %th
-          %h2 Ages
           %br
+          %h4 Ages
           = link_to 'New age ', new_age_path
     %tbody
       - @ages.each do |age|
