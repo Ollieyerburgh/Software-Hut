@@ -35,9 +35,9 @@ describe 'Managing activites', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
+    click_button 'Continue'
     page.execute_script("$('#activity_end_date').val('01/01/2008')")
     page.execute_script("$('#activity_deadline').val('01/01/2008')")
-    click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
   end
 
@@ -50,9 +50,9 @@ describe 'Managing activites', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
+    click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_deadline').val('01/01/2008')")
-    click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
   end
 
@@ -65,9 +65,9 @@ describe 'Managing activites', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
+    click_button 'Continue'
     page.execute_script("$('#activity_end_date').val('01/01/2008')")
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
-    click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
   end
 
@@ -98,9 +98,12 @@ describe 'Managing activites', js: true do
   specify 'I cannot create an activity without filling in Email ' do
     visit '/'
     click_link 'Create Activity'
+    save_and_open_page
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
+    fill_in 'Activity postcode', with: 'GL88XY'
+
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
