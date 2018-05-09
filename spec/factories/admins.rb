@@ -27,6 +27,13 @@ FactoryGirl.define do
   factory :admin do
     email {'admin@admin.com'}
     password {'test1234'}
+    higher_access true
+
+    factory :admin_lower do
+      email {'admintest@admin.com'}
+      password {'password12'}
+      higher_access false
+    end
 
   end
 end

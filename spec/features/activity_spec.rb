@@ -38,6 +38,8 @@ describe 'Managing activites', js: true do
     click_button 'Continue'
     page.execute_script("$('#activity_end_date').val('01/01/2008')")
     page.execute_script("$('#activity_deadline').val('01/01/2008')")
+    check 'activity_terms_of_service'
+    click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
   end
 
@@ -53,6 +55,8 @@ describe 'Managing activites', js: true do
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_deadline').val('01/01/2008')")
+    check 'activity_terms_of_service'
+    click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
   end
 
@@ -68,6 +72,8 @@ describe 'Managing activites', js: true do
     click_button 'Continue'
     page.execute_script("$('#activity_end_date').val('01/01/2008')")
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    check 'activity_terms_of_service'
+    click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
   end
 
@@ -103,8 +109,6 @@ describe 'Managing activites', js: true do
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
-
-    fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
@@ -126,8 +130,7 @@ describe 'Managing activites', js: true do
   end
 
   specify 'I cannot create an activity without filling in Postcode in the valid format ' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
@@ -194,18 +197,17 @@ describe 'Managing activites', js: true do
   end
 
   specify 'As a user, I can see approved guest activities' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
+    click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/05/2010')")
     page.execute_script("$('#activity_deadline').val('02/10/2012')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
     admin = FactoryGirl.create(:admin)

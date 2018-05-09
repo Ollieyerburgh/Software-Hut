@@ -6,7 +6,7 @@ describe 'Managing activites', js:true do
     click_link 'Create Activity'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Resource description', with: 'Test-Description'
     fill_in 'Email', with: 'Test@hotmail.co.uk'
     attach_file("resource_file", Rails.root + "spec/features/file.pdf")
     check 'resource_terms_of_service'
@@ -20,7 +20,7 @@ describe 'Managing activites', js:true do
     visit '/'
     click_link 'Create Activity'
     click_button 'New Resource'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Resource description', with: 'Test-Description'
     fill_in 'Email', with: 'test@hotmail.com'
     check 'resource_terms_of_service'
     click_button 'Create Resource'
@@ -47,7 +47,7 @@ describe 'Managing activites', js:true do
     click_link 'Create Activity'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Resource description', with: 'Test-Description'
     check 'resource_terms_of_service'
     click_button 'Create Resource'
     expect(page).to have_content 'Please review the problems below:'
@@ -68,7 +68,7 @@ describe 'Managing activites', js:true do
     click_link 'Create Activity'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Resource description', with: 'Test-Description'
     fill_in 'Email', with: 'Test@hotmail.co.uk'
     attach_file("resource_file", Rails.root + "spec/features/file.pdf")
     check 'resource_terms_of_service'
@@ -89,6 +89,7 @@ describe 'Managing activites', js:true do
     find('.dropdown-toggle').click
     click_link 'My Activities'
     expect(page).to have_content 'Test-Description'
+    expect(page).to have_content 'Download'
   end
 
   specify 'When I like an activity, it appears in saved activities' do

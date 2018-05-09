@@ -34,7 +34,6 @@ describe 'User registration', js: true do
     page.execute_script("$('#user_dob').val('01/01/2000')")
     click_button 'Sign up'
     expect(page).to have_content 'Welcome! You have signed up successfully'
-    expect(User.count).to increase_by(1)
   end
 
   specify 'I cannot Sign up as a user with a short password' do

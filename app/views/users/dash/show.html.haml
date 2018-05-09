@@ -88,9 +88,9 @@
           %td= resource.description
           %td= link_to "Download", resource.file.url, download: '' unless resource.file.blank?
           %td
-            - if can? :update, activity
-              = link_to 'Edit', edit_activity_path(activity), class:"btn btn-default"
-              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"
+            - if can? :update, resource
+              = link_to 'Edit', edit_resource_path(resource), class:"btn btn-default"
+              = link_to 'Destroy', resource, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger"
 
   %h1  Rejected Resources
   %table.table.table-bordered.table-striped

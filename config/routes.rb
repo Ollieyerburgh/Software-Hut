@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   devise_for :admins
   devise_for :users
 
+
   resources :admin
   namespace :admin do
     resources :requests do
@@ -19,11 +20,11 @@ Rails.application.routes.draw do
         post :reject
       end
     end
-    resources :registrations
   end
 
   namespace :admin do
     resources :users
+    resources :registrations
     resources :preferences
   end
 

@@ -33,8 +33,7 @@ describe 'Admin features', js: true do
     admin = FactoryGirl.create(:admin)
     user = FactoryGirl.create(:user1)
     login_as(user)
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
