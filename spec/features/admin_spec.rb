@@ -12,10 +12,10 @@ describe 'Admin features', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
+    click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/01/2009')")
     page.execute_script("$('#activity_deadline').val('01/01/2010')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
     login_as(admin)
@@ -41,10 +41,10 @@ describe 'Admin features', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'UserTest@user.com'
     click_button 'Continue'
+    click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/01/2009')")
     page.execute_script("$('#activity_deadline').val('01/01/2010')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
     login_as(admin)
@@ -68,20 +68,19 @@ describe 'Admin features', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'GuestReject@test.com'
     click_button 'Continue'
+    click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/01/2009')")
     page.execute_script("$('#activity_deadline').val('01/01/2010')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
+    expect(page).to have_content ("Activity was successfully created")
     login_as(admin)
     visit '/admin/requests/show'
-    visit '/admin'
-    click_link 'Manage requests'
     expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'Request changes'
     expect(page).to have_content 'Test-title'
-    click_link 'Reject'
+    click_link 'Request changes'
     fill_in 'Message', with: 'Rejected'
     click_button 'Submit'
     expect(page).to have_content 'Rejection email was sent'
@@ -102,10 +101,10 @@ describe 'Admin features', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'UserReject@test.com'
     click_button 'Continue'
+    click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/01/2009')")
     page.execute_script("$('#activity_deadline').val('01/01/2010')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
     login_as(admin)
@@ -113,9 +112,9 @@ describe 'Admin features', js: true do
     visit '/admin'
     click_link 'Manage requests'
     expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'Request changes'
     expect(page).to have_content 'Test-title'
-    click_link 'Reject'
+    click_link 'Request changes'
     fill_in 'Message', with: 'Rejected'
     click_button 'Submit'
     expect(page).to have_content 'Rejection email was sent'
@@ -133,6 +132,7 @@ describe 'Admin features', js: true do
     expect(page).to have_content user.forename
 
     click_link 'Edit'
+    save_and_open_page
     fill_in 'Forename', with: "updatedName"
     fill_in 'Email', with: "updated@test.com"
     click_button 'Update'
@@ -160,7 +160,7 @@ describe 'Admin features', js: true do
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit '/admin'
-    click_link 'register'
+    click_link 'Admin Invite'
     fill_in 'Email', with: 'admin2@admin2.com'
     fill_in 'Password', with: '12345678'
     fill_in 'Password confirmation', with: '12345678'
@@ -199,10 +199,10 @@ describe 'Admin features', js: true do
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
+    click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/01/2009')")
     page.execute_script("$('#activity_deadline').val('01/01/2010')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
     expect(page).to have_content "Activity was successfully created"
@@ -217,7 +217,7 @@ describe 'Admin features', js: true do
     click_link 'Create Activity'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-admin'
-    fill_in 'Activity description', with: 'Test-Desc'
+    fill_in 'Resource description', with: 'Test-Desc'
     fill_in 'Email', with: 'test@testadmin.com'
     check 'resource_terms_of_service'
     click_button 'Create Resource'

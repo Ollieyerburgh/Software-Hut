@@ -20,6 +20,7 @@
           %td= activity.email
           %td= activity.postcode
           %td
+            = link_to 'Activity', activity, class:'btn btn-info'
             = link_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => activity.id}, method: :post, class:'btn btn-default'
             = link_to 'Request changes', edit_admin_request_path(activity.id), class:'btn btn-danger'
   %br
@@ -38,6 +39,7 @@
           %td= resource.description
           %td= resource.email
           %td
+            = link_to 'Resource', resource, class:'btn btn-info'
             = link_to 'Approve', {:controller => 'admin/requests', :action => 'approve', :id => resource.id}, method: :post, class:'btn btn-default'
             = link_to 'Request changes', reject_admin_request_path(resource.id), class:'btn btn-danger'
   %br
