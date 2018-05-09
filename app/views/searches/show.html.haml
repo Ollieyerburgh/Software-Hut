@@ -21,7 +21,7 @@
 
         - @link = 'https://team18.demo3.hut.shefcompsci.org.uk/activities/' + @activities_hash[count]['activity']['id'].to_s
 
-          %tr{:class => @class, :data => {:link => @link} }
+          %tr.clickonly{:class => @class, :data => {:link => @link} }
             %td.result-title #{@activities_hash[count]['activity']['title']} #{@colour}
             %td.result-date
               Date:

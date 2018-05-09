@@ -25,7 +25,7 @@ $( document ).on('turbolinks:load', function() {
 
     });
 
-    $("tr").click(function() {
+    $(".clickonly").click(function() {
         window.location = $(this).data("link");
     });
 
