@@ -31,7 +31,8 @@ $( document ).on('turbolinks:load', function() {
 
     if ($('.irs').length==0) {
         $("#example_id").ionRangeSlider({
-            min: '0',
+            min: '100',
+            from: '300',
             max: '1400'
         });
     }
