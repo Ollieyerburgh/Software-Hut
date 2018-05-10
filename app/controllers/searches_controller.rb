@@ -49,25 +49,25 @@ class SearchesController < ApplicationController
         @distances.push((distance[:elements][0][:distance][:value]/1000).to_i)
       }
 
+
       #remove activities whose distance is greater than specified
+      @activities_with_correct_distance = []
+      @correct_distances = []
       @distances.each_with_index {|distance, index| 
-        if (distance > @distance_wanted)
-          puts "Removing activity as distance too big"
-          @activities = @activities - [@activities[index]]
+        if !(distance > @distance_wanted)
+          @activities_with_correct_distance.append(@activities[index])
+          @correct_distances.append(distance)
         end
       }
 
+      @activities = @activities_with_correct_distance
+
       #convert activities to hashes (so we can add distances to them)
       @activities_hash = @activities.as_json(:root => true) #array of hashes
-      p @activities_hash
-      p 'here'
-
       #add distances to activities
       @activities_hash.each_with_index {|activity, index| 
-        activity['distance'] = @distances[index]
+        activity['distance'] = @correct_distances[index].to_i
       }
-      p @activities_hash
-      p 'here'
 
       #order array of activerecord activities results on distance
       @activities.sort_by{|x| @activities_hash.index x['distance']}
@@ -83,7 +83,6 @@ class SearchesController < ApplicationController
     else
       @activities_hash = @activities.as_json(:root => true) 
     end
-
 
     #find results length to display on search page
     @results_length = @activities.size + @resources.size 

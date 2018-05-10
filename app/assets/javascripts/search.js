@@ -37,7 +37,6 @@ $( document ).on('turbolinks:load', function() {
         });
     }
     
-
     
     $(".slickaroo").slick({
         dots: false,
