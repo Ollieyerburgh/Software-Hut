@@ -1,15 +1,17 @@
 .generic-container
   .generic-header
-  %h2 Edit preference options
+    %h1 Edit preference options
+    Add/Edit/Delete Subjects, Themes, Delivery methods, and Ages.
 %br
 .container
-  
+
   %table.table
     %thead
       %tr
         %th
 
           %h4 Subjects
+          %span.glyphicon.glyphicon-plus
           = link_to 'New Subject', new_subject_path
 
     %tbody
@@ -26,6 +28,7 @@
         %th
           %br
           %h4 Themes
+          %span.glyphicon.glyphicon-plus
           = link_to 'New Theme', new_theme_path
     %tbody
       - @themes.each do |theme|
@@ -41,6 +44,7 @@
         %th
           %br
           %h4 Delivery methods
+          %span.glyphicon.glyphicon-plus
           = link_to 'New delivery method', new_delivery_path
     %tbody
       - @deliveries.each do |delivery|
@@ -56,6 +60,7 @@
         %th
           %br
           %h4 Ages
+          %span.glyphicon.glyphicon-plus
           = link_to 'New age ', new_age_path
     %tbody
       - @ages.each do |age|

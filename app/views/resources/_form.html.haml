@@ -7,11 +7,16 @@
     = f.input :email, label: 'Email', placeholder: 'YourEmail@here.com'
 
   .form-file_field
-    = f.input :file, as: :file, name: 'files'
+    = f.label 'File'
+    %a{"data-content" => "Upload a flyer, broschure, or a document.", "data-toggle" => "popover", :title => "File"}
+      %span.glyphicon.glyphicon-question-sign
+    = f.input :file, as: :file, name: 'files', label: false
     = f.hidden_field :file_cache
     = f.input :terms_of_service, as: :boolean, inline_label: "I agree that I have permission to post this resource on this website"
-
-    %br
+    - if !admin_signed_in?
+      %p
+      .red-important
+        This submission will need to be approved by the website admins prior to being posted.
 
   .form-actions
     = f.button :submit

@@ -1,5 +1,20 @@
 .form-inputs.activities
-  = f.association :subjects, input_html: { class: 'select2' }
-  = f.association :themes, input_html: { class: 'select2' }
-  = f.association :deliveries, label_method: :method, input_html: { class: 'select2' }
-  = f.association :ages, label_method: :age, input_html: { class: 'select2' }
+  = f.label 'Subjects'
+  %a{"data-content" => "University course subjects", "data-toggle" => "popover", :title => "Subjects"}
+    %span.glyphicon.glyphicon-question-sign
+  = f.association :subjects, label: false, input_html: { class: 'select2' }
+
+  = f.label 'Themes'
+  %a{"data-content" => "Please choose from themes that apply to your activity.", "data-toggle" => "popover", :title => "Themes"}
+    %span.glyphicon.glyphicon-question-sign
+  = f.association :themes, label: false, input_html: { class: 'select2' }
+
+  = f.label 'Deliveries'
+  %a{"data-content" => "Select the delivery methods that your activity is available in.", "data-toggle" => "popover", :title => "Deliveries"}
+    %span.glyphicon.glyphicon-question-sign
+  = f.association :deliveries, label_method: :method, label: false, input_html: { class: 'select2' }
+
+  = f.label 'Ages'
+  %a{"data-content" => "If there is an age limit for your activity, please specify below.", "data-toggle" => "popover", :title => "Ages"}
+    %span.glyphicon.glyphicon-question-sign
+  = f.association :ages, label_method: :age, label: false, input_html: { class: 'select2' }

@@ -1,7 +1,8 @@
 .form-inputs.activities
-
-  = f.input :eligibility_criteria, label: 'Eligability Criteria', :maxlength => 50
-
+  %a{"data-content" => "Who can go to this event? e.g. 'First in family to go to university'", "data-toggle" => "popover", :title => "Eligability Criteria"}
+    %span.glyphicon.glyphicon-question-sign
+  = f.label 'Eligability Criteria'
+  = f.input :eligibility_criteria, label: false, :maxlength => 50
 
   = f.label 'Start Date'
   = f.text_field :start_date, 'data-behaviour' => 'datepicker', label: 'Start Date'
