@@ -19,11 +19,11 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-FactoryGirl.define do
-    user = User.create(email:'jkshdjak@gmail.com', password: 'password', password_confirmation: 'password', forename: 'anon', surname: 'anon', postcode: "rg45 8nd")
-
-    factory :preference do
-        proximity 1000
-        user user
-    end
-  end
+#FactoryGirl.define do
+#    user = User.create(email:'jkshdjak@gmail.com', password: 'password', password_confirmation: 'password', forename: 'anon', surname: 'anon', postcode: "rg45 8nd")
+#
+#    factory :preference do
+#        proximity 1000
+#        user user
+#    end
+#  end

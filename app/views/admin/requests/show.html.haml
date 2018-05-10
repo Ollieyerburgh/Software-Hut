@@ -1,7 +1,9 @@
-
-%br
 .container
-  %h1  Pending activities
+  %h1 Manage Requests
+  Accept and reject requests for activities or resources.
+  %h2
+    Pending Activities
+    %span.glyphicon.glyphicon-time
   %table.table.table-bordered.table-striped
     %thead
       %tr
@@ -22,10 +24,13 @@
           %td= activity.email
           %td= activity.postcode
           %td
+            = link_to 'Activity', activity, class:'btn btn-info'
             = link_to 'Approve', {:controller => 'admin/requests', :action => 'create', :id => activity.id}, method: :post, class:'btn btn-default'
-            = link_to 'Reject', edit_admin_request_path(activity.id), class:'btn btn-danger'
+            = link_to 'Request changes', edit_admin_request_path(activity.id), class:'btn btn-danger'
   %br
-  %h1  Pending resources
+  %h2
+    Pending Resources
+    %span.glyphicon.glyphicon-time
   %table.table.table-bordered.table-striped
     %thead
       %tr
@@ -40,43 +45,10 @@
           %td= resource.description
           %td= resource.email
           %td
+            = link_to 'Resource', resource, class:'btn btn-info'
             = link_to 'Approve', {:controller => 'admin/requests', :action => 'approve', :id => resource.id}, method: :post, class:'btn btn-default'
-            = link_to 'Reject', reject_admin_request_path(resource.id), class:'btn btn-danger'
-
-  %h1  Approved resources
-  %table.table.table-bordered.table-striped
-    %thead
-      %tr
-        %th.col Title
-        %th.col Description
-        %th.col Email
-    %tbody
-      - @resourcesaccepted.each do |resource|
-        %tr
-          %td= resource.title
-          %td= resource.description
-          %td= resource.email
-
-  %h1  Rejected requests
-  %table.table.table-bordered.table-striped
-    %thead
-      %tr
-        %th.col Title
-        %th.col Description
-        %th.col Deadline
-        %th.col URL
-        %th.col Email
-        %th.col Postcode
-    %tbody
-      - @activitiesrejected.each do |activity|
-        %tr
-          %td= activity.title
-          %td= activity.description
-          %td= activity.deadline
-          %td= activity.link
-          %td= activity.email
-          %td= activity.postcode
-
+            = link_to 'Request changes', reject_admin_request_path(resource.id), class:'btn btn-danger'
+  %br
 
   .paginate-container
     .paginate

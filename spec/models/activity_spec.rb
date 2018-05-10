@@ -52,17 +52,20 @@ RSpec.describe Activity, type: :model do
   it "is not valid without title" do
     activity.title = nil
     expect(activity).to_not be_valid
+    activity.title = "test"
 
   end
 
   it "is not valid without description" do
     activity.description = nil
     expect(activity).to_not be_valid
+    activity.description = "test"
   end
 
   it "is not valid without start date" do
     activity.start_date = nil
     expect(activity).to_not be_valid
+    activity.start_date = "01/01/2001"
   end
   it "is not valid without end date" do
     activity.end_date = nil
@@ -99,13 +102,6 @@ RSpec.describe Activity, type: :model do
     expect(activity).to_not be_valid
   end
 
-  it "does not return approved activities " do
-    expect(Activity.pending).to_not include(Activity.where("status = approved"))
-  end
-
-  it "doesn't include pending activities" do
-   expect(Activity.approved).to_not include(Activity.where("status = pending"))
-  end
 
   describe "Associations" do
     it { should have_and_belong_to_many(:deliveries) }

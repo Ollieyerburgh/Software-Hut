@@ -22,7 +22,6 @@
 require 'rails_helper'
 
 RSpec.describe Preference, type: :model do
-  preference = FactoryGirl.create(:preference)
 
   describe "Associations" do
     it { should have_and_belong_to_many(:subjects) }

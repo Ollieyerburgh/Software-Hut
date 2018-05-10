@@ -2,28 +2,36 @@ require 'rails_helper'
 
 describe 'Admin features', js: true do
 
+  specify 'I can login as an admin' do
+    admin = FactoryGirl.create(:admin)
+    visit '/admins/sign_in'
+    fill_in 'Email', with: 'admin@admin.com'
+    fill_in 'Password', with: 'test1234'
+    click_button 'Log in'
+    expect(page).to have_content "Signed in successfully."
+  end
+
   specify 'As an admin I can approve an activity request from a guest' do
     admin = FactoryGirl.create(:admin)
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'test@hotmail.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'test@hotmail.com'
+    click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/01/2009')")
     page.execute_script("$('#activity_deadline').val('01/01/2010')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
     login_as(admin)
     visit '/admin/requests/show'
     visit '/admin'
-    click_link 'Manage requests'
+    click_link 'Manage Requests'
     expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'Request changes'
     expect(page).to have_content 'Test-title'
     click_link 'Approve'
     ActionMailer::Base.deliveries.last.to.should include("test@hotmail.com")
@@ -33,26 +41,25 @@ describe 'Admin features', js: true do
     admin = FactoryGirl.create(:admin)
     user = FactoryGirl.create(:user1)
     login_as(user)
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'UserTest@user.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'UserTest@user.com'
+    click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/01/2009')")
     page.execute_script("$('#activity_deadline').val('01/01/2010')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
     login_as(admin)
     visit '/admin/requests/show'
     visit '/admin'
-    click_link 'Manage requests'
+    click_link 'Manage Requests'
     expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'Request changes'
     expect(page).to have_content 'Test-title'
     click_link 'Approve'
     ActionMailer::Base.deliveries.last.to.should include("UserTest@user.com")
@@ -60,32 +67,31 @@ describe 'Admin features', js: true do
 
   specify 'As an admin I can reject an activity request from a guest' do
     admin = FactoryGirl.create(:admin)
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
+    wait_for_ajax
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'GuestReject@test.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'GuestReject@test.com'
+    click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/01/2009')")
     page.execute_script("$('#activity_deadline').val('01/01/2010')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
+    expect(page).to have_content ("Activity was successfully created")
     login_as(admin)
     visit '/admin/requests/show'
-    visit '/admin'
-    click_link 'Manage requests'
     expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'Request changes'
     expect(page).to have_content 'Test-title'
-    click_link 'Reject'
+    click_link 'Request changes'
     fill_in 'Message', with: 'Rejected'
     click_button 'Submit'
     expect(page).to have_content 'Rejection email was sent'
-    expect(page).to have_content 'Pending activities'
+    expect(page).to have_content 'Pending Activities'
     ActionMailer::Base.deliveries.last.to.should include("GuestReject@test.com")
 
   end
@@ -97,29 +103,29 @@ describe 'Admin features', js: true do
     visit '/'
     click_link 'Create Activity'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'UserReject@test.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'UserReject@test.com'
+    click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/01/2009')")
     page.execute_script("$('#activity_deadline').val('01/01/2010')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
     login_as(admin)
     visit '/admin/requests/show'
     visit '/admin'
-    click_link 'Manage requests'
+    click_link 'Manage Requests'
     expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'Request changes'
     expect(page).to have_content 'Test-title'
-    click_link 'Reject'
+    click_link 'Request changes'
     fill_in 'Message', with: 'Rejected'
     click_button 'Submit'
     expect(page).to have_content 'Rejection email was sent'
-    expect(page).to have_content 'Pending activities'
+    expect(page).to have_content 'Pending Activities'
     ActionMailer::Base.deliveries.last.to.should include("UserReject@test.com")
 
   end
@@ -133,6 +139,7 @@ describe 'Admin features', js: true do
     expect(page).to have_content user.forename
 
     click_link 'Edit'
+
     fill_in 'Forename', with: "updatedName"
     fill_in 'Email', with: "updated@test.com"
     click_button 'Update'
@@ -160,7 +167,7 @@ describe 'Admin features', js: true do
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit '/admin'
-    click_link 'register'
+    click_link 'Admin Invite'
     fill_in 'Email', with: 'admin2@admin2.com'
     fill_in 'Password', with: '12345678'
     fill_in 'Password confirmation', with: '12345678'
@@ -178,6 +185,7 @@ describe 'Admin features', js: true do
     visit '/'
     find('.dropdown-toggle').click
     click_link 'Account'
+    wait_for_ajax
     fill_in 'Password', with: 'password1'
     fill_in 'Password confirmation', with: 'password1'
     fill_in 'Current password', with: 'test1234'
@@ -191,18 +199,17 @@ describe 'Admin features', js: true do
     fill_in 'Email', with: 'admin@admin.com'
     fill_in 'Password', with: 'test1234'
     click_link 'Log in'
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'test@hotmail.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'test@hotmail.com'
+    click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
     page.execute_script("$('#activity_end_date').val('01/01/2009')")
     page.execute_script("$('#activity_deadline').val('01/01/2010')")
-    click_button 'Continue'
     check 'activity_terms_of_service'
     click_button 'Continue'
     expect(page).to have_content "Activity was successfully created"
@@ -215,13 +222,45 @@ describe 'Admin features', js: true do
     click_link 'Log in'
     visit '/'
     click_link 'Create Activity'
+    wait_for_ajax
+    wait_for_ajax
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-admin'
-    fill_in 'Activity description', with: 'Test-Desc'
+    fill_in 'Resource description', with: 'Test-Desc'
     fill_in 'Email', with: 'test@testadmin.com'
     check 'resource_terms_of_service'
     click_button 'Create Resource'
     expect(page).to have_content "Resource was successfully created."
+  end
+
+  specify 'As an admin I can approve a resource request, which sends an email' do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    visit "/admin/users/show"
+    resource = FactoryGirl.create(:resource)
+    visit "/admin/requests/show"
+    expect(page).to have_content 'Approve'
+    expect(page).to have_content 'Request changes'
+    expect(page).to have_content 'test'
+    click_link 'Approve'
+    expect(page).to_not have_content 'Approve'
+    ActionMailer::Base.deliveries.last.to.should include("resourcetest2@test.com")
+  end
+
+  specify 'As an admin, I can reject a resource request, which sends an email' do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    resource = FactoryGirl.create(:resource)
+    visit "/admin/requests/show"
+    wait_for_ajax
+    click_link 'Request changes'
+    fill_in 'Message', with: 'Rejected'
+    fill_in 'Message', with: 'Rejected'
+    click_button 'Submit'
+    expect(page).to have_content 'Rejection email was sent'
+    expect(page).to have_content 'Pending Activities'
+    ActionMailer::Base.deliveries.last.to.should include("resourcetest2@test.com")
+
   end
 
   context 'Preferences' do
@@ -298,9 +337,10 @@ describe 'Admin features', js: true do
       click_link 'New Theme'
       fill_in 'Name', with: 'test-theme'
       click_button 'Create Theme'
-      sleep 1
+      sleep (1)
       visit '/admin/preferences/index'
       click_link 'Edit'
+
       fill_in 'Name', with: 'txt-pref'
       click_button 'Update Theme'
       expect(page).to have_content 'Theme was successfully updated.'
@@ -390,26 +430,7 @@ describe 'Admin features', js: true do
     end
 
   end
-=begin
-  specify 'As an admin I can approve a resource request, which sends an email' do
-    admin = FactoryGirl.create(:admin)
-    login_as(admin)
-    visit "/admin/users/show"
-    resource = FactoryGirl.create(:resource)
-    visit "/admin/requests/show"
-    expect(current_path).to eq("/admin/requests/show")
-    save_and_open_page
-    expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
-    expect(page).to have_content 'test-title'
-    click_link 'Approve'
 
-    save_and_open_page
-    expect(page).to_not have_content 'Approve'
 
-  end
-=end
-=begin
 
-=end
 end

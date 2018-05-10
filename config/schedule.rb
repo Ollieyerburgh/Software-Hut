@@ -16,7 +16,7 @@ env :MAILTO, 'systems@epigenesys.org.uk'
 set :output, 'log/whenever.log'
 set :environment, 'development'
 
-every :day, at: '10:50am' do
+every :monday, at: '10am' do
   rake 'send_weekly_email'
 end
 

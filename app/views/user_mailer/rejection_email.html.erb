@@ -6,10 +6,16 @@
   <body>
     <h1>Hello, <%=@user.forename unless @user.nil?%> </h1>
     <p>
-      Unfortunately your request for an activity <%= @activity.title %> has been rejected.
+      Unfortunately your HeppSY request cannot be accepted yet. Below is a message from an administrator, detailing what changes must be made.
     </p>
     <p>
-      This has happened because <%= @message %>
+      "<%= @message %>"
+    </p>
+    <p>
+      Don't worry, your request will appear as 'Pending' in your activities if you are a user. If you make a change to the activity, it will be checked by an admin again.
+    </p>
+    <p>
+      This can be found by logging in, clicking on your name in the navigation bar, and selecting 'My Activities'. 
     </p>
   </body>
 </html>

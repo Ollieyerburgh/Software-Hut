@@ -8,4 +8,5 @@
     });
 
 <%end%>
-  $("#likes_<%= @activity.id %>").html("<%=@activity.get_upvotes.size %>")
+
+$("#likes_<%= @activity.id %>").html("<p><%=@activity.get_upvotes.size %></p>")

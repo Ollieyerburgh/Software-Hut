@@ -15,6 +15,7 @@
 #  last_sign_in_ip        :inet
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  higher_access          :boolean          default(FALSE)
 #
 # Indexes
 #
@@ -26,6 +27,19 @@ FactoryGirl.define do
   factory :admin do
     email {'admin@admin.com'}
     password {'test1234'}
+    higher_access true
+
+    factory :admin_lower do
+      email {'admintest@admin.com'}
+      password {'password12'}
+      higher_access false
+    end
+
+    factory :admin_higher2 do
+      email{'a1dmin@admin.com'}
+      password 'password'
+      higher_access true
+    end
 
   end
 end

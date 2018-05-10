@@ -1,6 +1,9 @@
 .form-inputs.activities
+  = f.label 'Eligability Criteria'
+  %a{"data-content" => "Who can go to this event? e.g. 'First in family to go to university'", "data-toggle" => "popover", :title => "Eligability Criteria"}
+    %span.glyphicon.glyphicon-question-sign
+  = f.input :eligibility_criteria, label: false, :maxlength => 50
 
-  = f.input :eligibility_criteria, label: 'Eligability Criteria', :maxlength => 50
   = f.label 'Start Date'
   = f.text_field :start_date, 'data-behaviour' => 'datepicker', label: 'Start Date'
   %br
@@ -12,6 +15,7 @@
   = f.label 'Deadline for application'
   = f.text_field :deadline, 'data-behaviour' => 'datepicker', label: 'Start Date'
   %br
+  = f.input :terms_of_service, as: :boolean, label: "I agree that I have permission to post this activity on this website"
 
 
 :javascript

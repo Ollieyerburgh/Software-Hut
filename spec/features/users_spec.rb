@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User registration', js: true do
+describe 'Users', js: true do
   specify 'I can Sign up as a user with a long password' do
     visit '/'
     expect(page).to have_content 'Sign up'
@@ -17,7 +17,7 @@ describe 'User registration', js: true do
     expect(page).to_not have_content 'is too short (minimum is 8 characters)'
 
   end
-  specify 'I can Sign up as a user with a long password' do
+  specify 'I can Sign up as a Learner' do
     visit '/'
     expect(page).to have_content 'Sign up'
     click_link 'Sign up'
@@ -34,7 +34,57 @@ describe 'User registration', js: true do
     page.execute_script("$('#user_dob').val('01/01/2000')")
     click_button 'Sign up'
     expect(page).to have_content 'Welcome! You have signed up successfully'
-    expect(User.count).to increase_by(1)
+  end
+
+  specify 'I can Sign up as a Guardian/Parent' do
+    visit '/'
+    expect(page).to have_content 'Sign up'
+    click_link 'Sign up'
+    fill_in 'Forename', with: 'Test'
+    fill_in 'Surname', with: 'Test-Surname'
+    fill_in 'Email', with: 'Test-Email1@hotmail.com'
+    fill_in 'Password', with: 'test123434'
+    fill_in 'Password confirmation', with: 'test123434'
+    fill_in 'Postcode', with: 'S102SQ'
+    fill_in 'How did you hear about HeppSY?', with: 'test-answer'
+    select "Guardian/Parent", :from => "Role"
+    fill_in 'Associated School', with: 'School-test'
+
+    click_button 'Sign up'
+    expect(page).to have_content 'Welcome! You have signed up successfully'
+  end
+  specify 'I can Sign up as a Teacher/advisor' do
+    visit '/'
+    expect(page).to have_content 'Sign up'
+    click_link 'Sign up'
+    fill_in 'Forename', with: 'Test'
+    fill_in 'Surname', with: 'Test-Surname'
+    fill_in 'Email', with: 'Test-Email1@hotmail.com'
+    fill_in 'Password', with: 'test123434'
+    fill_in 'Password confirmation', with: 'test123434'
+    fill_in 'Postcode', with: 'S102SQ'
+    fill_in 'How did you hear about HeppSY?', with: 'test-answer'
+    select "Teacher/Advisor", :from => "Role"
+    fill_in 'School', with: 'School-test'
+    click_button 'Sign up'
+    expect(page).to have_content 'Welcome! You have signed up successfully'
+  end
+
+  specify 'I can Sign up as a Partner' do
+    visit '/'
+    expect(page).to have_content 'Sign up'
+    click_link 'Sign up'
+    fill_in 'Forename', with: 'Test'
+    fill_in 'Surname', with: 'Test-Surname'
+    fill_in 'Email', with: 'Test-Email1@hotmail.com'
+    fill_in 'Password', with: 'test123434'
+    fill_in 'Password confirmation', with: 'test123434'
+    fill_in 'Postcode', with: 'S102SQ'
+    fill_in 'How did you hear about HeppSY?', with: 'test-answer'
+    select "Partner", :from => "Role"
+    fill_in 'Organisation', with: 'School-test'
+    click_button 'Sign up'
+    expect(page).to have_content 'Welcome! You have signed up successfully'
   end
 
   specify 'I cannot Sign up as a user with a short password' do
@@ -143,6 +193,63 @@ describe 'User registration', js: true do
 
   end
 
+  specify 'I can login as a user' do
+    user = FactoryGirl.create(:user)
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test.com"
+    fill_in "Password", with: "foobar12"
+    click_button "Log in"
+    expect(page).to have_content "Signed in successfully."
+  end
+
+  specify 'I cannot login with a invalid password' do
+    user = FactoryGirl.create(:user)
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test1.com"
+    fill_in "Password", with: "foobar12"
+    click_button "Log in"
+    expect(page).to have_content "Invalid Email or password."
+  end
+
+  specify 'I can add a preference and receive an email containing activities that fit' do
+    user = FactoryGirl.create(:user)
+    age = FactoryGirl.create(:age)
+    theme = FactoryGirl.create(:theme)
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test.com"
+    fill_in "Password", with: "foobar12"
+    click_button "Log in"
+    find('.dropdown-toggle').click
+    click_link 'My Preferences'
+    click_link 'New Preference'
+    select "9-11", :from => "Ages"
+    select "Careers", :from => "Themes"
+    click_button "Create Preference"
+    expect(page).to have_content "Preference was successfully created"
+    ActionMailer::Base.deliveries.last.to.should include("ollieyerburgh@test.com")
+  end
+  
+  specify 'I can add a preference and receive an email containing activities that fit' do
+    user = FactoryGirl.create(:user)
+    age = FactoryGirl.create(:age)
+    theme = FactoryGirl.create(:theme)
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test.com"
+    fill_in "Password", with: "foobar12"
+    click_button "Log in"
+    find('.dropdown-toggle').click
+    click_link 'My Preferences'
+    click_link 'New Preference'
+    select "9-11", :from => "Ages"
+    select "Careers", :from => "Themes"
+    click_button "Create Preference"
+    expect(page).to have_content "Preference was successfully created"
+  end
+
   specify 'I can like an activity, which changes like count' do
     activity = FactoryGirl.create(:activity_approved)
     user = FactoryGirl.create(:user1)
@@ -153,7 +260,8 @@ describe 'User registration', js: true do
     click_button "Log in"
     visit '/activities'
     expect(page).to have_css("#likes_1", text: "0")
-    Capybara.page.find('.like-btn').click
+    Capybara.page.find('#like_1').click
+    wait_for_ajax
     visit '/activities'
     sleep(5)
     expect(page).to have_css("#likes_1", text: "1")

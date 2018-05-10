@@ -22,6 +22,7 @@
 
 FactoryGirl.define do
   factory :subject do
-    name "subject"
+    name "Maths"
+    id "1"
   end
 end

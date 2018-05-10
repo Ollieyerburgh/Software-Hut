@@ -10,6 +10,7 @@
 
 FactoryGirl.define do
   factory :theme do
-    name "theme"
+    name "Careers"
+    id "1"
   end
 end

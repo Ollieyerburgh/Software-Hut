@@ -1,12 +1,25 @@
 require 'rails_helper'
 
-describe 'Managing activites', js:true do
+describe 'Managing resources', js:true do
   specify 'I can create a resource with a file as a guest' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Resource description', with: 'Test-Description'
+    fill_in 'Email', with: 'Test@hotmail.co.uk'
+    attach_file("resource_file", Rails.root + "spec/features/file.pdf")
+    check 'resource_terms_of_service'
+    click_button 'Create Resource'
+    expect(page).to have_content 'Resource was successfully created'
+  end
+
+  specify 'I can create a resource with a file as a user' do
+    user = FactoryGirl.create(:user)
+    login_as(user)
+    visit '/activities/new'
+    click_button 'New Resource'
+    fill_in 'Title', with: 'Test-title'
+    fill_in 'Resource description', with: 'Test-Description'
     fill_in 'Email', with: 'Test@hotmail.co.uk'
     attach_file("resource_file", Rails.root + "spec/features/file.pdf")
     check 'resource_terms_of_service'
@@ -17,10 +30,9 @@ describe 'Managing activites', js:true do
 
   specify 'I cannot create an Resource without filling in title' do
 
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     click_button 'New Resource'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Resource description', with: 'Test-Description'
     fill_in 'Email', with: 'test@hotmail.com'
     check 'resource_terms_of_service'
     click_button 'Create Resource'
@@ -30,8 +42,7 @@ describe 'Managing activites', js:true do
 
   specify 'I cannot create an Resource without filling in description' do
 
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -43,16 +54,28 @@ describe 'Managing activites', js:true do
 
 
   specify 'I cannot create an Resource without filling in Email' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Resource description', with: 'Test-Description'
     check 'resource_terms_of_service'
     click_button 'Create Resource'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
   end
+
+  specify 'I cannot create an Resource without checking the terms of service' do
+    visit '/activities/new'
+    click_button 'New Resource'
+    fill_in 'Title', with: 'Test-title'
+    fill_in 'Resource description', with: 'Test-Description'
+    fill_in 'Email', with: 'test@hotmail.com'
+    click_button 'Create Resource'
+    expect(page).to have_content 'Please review the problems below:'
+    expect(page).to have_content "must be accepted"
+  end
+
+
 
 
 
@@ -66,13 +89,15 @@ describe 'Managing activites', js:true do
     click_button 'Log in'
     visit '/'
     click_link 'Create Activity'
+    wait_for_ajax
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Resource description', with: 'Test-Description'
     fill_in 'Email', with: 'Test@hotmail.co.uk'
     attach_file("resource_file", Rails.root + "spec/features/file.pdf")
     check 'resource_terms_of_service'
     click_button 'Create Resource'
+    wait_for_ajax
     expect(page).to have_content 'Resource was successfully created'
     find('.dropdown-toggle').click
     click_link 'Log out'
@@ -88,21 +113,44 @@ describe 'Managing activites', js:true do
     click_button 'Log in'
     find('.dropdown-toggle').click
     click_link 'My Activities'
+    wait_for_ajax
     expect(page).to have_content 'Test-Description'
+    expect(page).to have_content 'Download'
   end
 
-  specify 'When I like an activity, it appears in saved activities' do
-    activity = FactoryGirl.create(:activity_approved)
-    user = FactoryGirl.create(:user1)
-    visit '/'
-    click_link 'Log in'
+  specify 'I can edit my own resource as a user' do
+    resource = FactoryGirl.create(:resource_approved)
+    visit '/users/sign_in'
     fill_in 'Email', with: "ollieyerburgh@test1.com"
-    fill_in 'Password', with: 'foobar12'
+    fill_in 'Password', with: "foobar12"
     click_button 'Log in'
+    wait_for_ajax
+    find('.dropdown-toggle').click
+    click_link 'My Activities'
+    wait_for_ajax
+    expect(page).to have_content "test-resource"
+    click_link 'Edit'
+    wait_for_ajax
+    fill_in 'Resource description', with: 'resource-test'
+    check 'resource_terms_of_service'
+    click_button 'Update Resource'
+    expect(page).to have_content 'Resource was successfully updated.'
+  end
+
+  specify 'I can delete my own resource as a user' do
+    resource = FactoryGirl.create(:resource_approved)
+    visit '/users/sign_in'
+    fill_in 'Email', with: "ollieyerburgh@test1.com"
+    fill_in 'Password', with: "foobar12"
+    click_button 'Log in'
+    wait_for_ajax
     visit '/'
-    click_link 'Saved Activities'
-    expect(page).to have_content 'test-title'
-    find("#likes_#{activity.id}").text.should include('0')
+    find('.dropdown-toggle').click
+    click_link 'My Activities'
+    wait_for_ajax
+    expect(page).to have_content "test-resource"
+    page.accept_confirm { click_link "Destroy" }
+    expect(page).to have_content('Resource was successfully destroyed.')
   end
 
 end

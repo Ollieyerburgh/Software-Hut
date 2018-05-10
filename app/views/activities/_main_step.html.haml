@@ -1,8 +1,18 @@
 
 .form-inputs.activities
+
   = f.input :title, label: 'Title'
-  = f.input :description, label: 'Activity description'
-  = f.input :link, label: 'Web address of activity'
-  = f.input :postcode, label: 'Activity postcode'
-  = f.input :email, label: 'Email', placeholder: 'YourEmail@here.com'
-  
+
+  = f.label 'Description'
+  %a{"data-content" => "What the activity includes, what it is about, what purpose it is directed at.", "data-toggle" => "popover", :title => "Description"}
+    %span.glyphicon.glyphicon-question-sign
+  = f.input :description, label: false
+
+  = f.input :link, label: 'Web Address of Activity'
+
+  = f.input :postcode, label: 'Activity Postcode'
+
+  = f.label 'Email'
+  %a{"data-content" => "Please give a valid email in which our admins can contact about the activity if needed.", "data-toggle" => "popover", :title => "Email"}
+    %span.glyphicon.glyphicon-question-sign
+  = f.input :email, label: false, placeholder: 'YourEmail@here.com'

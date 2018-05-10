@@ -2,12 +2,6 @@ class SubjectsController < ApplicationController
   authorize_resource
 
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
-
-  # GET /subjects
-  def index
-    @subjects = Subject.all
-  end
-
   # GET /subjects/1
   def show
   end

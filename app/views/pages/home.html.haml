@@ -5,7 +5,7 @@
   .searchtext
     .title-home
       %h1 Search Heppsy
-    %p Find educational resources, activities + more. Use filters for a more advanced match
+    %p Find educational resources, activities + more. Use filters for a more advanced match.
   .searchbox
   = form_tag("/search", method: "post", id: 'helloworld', ) do
     = text_field_tag(:query)
@@ -14,6 +14,9 @@
     = hidden_field_tag 'delivery', '', :id => "delivery"
     = hidden_field_tag 'distance', '', :id => "distance"
     = hidden_field_tag 'postcode', '', :id => "postcode"
+    = hidden_field_tag 'start_date'
+    = hidden_field_tag 'end_date'
+
     = hidden_field_tag 'page', '1'
 
   .filter-container
@@ -21,7 +24,10 @@
       .col-sm-4
         .row
           .col-sm-6
-            %p Distance (km)
+            %p
+              Distance (km)
+              %a{"data-content" => "Select the distance range you want to search activities within", "data-toggle" => "popover", :title => "Distance"}
+                %span.glyphicon.glyphicon-question-sign
           - if !current_user
             .col-sm-6.center-flex
               %input{:placeholder => "Postcode", :id => "postcode_value"}
@@ -57,6 +63,8 @@
             .subject-choice
               %option
                 = delivery.capitalize
+        %input{:type=>"text", ":data-provide" => 'datepicker', :placeholder => 'Start date range', :class => "timepicker", :id => 'start-date-range'}
+        %input{:type=>"text", ":data-provide" => 'datepicker', :placeholder => 'End date range', :class => "timepicker", :id => 'end-date-range'}
 
 .container-fluid.margin-top-50
   .row
@@ -65,16 +73,16 @@
         .slickaroo
           - @activities.take(10).each_with_index do |activity, count|
 
-            - if count == 0 || count == 4 || count == 8 
-              - @class = 'result1'  
+            - if count == 0 || count == 4 || count == 8
+              - @class = 'result1'
             - elsif count == 1 || count == 5 || count == 9
-              - @class = 'result2'  
+              - @class = 'result2'
             - elsif count == 2 || count ==6 || count == 10
-              - @class = 'result3'  
+              - @class = 'result3'
             - elsif count == 3 || count == 7
-              - @class = 'result4'  
-            
-            - @link = 'http://localhost:3000/activities/' + activity.id.to_s
+              - @class = 'result4'
+
+            - @link = 'https://team18.demo3.hut.shefcompsci.org.uk/activities/' + activity.id.to_s
 
             .col-md-8.col-centered.flex{:class => @class, :data => {:link => @link}}
               .event-date.vcenter
@@ -87,5 +95,39 @@
                 = activity.get_upvotes.size
                 <i class="fa fa-thumbs-up"></i>
 
+    .container-fluid.mt-4
+      .row.center-flex.mt-4
+        .col-sm-9.mt-4
+          .row.mt-5.center-flex.justify-center
+            .col-md-2.card-home.result5
+              %img.card-img-top{:alt => "Card image cap", :class => 'heppsy-logo', :src => "https://extra.shu.ac.uk/heppsy/assets/2017/06/heppsyplus_white-240x67.png"}/
+              .card
+              .card-body
+                %h5.card-title#light-title Learners
+            .col-md-2.card-home.result1
+              %img.card-img-top{:alt => "Card image cap", :class => 'heppsy-logo', :src => "https://extra.shu.ac.uk/heppsy/assets/2017/06/heppsyplus_white-240x67.png"}/
+              .card
+              .card-body
+                %h5.card-title Parents
+            .col-md-2.card-home.result3#light-title
+              %img.card-img-top{:alt => "Card image cap", :class => 'heppsy-logo', :src => "https://extra.shu.ac.uk/heppsy/assets/2017/06/heppsyplus_white-240x67.png"}/
+              .card
+              .card-body
+                %h5.card-title#light-title Teachers
+            .col-md-2.card-home.result2
+              %img.card-img-top{:alt => "Card image cap", :class => 'heppsy-logo', :src => "https://extra.shu.ac.uk/heppsy/assets/2017/06/heppsyplus_white-240x67.png"}/
+              .card
+              .card-body
+                %h5.card-title Partners
+
 - content_for :head do
   %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
+
+:javascript
+
+  $('.timepicker').datepicker({
+                           format: 'dd/mm/yyyy',
+                           autoclose: true,
+                           orientation: 'bottom',
+                           placeholder: 'hello'
+                           });

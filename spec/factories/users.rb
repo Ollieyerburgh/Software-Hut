@@ -43,7 +43,7 @@
       surname "test"
       password "foobar12"
       password_confirmation "foobar12"
-      postcode "S102SQ"
+      postcode "GL8 8XY"
       answer "hello"
 
 
@@ -54,7 +54,7 @@
         surname "test"
         password "foobar12"
         password_confirmation "foobar12"
-        postcode "S102SQ"
+        postcode "GL8 8XY"
         answer "hello"
       end
 
@@ -65,7 +65,7 @@
         surname "test"
         password "password"
         password_confirmation "password"
-        postcode "s102sq"
+        postcode "s10 2sq"
       end
     end
 

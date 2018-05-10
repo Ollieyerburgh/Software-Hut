@@ -1,14 +1,23 @@
-.result1, .result2, .result3, .result4 
+$nice-black: #303030
+$light-teal: #b4ede2
+$bright-blue: #00E5EE
+$light-orange: #ffab51
+
+
+.result1, .result2, .result3, .result4, .result5, .result1light, .resource
     padding: 10px
     position: relative
-    border: 1px solid white !important
+    border: 1px solid #E0E0E0 !important
+    background: #EEEEEE
 
-.result1:hover, .result2:hover, .result3:hover, .result4:hover
-    opacity: 0.7
-    cursor: pointer 
+
+.result1:hover, .result2:hover, .result3:hover, .result4:hover, .result5:hover, .result1light:hover
 
 .result1
     background: #91e4f7
+
+.result1light
+    background: $light-teal
 
 .result2
     background: #ffd051
@@ -19,14 +28,89 @@
 .result4
     background: #ffab51
 
+
+.result5
+    background: #1cb495
+    color: $nice-black
+
 .date-span
-    background: black
     color: white
     margin-right: 3px
-    padding: 3px
+    background: #737373
+    padding: 5px
+    border-radius: 5px
+
+.date-span-deadline
+    color: black
+    margin-right: 3px
+    background: white
+    padding: 5px
+    border-radius: 5px
 
 .result-date
     position: absolute
     bottom: 0
     right: 0
     padding: 10px
+
+.result-date-deadline
+    position: absolute
+    bottom: 30px
+    right: 0
+    padding: 10px
+
+.result-link
+    position: absolute
+    color: black !important
+    text-decoration: none
+    top: 10px
+    right: 10px
+    background: $light-orange
+    padding: 10px
+    border-radius: 5px
+
+.result-link a
+    color: black !important
+    text-decoration: none
+
+.result-title  a
+    color: white !important
+
+td.liker
+    position: absolute
+    bottom: 60px
+    right: 5px
+    padding: 10px
+
+
+.likes-count p
+    margin-bottom: 0px !important
+
+.result-address, .result-description
+    margin: 10px
+
+td.likes-count
+    position: absolute
+    bottom: 60px
+    right: 40px
+    padding: 10px
+
+@media screen and (max-width: 768px)
+    td.likes-count
+        position: relative
+        bottom: 0px
+        right: 0px
+        padding: 0px
+    td.liker
+        position: relative
+        bottom: 0px
+        right: 0px
+        padding: 0px
+    .result-link
+        position: relative
+        bottom: 0px
+        right: 0px
+        top: 0px
+
+.fa-thumbs-up
+    font-size: 30px

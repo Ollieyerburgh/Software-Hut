@@ -1,33 +1,35 @@
+.generic-container
+  .generic-header
+    %h1  Activities
+    Review all activities, create an activity or a resource.
+    %hr
 
-.activity-options-container
+.activity-options-container-admin
   .activity-options-innner-container
     .activity-action-option
       = button_to 'New Activity', new_activity_path, :method => "get"
     .activity-action-option
       = button_to 'New Resource', new_resource_path, :method => "get"
-
-
+%br
 .container
-  %h1  Activities
-  %table
-    %tbody
-      - @activities.each do |activity|
-        %tr
-          %td.activity-date= activity.deadline
-          %td.activity-title= activity.title
-          %td.activity-description= activity.description
-          %td.activity-option
-            = link_to '/activities', class:"like-btn", method: :put, id:"like_#{activity.id}", remote: :true do
-              = fa_icon('thumbs-up')
-          %td{id: "likes_#{activity.id}"}
-            = activity.get_upvotes.size
-          %td.activity-option
-            = link_to 'Show', activity
-          %td.activity-option
-            = link_to 'Edit', edit_activity_path(activity)
-          %td.activity-option
-            = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
-
-
+  - @activities.each do |activity|
+    .well
+      .activity-date
+        %b Date:
+        = activity.deadline
+      .activity-title
+        %b Title:
+        = activity.title
+      .activity-description
+        %b Description:
+        = activity.description
+      %hr{id: "likes_#{activity.id}"}
+      .activity-option
+        = link_to '/activities', class:"like-btn", method: :put, id:"like_#{activity.id}", remote: :true do
+          = fa_icon('thumbs-up')
+          = activity.get_upvotes.size
+        = link_to ' | See More', activity
+        = link_to ' | Edit', edit_activity_path(activity)
+        = link_to ' | Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br

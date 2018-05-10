@@ -1,5 +1,9 @@
 .generic-container
   .generic-header
+    - if @results_length == 1
+      %h3 Found #{@results_length} result for "#{@search}"
+    - else
+      %h3 Found #{@results_length} results for "#{@search}"
 
 .results-container
   .results-inner
@@ -7,45 +11,57 @@
       %tbody
       - 10.times do |count|
         - @class = 'kk'
-        - if count == 0 || count == 4 || count == 8 
-          - @class = 'result1'  
+        - if count == 0 || count == 4 || count == 8
+          - @class = 'result1light'
         - elsif count == 1 || count == 5 || count == 9
-          - @class = 'result2'  
+          - @class = 'result2'
         - elsif count == 2 || count ==6 || count == 10
-          - @class = 'result3'  
+          - @class = 'result1light'
         - elsif count == 3 || count == 7
-          - @class = 'result4'  
-          
+          - @class = 'result2'
+
 
         - if @activities_hash[count]
-
-        - @link = 'http://localhost:3000/activities/' + @activities_hash[count]['activity']['id'].to_s
-
-          %tr{:class => @class, :data => {:link => @link} } 
-            %td.result-title #{@activities_hash[count]['activity']['title']} #{@colour}
-            %td.result-date 
-              Date: 
+        - @link = 'https://team18.demo3.hut.shefcompsci.org.uk/activities/' + @activities_hash[count]['activity']['id'].to_s
+          %tr{:class => @class, :data => {:link => @link} }
+            %td.result-title
+              %a{ :href => "#{@link}", :title => "View More", :class => "button" } #{@activities_hash[count]['activity']['title']} #{@colour}
+            %td.result-date
+              Date:
               %span(class="date-span")
-                #{@activities[count]['start_date']}  
+                #{@activities[count]['start_date']}
               to
               %span(class="date-span")
                 #{@activities_hash[count]['activity']['end_date']}
+            %td.result-date-deadline
+              Application Deadline:
+              %span(class="date-span-deadline")
+                #{@activities[count]['deadline']}
             %td.result-description #{@activities_hash[count]['activity']['description']}
-            %td.result-link Link to website: #{@activities_hash[count]['activity']['link']}
-            %td.result-address Address: #{@activities_hash[count]['activity']['link']}
-            %td.result-contact #{@activities_hash[count]['activity']['email']}
-            %td
+            %td.result-link
+              %a{ :href => "#{@activities_hash[count]['activity']['link']}", :title => "Link to website" } Link to website
+            %td.result-address
+              %strong
+                Postcode:
+              #{@activities_hash[count]['activity']['postcode']}
+            %td.liker
               = link_to like_activity_path(Activity.find_by_id(@activities_hash[count]['activity']['id'])), class:"like-btn", method: :put, remote: :true do
                 = fa_icon('thumbs-up')
-            %td.likes-count
+            %td.likes-count{id: "likes_#{(Activity.find_by_id(@activities_hash[count]['activity']['id'])).id}"}
               = (Activity.find_by_id(@activities_hash[count]['activity']['id'])).get_upvotes.size
         - if @resources[count]
-          %tr
-            %td.result-title Resource Title: #{@resources[count].title}
-            %td.result-description Description: #{@resources[count].description}
-            %td.result-link Link to website: #{@resources[count].link}
-            %td.result-contact #{@resources[count].email}
+        - @link = 'https://team18.demo3.hut.shefcompsci.org.uk/resources/' + @resources[count].id.to_s
 
+          %tr{:class => 'resource', :data => {:link => @link} }
+            %td.result-date
+              %span(class="date-span")
+                Teaching resource
+            %td.result-title #{@resources[count].title}
+            %td.result-description #{@resources[count].description}
+            %td.result-link
+              %a{ :href => "#{@resources[count].link}", :title => "Link to website" } Link to website
+            %td.result-download
+              = link_to "Download", @resources[count].file.url, download: '' unless @resources[count].file.blank?
 
 
 .paginate-container
