@@ -33,7 +33,6 @@
             %td.result-description #{@activities_hash[count]['activity']['description']}
             %td.result-link Link to website: #{@activities_hash[count]['activity']['link']}
             %td.result-address Address: #{@activities_hash[count]['activity']['link']}
-            %td.result-address Distance: #{@activities_hash[count]['distance']}
             %td.result-contact #{@activities_hash[count]['activity']['email']}
             %td.liker
               = link_to like_activity_path(Activity.find_by_id(@activities_hash[count]['activity']['id'])), class:"like-btn", method: :put, remote: :true do
@@ -48,3 +47,10 @@
             %td.result-contact #{@resources[count].email}
 
 
+
+.paginate-container
+  .paginate
+    - if @activities.size > @resources.size
+      = will_paginate @activities, :params => { :search => @search }
+    - else
+      = will_paginate @resources, :params => { :search => @search }
