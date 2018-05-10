@@ -2,6 +2,41 @@ require 'rails_helper'
 
 describe 'Managing activites', js: true do
 
+  specify 'I can create an activity as a guest' do
+    visit '/activities/new'
+    fill_in 'Title', with: 'Test-title'
+    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Web address of activity', with: 'www.facebook.com'
+    fill_in 'Activity postcode', with: 'GL88XY'
+    fill_in 'Email', with: 'test@hotmail.com'
+    click_button 'Continue'
+    click_button 'Continue'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('01/01/2008')")
+    page.execute_script("$('#activity_deadline').val('01/01/2008')")
+    check 'activity_terms_of_service'
+    click_button 'Continue'
+    expect(page).to have_content 'Activity was successfully created'
+  end
+
+  specify 'I can create an activity as a user' do
+    user = FactoryGirl.create(:user)
+    login_as(user)
+    visit '/activities/new'
+    fill_in 'Title', with: 'Test-title'
+    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Web address of activity', with: 'www.facebook.com'
+    fill_in 'Activity postcode', with: 'GL88XY'
+    fill_in 'Email', with: 'test@hotmail.com'
+    click_button 'Continue'
+    click_button 'Continue'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('01/01/2008')")
+    page.execute_script("$('#activity_deadline').val('01/01/2008')")
+    check 'activity_terms_of_service'
+    click_button 'Continue'
+    expect(page).to have_content 'Activity was successfully created'
+  end
 
   specify 'I cannot create an activity without filling in Title' do
     visit '/activities/new'
@@ -108,6 +143,25 @@ describe 'Managing activites', js: true do
     click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
+  end
+
+  specify 'I cannot create an activity as a user without checking the box' do
+    user = FactoryGirl.create(:user)
+    login_as(user)
+    visit '/activities/new'
+    fill_in 'Title', with: 'Test-title'
+    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Web address of activity', with: 'www.facebook.com'
+    fill_in 'Activity postcode', with: 'GL88XY'
+    fill_in 'Email', with: 'test@hotmail.com'
+    click_button 'Continue'
+    click_button 'Continue'
+    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('01/01/2008')")
+    page.execute_script("$('#activity_deadline').val('01/01/2008')")
+    click_button 'Continue'
+    expect(page).to have_content 'Please review the problems below:'
+    expect(page).to have_content "must be accepted"
   end
 
 
@@ -231,6 +285,5 @@ describe 'Managing activites', js: true do
     visit '/activities'
     sleep 5.seconds
     find("#likes_#{activity.id}").text.should include('0')
-
   end
 end

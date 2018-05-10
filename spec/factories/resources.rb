@@ -28,6 +28,5 @@ FactoryGirl.define do
     description "MyString"
     email "resourcetest2@test.com"
     status "pending"
-    user_id "1"
   end
 end

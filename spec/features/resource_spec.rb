@@ -13,6 +13,20 @@ describe 'Managing activites', js:true do
     expect(page).to have_content 'Resource was successfully created'
   end
 
+  specify 'I can create a resource with a file as a user' do
+    user = FactoryGirl.create(:user)
+    login_as(user)
+    visit '/activities/new'
+    click_button 'New Resource'
+    fill_in 'Title', with: 'Test-title'
+    fill_in 'Resource description', with: 'Test-Description'
+    fill_in 'Email', with: 'Test@hotmail.co.uk'
+    attach_file("resource_file", Rails.root + "spec/features/file.pdf")
+    check 'resource_terms_of_service'
+    click_button 'Create Resource'
+    expect(page).to have_content 'Resource was successfully created'
+  end
+
 
   specify 'I cannot create an Resource without filling in title' do
 
@@ -49,6 +63,19 @@ describe 'Managing activites', js:true do
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "can't be blank"
   end
+
+  specify 'I cannot create an Resource without checking the terms of service' do
+    visit '/activities/new'
+    click_button 'New Resource'
+    fill_in 'Title', with: 'Test-title'
+    fill_in 'Resource description', with: 'Test-Description'
+    fill_in 'Email', with: 'test@hotmail.com'
+    click_button 'Create Resource'
+    expect(page).to have_content 'Please review the problems below:'
+    expect(page).to have_content "must be accepted"
+  end
+
+
 
 
 
