@@ -60,7 +60,7 @@ describe 'Authorisation', js: true do
   end
 
   specify 'I cannot visit age create or edit as a guest' do
-    age = FactoryGirl.create(:age)
+    age = FactoryGirl.create(:age1)
     sleep (1)
     visit '/ages/new'
     expect(page).to have_content 'Access Denied 403'
