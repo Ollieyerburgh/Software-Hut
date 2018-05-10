@@ -1,3 +1,8 @@
+.generic-container
+  .generic-header
+    %h1 New Activity
+    Here you can contribute to the website by adding an activity organised by you or your institution.
+    %hr
 
 .activity-options-container
   .activity-options-innner-container
@@ -6,20 +11,19 @@
     .activity-action-option
       = button_to 'New Resource', new_resource_path, :method => "get"
 
-.generic-container
-  .generic-header
-    %h1 New Activity
-    Here you can contribute to the website by adding an activity organised by you or your institution.
+%br
 
 .form.container
   = simple_form_for @activity do |f|
     = f.error_notification
     = render "#{@activity.current_step}_step", :f => f
     %br
-    %p This submission will need to be approved by the website admins prior to being posted.
+    - if !admin_signed_in?
+      %p
+        .red-important
+          This submission will need to be approved by the website admins prior to being posted.
 
     = f.submit "Back", name: "back_button" unless @activity.first_step
     %br
     = f.submit "Continue"
-
 %br

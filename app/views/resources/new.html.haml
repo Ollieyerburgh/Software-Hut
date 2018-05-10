@@ -1,3 +1,9 @@
+.generic-container
+  .generic-header
+    %h1 New Resource
+    Here you can contribute to the website by adding a resource that is owned by you or your institution.
+    %hr
+
 .activity-options-container
   .activity-options-innner-container
     .activity-action-option
@@ -5,10 +11,7 @@
     .activity-action-option
       = button_to 'New Resource', new_resource_path, :method => "get"
 
-.generic-container
-  .generic-header
-    %h1 New Resource
-    Here you can contribute to the website by adding a resource that is owned by you or your institution.
+%br
 
 .form.container
   = render 'form'
