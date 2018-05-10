@@ -1,5 +1,5 @@
 class Admin::RegistrationsController < ApplicationController
-
+  load_and_authorize_resource class: "Admin", param_method: :admin_params
 
   def new
     @admins = Admin.new
@@ -7,7 +7,7 @@ class Admin::RegistrationsController < ApplicationController
 
 
   def create
-    @admin = Admin.new(user_params)
+    @admin = Admin.new(admin_params)
 
     if @admin.save
       redirect_to :admin_index, :flash => { :notice => "Admin added" }
@@ -19,7 +19,7 @@ class Admin::RegistrationsController < ApplicationController
 
   private
     # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.require(:admin).permit(:email, :password, :password_confirmation)
+    def admin_params
+      params.require(:admin).permit(:email, :password, :password_confirmation, :higher_access)
     end
 end
