@@ -1,13 +1,14 @@
 <div class="form container">
 
-  <%= form_for @contact, url: edit_admin_request_path, remote: true do |f| %>
-      <div class="col-md-6">
+  <%= simple_form_for @contact, url: edit_admin_request_path, remote: true do |f| %>
+      <div class="form-inputs">
+        <div class="request changes"
 
           <%= f.label :email %></br>
-          <%= f.text_field :email, readonly: true, value: @activity.email %></br>
+          <%= f.text_field :email, label:false, readonly: true, value: @activity.email %></br>
 
         <%= f.label :message %></br>
-        <%= f.text_area :message, rows: 8, cols: 40, required: true, class: "contact-form-text-area form-control",
+        <%= f.input :message, label:false, rows: 8, cols: 40, required: true, class: "contact-form-text-area form-control",
                           placeholder: "Detail the changes that you would like the user to append here."%></br>
 
         <div class= "hidden">
@@ -18,6 +19,8 @@
         <%= f.submit 'Send Message', class: 'btn btn-primary', value: 'Submit' %>
       </div>
     <% end %>
+    <br>
+    <hr>
     <div class="col-md-6" id="flash-message">
       <%= render 'flash' %>
     </div>
