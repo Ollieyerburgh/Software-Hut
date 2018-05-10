@@ -23,7 +23,7 @@
           .col-sm-6
             %p
               Distance (km)
-              %a{"data-content" => "Select the distance range you want to search activities within", "data-toggle" => "popover", :href => "#", :title => "Distance"}
+              %a{"data-content" => "Select the distance range you want to search activities within", "data-toggle" => "popover", :title => "Distance"}
                 %span.glyphicon.glyphicon-question-sign
           - if !current_user
             .col-sm-6.center-flex
@@ -32,6 +32,10 @@
         %input#example_id{:name => "example_name", :type => "text", :value => ""}/
       .col-sm-2#more-filters
         %p + Filters
+      %p
+        %a{"data-content" => "Click here to filter your search.", "data-toggle" => "popover", :title => "Filters"}
+          %span.glyphicon.glyphicon-question-sign
+
 
     .row.filter-row#extra-filters
       .col-sm-12

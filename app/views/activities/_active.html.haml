@@ -1,6 +1,6 @@
 
 .container
-  %h2 Saved activities
+  %h1 Saved Activities
   - no_act = 0
   - @activities.each do |activity|
     - if @user.voted_for? activity
@@ -28,7 +28,7 @@
   - if no_act == @activities.length
     %p You have no saved activities.
 
-  %h1  Other activities
+  %h1  Other Activities
   %table
     %tbody
       - @activities.each do |activity|

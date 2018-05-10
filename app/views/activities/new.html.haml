@@ -8,13 +8,16 @@
 
 .generic-container
   .generic-header
-    %h1 New activity
+    %h1 New Activity
+    Here you can contribute to the website by adding an activity organised by you or your institution.
 
 .form.container
   = simple_form_for @activity do |f|
     = f.error_notification
     = render "#{@activity.current_step}_step", :f => f
     %br
+    %p This submission will need to be approved by the website admins prior to being posted.
+
     = f.submit "Back", name: "back_button" unless @activity.first_step
     %br
     = f.submit "Continue"
