@@ -4,7 +4,7 @@ describe 'Authorisation', js: true do
   specify 'I can create an activity when not signed in' do
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -92,9 +92,15 @@ describe 'Authorisation', js: true do
   end
 
   specify 'I cannot visit age create or edit as a user' do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    visit '/ages/new'
+    fill_in 'Age', with: '9-11'
+    click_button 'Create Age'
+    find('.dropdown-toggle').click
+    click_link "Log out"
     user = FactoryGirl.create(:user)
     login_as(user)
-    age = FactoryGirl.create(:age)
     visit '/ages/new'
     expect(page).to have_content 'Access Denied 403'
     visit '/ages/1/edit'
@@ -165,20 +171,20 @@ describe 'Authorisation', js: true do
     login_as(admin)
     visit '/admin'
 
-    expect(page).to have_content 'Manage requests'
+    expect(page).to have_content 'Manage Requests'
   end
 
   specify 'I can visit User manage when a admin' do
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit '/admin/users/show'
-    expect(page).to have_content 'Modify users'
+    expect(page).to have_content 'User Manage'
   end
   specify 'I can visit Admin approve requests when a admin' do
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit '/admin/requests/show'
-    expect(page).to have_content 'Pending activities'
+    expect(page).to have_content 'Pending Activities'
 
   end
   specify 'I can visit Admin invite when a admin' do
@@ -188,7 +194,7 @@ describe 'Authorisation', js: true do
     expect(page).to have_content 'Create an Admin'
   end
 
-  specify 'I cannot visit Add, edit, or delete Themes as a lower level admin' do
+  specify 'I cannot visit Add or edit Themes as a lower level admin' do
     admin1 = FactoryGirl.create(:admin_lower)
     login_as(admin1)
     user = FactoryGirl.create(:user)
@@ -202,7 +208,7 @@ describe 'Authorisation', js: true do
 
   end
 
-  specify 'I cannot visit Add, edit, or delete Subjects as a lower level admin' do
+  specify 'I cannot visit Add or edit Subjects as a lower level admin' do
     admin1 = FactoryGirl.create(:admin_lower)
     login_as(admin1)
     subject = FactoryGirl.create(:subject)
@@ -213,7 +219,7 @@ describe 'Authorisation', js: true do
     expect(page).to have_content 'Access Denied 403'
   end
 
-  specify 'I cannot visit Add, edit, or delete Deliveries as a lower level admin' do
+  specify 'I cannot visit Add or edit Deliveries as a lower level admin' do
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit '/deliveries/new'
@@ -231,7 +237,7 @@ describe 'Authorisation', js: true do
 
   end
 
-  specify 'I cannot visit Add, edit, or delete Age as a lower level admin' do
+  specify 'I cannot visit Add or edit Age as a lower level admin' do
     admin1 = FactoryGirl.create(:admin_lower)
     login_as(admin1)
     age = FactoryGirl.create(:age)

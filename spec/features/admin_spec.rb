@@ -7,15 +7,15 @@ describe 'Admin features', js: true do
     visit '/admins/sign_in'
     fill_in 'Email', with: 'admin@admin.com'
     fill_in 'Password', with: 'test1234'
-    click_button 'Sign in'
+    click_button 'Log in'
     expect(page).to have_content "Signed in successfully."
   end
-  
+
   specify 'As an admin I can approve an activity request from a guest' do
     admin = FactoryGirl.create(:admin)
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -43,7 +43,7 @@ describe 'Admin features', js: true do
     login_as(user)
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'UserTest@user.com'
@@ -69,7 +69,7 @@ describe 'Admin features', js: true do
     admin = FactoryGirl.create(:admin)
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'GuestReject@test.com'
@@ -102,7 +102,7 @@ describe 'Admin features', js: true do
     visit '/'
     click_link 'Create Activity'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'UserReject@test.com'
@@ -199,7 +199,7 @@ describe 'Admin features', js: true do
     click_link 'Log in'
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -237,7 +237,7 @@ describe 'Admin features', js: true do
     visit "/admin/requests/show"
     expect(current_path).to eq("/admin/requests/show")
     expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'Request changes'
     expect(page).to have_content 'test'
     click_link 'Approve'
     expect(page).to_not have_content 'Approve'

@@ -5,8 +5,10 @@ describe 'Managing activites', js: true do
   specify 'I can create an activity as a guest' do
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
+    save_and_open_page
+
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
@@ -24,7 +26,7 @@ describe 'Managing activites', js: true do
     login_as(user)
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -40,7 +42,7 @@ describe 'Managing activites', js: true do
 
   specify 'I cannot create an activity without filling in Title' do
     visit '/activities/new'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -63,7 +65,7 @@ describe 'Managing activites', js: true do
   specify 'I cannot create an activity without filling in Start Date' do
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -79,7 +81,7 @@ describe 'Managing activites', js: true do
   specify 'I cannot create an activity without filling in End Date' do
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -96,7 +98,7 @@ describe 'Managing activites', js: true do
     visit '/activities/new'
 
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -113,7 +115,7 @@ describe 'Managing activites', js: true do
     visit '/activities/new'
 
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
@@ -125,7 +127,7 @@ describe 'Managing activites', js: true do
     visit '/activities/new'
 
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Email', with: 'test@hotmail.com'
     click_button 'Continue'
@@ -137,7 +139,7 @@ describe 'Managing activites', js: true do
     visit '/activities/new'
 
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     click_button 'Continue'
@@ -150,7 +152,7 @@ describe 'Managing activites', js: true do
     login_as(user)
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -168,7 +170,7 @@ describe 'Managing activites', js: true do
   specify 'I cannot create an activity without filling in Email in the valid format ' do
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'testhotmail.com'
@@ -180,7 +182,7 @@ describe 'Managing activites', js: true do
   specify 'I cannot create an activity without filling in Postcode in the valid format ' do
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: '-G1@1L88XY'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -199,7 +201,7 @@ describe 'Managing activites', js: true do
     click_link "Saved Activities"
     click_link "Edit"
     expect(page).to have_content "test"
-    fill_in "Activity description", with: 'HelloTestViewer'
+    fill_in "Description", with: 'HelloTestViewer'
     check 'activity_terms_of_service'
     click_button "Update Activity"
     expect(page).to have_content "Activity was successfully updated"
@@ -247,7 +249,7 @@ describe 'Managing activites', js: true do
   specify 'As a user, I can see approved guest activities' do
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Activity description', with: 'Test-Description'
+    fill_in 'Description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
     fill_in 'Email', with: 'test@hotmail.com'

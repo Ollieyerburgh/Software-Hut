@@ -213,7 +213,29 @@ describe 'Users', js: true do
     expect(page).to have_content "Invalid Email or password."
   end
 
+  specify 'I can add a preference and receive an email containing activities that fit' do
+    user = FactoryGirl.create(:user)
+    age = FactoryGirl.create(:age)
+    theme = FactoryGirl.create(:theme)
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test.com"
+    fill_in "Password", with: "foobar12"
+    click_button "Log in"
+    find('.dropdown-toggle').click
+    save_and_open_page
+    click_link 'My Preferences'
+    click_link 'New Preference'
+    select "9-11", :from => "Ages"
+    select "theme", :from => "Themes"
+    click_button "Create Preference"
+    expect(page).to have_content "Preference was successfully created"
+    ActionMailer::Base.deliveries.last.to.should include("ollieyerburgh@test.com")
 
+
+
+
+  end
 
   specify 'I can like an activity, which changes like count' do
     activity = FactoryGirl.create(:activity_approved)
