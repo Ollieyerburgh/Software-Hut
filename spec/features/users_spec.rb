@@ -152,7 +152,7 @@ describe 'User registration', js: true do
     click_button "Log in"
     visit '/activities'
     expect(page).to have_css("#likes_1", text: "0")
-    Capybara.page.find('.like-btn').click
+    Capybara.page.find('#like_1').click
     visit '/activities'
     sleep(5)
     expect(page).to have_css("#likes_1", text: "1")

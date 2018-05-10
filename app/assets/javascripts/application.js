@@ -11,6 +11,7 @@
 //= require turbolinks
 //= require jquery.slick
 //= require_tree .
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.en-GB.js
 //= require dependent-fields
 //= require underscore

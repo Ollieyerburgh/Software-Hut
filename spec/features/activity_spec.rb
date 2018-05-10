@@ -15,8 +15,7 @@ describe 'Managing activites', js: true do
   end
 
   specify 'I cannot create an activity without filling in description' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Web address of activity', with: 'www.facebook.com'
     fill_in 'Activity postcode', with: 'GL88XY'
@@ -27,8 +26,7 @@ describe 'Managing activites', js: true do
   end
 
   specify 'I cannot create an activity without filling in Start Date' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
@@ -44,8 +42,7 @@ describe 'Managing activites', js: true do
   end
 
   specify 'I cannot create an activity without filling in End Date' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
@@ -61,8 +58,8 @@ describe 'Managing activites', js: true do
   end
 
   specify 'I cannot create an activity without filling in Deadline Date' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
+
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
@@ -78,8 +75,8 @@ describe 'Managing activites', js: true do
   end
 
   specify 'I cannot create an activity without filling in Web Address ' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
+
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Activity postcode', with: 'GL88XY'
@@ -90,8 +87,8 @@ describe 'Managing activites', js: true do
   end
 
   specify 'I cannot create an activity without filling in postcode' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
+
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
@@ -102,9 +99,8 @@ describe 'Managing activites', js: true do
   end
 
   specify 'I cannot create an activity without filling in Email ' do
-    visit '/'
-    click_link 'Create Activity'
-    save_and_open_page
+    visit '/activities/new'
+
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
@@ -116,9 +112,7 @@ describe 'Managing activites', js: true do
 
 
   specify 'I cannot create an activity without filling in Email in the valid format ' do
-    visit '/'
-    click_link 'Create Activity'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'

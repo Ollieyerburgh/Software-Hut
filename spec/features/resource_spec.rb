@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe 'Managing activites', js:true do
   specify 'I can create a resource with a file as a guest' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Resource description', with: 'Test-Description'
@@ -17,8 +16,7 @@ describe 'Managing activites', js:true do
 
   specify 'I cannot create an Resource without filling in title' do
 
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     click_button 'New Resource'
     fill_in 'Resource description', with: 'Test-Description'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -30,8 +28,7 @@ describe 'Managing activites', js:true do
 
   specify 'I cannot create an Resource without filling in description' do
 
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Email', with: 'test@hotmail.com'
@@ -43,8 +40,7 @@ describe 'Managing activites', js:true do
 
 
   specify 'I cannot create an Resource without filling in Email' do
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Resource description', with: 'Test-Description'

@@ -31,12 +31,12 @@ $( document ).on('turbolinks:load', function() {
 
     if ($('.irs').length==0) {
         $("#example_id").ionRangeSlider({
-            min: '0',
+            min: '100',
+            from: '300',
             max: '1400'
         });
     }
     
-
     
     $(".slickaroo").slick({
         dots: false,
@@ -63,6 +63,12 @@ $( document ).on('turbolinks:load', function() {
         }
     });
 
+    function valid_postcode(postcode) {
+        postcode = postcode.replace(/\s/g, "");
+        const regex = /^[A-Z]{1,2}[0-9]{1,2}[A-Z]{0,1} ?[0-9][A-Z]{2}$/i;
+        return regex.test(postcode);
+    }
+
     $('#helloworld').submit(function(ev) {
         ev.preventDefault(); // to stop the form from submitting
         /* Validations go here */
@@ -71,8 +77,12 @@ $( document ).on('turbolinks:load', function() {
         document.getElementById("distance").value = distance_value;
 
 
-        if (document.getElementById("postcode_value")) {
+        if (document.getElementById("postcode_value").value != '') {
             var postcode = document.getElementById("postcode_value").value;
+            if (!valid_postcode(postcode)) {
+                alert('Sorry your postcode is not valid. Please enter a valid UK postcode');
+                return false;
+            }
             if (postcode != null) {
                 document.getElementById("postcode").value = postcode;
             }

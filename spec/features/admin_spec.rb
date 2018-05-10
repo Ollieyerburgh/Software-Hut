@@ -4,8 +4,7 @@ describe 'Admin features', js: true do
 
   specify 'As an admin I can approve an activity request from a guest' do
     admin = FactoryGirl.create(:admin)
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
@@ -59,8 +58,7 @@ describe 'Admin features', js: true do
 
   specify 'As an admin I can reject an activity request from a guest' do
     admin = FactoryGirl.create(:admin)
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
@@ -190,8 +188,7 @@ describe 'Admin features', js: true do
     fill_in 'Email', with: 'admin@admin.com'
     fill_in 'Password', with: 'test1234'
     click_link 'Log in'
-    visit '/'
-    click_link 'Create Activity'
+    visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
     fill_in 'Activity description', with: 'Test-Description'
     fill_in 'Web address of activity', with: 'www.facebook.com'
