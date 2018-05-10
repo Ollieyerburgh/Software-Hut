@@ -2,6 +2,15 @@ require 'rails_helper'
 
 describe 'Admin features', js: true do
 
+  specify 'I can login as an admin' do
+    admin = FactoryGirl.create(:admin)
+    visit '/admins/sign_in'
+    fill_in 'Email', with: 'admin@admin.com'
+    fill_in 'Password', with: 'test1234'
+    click_button 'Sign in'
+    expect(page).to have_content "Signed in successfully."
+  end
+  
   specify 'As an admin I can approve an activity request from a guest' do
     admin = FactoryGirl.create(:admin)
     visit '/activities/new'
@@ -220,6 +229,22 @@ describe 'Admin features', js: true do
     expect(page).to have_content "Resource was successfully created."
   end
 
+  specify 'As an admin I can approve a resource request, which sends an email' do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    visit "/admin/users/show"
+    resource = FactoryGirl.create(:resource)
+    visit "/admin/requests/show"
+    expect(current_path).to eq("/admin/requests/show")
+    expect(page).to have_content 'Approve'
+    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'test'
+    click_link 'Approve'
+    expect(page).to_not have_content 'Approve'
+    ActionMailer::Base.deliveries.last.to.should include("resourcetest2@test.com")
+  end
+
+
   context 'Preferences' do
     specify 'As an admin, I should be able to add a Subject from dashboard' do
       admin = FactoryGirl.create(:admin)
@@ -386,26 +411,7 @@ describe 'Admin features', js: true do
     end
 
   end
-=begin
-  specify 'As an admin I can approve a resource request, which sends an email' do
-    admin = FactoryGirl.create(:admin)
-    login_as(admin)
-    visit "/admin/users/show"
-    resource = FactoryGirl.create(:resource)
-    visit "/admin/requests/show"
-    expect(current_path).to eq("/admin/requests/show")
-    save_and_open_page
-    expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
-    expect(page).to have_content 'test-title'
-    click_link 'Approve'
 
-    save_and_open_page
-    expect(page).to_not have_content 'Approve'
 
-  end
-=end
-=begin
 
-=end
 end
