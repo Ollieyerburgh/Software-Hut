@@ -77,7 +77,7 @@ $( document ).on('turbolinks:load', function() {
         document.getElementById("distance").value = distance_value;
 
 
-        if (document.getElementById("postcode_value")) {
+        if (document.getElementById("postcode_value").value != '') {
             var postcode = document.getElementById("postcode_value").value;
             if (!valid_postcode(postcode)) {
                 alert('Sorry your postcode is not valid. Please enter a valid UK postcode');
