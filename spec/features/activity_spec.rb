@@ -11,9 +11,9 @@ describe 'Managing activites', js: true do
     fill_in 'activity[email]', with: 'test@hotmail.com'
     click_button 'Continue'
     click_button 'Continue'
-    page.execute_script("$('#activity_start_date').val('01/01/2008')")
-    page.execute_script("$('#activity_end_date').val('01/01/2008')")
-    page.execute_script("$('#activity_deadline').val('01/01/2008')")
+    page.execute_script("$('#activity_start_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_end_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_deadline').val('2018-05-11 20:29:48')")
     check 'activity_terms_of_service'
     click_button 'Continue'
     expect(page).to have_content 'Activity was successfully created'
@@ -30,9 +30,9 @@ describe 'Managing activites', js: true do
     fill_in 'activity[email]', with: 'test@hotmail.com'
     click_button 'Continue'
     click_button 'Continue'
-    page.execute_script("$('#activity_start_date').val('01/01/2008')")
-    page.execute_script("$('#activity_end_date').val('01/01/2008')")
-    page.execute_script("$('#activity_deadline').val('01/01/2008')")
+    page.execute_script("$('#activity_start_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_end_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_deadline').val('2018-05-11 20:29:48')")
     check 'activity_terms_of_service'
     click_button 'Continue'
     expect(page).to have_content 'Activity was successfully created'
@@ -69,8 +69,8 @@ describe 'Managing activites', js: true do
     fill_in 'activity[email]', with: 'test@hotmail.com'
     click_button 'Continue'
     click_button 'Continue'
-    page.execute_script("$('#activity_end_date').val('01/01/2008')")
-    page.execute_script("$('#activity_deadline').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_deadline').val('2018-05-11 20:29:48')")
     check 'activity_terms_of_service'
     click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
@@ -85,8 +85,8 @@ describe 'Managing activites', js: true do
     fill_in 'activity[email]', with: 'test@hotmail.com'
     click_button 'Continue'
     click_button 'Continue'
-    page.execute_script("$('#activity_start_date').val('01/01/2008')")
-    page.execute_script("$('#activity_deadline').val('01/01/2008')")
+    page.execute_script("$('#activity_start_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_deadline').val('2018-05-11 20:29:48')")
     check 'activity_terms_of_service'
     click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
@@ -102,8 +102,8 @@ describe 'Managing activites', js: true do
     fill_in 'activity[email]', with: 'test@hotmail.com'
     click_button 'Continue'
     click_button 'Continue'
-    page.execute_script("$('#activity_end_date').val('01/01/2008')")
-    page.execute_script("$('#activity_start_date').val('01/01/2008')")
+    page.execute_script("$('#activity_end_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_start_date').val('2018-05-11 20:29:48')")
     check 'activity_terms_of_service'
     click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
@@ -156,9 +156,9 @@ describe 'Managing activites', js: true do
     fill_in 'activity[email]', with: 'test@hotmail.com'
     click_button 'Continue'
     click_button 'Continue'
-    page.execute_script("$('#activity_start_date').val('01/01/2008')")
-    page.execute_script("$('#activity_end_date').val('01/01/2008')")
-    page.execute_script("$('#activity_deadline').val('01/01/2008')")
+    page.execute_script("$('#activity_start_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_end_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_deadline').val('2018-05-11 20:29:48')")
     click_button 'Continue'
     expect(page).to have_content 'Please review the problems below:'
     expect(page).to have_content "must be accepted"
@@ -253,9 +253,9 @@ describe 'Managing activites', js: true do
     fill_in 'activity[email]', with: 'test@hotmail.com'
     click_button 'Continue'
     click_button 'Continue'
-    page.execute_script("$('#activity_start_date').val('01/01/2008')")
-    page.execute_script("$('#activity_end_date').val('01/05/2010')")
-    page.execute_script("$('#activity_deadline').val('02/10/2012')")
+    page.execute_script("$('#activity_start_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_end_date').val('2018-05-11 20:29:48')")
+    page.execute_script("$('#activity_deadline').val('2018-05-11 20:29:48')")
     check 'activity_terms_of_service'
     click_button 'Continue'
     admin = FactoryGirl.create(:admin)
