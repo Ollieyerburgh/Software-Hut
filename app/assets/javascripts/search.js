@@ -76,15 +76,16 @@ $( document ).on('turbolinks:load', function() {
         var distance_value = slider.result.from;
         document.getElementById("distance").value = distance_value;
 
-
-        if (document.getElementById("postcode_value").value != '') {
-            var postcode = document.getElementById("postcode_value").value;
-            if (!valid_postcode(postcode)) {
-                alert('Sorry your postcode is not valid. Please enter a valid UK postcode');
-                return false;
-            }
-            if (postcode != null) {
-                document.getElementById("postcode").value = postcode;
+        if ($('#postcode_value').is(":visible")) {
+            if (document.getElementById("postcode_value").value != '') {
+                var postcode = document.getElementById("postcode_value").value;
+                if (!valid_postcode(postcode)) {
+                    alert('Sorry your postcode is not valid. Please enter a valid UK postcode');
+                    return false;
+                }
+                if (postcode != null) {
+                    document.getElementById("postcode").value = postcode;
+                }
             }
         }
 
