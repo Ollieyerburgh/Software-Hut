@@ -5,8 +5,8 @@
 #  id                      :integer          not null, primary key
 #  title                   :string
 #  description             :string
-#  start_date              :string
-#  end_date                :string
+#  start_date              :datetime
+#  end_date                :datetime
 #  start_time              :string
 #  end_time                :string
 #  deadline                :string

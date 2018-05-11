@@ -5,8 +5,8 @@
 #  id                      :integer          not null, primary key
 #  title                   :string
 #  description             :string
-#  start_date              :string
-#  end_date                :string
+#  start_date              :datetime
+#  end_date                :datetime
 #  start_time              :string
 #  end_time                :string
 #  deadline                :string
@@ -39,8 +39,6 @@
 #  fk_rails_...  (tag_id => tags.id)
 #  fk_rails_...  (user_id => users.id)
 #
-
-
 
 FactoryGirl.define do
   factory :activity do

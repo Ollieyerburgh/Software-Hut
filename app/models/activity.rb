@@ -5,8 +5,8 @@
 #  id                      :integer          not null, primary key
 #  title                   :string
 #  description             :string
-#  start_date              :string
-#  end_date                :string
+#  start_date              :datetime
+#  end_date                :datetime
 #  start_time              :string
 #  end_time                :string
 #  deadline                :string
@@ -79,7 +79,7 @@ class Activity < ApplicationRecord
   scope :delivery, -> (delivery) {joins(:deliveries).where(deliveries: { method: delivery })}
 
   scope :start_date, -> (start_date) { where('start_date > ?', start_date) }
-  scope :end_date, -> (end_date) { where('start_date < ?', end_date) }
+  scope :end_date, -> (end_date) { where('end_date < ?', end_date) }
 
 Activity.where('start_date > ?', '01/01/2010')
   def current_step
