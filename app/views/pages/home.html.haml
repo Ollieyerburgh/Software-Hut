@@ -14,6 +14,9 @@
     = hidden_field_tag 'delivery', '', :id => "delivery"
     = hidden_field_tag 'distance', '', :id => "distance"
     = hidden_field_tag 'postcode', '', :id => "postcode"
+    = hidden_field_tag 'start_date'
+    = hidden_field_tag 'end_date'
+
     = hidden_field_tag 'page', '1'
 
   .filter-container
@@ -64,6 +67,8 @@
             .subject-choice
               %option
                 = delivery.capitalize
+        %input{:type=>"text", ":data-provide" => 'datepicker', :placeholder => 'Start date range', :class => "timepicker", :id => 'start-date-range'}
+        %input{:type=>"text", ":data-provide" => 'datepicker', :placeholder => 'End date range', :class => "timepicker", :id => 'end-date-range'}
 
 .container-fluid.margin-top-50
   .row
@@ -121,3 +126,12 @@
 
 - content_for :head do
   %meta{:content => "no-cache", :name => "turbolinks-cache-control"}
+
+:javascript
+
+  $('.timepicker').datepicker({
+                           format: 'dd/mm/yyyy',
+                           autoclose: true,
+                           orientation: 'bottom',
+                           placeholder: 'hello'
+                           });

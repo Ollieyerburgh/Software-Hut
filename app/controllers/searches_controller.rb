@@ -20,7 +20,7 @@ class SearchesController < ApplicationController
     puts "Distance wanted is: #{@distance_wanted}"
 
     #filter the activites + resources by query + subject (this uses scopes stored in the relevant models director)
-    @activities = Activity.filter(params.slice(:query, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
+    @activities = Activity.filter(params.slice(:query, :start_date, :end_date, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
     @resources = Resource.filter(params.slice(:query, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
     puts "Activities classes are.."
     puts @activities.class
@@ -29,14 +29,14 @@ class SearchesController < ApplicationController
     puts Activity.all.class
 
     if @distance_filter
-      #get the postcodes of the activities 
+      #get the postcodes of the activities
       origins = @activities.map {|x| x.postcode}
 
       #connect to Google maps API client
       gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDdFojl37akCcM9_TICN7BWjSALccfO5g0')
 
-      #get the postcode implemented or the postcode of the user if logged in 
-      if current_user 
+      #get the postcode implemented or the postcode of the user if logged in
+      if current_user
         destination = current_user.postcode
       else
         destination = params[:postcode]
@@ -47,7 +47,7 @@ class SearchesController < ApplicationController
         origins,
         destination
       )
-      
+
       #get the distances in an array
       @distances = []
       distance[:rows].each { |distance|
@@ -58,7 +58,7 @@ class SearchesController < ApplicationController
       #remove activities whose distance is greater than specified
       @activities_with_correct_distance = []
       @correct_distances = []
-      @distances.each_with_index {|distance, index| 
+      @distances.each_with_index {|distance, index|
         if !(distance > @distance_wanted)
           @activities_with_correct_distance.append(@activities[index])
           @correct_distances.append(distance)
@@ -68,7 +68,7 @@ class SearchesController < ApplicationController
       #convert activities to hashes (so we can add distances to them)
       @activities_hash = @activities_with_correct_distance.as_json(:root => true) #array of hashes
       #add distances to activities
-      @activities_hash.each_with_index {|activity, index| 
+      @activities_hash.each_with_index {|activity, index|
         activity['distance'] = @correct_distances[index].to_i
       }
 
@@ -78,17 +78,17 @@ class SearchesController < ApplicationController
       #order activities by length of distance
       @activities_hash = @activities_hash.sort_by { |k| k["distance"] }
 
-      #turn the hash back into an array for iteration 
+      #turn the hash back into an array for iteration
       #@activities = @activities_hash
 
       #don't show resources for location search
       #@resourcers = []
     else
-      @activities_hash = @activities.as_json(:root => true) 
+      @activities_hash = @activities.as_json(:root => true)
     end
 
     #find results length to display on search page
-    @results_length = @activities.size + @resources.size 
+    @results_length = @activities.size + @resources.size
 
     #find search query to show on results page
     @search = params[:query]

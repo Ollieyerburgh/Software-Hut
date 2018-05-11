@@ -1,5 +1,9 @@
 .generic-container
   .generic-header
+    - if @results_length == 1
+      %p Found #{@results_length} result for "#{@search}"
+    - else
+      %p Found #{@results_length} results for "#{@search}"
 
 .results-container
   .results-inner
@@ -18,9 +22,7 @@
 
 
         - if @activities_hash[count]
-
         - @link = 'https://team18.demo3.hut.shefcompsci.org.uk/activities/' + @activities_hash[count]['activity']['id'].to_s
-
           %tr.clickonly{:class => @class, :data => {:link => @link} }
             %td.result-title #{@activities_hash[count]['activity']['title']} #{@colour}
             %td.result-date
@@ -40,7 +42,8 @@
             %td.likes-count{id: "likes_#{(Activity.find_by_id(@activities_hash[count]['activity']['id'])).id}"}
               = (Activity.find_by_id(@activities_hash[count]['activity']['id'])).get_upvotes.size
         - if @resources[count]
-          %tr
+        - @link = 'https://team18.demo3.hut.shefcompsci.org.uk/resources/' + @resources[count].id.to_s
+          %tr{:class => @class, :data => {:link => @link} }
             %td.result-title Resource Title: #{@resources[count].title}
             %td.result-description Description: #{@resources[count].description}
             %td.result-link Link to website: #{@resources[count].link}
