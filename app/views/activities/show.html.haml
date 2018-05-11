@@ -21,6 +21,13 @@
     = @activity.link
     %br
     %b Eligability Criteria:
+    %br{id: "likes_#{@activity.id}"}
+    .activity-option
+      = link_to like_activity_path(@activity), class:"like-btn", id:"like_#{@activity.id}", method: :put, remote: :true do
+        = fa_icon('thumbs-up')
+        = @activity.get_upvotes.size
+
+
 
     = @activity.eligibility_criteria unless @activity.eligibility_criteria.nil?
 
@@ -28,4 +35,4 @@
     - if can? :update, @activity
       = link_to 'Edit', edit_activity_path(@activity)
 
-    = link_to 'Back', activities_path 
+    = link_to 'Back', activities_path
