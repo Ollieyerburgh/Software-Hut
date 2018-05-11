@@ -220,6 +220,7 @@ describe 'Admin features', js: true do
     click_link 'Log in'
     visit '/'
     click_link 'Create Activity'
+    wait_for_ajax
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-admin'
     fill_in 'Resource description', with: 'Test-Desc'

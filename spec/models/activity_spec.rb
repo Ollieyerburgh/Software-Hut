@@ -52,17 +52,20 @@ RSpec.describe Activity, type: :model do
   it "is not valid without title" do
     activity.title = nil
     expect(activity).to_not be_valid
+    activity.title = "test"
 
   end
 
   it "is not valid without description" do
     activity.description = nil
     expect(activity).to_not be_valid
+    activity.description = "test"
   end
 
   it "is not valid without start date" do
     activity.start_date = nil
     expect(activity).to_not be_valid
+    activity.start_date = "01/01/2001"
   end
   it "is not valid without end date" do
     activity.end_date = nil

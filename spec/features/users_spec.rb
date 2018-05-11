@@ -248,6 +248,7 @@ describe 'Users', js: true do
     visit '/activities'
     expect(page).to have_css("#likes_1", text: "0")
     Capybara.page.find('#like_1').click
+    wait_for_ajax
     visit '/activities'
     sleep(5)
     expect(page).to have_css("#likes_1", text: "1")
