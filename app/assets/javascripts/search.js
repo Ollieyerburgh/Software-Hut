@@ -49,7 +49,7 @@ $( document ).on('turbolinks:load', function() {
         var slider = $("#example_id").data("ionRangeSlider");
         var distance_value = slider.result.from;
         document.getElementById("distance").value = distance_value;
- 
+
         if ($('#postcode_value').is(":visible")) {
             if (document.getElementById("postcode_value").value != '') {
                 var postcode = document.getElementById("postcode_value").value;
@@ -66,6 +66,27 @@ $( document ).on('turbolinks:load', function() {
         var e = document.getElementById("query").value;
         if (e=='') {
             e.id='notquery';
+        }
+
+
+        var start_date = document.getElementById("start-date-range").value;
+        var end_date = document.getElementById("end-date-range").value;
+
+        if (new Date(start_date) > new Date(end_date)) {
+          alert('Please choose a start date before the end date.');
+          return false;
+        }
+
+        if (start_date=='') {
+          $('#start_date').remove();
+        } else {
+          $('#start_date').val(start_date);
+        }
+
+        if (end_date=='') {
+          $('#end_date').remove();
+        } else {
+          $('#end_date').val(end_date);
         }
 
         var e = document.getElementById("selectsubject");

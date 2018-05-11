@@ -56,6 +56,7 @@ gem "shoulda"
 gem 'test-unit'
 gem 'google_maps_service'
 
+gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   gem 'rspec-rails'
