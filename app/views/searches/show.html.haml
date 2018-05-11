@@ -1,5 +1,9 @@
 .generic-container
   .generic-header
+    - if @results_length == 1
+      %p Found #{@results_length} result for "#{@search}"
+    - else
+      %p Found #{@results_length} results for "#{@search}"
 
 .results-container
   .results-inner
