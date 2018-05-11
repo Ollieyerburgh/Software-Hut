@@ -22,6 +22,11 @@ class SearchesController < ApplicationController
     #filter the activites + resources by query + subject (this uses scopes stored in the relevant models director)
     @activities = Activity.filter(params.slice(:query, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
     @resources = Resource.filter(params.slice(:query, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
+    puts "Activities classes are.."
+    puts @activities.class
+    puts @resources.class
+
+    puts Activity.all.class
 
     if @distance_filter
       #get the postcodes of the activities 
@@ -60,17 +65,15 @@ class SearchesController < ApplicationController
         end
       }
 
-      @activities = @activities_with_correct_distance
-
       #convert activities to hashes (so we can add distances to them)
-      @activities_hash = @activities.as_json(:root => true) #array of hashes
+      @activities_hash = @activities_with_correct_distance.as_json(:root => true) #array of hashes
       #add distances to activities
       @activities_hash.each_with_index {|activity, index| 
         activity['distance'] = @correct_distances[index].to_i
       }
 
       #order array of activerecord activities results on distance
-      @activities.sort_by{|x| @activities_hash.index x['distance']}
+      #@activities.sort_by{|x| @activities_hash.index x['distance']}
 
       #order activities by length of distance
       @activities_hash = @activities_hash.sort_by { |k| k["distance"] }
@@ -89,7 +92,9 @@ class SearchesController < ApplicationController
 
     #find search query to show on results page
     @search = params[:query]
-
+    puts "Activities classes 2 are.."
+    puts @activities.class
+    puts @resources.class
   end
 
   # GET /searches/new

@@ -33,7 +33,6 @@ gem 'polyamorous', '~> 1.3.1'
 gem 'underscore-rails'
 gem 'dependent-fields-rails'
 gem 'will_paginate', '~> 3.1.5'
-gem 'bootstrap-will_paginate'
 
 gem 'devise'
 gem 'devise_ldap_authenticatable'
