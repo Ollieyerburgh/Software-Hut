@@ -1,8 +1,6 @@
 $( document ).on('turbolinks:load', function() {
 
-
     $(".clickonly").click(function() {
-        window.location = $(this).data("link");
     });
 
     if ($('.irs').length==0) {
@@ -12,8 +10,8 @@ $( document ).on('turbolinks:load', function() {
             max: '1400'
         });
     }
-    
-    
+
+
     $(".slickaroo").slick({
         dots: false,
         accessibility: false,

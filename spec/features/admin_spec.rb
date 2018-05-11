@@ -15,10 +15,10 @@ describe 'Admin features', js: true do
     admin = FactoryGirl.create(:admin)
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'test@hotmail.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'test@hotmail.com'
     click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
@@ -29,9 +29,9 @@ describe 'Admin features', js: true do
     login_as(admin)
     visit '/admin/requests/show'
     visit '/admin'
-    click_link 'Manage requests'
+    click_link 'Manage Requests'
     expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'Request changes'
     expect(page).to have_content 'Test-title'
     click_link 'Approve'
     ActionMailer::Base.deliveries.last.to.should include("test@hotmail.com")
@@ -43,10 +43,10 @@ describe 'Admin features', js: true do
     login_as(user)
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'UserTest@user.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'UserTest@user.com'
     click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
@@ -57,9 +57,9 @@ describe 'Admin features', js: true do
     login_as(admin)
     visit '/admin/requests/show'
     visit '/admin'
-    click_link 'Manage requests'
+    click_link 'Manage Requests'
     expect(page).to have_content 'Approve'
-    expect(page).to have_content 'Reject'
+    expect(page).to have_content 'Request changes'
     expect(page).to have_content 'Test-title'
     click_link 'Approve'
     ActionMailer::Base.deliveries.last.to.should include("UserTest@user.com")
@@ -69,10 +69,10 @@ describe 'Admin features', js: true do
     admin = FactoryGirl.create(:admin)
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'GuestReject@test.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'GuestReject@test.com'
     click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
@@ -90,7 +90,7 @@ describe 'Admin features', js: true do
     fill_in 'Message', with: 'Rejected'
     click_button 'Submit'
     expect(page).to have_content 'Rejection email was sent'
-    expect(page).to have_content 'Pending activities'
+    expect(page).to have_content 'Pending Activities'
     ActionMailer::Base.deliveries.last.to.should include("GuestReject@test.com")
 
   end
@@ -102,10 +102,10 @@ describe 'Admin features', js: true do
     visit '/'
     click_link 'Create Activity'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'UserReject@test.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'UserReject@test.com'
     click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
@@ -116,7 +116,7 @@ describe 'Admin features', js: true do
     login_as(admin)
     visit '/admin/requests/show'
     visit '/admin'
-    click_link 'Manage requests'
+    click_link 'Manage Requests'
     expect(page).to have_content 'Approve'
     expect(page).to have_content 'Request changes'
     expect(page).to have_content 'Test-title'
@@ -124,7 +124,7 @@ describe 'Admin features', js: true do
     fill_in 'Message', with: 'Rejected'
     click_button 'Submit'
     expect(page).to have_content 'Rejection email was sent'
-    expect(page).to have_content 'Pending activities'
+    expect(page).to have_content 'Pending Activities'
     ActionMailer::Base.deliveries.last.to.should include("UserReject@test.com")
 
   end
@@ -199,10 +199,10 @@ describe 'Admin features', js: true do
     click_link 'Log in'
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'test@hotmail.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'test@hotmail.com'
     click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
@@ -319,9 +319,10 @@ describe 'Admin features', js: true do
       click_link 'New Theme'
       fill_in 'Name', with: 'test-theme'
       click_button 'Create Theme'
-      sleep 1
+      sleep (1)
       visit '/admin/preferences/index'
       click_link 'Edit'
+      save_and_open_page
       fill_in 'Name', with: 'txt-pref'
       click_button 'Update Theme'
       expect(page).to have_content 'Theme was successfully updated.'

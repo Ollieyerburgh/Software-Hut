@@ -14,6 +14,8 @@
       <%= f.input :email, required: true, autofocus: true %>
       <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
       <%= f.input :password_confirmation, required: true %>
+      <%= f.label "Higher access admin? Tick for yes" %>
+      <%= f.check_box :higher_access%>
     </div>
     <div class="form-actions">
       <%= f.button :submit, "Create Admin" %>
