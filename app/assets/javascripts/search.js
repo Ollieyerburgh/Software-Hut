@@ -1,29 +1,5 @@
 $( document ).on('turbolinks:load', function() {
-    $(".like-btn").click(function() {
-        event.stopPropagation();
 
-        var url = $(this).attr('href');
-        alert(url);
-        $.ajax({
-            url: url,
-            type: 'PUT',
-            headers: {
-                "Content-Type": "application/json"
-            },            
-            success: function(result) {
-                // Do something with the result
-                alert(result);
-            },
-        error: function(xhr, textStatus, error){
-            console.log(xhr.statusText);
-            console.log(textStatus);
-            console.log(error);
-        }
-        });
-
-        return false;
-
-    });
 
     $(".clickonly").click(function() {
         window.location = $(this).data("link");
@@ -75,7 +51,7 @@ $( document ).on('turbolinks:load', function() {
         var slider = $("#example_id").data("ionRangeSlider");
         var distance_value = slider.result.from;
         document.getElementById("distance").value = distance_value;
-
+ 
         if ($('#postcode_value').is(":visible")) {
             if (document.getElementById("postcode_value").value != '') {
                 var postcode = document.getElementById("postcode_value").value;
