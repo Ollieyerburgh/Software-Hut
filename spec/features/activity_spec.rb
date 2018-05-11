@@ -274,16 +274,5 @@ describe 'Managing activites', js: true do
   specify 'I can search for an event, and like it so that it appears in my saved activities' do
   end
 
-  specify 'I can like an event, which will increase like count by one' do
-    activity = FactoryGirl.create(:activity_approved)
-    user = FactoryGirl.create(:user1)
-    visit '/'
-    click_link 'Log in'
-    fill_in 'Email', with: "ollieyerburgh@test1.com"
-    fill_in 'Password', with: 'foobar12'
-    click_button 'Log in'
-    visit '/activities'
-    sleep 5.seconds
-    find("#likes_#{activity.id}").text.should include('0')
-  end
+
 end

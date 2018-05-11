@@ -38,11 +38,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  user = FactoryGirl.create(:user_anon)
-
-  it "is valid with valid attributes" do
-    expect(user).to be_valid
-  end
+  user = FactoryGirl.create(:user)
 
   it "is valid with valid attributes" do
     expect(user).to be_valid
@@ -51,21 +47,25 @@ RSpec.describe User, type: :model do
   it "is not valid without a forename" do
     user.forename = nil
     expect(user).not_to be_valid
+    user.forename = "test"
   end
 
   it "is not valid without a surname" do
     user.surname = nil
     expect(user).not_to be_valid
+    user.surname = "test"
   end
 
   it "is not valid without a postcode" do
     user.postcode = nil
     expect(user).not_to be_valid
+    user.postcode = "S102SQ"
   end
 
   it "is not vaild without a email" do
     user.email = nil
     expect(user).not_to be_valid
+    user.email = "test@test.com"
   end
 
   it "is not valid without proper format of postcode" do

@@ -99,13 +99,6 @@ RSpec.describe Activity, type: :model do
     expect(activity).to_not be_valid
   end
 
-  it "does not return approved activities " do
-    expect(Activity.pending).to_not include(Activity.where("status = approved"))
-  end
-
-  it "doesn't include pending activities" do
-   expect(Activity.approved).to_not include(Activity.where("status = pending"))
-  end
 
   describe "Associations" do
     it { should have_and_belong_to_many(:deliveries) }

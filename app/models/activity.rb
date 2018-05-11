@@ -55,9 +55,9 @@ class Activity < ApplicationRecord
   VALID_DATE_REGEX = /\A(?:0?[1-9]|1[0-2])\/(?:0?[1-9]|[1-2]\d|3[01])\/\d{4}\Z/
   validates :title, presence: true, :if => lambda { |a| a.current_step == "main" }
   validates :description, presence: true, :if => lambda { |a| a.current_step == "main" }
-  validates :start_date, presence: true, :if => lambda { |a| a.current_step == "date" }
-  validates :end_date, presence: true, :if => lambda { |a| a.current_step == "date" }
-  validates :deadline, presence: true, :if => lambda { |a| a.current_step == "date" }
+  validates :start_date, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format. Please enter in dd/mm/yyyy"}, :if => lambda { |a| a.current_step == "date" }
+  validates :end_date, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format. Please enter in dd/mm/yyyy"}, :if => lambda { |a| a.current_step == "date" }
+  validates :deadline, presence: true, format: {with: VALID_DATE_REGEX, message: "Invalid date format. Please enter in dd/mm/yyyy"}, :if => lambda { |a| a.current_step == "date" }
   validates :postcode, presence: true, format: {with: VALID_POSTCODE_REGEX, message: "Invalid postcode format"}, :if => lambda { |a| a.current_step == "main" }
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}, :if => lambda { |a| a.current_step == "main" }
   validates :link, presence: true, :if => lambda { |a| a.current_step == "main" }

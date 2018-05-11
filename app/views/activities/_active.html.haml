@@ -16,12 +16,13 @@
         .activity-description
         Description:
         = activity.description
-        %br{id: "likes_#{activity.id}"}
+        %p{id: "likes_#{activity.id}"}
+          = activity.get_upvotes.size
+
         .activity-option
           = link_to like_activity_path(activity), class:"like-btn", id:"like_#{activity.id}", method: :put, remote: :true do
             = fa_icon('thumbs-up')
 
-            = activity.get_upvotes.size
         = link_to 'See more', activity
     - else
       - no_act += 1
@@ -33,9 +34,12 @@
     %tbody
       - @activities.each do |activity|
         %tr
-          %td.activity-date= activity.deadline
-          %td.activity-title= activity.title
-          %td.activity-description= activity.description
+          %td.activity-date
+            = activity.deadline
+          %td.activity-title
+            = activity.title
+          %td.activity-description
+            = activity.description
           %td.activity-option
             = link_to like_activity_path(activity), class:"like-btn", method: :put, id:"like_#{activity.id}", remote: :true do
               = fa_icon('thumbs-up')
