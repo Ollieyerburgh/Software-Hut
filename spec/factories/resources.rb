@@ -28,5 +28,12 @@ FactoryGirl.define do
     description "MyString"
     email "resourcetest2@test.com"
     status "pending"
+
+    factory :resource_approved do
+      title "test"
+      description "test-resource"
+      email "testing2@test.com"
+      status "approved"
+    end
   end
 end

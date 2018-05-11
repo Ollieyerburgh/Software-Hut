@@ -50,7 +50,7 @@ FactoryGirl.define do
     title "test-title"
     description "test"
     start_date "01/01/2010"
-    end_date "01/01/2010"
+    end_date "02/01/201"
     deadline "01/01/2010"
     postcode "S102SQ"
     link "www.facebook.com"
@@ -69,6 +69,60 @@ FactoryGirl.define do
       email "test@test.com"
       status "approved"
       user_id "1"
+    end
+
+    factory :activity_subject do
+      title 'test-subject'
+      description 'testing subject search'
+      start_date "01/01/2010"
+      end_date "01/02/2011"
+      deadline "01/02/2010"
+      link "www.google.com"
+      email "testingsubjects@test.com"
+      status "approved"
+      subject_ids "1"
+    end
+
+    factory :activity_theme do
+      title 'test-theme'
+      description 'testing theme search'
+      start_date "01/01/2014"
+      end_date "01/02/2015"
+      deadline "01/02/2010"
+      link "www.google.com"
+      email "testingthemes@test.com"
+      status "approved"
+      theme_ids "1"
+
+    end
+
+    factory :activity_delivery do
+      title 'test-delivery'
+      description 'testing delivery search'
+      start_date "01/01/2010"
+      end_date "01/02/2011"
+      deadline "01/02/2010"
+      link "www.google.com"
+      email "testingdeliverys@test.com"
+      status "approved"
+      delivery_ids "1"
+    end
+
+    factory :activity_all do
+      title 'test-delivery'
+      description 'testing delivery search'
+      start_date "01/01/2010"
+      end_date "04/01/2010"
+      deadline "01/02/2010"
+      link "www.google.com"
+      email "testingdeliverys@test.com"
+      status "approved"
+      delivery_ids "1"
+      theme_ids "1"
+      subject_ids "1"
+
+
+
     end
   end
 

@@ -35,5 +35,11 @@ FactoryGirl.define do
       higher_access false
     end
 
+    factory :admin_higher2 do
+      email{'a1dmin@admin.com'}
+      password 'password'
+      higher_access true
+    end
+
   end
 end

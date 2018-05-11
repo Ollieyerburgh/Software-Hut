@@ -12,5 +12,7 @@ FactoryGirl.define do
     factory :age1 do
       age "10-12"
     end
+
+    
   end
 end
