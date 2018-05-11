@@ -4,10 +4,10 @@ describe 'Authorisation', js: true do
   specify 'I can create an activity when not signed in' do
     visit '/activities/new'
     fill_in 'Title', with: 'Test-title'
-    fill_in 'Description', with: 'Test-Description'
-    fill_in 'Web address of activity', with: 'www.facebook.com'
-    fill_in 'Activity postcode', with: 'GL88XY'
-    fill_in 'Email', with: 'test@hotmail.com'
+    fill_in 'activity[description]', with: 'Test-Description'
+    fill_in 'Web Address of Activity', with: 'www.facebook.com'
+    fill_in 'Activity Postcode', with: 'GL88XY'
+    fill_in 'activity[email]', with: 'test@hotmail.com'
     click_button 'Continue'
     click_button 'Continue'
     page.execute_script("$('#activity_start_date').val('01/01/2008')")
@@ -59,14 +59,16 @@ describe 'Authorisation', js: true do
 
   end
 
-  specify 'I cannot visit age create or edit as a guest' do
-    age = FactoryGirl.create(:age1)
-    sleep (1)
+  specify 'I cannot visit age create as a guest' do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    visit '/ages/new'
+    fill_in 'Age', with: '9-11'
+    click_button 'Create Age'
+    find('.dropdown-toggle').click
+    click_link "Log out"
     visit '/ages/new'
     expect(page).to have_content 'Access Denied 403'
-    visit '/ages/1/edit'
-    expect(page).to have_content 'Access Denied 403'
-
   end
 
 
@@ -191,7 +193,7 @@ describe 'Authorisation', js: true do
     admin = FactoryGirl.create(:admin)
     login_as(admin)
     visit '/admin/registrations/new'
-    expect(page).to have_content 'Create an Admin'
+    expect(page).to have_content 'Admin Invite'
   end
 
   specify 'I cannot visit Add or edit Themes as a lower level admin' do

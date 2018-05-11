@@ -9,7 +9,7 @@ $( document ).on('turbolinks:load', function() {
             type: 'PUT',
             headers: {
                 "Content-Type": "application/json"
-            },            
+            },
             success: function(result) {
                 // Do something with the result
                 alert(result);
@@ -36,8 +36,8 @@ $( document ).on('turbolinks:load', function() {
             max: '1400'
         });
     }
-    
-    
+
+
     $(".slickaroo").slick({
         dots: false,
         accessibility: false,
