@@ -227,7 +227,7 @@ describe 'Users', js: true do
     click_link 'My Preferences'
     click_link 'New Preference'
     select "9-11", :from => "Ages"
-    select "theme", :from => "Themes"
+    select "Careers", :from => "Themes"
     click_button "Create Preference"
     expect(page).to have_content "Preference was successfully created"
     ActionMailer::Base.deliveries.last.to.should include("ollieyerburgh@test.com")

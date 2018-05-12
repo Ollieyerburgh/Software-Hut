@@ -1,0 +1,71 @@
+.container
+  .row
+    %h1 Help page
+    %h4 Here you can find guidance on how to operate the system
+  .row
+    .panel-group
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#admin"} How to: Add Admin
+        .panel-collapse.collapse.in{:id => "admin"}
+          .panel-body
+            .col-sm-6
+              %p 1. Click on dashboard
+              %p 2. Follow 'Manage Admins'
+              %p 3. Fill in "Email" with their email
+              %p 4. Fill in "Password" with any password. This will be their admin password, which they can change
+              %p 5. If you want the admin to have higher access, tick the checkbox
+              %p 6. Tell them their log in details
+              %p 7. Tell them to log in, then click 'Account' to change their password
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('AdminAdd.mp4', controls: true)
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#ar"} How to: Approve/Reject
+        .panel-collapse.collapse.in{:id => "ar"}
+          .panel-body
+            .col-sm-6
+              %p 1. Click on dashboard
+              %p 2. Follow 'Manage Requests'
+              %p 3. Under pending requests are those ready to be approved
+              %p 4. These will only be searchable if they're approved
+              %p 5. To approve an email, click 'Approve'
+              %p 6. To reject an email, click 'Reject', and fill in "Message field"
+              %p 7. Both of these will send an email to the submitter. What is entered in the "Message"
+              field will be emailed to them as the reason their submission was rejected
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('AcceptReject.mp4', controls: true)
+
+
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#modifyusers"} How to: Modify users
+        .panel-collapse.collapse.in{:id => "modifyusers"}
+          .panel-body
+            .col-sm-6
+              %p 1. Click on dashboard
+              %p 2. Click on 'Manage Users'
+              %p 3. Here, all users on the system are displayed
+              %p 4. You can either edit them, or delete them
+              %p 5. If you delete them, they will be permantly deleted along with their activities/resources
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('ModifyUser.mp4', controls: true)
+
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#modifypreferences"} How to: Modify preferences
+        .panel-collapse.collapse.in{:id => "modifypreferences"}
+          .panel-body
+            .col-sm-6
+              %p 1. Click on dashboard
+              %p 2. Click on 'Edit Preference Options'
+              %p 3. Here, all the preference options are displayed
+              %p 4. You can add them, delete them, or modify them
+              %p 5. You can modify them as you wish. The ones shown will be the options when a user creates a preference
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('ModifyPreferences.mp4', controls: true)

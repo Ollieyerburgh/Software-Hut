@@ -13,7 +13,7 @@ class PagesController < ApplicationController
   end
 
   def help
-    authorize! :help, @pages
+    #authorize! :help, @pages
   end
 
   def analytics
