@@ -250,6 +250,34 @@ describe 'Authorisation', js: true do
     expect(page).to have_content 'Access Denied 403'
   end
 
+  specify 'When I visit help page as an admin, its not the same as for a user' do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    visit '/help'
+    wait_for_ajax
+    expect(page).to have_content "Here you can find guidance on how to operate the system"
+    expect(page).to_not have_content "Here you can find guidance on how to make best use of this system."
+  end
+
+  specify 'When I visit help page as a user, its different from the admin ' do
+    user = FactoryGirl.create(:user)
+    login_as(user)
+    visit '/help'
+    wait_for_ajax
+    expect(page).to_not have_content "Here you can find guidance on how to operate the system"
+    expect(page).to have_content "Here you can find guidance on how to make best use of this system."
+  end
+
+  specify 'When I visit help page as a guest, its different from the admin ' do
+    visit '/help'
+    wait_for_ajax
+    expect(page).to_not have_content "Here you can find guidance on how to operate the system"
+    expect(page).to have_content "Here you can find guidance on how to make best use of this system."
+  end
+
+
+
+
 
 
 

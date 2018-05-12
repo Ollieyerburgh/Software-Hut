@@ -1,0 +1,147 @@
+.container
+  .row
+    %h1 Help page
+    %h4 Here you can find guidance on how to make best use of this system.
+  .row
+    .panel-group
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#admin"} How to: create an activity
+        .panel-collapse.collapse{:id => "admin"}
+          .panel-body
+            .col-sm-6
+              %p 1. Click on "Create Activity"
+              %p 2. Fill in the main activity information
+              %p 3. Make sure the email is the email you'd like to receive an email with if an admin requests some changes
+              %p 4. Press continue, and fill in next preference information
+              %p 5. These categories are what people may use as filters when they search for activities. They're also used when a user makes a preference. If an activity matches a user's preference, they will receive an email about them once a week
+              %p 6. Press continue, and fill in the final step.
+              %p 7. It is not required that you fill out eligability criteria here, but some events are restricted to certain groups, for example first in the family to go university.
+              %p 8. Before continuing, you must confirm that you have been given permission to post an activity to our site
+              %p 9. Press continue, and congratulations! Your activity must now be approved by an admin, so that other users can find your content.
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('AdminAdd.mp4', controls: true)
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#ar"} How to: create a resource
+        .panel-collapse.collapse{:id => "ar"}
+          .panel-body
+            .col-sm-6
+              %p 1. Click on "Create Activity"
+              %p 2. Click on "New Resource"
+              %p 3. Fill in the form with your resource information. For example, if the resource is a powerpoint for a lesson, you could include "Maths Lesson" as your title
+              %p 4. You may upload a file, such as a powerpoint, or a zip for multiple files. Users can download this if they find your activity.
+              %p 5. Click "Create Resource"
+              %p 6. Your resource will now be approved by an administrator, who will either approve the submission or request that you make some changes.
+              %p 7. If you are not logged in, and an admin requests that you make changes, you must re submit the resource.
+              %p 8. If you are a user, you can simply edit the resource in a page called "My Activities", which can be found by clicking your name in the top right hand corner.
+
+
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('AcceptReject.mp4', controls: true)
+
+
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#modifyusers"} How to: Receive relevant emails
+        .panel-collapse.collapse{:id => "modifyusers"}
+          .panel-body
+            .col-sm-6
+              %p 1. While on the homepage, click your name in the top right hand corner
+              %p 2. Click "My Preferences"
+              %p 3. On this page, you can create a preference which allows you to receive emails weekly with five activities that fit your preference
+              %p 4. For example, if my only preference is "Physics", then I will receive an email containing five activities which have been tagged as physics.
+              %p 5. This can be useful, as you will only receive emails about activities relevant to you.
+              %p 6. You may only have one preference, but you may edit it or destroy it as you like
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('ModifyUser.mp4', controls: true)
+
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#modifypreferences"} How to: Change your password
+        .panel-collapse.collapse{:id => "modifypreferences"}
+          .panel-body
+            .col-sm-6
+              %p 1. Sign in
+              %p 2. Click on the icon saying "Hello, (name)"
+              %p 3. Click on "My Account"
+              %p 4. Fill in 'Password' with your new desired password, and the same for 'Password Confirmation'
+              %p 5. Fill in "Current password" with your current password, and press 'Update'.
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('ModifyPreferences.mp4', controls: true)
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#trackactivities"} How to: Keep track of your activities
+        .panel-collapse.collapse{:id => "trackactivities"}
+          .panel-body
+            .col-sm-6
+              %p 1. Sign in
+              %p 2. Click on the icon saying "Hello, (name)"
+              %p 3. Click on "My Activities"
+              %p 4. Here, all your activities and resources which have changes requested, approved or are still pending are displayed
+              %p 5. Your approved activities will also show how many times that event has been 'Liked'
+              %p 6. Any Activities or resources that have had changes requested can be edited with the requested changes, and will then become pending.
+              %p 7. If an activity or resource is pending, it still needs to be approved by an administrator. This shouldn't take long.
+              %p 8. You can delete or edit your approved activities at any point, however any edit will have to be approved by an administrator again
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('ModifyPreferences.mp4', controls: true)
+
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#searchsystem"} How to: Search the system
+        .panel-collapse.collapse{:id => "searchsystem"}
+          .panel-body
+            .col-sm-6
+              %p 1. Visit the homepage, and enter a keyword into the search box
+              %p 2. You can either search now, which is likely to return many results, or you can filter your search.
+              %p 3. The first filter is distance in KM. This is the maximum distance you're willing to travel to get to an activity. If you are a guest, you must enter a postcode here, but if you are signed in you won't need to do this.
+              %p 4. The other filters can be found by pressing "Filters"
+              %p 5. You can search for results filtering subjects, by selecting the subject you want from the dropdown
+              %p 6. You can seacrch for results filtering theme, which may be "University", or "Apprenticeship", by selecting theme from the dropdown
+              %p 7. You can search for the delivery method, such as "online", or "In school/college", by selecting delivery method from the dropdown
+              %p 8. You can also search for results which are occuring within a date range.
+              %p 9. You can also combine all these filters, to find exactly what you would like
+              %p 10. Once decided on your filters, press enter and you will see the search results.
+
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('ModifyPreferences.mp4', controls: true)
+
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#saveactivities"} How to: Save an activity
+        .panel-collapse.collapse{:id => "saveactivities"}
+          .panel-body
+            .col-sm-6
+              %p 1. In order to save an activity, you must be a user.
+              %p 2. Log in, and visit the homepage.
+              %p 3. Search for resource of an activity
+              %p 4. When the results are displayed, you will see a thumbs up symbol. If you press this, the number will increase by one.
+              %p 5. Now, click "Saved Activities" in your navigation bar. Here will be all the activities that you saved, so that you can come back to them later.
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('ModifyPreferences.mp4', controls: true)
+
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#whysignup"} Why should I sign up?
+        .panel-collapse.collapse{:id => "whysignup"}
+          .panel-body
+            .col-sm-6
+              %p 1. Although you can still search the system while not logged in, there are many benefits to signing up.
+              %p 2. Firstly, you can save activities so that you can come back to them later
+              %p 3. Secondly, you can receive emails about activities that are only relevant to you, by selecting a preference
+              %p 4. Thirdly, you can keep track of all the activities or resources that you have submitted.
+              %p 5. To sign up, click the "Sign Up" button in the top right corner of the screen.
+              %p 6. Fill in the form, making sure that your postcode is a real one. This postcode is what the distance filter uses.
+              %p 7. Click sign up, and you will be logged in
+              %p 8. Don't hesitate, you can now make a preference, saved activities and look at your activities!
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('ModifyPreferences.mp4', controls: true)
