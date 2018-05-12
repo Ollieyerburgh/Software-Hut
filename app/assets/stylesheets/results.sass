@@ -1,15 +1,20 @@
 $nice-black: #303030
-.result1, .result2, .result3, .result4, .result5
+$light-teal: #b4ede2
+
+.result1, .result2, .result3, .result4, .result5, .result1light
     padding: 10px
     position: relative
     border: 1px solid #E0E0E0 !important
     background: #EEEEEE
 
 
-.result1:hover, .result2:hover, .result3:hover, .result4:hover, .result5:hover
+.result1:hover, .result2:hover, .result3:hover, .result4:hover, .result5:hover, .result1light:hover
 
 .result1
     background: #91e4f7
+
+.result1light
+    background: $light-teal
 
 .result2
     background: #ffd051
@@ -26,16 +31,18 @@ $nice-black: #303030
     color: $nice-black
 
 .date-span
-    background: black
     color: white
     margin-right: 3px
-    padding: 3px
+    background: #737373
+    padding: 5px
+    border-radius: 5px
 
 .date-span-deadline
-    background: #DD2C00
-    color: white
+    color: black
     margin-right: 3px
+    background: white
     padding: 5px
+    border-radius: 5px
 
 .result-date
     position: absolute
@@ -51,12 +58,13 @@ $nice-black: #303030
 
 .result-link
     position: absolute
-    padding: 10px
-    background: white
     color: black !important
     text-decoration: none
     top: 10px
     right: 10px
+    background: white
+    padding: 10px
+    border-radius: 5px
 
 .result-link a
     color: black !important

@@ -1,4 +1,5 @@
 $teal: #1cb495
+$light-teal: #b4ede2
 $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
 
 .results-container
@@ -16,6 +17,10 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
   justify-content: center
   align-items: center
   align-self: center
+
+.results-inner tr:hover
+  background-color: #eeeeee
+  transition: 0.5s
 
 .paginate-container
   width: 100%
@@ -40,23 +45,32 @@ $nice-font: 'Nunito','Roboto',"proxima-nova","Proxima Nova", sans-serif
   justify-content: flex-start
   align-items: flex-start
   text-align: left
-  border: 1px solid $teal
+  border: 1px solid $light-teal
   border-radius: 5px
   margin-bottom: 20px
   padding: 10px
 
 .result-title
-  background: black
+  background: #737373
   padding: 10px
   border-radius: 5px
-  font-size: 30px
+  font-size: 24px
+  color: white !important
 
 .result-title a
   width: 100%
   text-decoration: none
 
 .result-description
-  font-size: 30px
+  font-size: 22px
+  color: black
 
 .result-address
-  font-size: 20px
+  font-size: 18px
+
+.result-contact
+  padding: 10px
+
+.generic-header h3
+  color: $teal
+  font-family: $nice-font
