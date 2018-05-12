@@ -88,7 +88,6 @@ describe 'Search tests', js:true do
     select "Careers", :from => "selecttheme"
     page.execute_script("$('form#helloworld').submit()")
     wait_for_ajax
-    save_and_open_page
     expect(page).to have_content "Found 1 result"
     expect(page).to have_content "testing theme search"
 
@@ -112,7 +111,7 @@ describe 'Search tests', js:true do
   specify 'I can search for an activity using date' do
     activity = FactoryGirl.create(:activity)
     visit '/'
-    fill_in 'query', with: 'test-delivery'
+    fill_in 'query', with: 'test-title'
     find('#more-filters').click
     page.execute_script("$('#start-date-range').val('01/12/2009')")
     page.execute_script("$('#end-date-range').val('05/01/2010')")
@@ -124,7 +123,6 @@ describe 'Search tests', js:true do
 
   specify 'I can search for an activity using subject, theme and date' do
     activity = FactoryGirl.create(:activity_all)
-    activity_not_in_date = FactoryGirl.create(:activity_theme)
     visit '/'
     fill_in 'query', with: 'test-delivery'
     find('#more-filters').click
@@ -146,7 +144,8 @@ describe 'Search tests', js:true do
     page.execute_script("$('#start-date-range').val('01/12/2009')")
     page.execute_script("$('#end-date-range').val('05/01/2010')")
     page.execute_script("$('form#helloworld').submit()")
-    expect(page).to have_content "Please choose a start date before the end date."
+    expect(page).to have_current_path(root_path)
+
   end
 
   specify 'I can search for an activity and a resource at the same time' do

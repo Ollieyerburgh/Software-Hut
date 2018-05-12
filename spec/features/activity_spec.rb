@@ -208,12 +208,15 @@ describe 'Managing activites', js: true do
 
   specify 'I can delete an event that I have made' do
     activity = FactoryGirl.create(:activity_approved)
+    wait_for_ajax
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test.com"
     fill_in "Password", with: "foobar12"
     click_button "Log in"
+    wait_for_ajax
     click_link "Saved Activities"
+    wait_for_ajax
     page.accept_confirm { click_link "Destroy" }
     expect(page).to have_content "Activity was successfully destroyed."
   end
