@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180509101617) do
+ActiveRecord::Schema.define(version: 20180507111659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,7 +90,6 @@ ActiveRecord::Schema.define(version: 20180509101617) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "higher_access", default: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
@@ -120,6 +119,8 @@ ActiveRecord::Schema.define(version: 20180509101617) do
   create_table "deliveries_preferences", id: false, force: :cascade do |t|
     t.bigint "delivery_id", null: false
     t.bigint "preference_id", null: false
+    t.index ["delivery_id", "preference_id"], name: "index_deliveries_preferences_on_delivery_id_and_preference_id"
+    t.index ["preference_id", "delivery_id"], name: "index_deliveries_preferences_on_preference_id_and_delivery_id"
   end
 
   create_table "deliveries_resources", id: false, force: :cascade do |t|
@@ -157,9 +158,9 @@ ActiveRecord::Schema.define(version: 20180509101617) do
   end
 
   create_table "preferences", force: :cascade do |t|
+    t.integer "preference_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "subject_id"
     t.integer "theme_id"
     t.integer "delivery_id"
     t.bigint "user_id"

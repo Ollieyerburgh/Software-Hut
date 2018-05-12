@@ -40,8 +40,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 
-
-
 FactoryGirl.define do
   factory :activity do
     before(:create) do |activity|
