@@ -14,9 +14,6 @@ class ActivitiesController < ApplicationController
     @user = current_user
   end
 
-  def pending
-    @activities = Activity.pending
-  end
   # GET /activities/1
   def show
   end

@@ -199,6 +199,7 @@ describe 'Managing activites', js: true do
     click_link "Saved Activities"
     click_link "Edit"
     expect(page).to have_content "test"
+    wait_for_ajax
     fill_in "activity[description]", with: 'HelloTestViewer'
     check 'activity_terms_of_service'
     click_button "Update Activity"
@@ -208,14 +209,13 @@ describe 'Managing activites', js: true do
 
   specify 'I can delete an event that I have made' do
     activity = FactoryGirl.create(:activity_approved)
-    wait_for_ajax
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test.com"
     fill_in "Password", with: "foobar12"
     click_button "Log in"
-    wait_for_ajax
     click_link "Saved Activities"
+    expect(page).to have_content "test"
     wait_for_ajax
     page.accept_confirm { click_link "Destroy" }
     expect(page).to have_content "Activity was successfully destroyed."

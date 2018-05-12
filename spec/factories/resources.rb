@@ -24,6 +24,9 @@
 
 FactoryGirl.define do
   factory :resource do
+    before(:create) do |resource|
+      create(:user1)
+    end
     title "test"
     description "MyString"
     email "resourcetest2@test.com"
@@ -34,6 +37,7 @@ FactoryGirl.define do
       description "test-resource"
       email "testing2@test.com"
       status "approved"
+      user_id "1"
     end
   end
 end
