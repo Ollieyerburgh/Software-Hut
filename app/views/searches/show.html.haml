@@ -23,8 +23,9 @@
 
         - if @activities_hash[count]
         - @link = 'https://team18.demo3.hut.shefcompsci.org.uk/activities/' + @activities_hash[count]['activity']['id'].to_s
-          %tr.clickonly{:class => @class, :data => {:link => @link} }
-            %td.result-title #{@activities_hash[count]['activity']['title']} #{@colour}
+          %tr{:class => @class, :data => {:link => @link} }
+            %td.result-title 
+              %a{ :href => "#{@link}", :title => "View More", :class => "button" } #{@activities_hash[count]['activity']['title']} #{@colour}
             %td.result-date
               Date:
               %span(class="date-span")
@@ -32,10 +33,17 @@
               to
               %span(class="date-span")
                 #{@activities_hash[count]['activity']['end_date']}
+            %td.result-date-deadline
+              Application Deadline:
+              %span(class="date-span-deadline")
+                #{@activities[count]['deadline']}
             %td.result-description #{@activities_hash[count]['activity']['description']}
-            %td.result-link Link to website: #{@activities_hash[count]['activity']['link']}
-            %td.result-address Address: #{@activities_hash[count]['activity']['link']}
-            %td.result-contact #{@activities_hash[count]['activity']['email']}
+            %td.result-link 
+              %a{ :href => "#{@activities_hash[count]['activity']['link']}", :title => "Link to website" } Link to website
+            %td.result-address 
+              %strong
+                Postcode: 
+              #{@activities_hash[count]['activity']['postcode']}
             %td.liker
               = link_to like_activity_path(Activity.find_by_id(@activities_hash[count]['activity']['id'])), class:"like-btn", method: :put, remote: :true do
                 = fa_icon('thumbs-up')

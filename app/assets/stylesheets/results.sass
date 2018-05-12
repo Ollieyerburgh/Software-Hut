@@ -2,27 +2,24 @@ $nice-black: #303030
 .result1, .result2, .result3, .result4, .result5
     padding: 10px
     position: relative
-    border: 1px solid white !important
+    border: 1px solid #E0E0E0 !important
+    background: #EEEEEE
+
 
 .result1:hover, .result2:hover, .result3:hover, .result4:hover, .result5:hover
-    opacity: 0.7
-    cursor: pointer
 
 .result1
     background: #91e4f7
-    color: $nice-black
 
 .result2
     background: #ffd051
-    color: $nice-black
 
 .result3
     background: #b194d1
-    color: $nice-black
 
 .result4
     background: #ffab51
-    color: $nice-black
+
 
 .result5
     background: #1cb495
@@ -34,8 +31,74 @@ $nice-black: #303030
     margin-right: 3px
     padding: 3px
 
+.date-span-deadline
+    background: #DD2C00
+    color: white
+    margin-right: 3px
+    padding: 5px
+
 .result-date
     position: absolute
     bottom: 0
     right: 0
     padding: 10px
+
+.result-date-deadline
+    position: absolute
+    bottom: 30px
+    right: 0
+    padding: 10px
+
+.result-link
+    position: absolute
+    padding: 10px
+    background: white
+    color: black !important
+    text-decoration: none
+    top: 10px
+    right: 10px
+
+.result-link a
+    color: black !important
+    text-decoration: none
+
+.result-title  a
+    color: white !important
+
+td.liker
+    position: absolute
+    bottom: 60px
+    right: 5px
+    padding: 10px
+
+.likes-count p
+    margin-bottom: 0px !important
+
+.result-address, .result-description
+    margin: 10px
+
+td.likes-count
+    position: absolute
+    bottom: 60px
+    right: 40px
+    padding: 10px
+
+@media screen and (max-width: 768px)
+    td.likes-count
+        position: relative
+        bottom: 0px
+        right: 0px
+        padding: 0px
+    td.liker
+        position: relative
+        bottom: 0px
+        right: 0px
+        padding: 0px
+    .result-link
+        position: relative
+        bottom: 0px
+        right: 0px
+        top: 0px
+
+.fa-thumbs-up
+    font-size: 30px
