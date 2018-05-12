@@ -62,10 +62,6 @@
               %a{ :href => "#{@resources[count].link}", :title => "Link to website" } Link to website
             %td.result-download
               = link_to "Download", @resources[count].file.url, download: '' unless @resources[count].file.blank?
-            %td.result-contact
-              %strong
-                Contact email:
-              #{@resources[count].email}
 
 
 .paginate-container
