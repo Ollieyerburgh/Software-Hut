@@ -28,6 +28,9 @@ class SearchesController < ApplicationController
 
     puts Activity.all.class
 
+
+
+
     if @distance_filter && @activities.size > 0
       #get the postcodes of the activities
       origins = @activities.map {|x| x.postcode}
@@ -110,6 +113,18 @@ class SearchesController < ApplicationController
       @activity.liked_by current_user
     elsif current_user.liked? @activity
       @activity.unliked_by current_user
+    end
+  end
+
+  def validGooglePostcode(postcode)
+    begin
+      distance = gmaps.distance_matrix(
+        postcode,
+        postcode
+      )
+      return true 
+    rescue
+      return false
     end
   end
 

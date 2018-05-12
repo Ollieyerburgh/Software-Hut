@@ -46,10 +46,12 @@ class User < ApplicationRecord
   VALID_POSTCODE_REGEX =  /\A[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}\z/
   validates :forename, presence: true
   validates :surname, presence: true
-  validates :postcode, presence: true, format: { with: VALID_POSTCODE_REGEX}
+  validates :postcode, presence: true, format: { with:  VALID_POSTCODE_REGEX}
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
+
+  validate :postcode_is_valid
 
   after_create :send_welcome_email
 
@@ -59,5 +61,20 @@ class User < ApplicationRecord
     UserMailer.welcome_email(self).deliver
   end
 
-
+  def postcode_is_valid
+    gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDdFojl37akCcM9_TICN7BWjSALccfO5g0')
+    postcode = self.postcode
+    begin
+      distance = gmaps.distance_matrix(
+        postcode,
+        's11 8td'
+      )
+      p distance
+      return true
+    rescue
+      errors.add(:postcode, "This doesn't appear to be a valid postcode.")
+      return false
+    end
+  end
+  
 end
