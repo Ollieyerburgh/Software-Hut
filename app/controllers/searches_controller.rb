@@ -28,7 +28,7 @@ class SearchesController < ApplicationController
 
     puts Activity.all.class
 
-    if @distance_filter
+    if @distance_filter && @activities.size > 0
       #get the postcodes of the activities
       origins = @activities.map {|x| x.postcode}
 
@@ -41,6 +41,9 @@ class SearchesController < ApplicationController
       else
         destination = params[:postcode]
       end
+
+      p origins
+      p destination
 
       #find the distances from activities to inputted postcode
       distance = gmaps.distance_matrix(
