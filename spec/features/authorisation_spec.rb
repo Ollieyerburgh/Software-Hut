@@ -262,7 +262,8 @@ describe 'Authorisation', js: true do
   specify 'When I visit help page as a user, its different from the admin ' do
     user = FactoryGirl.create(:user)
     login_as(user)
-    visit '/help'
+    click_link "Visit help page"
+    sleep(5)
     wait_for_ajax
     expect(page).to_not have_content "Here you can find guidance on how to operate the system"
     expect(page).to have_content "Here you can find guidance on how to make best use of this system."

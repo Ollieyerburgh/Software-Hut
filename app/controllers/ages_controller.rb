@@ -2,11 +2,7 @@ class AgesController < ApplicationController
   before_action :set_age, only: [:show, :edit, :update, :destroy]
   authorize_resource
 
-  # GET /ages
-  def index
-    @ages = Age.all
-  end
-
+  
   # GET /ages/new
   def new
     @age = Age.new

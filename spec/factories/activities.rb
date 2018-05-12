@@ -48,7 +48,7 @@ FactoryGirl.define do
     title "test-title"
     description "test"
     start_date "01/01/2010"
-    end_date "02/01/201"
+    end_date "02/01/2010"
     deadline "01/01/2010"
     postcode "S102SQ"
     link "www.facebook.com"
