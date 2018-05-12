@@ -51,30 +51,21 @@
               = (Activity.find_by_id(@activities_hash[count]['activity']['id'])).get_upvotes.size
         - if @resources[count]
         - @link = 'https://team18.demo3.hut.shefcompsci.org.uk/resources/' + @resources[count].id.to_s
-<<<<<<< HEAD
-          %tr{:class => @class, :data => {:link => @link} }
-            %td.result-title Resource Title: #{@resources[count].title}
-            %td.result-description Description: #{@resources[count].description}
-            %td.result-link
-              %a{ :href => "#{@resources[count].link}", :title => "Link to website" } Link to website
-            %td.result-contact
-              %strong
-                Contact email:
-              #{@resources[count].email}
-=======
+
           %tr{:class => 'resource', :data => {:link => @link} }
             %td.result-date
               %span(class="date-span")
                 Teaching resource
             %td.result-title #{@resources[count].title}
             %td.result-description #{@resources[count].description}
-            %td.result-link 
+            %td.result-link
               %a{ :href => "#{@resources[count].link}", :title => "Link to website" } Link to website
             %td.result-download
               = link_to "Download", @resources[count].file.url, download: '' unless @resources[count].file.blank?
-          
->>>>>>> 66d1d7b78aa9c24908d531dea2a27b03d4b4f5b4
-
+            %td.result-contact
+              %strong
+                Contact email:
+              #{@resources[count].email}
 
 
 .paginate-container
