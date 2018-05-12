@@ -119,6 +119,19 @@ FactoryGirl.define do
       theme_ids "1"
       subject_ids "1"
 
+      factory :activity_far do
+        title 'test-far'
+        description 'testing far distance'
+        start_date "01/01/2010"
+        end_date "04/01/2010"
+        deadline "01/02/2010"
+        link "www.google.com"
+        email "testingdeliverys@test.com"
+        status "approved"
+        postcode "EH37 5AH"
+
+      end
+
 
 
     end

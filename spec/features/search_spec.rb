@@ -20,6 +20,7 @@ describe 'Search tests', js:true do
     visit '/'
     fill_in 'query', with: ' '
     page.execute_script("$('form#helloworld').submit()")
+    wait_for_ajax
     expect(page).to have_current_path(search_path)
     expect(page).to have_content "Found 0 results for " ""
   end
@@ -62,7 +63,7 @@ describe 'Search tests', js:true do
     page.execute_script("$('form#helloworld').submit()")
     expect(page).to have_current_path(search_path)
     expect(page).to have_content "Found 1 result"
-    expect(page).to have_content "www.facebook.com"
+    expect(page).to have_content "test-title"
   end
 
   specify 'I can search for an activity using subject' do
@@ -113,6 +114,7 @@ describe 'Search tests', js:true do
     visit '/'
     fill_in 'query', with: 'test-title'
     find('#more-filters').click
+    wait_for_ajax
     page.execute_script("$('#start-date-range').val('01/12/2009')")
     page.execute_script("$('#end-date-range').val('05/01/2010')")
     page.execute_script("$('form#helloworld').submit()")
@@ -120,6 +122,16 @@ describe 'Search tests', js:true do
     expect(page).to have_content "Found 1 result"
     expect(page).to have_content "test-title"
   end
+
+  # specify 'I can search for an activivity using users distance' do
+  #   user = FactoryGirl.create(:user1)
+  #   activity = FactoryGirl.create(:activity_far)
+  #   login_as(user)
+  #   visit '/'
+  #   fill_in 'query', with: 'test-far'
+  #   page.execute_script("$('form#helloworld').submit()")
+  #   expect(page).to have_content "Found 0 results"
+  # end
 
   specify 'I can search for an activity using subject, theme and date' do
     activity = FactoryGirl.create(:activity_all)

@@ -262,7 +262,7 @@ describe 'Authorisation', js: true do
   specify 'When I visit help page as a user, its different from the admin ' do
     user = FactoryGirl.create(:user)
     login_as(user)
-    click_link "Visit help page"
+    visit '/help'
     sleep(5)
     wait_for_ajax
     expect(page).to_not have_content "Here you can find guidance on how to operate the system"
@@ -276,8 +276,32 @@ describe 'Authorisation', js: true do
     expect(page).to have_content "Here you can find guidance on how to make best use of this system."
   end
 
+  specify 'I can visit analytics page as an admin' do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    visit '/'
+    find('.dropdown-toggle').click
+    click_link 'Analytics'
+    wait_for_ajax
+    expect(page).to have_content "Analytics"
+    expect(page).to have_current_path(analytics_path)
+  end
 
+  specify 'I cannot visit analytics page as a user' do
+    user = FactoryGirl.create(:user)
+    login_as(user)
+    visit '/analytics'
+    wait_for_ajax
+    expect(page).to_not have_content "Analytics"
+    expect(page).to have_content "Access Denied 403"
+  end
 
+  specify 'I cannot visit analytics page as a guest' do
+    visit '/analytics'
+    wait_for_ajax
+    expect(page).to_not have_content "Analytics"
+    expect(page).to have_content "Access Denied 403"
+  end
 
 
 

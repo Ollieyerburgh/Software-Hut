@@ -48,7 +48,7 @@ class ResourcesController < ApplicationController
   # DELETE /resources/1
   def destroy
     @resource.destroy
-    redirect_to resources_url, notice: 'Resource was successfully destroyed.'
+    redirect_to :root, notice: 'Resource was successfully destroyed.'
   end
 
   private

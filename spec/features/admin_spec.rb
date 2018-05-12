@@ -68,6 +68,7 @@ describe 'Admin features', js: true do
   specify 'As an admin I can reject an activity request from a guest' do
     admin = FactoryGirl.create(:admin)
     visit '/activities/new'
+    wait_for_ajax
     fill_in 'Title', with: 'Test-title'
     fill_in 'activity[description]', with: 'Test-Description'
     fill_in 'Web Address of Activity', with: 'www.facebook.com'
@@ -138,7 +139,7 @@ describe 'Admin features', js: true do
     expect(page).to have_content user.forename
 
     click_link 'Edit'
-    save_and_open_page
+
     fill_in 'Forename', with: "updatedName"
     fill_in 'Email', with: "updated@test.com"
     click_button 'Update'
@@ -184,6 +185,7 @@ describe 'Admin features', js: true do
     visit '/'
     find('.dropdown-toggle').click
     click_link 'Account'
+    wait_for_ajax
     fill_in 'Password', with: 'password1'
     fill_in 'Password confirmation', with: 'password1'
     fill_in 'Current password', with: 'test1234'
@@ -221,6 +223,7 @@ describe 'Admin features', js: true do
     visit '/'
     click_link 'Create Activity'
     wait_for_ajax
+    wait_for_ajax
     click_button 'New Resource'
     fill_in 'Title', with: 'Test-admin'
     fill_in 'Resource description', with: 'Test-Desc'
@@ -236,7 +239,6 @@ describe 'Admin features', js: true do
     visit "/admin/users/show"
     resource = FactoryGirl.create(:resource)
     visit "/admin/requests/show"
-    expect(current_path).to eq("/admin/requests/show")
     expect(page).to have_content 'Approve'
     expect(page).to have_content 'Request changes'
     expect(page).to have_content 'test'
@@ -245,6 +247,21 @@ describe 'Admin features', js: true do
     ActionMailer::Base.deliveries.last.to.should include("resourcetest2@test.com")
   end
 
+  specify 'As an admin, I can reject a resource request, which sends an email' do
+    admin = FactoryGirl.create(:admin)
+    login_as(admin)
+    resource = FactoryGirl.create(:resource)
+    visit "/admin/requests/show"
+    wait_for_ajax
+    click_link 'Request changes'
+    fill_in 'Message', with: 'Rejected'
+    fill_in 'Message', with: 'Rejected'
+    click_button 'Submit'
+    expect(page).to have_content 'Rejection email was sent'
+    expect(page).to have_content 'Pending Activities'
+    ActionMailer::Base.deliveries.last.to.should include("resourcetest2@test.com")
+
+  end
 
   context 'Preferences' do
     specify 'As an admin, I should be able to add a Subject from dashboard' do
@@ -323,7 +340,7 @@ describe 'Admin features', js: true do
       sleep (1)
       visit '/admin/preferences/index'
       click_link 'Edit'
-      save_and_open_page
+
       fill_in 'Name', with: 'txt-pref'
       click_button 'Update Theme'
       expect(page).to have_content 'Theme was successfully updated.'
