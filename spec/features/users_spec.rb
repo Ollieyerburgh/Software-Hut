@@ -256,7 +256,7 @@ describe 'Users', js: true do
     click_button 'Update Preference'
     expect(page).to have_content "Preference was successfully updated"
   end
-  specify 'I can update my preference' do
+  specify 'I can destroy my preference' do
     user = FactoryGirl.create(:user)
     age = FactoryGirl.create(:age)
     age1 = FactoryGirl.create(:age1)
@@ -278,7 +278,7 @@ describe 'Users', js: true do
     expect(page).to have_content 'Preference was successfully destroyed.'
   end
 
-  specify 'I can like an activity, which changes like count' do
+  specify 'I can like an activity, which changes like count and appears in my saved activities' do
     activity = FactoryGirl.create(:activity_approved)
     user = FactoryGirl.create(:user_anon)
     visit '/'
@@ -298,6 +298,8 @@ describe 'Users', js: true do
     wait_for_ajax
     sleep(5)
     expect(page).to have_css("#likes_1", text: "1")
+    visit '/activities'
+    expect(page).to have_content 'test-title'
   end
 
   specify 'Users who liked an event receive cancellation email' do
@@ -333,4 +335,5 @@ describe 'Users', js: true do
     page.accept_confirm { click_link "Destroy" }
     ActionMailer::Base.deliveries.last.to.should include("test@test.com")
   end
+
 end

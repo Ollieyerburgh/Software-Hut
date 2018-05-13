@@ -12,7 +12,7 @@
           .panel-body
             .col-sm-6
               %p 1. Click on dashboard
-              %p 2. Follow 'Manage Admins'
+              %p 2. Follow 'Admin Invite'
               %p 3. Fill in "Email" with their email
               %p 4. Fill in "Password" with any password. This will be their admin password, which they can change
               %p 5. If you want the admin to have higher access, tick the checkbox
@@ -20,7 +20,7 @@
               %p 7. Tell them to log in, then click 'Account' to change their password
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('AdminAdd.mp4', controls: true)
+                = video_tag('AdminInviteV2.mov', controls: true)
         .panel-heading
           %h4.panel-title
             %a{"data-toggle" => "collapse", :href => "#ar"} How to: Approve/Reject
@@ -37,7 +37,7 @@
               field will be emailed to them as the reason their submission was rejected
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('AcceptReject.mp4', controls: true)
+                = video_tag('ManageRequestsV2.mov', controls: true)
 
 
         .panel-heading
@@ -47,13 +47,13 @@
           .panel-body
             .col-sm-6
               %p 1. Click on dashboard
-              %p 2. Click on 'Manage Users'
+              %p 2. Click on 'User Manage'
               %p 3. Here, all users on the system are displayed
               %p 4. You can either edit them, or delete them
               %p 5. If you delete them, they will be permantly deleted along with their activities/resources
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('ModifyUser.mp4', controls: true)
+                = video_tag('ManageUsersV2.mov', controls: true)
 
         .panel-heading
           %h4.panel-title
@@ -68,4 +68,17 @@
               %p 5. You can modify them as you wish. The ones shown will be the options when a user creates a preference
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('ModifyPreferences.mp4', controls: true)
+                = video_tag('ModifyPreferencesV2.mov', controls: true)
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#seeanalytics"} How to: See user analytics
+        .panel-collapse.collapse.in{:id => "seeanalytics"}
+          .panel-body
+            .col-sm-6
+              %p 1. Click in top right hand of screen, where it says "Hello, ...."
+              %p 2. Select 'Analytics'
+              %p 3. Here, you can see how many users of each role have registered
+              %p 4. Also, you can see a table containing how the users heard about HeppSY
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('SeeAnalyticsV2.mov', controls: true)

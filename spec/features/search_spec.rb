@@ -135,7 +135,7 @@ describe 'Search tests', js:true do
     expect(page).to_not have_content "testing far"
   end
 
-  specify 'I can search for an activity using subject, theme and date' do
+  specify 'I can search for an activity using subject, theme, delivery and date' do
     activity = FactoryGirl.create(:activity_all)
     visit '/'
     fill_in 'query', with: 'test-delivery'
@@ -165,6 +165,7 @@ describe 'Search tests', js:true do
   specify 'I can search for an activity and a resource at the same time' do
     resource = FactoryGirl.create(:resource)
     activity = FactoryGirl.create(:activity)
+    visit '/'
     fill_in 'query', with: ' '
     page.execute_script("$('form#helloworld').submit()")
     save_and_open_page

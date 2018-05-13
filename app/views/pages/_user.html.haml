@@ -5,10 +5,29 @@
   .row
     .panel-group
       .panel.panel-default
+
         .panel-heading
           %h4.panel-title
-            %a{"data-toggle" => "collapse", :href => "#admin"} How to: create an activity
-        .panel-collapse.collapse{:id => "admin"}
+            %a{"data-toggle" => "collapse", :href => "#whysignup"} Why should I sign up?
+        .panel-collapse.collapse{:id => "whysignup"}
+          .panel-body
+            .col-sm-6
+              %p 1. Although you can still search the system while not logged in, there are many benefits to signing up.
+              %p 2. Firstly, you can save activities so that you can come back to them later
+              %p 3. Secondly, you can receive emails about activities that are only relevant to you, by selecting a preference
+              %p 4. Thirdly, you can keep track of all the activities or resources that you have submitted.
+              %p 5. To sign up, click the "Sign Up" button in the top right corner of the screen.
+              %p 6. Fill in the form, making sure that your postcode is a real one. This postcode is what the distance filter uses.
+              %p 7. Click sign up, and you will be logged in
+              %p 8. Don't hesitate, you can now make a preference, saved activities and look at your activities!
+            .col-sm-6
+              .embed-responsive.embed-responsive-16by9
+                = video_tag('WhySignV2.mov', controls: true)
+      
+        .panel-heading
+          %h4.panel-title
+            %a{"data-toggle" => "collapse", :href => "#createactivity"} How to: Create an activity
+        .panel-collapse.collapse{:id => "createactivity"}
           .panel-body
             .col-sm-6
               %p 1. Click on "Create Activity"
@@ -22,11 +41,11 @@
               %p 9. Press continue, and congratulations! Your activity must now be approved by an admin, so that other users can find your content.
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('AdminAdd.mp4', controls: true)
+                = video_tag('CreateActivity.mov', controls: true)
         .panel-heading
           %h4.panel-title
-            %a{"data-toggle" => "collapse", :href => "#ar"} How to: create a resource
-        .panel-collapse.collapse{:id => "ar"}
+            %a{"data-toggle" => "collapse", :href => "#createresource"} How to: Create a resource
+        .panel-collapse.collapse{:id => "createresource"}
           .panel-body
             .col-sm-6
               %p 1. Click on "Create Activity"
@@ -41,13 +60,13 @@
 
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('AcceptReject.mp4', controls: true)
+                = video_tag('CreateResourceV2.mov', controls: true)
 
 
         .panel-heading
           %h4.panel-title
-            %a{"data-toggle" => "collapse", :href => "#modifyusers"} How to: Receive relevant emails
-        .panel-collapse.collapse{:id => "modifyusers"}
+            %a{"data-toggle" => "collapse", :href => "#preferences"} How to: Receive relevant emails
+        .panel-collapse.collapse{:id => "preferences"}
           .panel-body
             .col-sm-6
               %p 1. While on the homepage, click your name in the top right hand corner
@@ -58,12 +77,12 @@
               %p 6. You may only have one preference, but you may edit it or destroy it as you like
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('ModifyUser.mp4', controls: true)
+                = video_tag('PreferencesV2.mov', controls: true)
 
         .panel-heading
           %h4.panel-title
-            %a{"data-toggle" => "collapse", :href => "#modifypreferences"} How to: Change your password
-        .panel-collapse.collapse{:id => "modifypreferences"}
+            %a{"data-toggle" => "collapse", :href => "#changepass"} How to: Change your password
+        .panel-collapse.collapse{:id => "changepass"}
           .panel-body
             .col-sm-6
               %p 1. Sign in
@@ -73,7 +92,7 @@
               %p 5. Fill in "Current password" with your current password, and press 'Update'.
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('ModifyPreferences.mp4', controls: true)
+                = video_tag('ChangePassV2.mov', controls: true)
         .panel-heading
           %h4.panel-title
             %a{"data-toggle" => "collapse", :href => "#trackactivities"} How to: Keep track of your activities
@@ -90,7 +109,7 @@
               %p 8. You can delete or edit your approved activities at any point, however any edit will have to be approved by an administrator again
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('ModifyPreferences.mp4', controls: true)
+                = video_tag('KeepTrackV2.mov', controls: true)
 
         .panel-heading
           %h4.panel-title
@@ -111,7 +130,7 @@
 
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('ModifyPreferences.mp4', controls: true)
+                = video_tag('SearchV2.mov', controls: true)
 
         .panel-heading
           %h4.panel-title
@@ -126,22 +145,4 @@
               %p 5. Now, click "Saved Activities" in your navigation bar. Here will be all the activities that you saved, so that you can come back to them later.
             .col-sm-6
               .embed-responsive.embed-responsive-16by9
-                = video_tag('ModifyPreferences.mp4', controls: true)
-
-        .panel-heading
-          %h4.panel-title
-            %a{"data-toggle" => "collapse", :href => "#whysignup"} Why should I sign up?
-        .panel-collapse.collapse{:id => "whysignup"}
-          .panel-body
-            .col-sm-6
-              %p 1. Although you can still search the system while not logged in, there are many benefits to signing up.
-              %p 2. Firstly, you can save activities so that you can come back to them later
-              %p 3. Secondly, you can receive emails about activities that are only relevant to you, by selecting a preference
-              %p 4. Thirdly, you can keep track of all the activities or resources that you have submitted.
-              %p 5. To sign up, click the "Sign Up" button in the top right corner of the screen.
-              %p 6. Fill in the form, making sure that your postcode is a real one. This postcode is what the distance filter uses.
-              %p 7. Click sign up, and you will be logged in
-              %p 8. Don't hesitate, you can now make a preference, saved activities and look at your activities!
-            .col-sm-6
-              .embed-responsive.embed-responsive-16by9
-                = video_tag('ModifyPreferences.mp4', controls: true)
+                = video_tag('HowToSaveV2.mov', controls: true)

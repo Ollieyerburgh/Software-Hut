@@ -196,7 +196,9 @@ describe 'Managing activites', js: true do
     fill_in "Email", with: "ollieyerburgh@test.com"
     fill_in "Password", with: "foobar12"
     click_button "Log in"
-    click_link "Saved Activities"
+    wait_for_ajax
+    find('.dropdown-toggle').click
+    click_link 'My Activities'
     click_link "Edit"
     expect(page).to have_content "test"
     wait_for_ajax
@@ -214,7 +216,8 @@ describe 'Managing activites', js: true do
     fill_in "Email", with: "ollieyerburgh@test.com"
     fill_in "Password", with: "foobar12"
     click_button "Log in"
-    click_link "Saved Activities"
+    find('.dropdown-toggle').click
+    click_link 'My Activities'
     expect(page).to have_content "test"
     wait_for_ajax
     page.accept_confirm { click_link "Destroy" }
@@ -242,7 +245,7 @@ describe 'Managing activites', js: true do
     fill_in "Email", with: "ollieyerburgh@test1.com"
     fill_in "Password", with: "foobar12"
     click_button "Log in"
-    visit '/activities'
+    visit '/'
     expect(page).to have_content "test"
     expect(page).to_not have_content "Destroy"
   end
@@ -269,7 +272,7 @@ describe 'Managing activites', js: true do
     click_link 'Log out'
     user = FactoryGirl.create(:user)
     login_as(user)
-    visit '/activities'
+    visit '/'
     expect(page).to have_content 'Test-Description'
 
   end

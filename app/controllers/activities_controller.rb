@@ -84,8 +84,6 @@ class ActivitiesController < ApplicationController
   def destroy
     @users = @activity.votes_for.up.by_type(User).voters
     @users.each do |user|
-      puts @activity.id
-      puts user.id
       UserMailer.cancellation_email(user, @activity).deliver
     end
     @activity.destroy

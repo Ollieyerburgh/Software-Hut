@@ -29,31 +29,31 @@
   - if no_act == @activities.length
     %p You have no saved activities.
 
-  %h1  Other Activities
-  %table
-    %tbody
-      - @activities.each do |activity|
-        %tr
-          %td.activity-date
-            = activity.deadline
-          %td.activity-title
-            = activity.title
-          %td.activity-description
-            = activity.description
-          %td.activity-option
-            = link_to like_activity_path(activity), class:"like-btn", method: :put, id:"like_#{activity.id}", remote: :true do
-              = fa_icon('thumbs-up')
-          %td{id: "likes_#{activity.id}"}
-            = activity.get_upvotes.size
-          %td.activity-option
-            = link_to 'Show', activity
-          %td.activity-option
-            - if can? :update, activity
-              = link_to 'Edit', edit_activity_path(activity)
-          %td.activity-option
-            - if can? :destroy, activity
-              = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
-
-
-
-%br
+-#   %h1  Other Activities
+-#   %table
+-#     %tbody
+-#       - @activities.each do |activity|
+-#         %tr
+-#           %td.activity-date
+-#             = activity.deadline
+-#           %td.activity-title
+-#             = activity.title
+-#           %td.activity-description
+-#             = activity.description
+-#           %td.activity-option
+-#             = link_to like_activity_path(activity), class:"like-btn", method: :put, id:"like_#{activity.id}", remote: :true do
+-#               = fa_icon('thumbs-up')
+-#           %td{id: "likes_#{activity.id}"}
+-#             = activity.get_upvotes.size
+-#           %td.activity-option
+-#             = link_to 'Show', activity
+-#           %td.activity-option
+-#             - if can? :update, activity
+-#               = link_to 'Edit', edit_activity_path(activity)
+-#           %td.activity-option
+-#             - if can? :destroy, activity
+-#               = link_to 'Destroy', activity, method: :delete, data: { confirm: 'Are you sure?' }
+-#
+-#
+-#
+-# %br
