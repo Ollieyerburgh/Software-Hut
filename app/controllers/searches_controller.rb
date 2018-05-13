@@ -17,16 +17,16 @@ class SearchesController < ApplicationController
       @distance_filter = false
     end
     @distance_wanted = params[:distance].to_i
-    puts "Distance wanted is: #{@distance_wanted}"
+    # puts "Distance wanted is: #{@distance_wanted}"
 
     #filter the activites + resources by query + subject (this uses scopes stored in the relevant models director)
     @activities = Activity.filter(params.slice(:query, :start_date, :end_date, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
     @resources = Resource.filter(params.slice(:query, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
-    puts "Activities classes are.."
-    puts @activities.class
-    puts @resources.class
-
-    puts Activity.all.class
+    # puts "Activities classes are.."
+    # puts @activities.class
+    # puts @resources.class
+    #
+    # puts Activity.all.class
 
 
 
@@ -98,9 +98,9 @@ class SearchesController < ApplicationController
 
     #find search query to show on results page
     @search = params[:query]
-    puts "Activities classes 2 are.."
-    puts @activities.class
-    puts @resources.class
+    # puts "Activities classes 2 are.."
+    # puts @activities.class
+    # puts @resources.class
   end
 
   # GET /searches/new
@@ -122,7 +122,7 @@ class SearchesController < ApplicationController
         postcode,
         postcode
       )
-      return true 
+      return true
     rescue
       return false
     end

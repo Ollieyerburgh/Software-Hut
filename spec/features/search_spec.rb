@@ -100,6 +100,7 @@ describe 'Search tests', js:true do
     visit '/'
     fill_in 'query', with: 'test-delivery'
     find('#more-filters').click
+    save_and_open_page
     select "Online", :from => "selectdelivery"
     wait_for_ajax
     page.execute_script("$('form#helloworld').submit()")
@@ -117,21 +118,22 @@ describe 'Search tests', js:true do
     wait_for_ajax
     page.execute_script("$('#start-date-range').val('01/12/2009')")
     page.execute_script("$('#end-date-range').val('05/01/2010')")
+    wait_for_ajax
     page.execute_script("$('form#helloworld').submit()")
     wait_for_ajax
     expect(page).to have_content "Found 1 result"
     expect(page).to have_content "test-title"
   end
 
-  # specify 'I can search for an activivity using users distance' do
-  #   user = FactoryGirl.create(:user1)
-  #   activity = FactoryGirl.create(:activity_far)
-  #   login_as(user)
-  #   visit '/'
-  #   fill_in 'query', with: 'test-far'
-  #   page.execute_script("$('form#helloworld').submit()")
-  #   expect(page).to have_content "Found 0 results"
-  # end
+  specify 'I can search for an activivity using users distance' do
+    visit '/'
+    fill_in 'postcode_value', with: 'EX226UY'
+    fill_in 'query', with: 'test-far'
+    page.execute_script("$('form#helloworld').submit()")
+    wait_for_ajax
+    expect(page).to have_current_path(search_path)
+    expect(page).to_not have_content "testing far"
+  end
 
   specify 'I can search for an activity using subject, theme and date' do
     activity = FactoryGirl.create(:activity_all)
@@ -165,6 +167,7 @@ describe 'Search tests', js:true do
     activity = FactoryGirl.create(:activity)
     fill_in 'query', with: ' '
     page.execute_script("$('form#helloworld').submit()")
+    save_and_open_page
     expect(page).to have_content "Found 2 results"
   end
 

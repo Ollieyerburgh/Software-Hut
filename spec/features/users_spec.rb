@@ -231,10 +231,35 @@ describe 'Users', js: true do
     expect(page).to have_content "Preference was successfully created"
     ActionMailer::Base.deliveries.last.to.should include("ollieyerburgh@test.com")
   end
-  
-  specify 'I can add a preference and receive an email containing activities that fit' do
+
+  specify 'I can update my preference' do
     user = FactoryGirl.create(:user)
     age = FactoryGirl.create(:age)
+    age1 = FactoryGirl.create(:age1)
+    theme = FactoryGirl.create(:theme)
+    visit '/'
+    click_link "Log in"
+    fill_in "Email", with: "ollieyerburgh@test.com"
+    fill_in "Password", with: "foobar12"
+    click_button "Log in"
+    find('.dropdown-toggle').click
+    click_link 'My Preferences'
+    click_link 'New Preference'
+    wait_for_ajax
+    select "9-11", :from => "Ages"
+    select "Careers", :from => "Themes"
+    click_button "Create Preference"
+    expect(page).to have_content "Preference was successfully created"
+    visit '/preferences/'
+    click_link 'Edit'
+    select "10-12", :from => "Ages"
+    click_button 'Update Preference'
+    expect(page).to have_content "Preference was successfully updated"
+  end
+  specify 'I can update my preference' do
+    user = FactoryGirl.create(:user)
+    age = FactoryGirl.create(:age)
+    age1 = FactoryGirl.create(:age1)
     theme = FactoryGirl.create(:theme)
     visit '/'
     click_link "Log in"
@@ -248,44 +273,64 @@ describe 'Users', js: true do
     select "Careers", :from => "Themes"
     click_button "Create Preference"
     expect(page).to have_content "Preference was successfully created"
+    visit '/preferences/'
+    page.accept_confirm { click_link "Destroy" }
+    expect(page).to have_content 'Preference was successfully destroyed.'
   end
 
   specify 'I can like an activity, which changes like count' do
     activity = FactoryGirl.create(:activity_approved)
-    user = FactoryGirl.create(:user1)
+    user = FactoryGirl.create(:user_anon)
     visit '/'
     click_link "Log in"
-    fill_in "Email", with: "ollieyerburgh@test1.com"
-    fill_in "Password", with: "foobar12"
+    fill_in "Email", with: "test@test.com"
+    fill_in "Password", with: "password"
     click_button "Log in"
-    visit '/activities'
-    expect(page).to have_css("#likes_1", text: "0")
-    Capybara.page.find('#like_1').click
+    visit '/'
     wait_for_ajax
-    visit '/activities'
+    fill_in 'query', with: 'test-title'
+    page.execute_script("$('form#helloworld').submit()")
+    wait_for_ajax
+    expect(page).to have_current_path(search_path)
+    save_and_open_page
+    expect(page).to have_css("#likes_1", text: "0")
+    Capybara.page.find('.like-btn').click
+    wait_for_ajax
     sleep(5)
     expect(page).to have_css("#likes_1", text: "1")
   end
 
   specify 'Users who liked an event receive cancellation email' do
     activity = FactoryGirl.create(:activity_approved)
-    user = FactoryGirl.create(:user1)
+    user = FactoryGirl.create(:user_anon)
     visit '/'
     click_link "Log in"
-    fill_in "Email", with: "ollieyerburgh@test1.com"
-    fill_in "Password", with: "foobar12"
+    fill_in "Email", with: "test@test.com"
+    fill_in "Password", with: "password"
     click_button "Log in"
-    visit '/activities'
+    visit '/'
+    wait_for_ajax
+    fill_in 'query', with: 'test-title'
+    page.execute_script("$('form#helloworld').submit()")
+    wait_for_ajax
+    expect(page).to have_current_path(search_path)
+    save_and_open_page
+    expect(page).to have_css("#likes_1", text: "0")
     Capybara.page.find('.like-btn').click
+    wait_for_ajax
+    sleep(5)
+    expect(page).to have_css("#likes_1", text: "1")
     find('.dropdown-toggle').click
-    click_link "Log out"
+    click_link 'Log out'
     visit '/'
     click_link "Log in"
     fill_in "Email", with: "ollieyerburgh@test.com"
     fill_in "Password", with: "foobar12"
     click_button "Log in"
-    visit '/activities'
+    wait_for_ajax
+    find('.dropdown-toggle').click
+    click_link 'My Activities'
     page.accept_confirm { click_link "Destroy" }
-    ActionMailer::Base.deliveries.last.to.should include("ollieyerburgh@test1.com")
+    ActionMailer::Base.deliveries.last.to.should include("test@test.com")
   end
 end

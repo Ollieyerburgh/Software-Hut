@@ -220,11 +220,7 @@ describe 'Admin features', js: true do
     fill_in 'Email', with: 'admin@admin.com'
     fill_in 'Password', with: 'test1234'
     click_link 'Log in'
-    visit '/'
-    click_link 'Create Activity'
-    wait_for_ajax
-    wait_for_ajax
-    click_button 'New Resource'
+    visit '/resources/new'
     fill_in 'Title', with: 'Test-admin'
     fill_in 'Resource description', with: 'Test-Desc'
     fill_in 'Email', with: 'test@testadmin.com'

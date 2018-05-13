@@ -54,7 +54,7 @@
         surname "test"
         password "foobar12"
         password_confirmation "foobar12"
-        postcode "GL8 8XY"
+        postcode "EX226UY"
         answer "hello"
       end
 
@@ -66,6 +66,7 @@
         password "password"
         password_confirmation "password"
         postcode "s10 2sq"
+        answer "hello"
       end
     end
 

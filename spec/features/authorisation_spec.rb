@@ -259,17 +259,19 @@ describe 'Authorisation', js: true do
     expect(page).to_not have_content "Here you can find guidance on how to make best use of this system."
   end
 
-  specify 'When I visit help page as a user, its different from the admin ' do
-    user = FactoryGirl.create(:user)
-    login_as(user)
+  specify 'When I visit help page as a guest, its different from the admin ' do
     visit '/help'
-    sleep(5)
     wait_for_ajax
     expect(page).to_not have_content "Here you can find guidance on how to operate the system"
     expect(page).to have_content "Here you can find guidance on how to make best use of this system."
   end
 
-  specify 'When I visit help page as a guest, its different from the admin ' do
+  specify 'When I visit help page as a user, its different from the admin ' do
+    user = FactoryGirl.create(:user)
+    visit '/users/sign_in'
+    fill_in 'Email', with: 'ollieyerburgh@test.com'
+    fill_in 'Password', with: 'foobar12'
+    click_button 'Log in'
     visit '/help'
     wait_for_ajax
     expect(page).to_not have_content "Here you can find guidance on how to operate the system"
