@@ -1,28 +1,27 @@
+# This controller is used when an admin is managing users on their dashboard
 class Admin::UsersController < ApplicationController
-#  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   authorize_resource
-  # GET /resources
+
+  # GET /admins/users
   def index
     @users = User.all
   end
 
-  # GET /resources/1
+  # GET /admins/users/1
   def show
     @users = User.all
     @admins = Admin.all
   end
 
-  # GET /resources/1/edit
+  # GET /admins/users/1/edit
   def edit
     @user = User.find(params[:id])
   end
 
-
   # PATCH/PUT /resources/1
   def update
     @user = User.find(params[:id])
-
     if @user.update(user_params)
       redirect_to '/admin/users/show/', notice: 'User was successfully updated.'
     else

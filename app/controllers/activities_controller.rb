@@ -1,3 +1,4 @@
+# This controller is when somebody creates or views activities
 class ActivitiesController < ApplicationController
 
 
@@ -42,6 +43,7 @@ class ActivitiesController < ApplicationController
       @activity = Activity.new(session[:activity_params])
     end
     @activity.current_step = session[:activity_step]
+
     if @activity.valid?
       if params[:back_button]
         @activity.previous_step
@@ -71,7 +73,7 @@ class ActivitiesController < ApplicationController
     end
   end
 
-
+  # Method that is called when a user clicks on the like button.
   def vote
     if !current_user.liked? @activity
       @activity.liked_by current_user
