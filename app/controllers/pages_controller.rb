@@ -1,3 +1,5 @@
+#This is the controller for pages ie. Home page
+
 class PagesController < ApplicationController
 
   def home
@@ -9,7 +11,6 @@ class PagesController < ApplicationController
       'Confidence/Aspriation', 'Citizenship', 'Health & Wellbeing', 'Study Skills',
       'Soft Skills']
     @deliveries =  ['In school/college', 'Out of school/college', 'Online']
-
   end
 
   def help
