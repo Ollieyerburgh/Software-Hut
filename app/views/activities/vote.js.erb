@@ -1,3 +1,6 @@
+// Class used to manage the appearance of liking an activity
+
+// Applies or removes class depending on whether currently liked by user
 <% if current_user.liked? @activity %>
     $('.like-btn').click(function(){
       $(this).liked
@@ -9,4 +12,5 @@
 
 <%end%>
 
+// Updates HTML to show likes size
 $("#likes_<%= @activity.id %>").html("<p><%=@activity.get_upvotes.size %></p>")

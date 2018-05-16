@@ -64,9 +64,10 @@ class Activity < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}, :if => lambda { |a| a.current_step == "main" }
   validates :link, presence: true, :if => lambda { |a| a.current_step == "main" }
   include ActiveModel::AttributeMethods
-
-  attr_accessor :terms_of_service
   attr_writer :current_step
+
+  # Allows use of checkbox without sending data to db
+  attr_accessor :terms_of_service
   validates :terms_of_service, acceptance: { accept: '1' } , :if => lambda { |a| a.current_step == "date" }
 
   #Filters for activities
@@ -84,6 +85,8 @@ class Activity < ApplicationRecord
   scope :start_date, -> (start_date) {where("to_date(start_date, 'DD/MM/YYYY') >= (?)", start_date) }
   scope :end_date, -> (end_date) { where("to_date(end_date, 'DD/MM/YYYY') <= (?)", end_date) }
 
+
+  # Defining the steps, which lets form render specific views for multistage form
   def current_step
     @current_step || steps.first
   end
@@ -109,7 +112,7 @@ class Activity < ApplicationRecord
   end
 
   private
-    #Method for semantically filtering 
+    #Method for semantically filtering
     def self.filter(filtering_params)
       results = self.where(nil)
       filtering_params.each do |key, value|
