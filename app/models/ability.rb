@@ -1,6 +1,7 @@
 class Ability
   include CanCan::Ability
 
+  #Set the abilities for different users
   def initialize(model)
       case model
       when Admin
