@@ -36,12 +36,14 @@
 #
 
 class User < ApplicationRecord
+
+  #Relationships
   has_many :activities, dependent: :delete_all
   has_many :resources
   has_one :preference
   acts_as_voter
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+
+  #Validations
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
   VALID_POSTCODE_REGEX =  /\A[a-zA-Z]{1,2}([0-9]{1,2}|[0-9][a-zA-Z])\s*[0-9][a-zA-Z]{2}\z/
   validates :forename, presence: true
@@ -50,17 +52,19 @@ class User < ApplicationRecord
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX, message: "Invalid email address"}
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :lockable
-
   validate :postcode_is_valid
 
+  #Upon succesful validation
   after_create :send_welcome_email
 
   private
 
+  #Welcome email function
   def send_welcome_email
     UserMailer.welcome_email(self).deliver
   end
 
+  #Postcode is valid function which checks against google to see if it's found on their maps service
   def postcode_is_valid
     gmaps = GoogleMapsService::Client.new(key: 'AIzaSyDdFojl37akCcM9_TICN7BWjSALccfO5g0')
     postcode = self.postcode
@@ -69,7 +73,6 @@ class User < ApplicationRecord
         postcode,
         's11 8td'
       )
-      p distance
       return true
     rescue
       errors.add(:postcode, "This doesn't appear to be a valid postcode.")

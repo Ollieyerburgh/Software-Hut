@@ -20,10 +20,11 @@
 #  fk_rails_...  (preference_id => preferences.id)
 #
 
+#Subjects belong to and have many different activites and resources ie. Maths/ Chemistry
+
 class Subject < ApplicationRecord
   has_and_belongs_to_many :preferences
   has_and_belongs_to_many :activities
   has_and_belongs_to_many :resources
   validates :name, presence: true
-
 end

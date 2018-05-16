@@ -1,11 +1,20 @@
+# This class is used for when dealing with the preferences of the user
+# Key points: a user can only have one preference so an appropriate method
+# was implemented for checking this.
+
 class PreferencesController < ApplicationController
+
   before_action :set_preference, only: [:show, :edit, :update, :destroy]
-  authorize_resource
-  before_action :only_one_pref, only: [:new]
+  authorize_resource # Only users with accounts can access this functionality
+
+  # Check for only one preference, can only call new for adding a new preference
+  # if user doesn't have one yet
+  before_action :only_one_pref, only: [:new] 
 
   # GET /preferences
   def index
     @preferences = Preference.all
+    # Get specific preference for specific user
     @user = current_user
   end
 
@@ -24,7 +33,6 @@ class PreferencesController < ApplicationController
 
   # POST /preferences
   def create
-
     if user_signed_in?
       @preference = Preference.new(preference_params)
       @preference.user_id = current_user.id
@@ -54,6 +62,9 @@ class PreferencesController < ApplicationController
     redirect_to preferences_url, notice: 'Preference was successfully destroyed.'
   end
 
+  # only_one_pref returns a boolean
+  # A user can only have one preference, the user should not be allowed to
+  # create more than one preferences.
   def only_one_pref
       return unless !(Preference.all.length < 1)
       redirect_to preferences_path, alert: 'One preference only.'
