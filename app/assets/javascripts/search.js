@@ -1,8 +1,8 @@
+//This file is used for the javascript search functionality.
 $( document ).on('turbolinks:load', function() {
 
-    $(".clickonly").click(function() {
-    });
 
+    //Set the range slider with values
     if ($('.irs').length==0) {
         $("#example_id").ionRangeSlider({
             min: '100',
@@ -11,7 +11,7 @@ $( document ).on('turbolinks:load', function() {
         });
     }
 
-
+    //Set the home page slider
     $(".slickaroo").slick({
         dots: false,
         accessibility: false,
@@ -24,8 +24,10 @@ $( document ).on('turbolinks:load', function() {
 
     });
 
+    //Hide extra filters on page load
     $('#extra-filters').hide();
 
+    //Show extra filters on click
     $( "#more-filters" ).click(function() {
         if ( $('#extra-filters').is(':visible'))  {
             $('#extra-filters').hide();
@@ -37,12 +39,14 @@ $( document ).on('turbolinks:load', function() {
         }
     });
 
+    //Return a Boolean if postcode is valid or not
     function valid_postcode(postcode) {
         postcode = postcode.replace(/\s/g, "");
         const regex = /^[A-Z]{1,2}[0-9]{1,2}[A-Z]{0,1} ?[0-9][A-Z]{2}$/i;
         return regex.test(postcode);
     }
 
+    // On search submit, handle validations
     $('#helloworld').submit(function(ev) {
         ev.preventDefault(); // to stop the form from submitting
         /* Validations go here */

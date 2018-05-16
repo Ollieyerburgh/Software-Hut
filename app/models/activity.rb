@@ -41,13 +41,15 @@
 #
 
 class Activity < ApplicationRecord
+
+  #Relationships
   has_and_belongs_to_many :subjects
   has_and_belongs_to_many :themes
   has_and_belongs_to_many :deliveries
   has_and_belongs_to_many :ages
-
   belongs_to :user, optional: true
 
+  #Validations
   self.table_name = "activities"
   acts_as_votable
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -67,6 +69,7 @@ class Activity < ApplicationRecord
   attr_writer :current_step
   validates :terms_of_service, acceptance: { accept: '1' } , :if => lambda { |a| a.current_step == "date" }
 
+  #Filters for activities
   scope :pending, -> { where(status: 'pending')}
   scope :approved, -> { where(status: 'approved')}
   scope :description, -> (description) { where("description like ? ",  "#{description}")}
@@ -107,6 +110,7 @@ Activity.where('start_date > ?', '01/01/2010')
   end
 
   private
+    #Method for semantically filtering 
     def self.filter(filtering_params)
       results = self.where(nil)
       filtering_params.each do |key, value|

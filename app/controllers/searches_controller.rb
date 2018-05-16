@@ -17,19 +17,10 @@ class SearchesController < ApplicationController
       @distance_filter = false
     end
     @distance_wanted = params[:distance].to_i
-    # puts "Distance wanted is: #{@distance_wanted}"
 
     #filter the activites + resources by query + subject (this uses scopes stored in the relevant models director)
     @activities = Activity.filter(params.slice(:query, :start_date, :end_date, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
     @resources = Resource.filter(params.slice(:query, :subject, :theme, :delivery)).paginate(page: params[:page], per_page: 10)
-    # puts "Activities classes are.."
-    # puts @activities.class
-    # puts @resources.class
-    #
-    # puts Activity.all.class
-
-
-
 
     if @distance_filter && @activities.size > 0
       #get the postcodes of the activities
@@ -45,9 +36,6 @@ class SearchesController < ApplicationController
         destination = params[:postcode]
       end
 
-      p origins
-      p destination
-
       #find the distances from activities to inputted postcode
       distance = gmaps.distance_matrix(
         origins,
@@ -59,7 +47,6 @@ class SearchesController < ApplicationController
       distance[:rows].each { |distance|
         @distances.push((distance[:elements][0][:distance][:value]/1000).to_i)
       }
-
 
       #remove activities whose distance is greater than specified
       @activities_with_correct_distance = []
@@ -78,17 +65,9 @@ class SearchesController < ApplicationController
         activity['distance'] = @correct_distances[index].to_i
       }
 
-      #order array of activerecord activities results on distance
-      #@activities.sort_by{|x| @activities_hash.index x['distance']}
-
       #order activities by length of distance
       @activities_hash = @activities_hash.sort_by { |k| k["distance"] }
 
-      #turn the hash back into an array for iteration
-      #@activities = @activities_hash
-
-      #don't show resources for location search
-      #@resourcers = []
     else
       @activities_hash = @activities.as_json(:root => true)
     end
@@ -98,9 +77,7 @@ class SearchesController < ApplicationController
 
     #find search query to show on results page
     @search = params[:query]
-    # puts "Activities classes 2 are.."
-    # puts @activities.class
-    # puts @resources.class
+
   end
 
   # GET /searches/new
@@ -113,18 +90,6 @@ class SearchesController < ApplicationController
       @activity.liked_by current_user
     elsif current_user.liked? @activity
       @activity.unliked_by current_user
-    end
-  end
-
-  def validGooglePostcode(postcode)
-    begin
-      distance = gmaps.distance_matrix(
-        postcode,
-        postcode
-      )
-      return true
-    rescue
-      return false
     end
   end
 

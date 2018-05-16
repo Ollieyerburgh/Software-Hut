@@ -27,10 +27,11 @@ class Preference < ApplicationRecord
   has_and_belongs_to_many :ages
   validates :theme_id, :delivery_id, :subject_id, :age_id, presence: false
 
+  #when a user creates preferences an email is send automatically with  activities that match his preferences
   after_create :send_weekly_email
 
   private
-
+  
   def send_weekly_email
     @activities = Activity.all
     @user = User.find_by(id: user_id)
