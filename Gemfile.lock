@@ -36,7 +36,7 @@ GIT
       rspec
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://rubygems.org/
   specs:
     actioncable (5.1.4)
       actionpack (= 5.1.4)

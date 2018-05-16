@@ -16,6 +16,7 @@ env :MAILTO, 'systems@epigenesys.org.uk'
 set :output, 'log/whenever.log'
 set :environment, 'development'
 
+#Every Monday at 10 call the task for sending an email to the users that have preferences
 every :monday, at: '10am' do
   rake 'send_weekly_email'
 end

@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source "http://rubygems.org"
 ruby '2.3.1'
 gem 'rails', '5.1.4'
 gem 'responders'
@@ -56,7 +56,7 @@ gem "shoulda"
 gem 'test-unit'
 gem 'google_maps_service'
 
-gem 'bootstrap-datepicker-rails'
+
 
 group :development, :test do
   gem 'rspec-rails'
