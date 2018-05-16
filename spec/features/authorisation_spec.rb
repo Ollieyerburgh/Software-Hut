@@ -23,7 +23,7 @@ describe 'Authorisation', js: true do
     visit '/admin'
     expect(page).to have_content 'Access Denied 403'
   end
-  specify 'I cannot see saved activities link, or access through URL' do
+  specify 'I cannot see saved activities link, or access through URL as a guest' do
     visit '/'
     expect(page).not_to have_content 'Saved Activities'
     visit '/activities'
@@ -199,8 +199,6 @@ describe 'Authorisation', js: true do
   specify 'I cannot visit Add or edit Themes as a lower level admin' do
     admin1 = FactoryGirl.create(:admin_lower)
     login_as(admin1)
-    user = FactoryGirl.create(:user)
-    login_as(user)
     theme = FactoryGirl.create(:theme)
     sleep(1)
     visit '/themes/new'

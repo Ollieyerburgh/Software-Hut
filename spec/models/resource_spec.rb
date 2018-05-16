@@ -34,18 +34,19 @@ RSpec.describe Resource, type: :model do
   it "is not valid without title" do
     resource.title = nil
     expect(resource).to_not be_valid
-
+    resource.title = "test"
   end
 
   it "is not valid without description" do
     resource.description = nil
     expect(resource).to_not be_valid
+    resource.description = "blah"
   end
 
-  it "is not valid without link" do
-    resource.link = nil
+  it "is not valid without email" do
+    resource.email = nil
     expect(resource).to_not be_valid
-  end
+    resource.email = "test@test.com"
 
   describe "Associations" do
     it { should have_and_belong_to_many(:subjects) }
