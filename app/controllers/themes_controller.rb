@@ -1,7 +1,11 @@
-class ThemesController < ApplicationController
-  before_action :set_theme, only: [:show, :edit, :update, :destroy]
-  authorize_resource
+# This class is used for when creating and manipulating preferences of the user
+# Key points: a user can have one preference but their preference can include
+# many theme options
 
+class ThemesController < ApplicationController
+
+  before_action :set_theme, only: [:show, :edit, :update, :destroy]
+  authorize_resource # Only users with accounts can access this functionality
 
   # GET /themes/new
   def new
@@ -16,7 +20,6 @@ class ThemesController < ApplicationController
   def create
     theme_params = params.require(:theme).permit(:name)
     @theme = Theme.new(theme_params)
-
     if @theme.save
       redirect_to "/admin/preferences/index", notice: 'Theme was successfully created.'
     else

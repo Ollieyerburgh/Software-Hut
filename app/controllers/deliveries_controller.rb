@@ -1,13 +1,16 @@
+# This class is used for when creating and manipulating preferences of the user
+# Key points: a user can have one preference but their preference can include
+# many delivery options
+
 class DeliveriesController < ApplicationController
+
   before_action :set_delivery, only: [:show, :edit, :update, :destroy]
-  authorize_resource
+  authorize_resource # Only users with accounts can access this functionality
 
   # GET /deliveries
   def index
     @deliveries = Delivery.all
   end
-
-
 
   # GET /deliveries/new
   def new
@@ -22,7 +25,6 @@ class DeliveriesController < ApplicationController
   def create
     delivery_params = params.require(:delivery).permit(:method)
     @delivery = Delivery.new(delivery_params)
-
     if @delivery.save
       redirect_to "/admin/preferences/index", notice: 'Delivery was successfully created.'
     else

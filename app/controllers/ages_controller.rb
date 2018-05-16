@@ -1,8 +1,12 @@
-class AgesController < ApplicationController
-  before_action :set_age, only: [:show, :edit, :update, :destroy]
-  authorize_resource
+# This class is used for when creating and manipulating preferences of the user
+# Key points: a user can have one preference but their preference can include
+# many age options
 
-  
+class AgesController < ApplicationController
+
+  before_action :set_age, only: [:show, :edit, :update, :destroy]
+  authorize_resource # Only users with accounts can access this functionality
+
   # GET /ages/new
   def new
     @age = Age.new
@@ -16,7 +20,6 @@ class AgesController < ApplicationController
   def create
     age_params = params.require(:age).permit(:age)
     @age = Age.new(age_params)
-
     if @age.save
       redirect_to "/admin/preferences/index", notice: 'Age was successfully created.'
     else

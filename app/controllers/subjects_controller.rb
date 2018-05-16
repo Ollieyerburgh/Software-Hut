@@ -1,7 +1,12 @@
-class SubjectsController < ApplicationController
-  authorize_resource
+# This class is used for when creating and manipulating preferences of the user
+# Key points: a user can have one preference but their preference can include
+# many subject options
 
+class SubjectsController < ApplicationController
+
+  authorize_resource # Only users with accounts can access this functionality
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
+
   # GET /subjects/1
   def show
   end
@@ -18,7 +23,6 @@ class SubjectsController < ApplicationController
   def create
     subject_params = params.require(:subject).permit(:name)
     @subject = Subject.new(subject_params)
-
     if @subject.save
       redirect_to "/admin/preferences/index", notice: 'Subject was created.'
     else
