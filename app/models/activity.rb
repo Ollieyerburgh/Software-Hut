@@ -84,7 +84,6 @@ class Activity < ApplicationRecord
   scope :start_date, -> (start_date) {where("to_date(start_date, 'DD/MM/YYYY') >= (?)", start_date) }
   scope :end_date, -> (end_date) { where("to_date(end_date, 'DD/MM/YYYY') <= (?)", end_date) }
 
-Activity.where('start_date > ?', '01/01/2010')
   def current_step
     @current_step || steps.first
   end
