@@ -1,4 +1,4 @@
-//This file is used for the javascript search functionality.
+//This file is used for the javascript home page search functionality.
 
 
 $( document ).on('turbolinks:load', function() {

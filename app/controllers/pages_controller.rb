@@ -1,5 +1,8 @@
+#This is the controller for pages ie. Home page
+
 class PagesController < ApplicationController
 
+  # GET /
   def home
     @activities = Activity.all.order(cached_votes_up: :desc)
     @subjects = Subject.all.limit(20)
@@ -9,13 +12,14 @@ class PagesController < ApplicationController
       'Confidence/Aspriation', 'Citizenship', 'Health & Wellbeing', 'Study Skills',
       'Soft Skills']
     @deliveries =  ['In school/college', 'Out of school/college', 'Online']
-
   end
 
+  # GET /help
   def help
     #authorize! :help, @pages
   end
 
+  # GET /analytics 
   def analytics
     @users = User.all.paginate(page: params[:page], per_page: 14)
     @learners = User.where(role: 'Learner')
@@ -24,8 +28,5 @@ class PagesController < ApplicationController
     @teachers = User.where(role: 'Teacher/Advisor')
     authorize! :analytics, @pages
   end
-
-
-
-
+  
 end
