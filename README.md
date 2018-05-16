@@ -21,5 +21,7 @@ Some Customer <some.customer@epigenesys.co.uk>
 
 TEST THE SLACK NOTIFICATIONS
 
-![alt text](https://imgur.com/HPtUzTU)
+![alt text](https://i.imgur.com/HPtUzTU.png)
+![alt text](https://i.imgur.com/KDSOmoC.png)
+![alt text](https://i.imgur.com/9jafUN9.png)
 
