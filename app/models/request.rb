@@ -4,9 +4,6 @@ class Request < MailForm::Base
   attribute :message
   attribute :nickname,  :captcha  => true
 
-
-
-
   def headers
       {
         :subject => "Rejected request",
