@@ -120,8 +120,6 @@ ActiveRecord::Schema.define(version: 20180513162414) do
   create_table "deliveries_preferences", id: false, force: :cascade do |t|
     t.bigint "delivery_id", null: false
     t.bigint "preference_id", null: false
-    t.index ["delivery_id", "preference_id"], name: "index_deliveries_preferences_on_delivery_id_and_preference_id"
-    t.index ["preference_id", "delivery_id"], name: "index_deliveries_preferences_on_preference_id_and_delivery_id"
   end
 
   create_table "deliveries_resources", id: false, force: :cascade do |t|
@@ -159,9 +157,9 @@ ActiveRecord::Schema.define(version: 20180513162414) do
   end
 
   create_table "preferences", force: :cascade do |t|
-    t.integer "preference_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "subject_id"
     t.integer "theme_id"
     t.integer "delivery_id"
     t.bigint "user_id"
